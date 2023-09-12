@@ -1,9 +1,17 @@
-import React from 'react'
+import InputEmail from "../ui/InputEmail";
+import InputText from "../ui/InputText";
 
-const form = () => {
-    return (
-        <div>This will be the form component 🥠 </div>
-    )
-}
+const Form = () => {
+  return (
+    <form>
+        <InputText id="name" placeholder="Escribe tu nombre y apellidos" children="Nombre y Apellidos" />
+        {/* <InputEmail placeholder="Correo electrónico" children="Escribe tu correo electrónico" /> */}
 
-export default form
+
+
+     
+    </form>
+  );
+};
+
+export default Form;
