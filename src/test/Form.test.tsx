@@ -169,26 +169,27 @@ describe('Se espera un select desplegable con opciones de género', () => {
       expect(select?.value).toBe('')
       if (select) {
         // Simulate selecting an option with the value "rigatoni"
-        fireEvent.change(select, { target: { value: 'hombre' } })
+        fireEvent.change(select, { target: { value: 'Hombre' } })
         // Check if the selected option in the dropdown is "rigatoni"
-        expect(select.value).toBe('hombre')
+        expect(select.value).toBe('Hombre')
         // Simulate selecting an option with the value "dave"
-        fireEvent.change(select, { target: { value: 'mujer' } })
+        fireEvent.change(select, { target: { value: 'Mujer' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('mujer')
+        expect(select.value).toBe('Mujer')
         // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'otro' } })
+        fireEvent.change(select, { target: { value: 'Otro' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('otro')
+        expect(select.value).toBe('Otro')
         // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'prefiero_no_identificarme' } })
+        fireEvent.change(select, { target: { value: 'Prefiero no identificarme' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('prefiero_no_identificarme')
+        expect(select.value).toBe('Prefiero no identificarme')
         // Similarly, you can simulate selecting options with other values
         
       }
     });
   });
+  
 
 
 
