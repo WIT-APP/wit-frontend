@@ -264,6 +264,81 @@ describe('Se espera un input en que ciudad resides', () => {
 
 });
 
+describe('Expect an input that is en que provincia resides', () => {
+    test('The input field and its props of provincia', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#provincia'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'Barcelona'
+            expect(input.textContent).toBe('Barcelona')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('provincia')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'Barcelona'
+                }
+            })
+            expect(input.value).toBe('Barcelona')
+
+        }
+    });
+
+});
+
+// describe('Expect an input that is codigo postal', () => {
+//     test('The input field and its props of codigo postal', () => {
+//         render(<Form />)
+//         const input = document.querySelector(
+//             'input'
+//         ) as HTMLInputElement | null;
+
+//         // el input existe en el componente de formulario?
+//         expect(input).toBeTruthy()
+
+//         // está vacio?
+//         expect(input?.textContent).toBe('')
+
+//         if (input) {
+//             // prueba el input text
+//             input.textContent = '08172'
+//             expect(input.textContent).toBe('08172')
+
+//             // prueba el type prop
+//             expect(input.type).toBe('cp')
+
+//             // prueba el name prop
+//             expect(input.name).toBe('cp')
+
+//             // prueba el value prop
+//             fireEvent.change(input, {
+//                 target: {
+//                     value: '08172'
+//                 }
+//             })
+//             expect(input.value).toBe('08172')
+
+//         }
+//     });
+
+// });
+
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)
@@ -487,82 +562,6 @@ describe('Se espera un input en que ciudad resides', () => {
 // });
 
 
-
-
-
-// describe('Expect an input that is en que provincia resides', () => {
-//     test('The input field and its props of provincia', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
-
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
-
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
-
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = 'Barcelona'
-//             expect(input.textContent).toBe('Barcelona')
-
-//             // prueba el type prop
-//             expect(input.type).toBe('provincia')
-
-//             // prueba el name prop
-//             expect(input.name).toBe('provincia')
-
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'Barcelona'
-//                 }
-//             })
-//             expect(input.value).toBe('Barcelona')
-
-//         }
-//     });
-
-// });
-
-// describe('Expect an input that is codigo postal', () => {
-//     test('The input field and its props of codigo postal', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
-
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
-
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
-
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = '08172'
-//             expect(input.textContent).toBe('08172')
-
-//             // prueba el type prop
-//             expect(input.type).toBe('cp')
-
-//             // prueba el name prop
-//             expect(input.name).toBe('cp')
-
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: '08172'
-//                 }
-//             })
-//             expect(input.value).toBe('08172')
-
-//         }
-//     });
-
-// });
 
 // describe('Expect an input that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {
 //     test('The input field and its props of titulacion academica', () => {
