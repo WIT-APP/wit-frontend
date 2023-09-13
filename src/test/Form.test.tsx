@@ -404,6 +404,48 @@ describe('Expect an input that is codigo postal', () => {
 });
 
 
+
+describe('Expect an select that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {
+    test('The select field and its props of titulacion academica', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#educacion'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'sin estudios o estudios primarios sin finalizar' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('sin estudios o estudios primarios sin finalizar')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'estudios primarios' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('estudios primarios')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'estudios secundarios' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('estudios secundarios')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'formación profesional' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('formación profesional')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'estudios universitarios' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('estudios universitarios')
+            fireEvent.change(select, { target: { value: 'otro' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('otro')
+        }
+    });
+});
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)
@@ -774,42 +816,6 @@ describe('Expect an input that is codigo postal', () => {
 
 // });
 
-// describe('Expect an input that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {
-//     test('The input field and its props of titulacion academica', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
-
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
-
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
-
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = 'Master'
-//             expect(input.textContent).toBe('Master')
-
-//             // prueba el type prop
-//             expect(input.type).toBe('titulo')
-
-//             // prueba el name prop
-//             expect(input.name).toBe('titulo')
-
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'master'
-//                 }
-//             })
-//             expect(input.value).toBe('master')
-
-//         }
-//     });
-
-// });
 
 // describe('Expect an input that is que dedicacion semanal tendrias para el proceso de formacion', () => {
 //     test('The input field and its props dedicacion semanal', () => {

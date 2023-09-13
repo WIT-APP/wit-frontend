@@ -5,10 +5,11 @@ interface inputTextProps {
   placeholder?: string,
   children: React.ReactNode
   value?: string
+
     
 }
 
-const InputText =  ( { id, type,  placeholder, children, value }: inputTextProps) => {
+const InputText =  ( { id, type,  placeholder, children, value}: inputTextProps) => {
 
   
   return (
