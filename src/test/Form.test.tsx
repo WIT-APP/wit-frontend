@@ -46,7 +46,7 @@ describe('Expect an input that is Nombre y Apellidos', () => {
         }
     });
 
-  
+
 });
 
 describe('Expect an input that is Correo electronico', () => {
@@ -161,39 +161,74 @@ describe('Expect an input that is Telefono de contacto', () => {
 
 describe('Se espera un select desplegable con opciones de género', () => {
     test('El desplegable tiene estas opciones', () => {
-      render(<Form />)
-      const select = document.querySelector('#genero') as HTMLSelectElement | null;
-      // Check if the select dropdown exists in the form component
-      expect(select).toBeTruthy()
-      // Check if the select dropdown is initially empty
-      expect(select?.value).toBe('')
-      if (select) {
-        // Simulate selecting an option with the value "rigatoni"
-        fireEvent.change(select, { target: { value: 'hombre' } })
-        // Check if the selected option in the dropdown is "rigatoni"
-        expect(select.value).toBe('hombre')
-        // Simulate selecting an option with the value "dave"
-        fireEvent.change(select, { target: { value: 'mujer' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('mujer')
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'otro' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('otro')
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'prefiero_no_identificarme' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('prefiero_no_identificarme')
-        // Similarly, you can simulate selecting options with other values
-        
-      }
+        render(<Form />)
+        const select = document.querySelector('#genero') as HTMLSelectElement | null;
+        // Check if the select dropdown exists in the form component
+        expect(select).toBeTruthy()
+        // Check if the select dropdown is initially empty
+        expect(select?.value).toBe('')
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'hombre' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('hombre')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'mujer' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('mujer')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'otro' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('otro')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'prefiero_no_identificarme' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('prefiero_no_identificarme')
+            // Similarly, you can simulate selecting options with other values
+
+        }
     });
-  });
+});
 
+describe('Expect an input that is Cual es tu direccion de residencia', () => {
+    test('The input field and its props of residencia', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#direccion'
+        ) as HTMLInputElement | null;
 
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
 
-// describe('Expect an input that is ¿Cual es tu pais de nacimiento?', () => {
-//     test('The input field and its props of pais de nacimiento', () => {
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'C/Montblanc n-1 3-2'
+            expect(input.textContent).toBe('C/Montblanc n-1 3-2')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('direccion')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'C/Montblanc n-1 3-2'
+                }
+            })
+            expect(input.value).toBe('C/Montblanc n-1 3-2')
+
+        }
+    });
+
+});
+
+// describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
+//     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)
 //         const input = document.querySelector(
 //             'input'
@@ -414,42 +449,7 @@ describe('Se espera un select desplegable con opciones de género', () => {
 
 // });
 
-// describe('Expect an input that is Cual es tu direccion de residencia', () => {
-//     test('The input field and its props of residencia', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
 
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
-
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
-
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = 'C/Montblanc n-1 3-2'
-//             expect(input.textContent).toBe('C/Montblanc n-1 3-2')
-
-//             // prueba el type prop
-//             expect(input.type).toBe('direccion')
-
-//             // prueba el name prop
-//             expect(input.name).toBe('direccion')
-
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'C/Montblanc n-1 3-2'
-//                 }
-//             })
-//             expect(input.value).toBe('C/Montblanc n-1 3-2')
-
-//         }
-//     });
-
-// });
 
 // describe('Expect an input that is en que ciudad resides', () => {
 //     test('The input field and its props of residencia', () => {
