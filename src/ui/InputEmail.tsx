@@ -7,7 +7,7 @@ function InputEmail({ placeholder, children }: inputEmailProps ) {
 
   return (
     <>
-      <label htmlFor="name">
+      <label htmlFor="email">
         {children}
         <input
           type="email"

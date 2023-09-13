@@ -22,7 +22,7 @@ describe('Expect an input that is Nombre y Apellidos', () => {
         expect(input).toBeTruthy()
 
         // está vacio?
-        // expect(input?.textContent).toBe('')
+        expect(input?.textContent).toBe('')
 
         if (input) {
             // prueba el input text
@@ -49,42 +49,42 @@ describe('Expect an input that is Nombre y Apellidos', () => {
   
 });
 
-// describe('Expect an input that is Correo electronico', () => {
-//     test('The input field and its props of Correo electronico', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
+describe('Expect an input that is Correo electronico', () => {
+    test('The input field and its props of Correo electronico', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#email'
+        ) as HTMLInputElement | null;
 
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
 
-//         // está vacio?
-//         // expect(input?.textContent).toBe('')
+        // está vacio?
+        expect(input?.textContent).toBe('')
 
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = 'carlos@mail.com'
-//             expect(input.textContent).toBe('carlos@mail.com')
+        if (input) {
+            // prueba el input text
+            input.textContent = 'carlos@mail.com'
+            expect(input.textContent).toBe('carlos@mail.com')
 
-//             // prueba el type prop
-//             expect(input.type).toBe('email')
+            // prueba el type prop
+            expect(input.type).toBe('email')
 
-//             // prueba el name prop
-//             expect(input.name).toBe('email')
+            // prueba el name prop
+            expect(input.name).toBe('email')
 
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'carlos@mail.com'
-//                 }
-//             })
-//             expect(input.value).toBe('carlos@mail.com')
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'carlos@mail.com'
+                }
+            })
+            expect(input.value).toBe('carlos@mail.com')
 
-//         }
-//     });
+        }
+    });
 
-// });
+});
 
 // describe('Expect an input that is Telefono de contacto', () => {
 //     test('The input field and its props of Telefono de contacto', () => {
@@ -101,7 +101,7 @@ describe('Expect an input that is Nombre y Apellidos', () => {
 
 //         if (input) {
 //             // prueba el input text
-//             input.textContent = 'carlos@mail.com'
+//             input.textContent = '696753758'
 //             expect(input.textContent).toBe('carlos@mail.com')
 
 //             // prueba el type prop
