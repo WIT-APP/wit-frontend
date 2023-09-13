@@ -301,42 +301,42 @@ describe('Expect an input that is en que provincia resides', () => {
 
 });
 
-// describe('Expect an input that is codigo postal', () => {
-//     test('The input field and its props of codigo postal', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
+describe('Expect an input that is codigo postal', () => {
+    test('The input field and its props of codigo postal', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#codigopostal'
+        ) as HTMLInputElement | null;
 
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
 
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
+        // está vacio?
+        expect(input?.textContent).toBe('')
 
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = '08172'
-//             expect(input.textContent).toBe('08172')
+        if (input) {
+            // prueba el input text
+            input.textContent = '08172'
+            expect(input.textContent).toBe('08172')
 
-//             // prueba el type prop
-//             expect(input.type).toBe('cp')
+            // prueba el type prop
+            expect(input.type).toBe('number')
 
-//             // prueba el name prop
-//             expect(input.name).toBe('cp')
+            // prueba el name prop
+            expect(input.name).toBe('codigopostal')
 
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: '08172'
-//                 }
-//             })
-//             expect(input.value).toBe('08172')
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: '08172'
+                }
+            })
+            expect(input.value).toBe('08172')
 
-//         }
-//     });
+        }
+    });
 
-// });
+});
 
 
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {

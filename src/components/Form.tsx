@@ -25,6 +25,7 @@ const Form = () => {
       <InputText type="text" id="direccion" placeholder="Calle, Nro, Piso" children="Calle, Nro, Piso" />
       <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
       <InputText type="text" id="provincia" placeholder="Escribe tu provincia de residencia" children="provincia de residencia" />
+      <InputText type="number" id="codigopostal" placeholder="Escribe tu código postal" children="código postal" />
 
 
     </form>
