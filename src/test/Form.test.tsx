@@ -227,6 +227,43 @@ describe('Expect an input that is Cual es tu direccion de residencia', () => {
 
 });
 
+describe('Se espera un input en que ciudad resides', () => {
+    test('The input field and its props of residencia', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#ciudad'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'Sant Cugat'
+            expect(input.textContent).toBe('Sant Cugat')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('ciudad')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'Sant cugat'
+                }
+            })
+            expect(input.value).toBe('Sant cugat')
+
+        }
+    });
+
+});
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)
@@ -451,42 +488,7 @@ describe('Expect an input that is Cual es tu direccion de residencia', () => {
 
 
 
-// describe('Expect an input that is en que ciudad resides', () => {
-//     test('The input field and its props of residencia', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
 
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
-
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
-
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = 'Sant Cugat'
-//             expect(input.textContent).toBe('Sant Cugat')
-
-//             // prueba el type prop
-//             expect(input.type).toBe('city')
-
-//             // prueba el name prop
-//             expect(input.name).toBe('city')
-
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'Sant cugat'
-//                 }
-//             })
-//             expect(input.value).toBe('Sant cugat')
-
-//         }
-//     });
-
-// });
 
 // describe('Expect an input that is en que provincia resides', () => {
 //     test('The input field and its props of provincia', () => {

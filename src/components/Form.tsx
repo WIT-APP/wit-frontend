@@ -23,6 +23,7 @@ const Form = () => {
         { value: "prefiero_no_identificarme", label: "Prefiero no identificarme" },
       ]} onChange={handleGeneroChange} />
       <InputText type="text" id="direccion" placeholder="Calle, Nro, Piso" children="Calle, Nro, Piso" />
+      <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
 
 
     </form>
