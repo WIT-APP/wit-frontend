@@ -85,43 +85,112 @@ describe('Expect an input that is Correo electronico', () => {
     });
 
 });
+describe('Se espera un input que es la fecha de nacimiento', () => {
+    test('The input field and its props of fecha de nacimiento', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#date'
+        ) as HTMLInputElement | null;
 
-// describe('Expect an input that is Telefono de contacto', () => {
-//     test('The input field and its props of Telefono de contacto', () => {
-//         render(<Form />)
-//         const input = document.querySelector(
-//             'input'
-//         ) as HTMLInputElement | null;
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
 
-//         // el input existe en el componente de formulario?
-//         expect(input).toBeTruthy()
+        // está vacio?
+        expect(input?.textContent).toBe('')
 
-//         // está vacio?
-//         expect(input?.textContent).toBe('')
+        if (input) {
+            // prueba el input text
+            input.textContent = '25/07/1985'
+            expect(input.textContent).toBe('25/07/1985')
 
-//         if (input) {
-//             // prueba el input text
-//             input.textContent = '696753758'
-//             expect(input.textContent).toBe('carlos@mail.com')
+            // prueba el type prop
+            expect(input.type).toBe('date')
 
-//             // prueba el type prop
-//             expect(input.type).toBe('email')
+            // prueba el name prop
+            expect(input.name).toBe('date')
 
-//             // prueba el name prop
-//             expect(input.name).toBe('email')
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: '25/07/1985'
+                }
+            })
+            expect(input.value).toBe('')
 
-//             // prueba el value prop
-//             fireEvent.change(input, {
-//                 target: {
-//                     value: 'carlos@mail.com'
-//                 }
-//             })
-//             expect(input.value).toBe('carlos@mail.com')
+        }
+    });
 
-//         }
-//     });
+});
 
-// });
+describe('Expect an input that is Telefono de contacto', () => {
+    test('The input field and its props of Telefono de contacto', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#phone'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = '696753759'
+            expect(input.textContent).toBe('696753759')
+
+            // prueba el type prop
+            expect(input.type).toBe('number')
+
+            // prueba el name prop
+            expect(input.name).toBe('phone')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: '696753759'
+                }
+            })
+            expect(input.value).toBe('696753759')
+
+        }
+    });
+
+});
+
+describe('Se espera un select desplegable con opciones de género', () => {
+    test('El desplegable tiene estas opciones', () => {
+      render(<Form />)
+      const select = document.querySelector('#genero') as HTMLSelectElement | null;
+      // Check if the select dropdown exists in the form component
+      expect(select).toBeTruthy()
+      // Check if the select dropdown is initially empty
+      expect(select?.value).toBe('')
+      if (select) {
+        // Simulate selecting an option with the value "rigatoni"
+        fireEvent.change(select, { target: { value: 'hombre' } })
+        // Check if the selected option in the dropdown is "rigatoni"
+        expect(select.value).toBe('hombre')
+        // Simulate selecting an option with the value "dave"
+        fireEvent.change(select, { target: { value: 'mujer' } })
+        // Check if the selected option in the dropdown is "dave"
+        expect(select.value).toBe('mujer')
+        // Similarly, you can simulate selecting options with other values
+        fireEvent.change(select, { target: { value: 'otro' } })
+        // Check if the selected option in the dropdown is "dave"
+        expect(select.value).toBe('otro')
+        // Similarly, you can simulate selecting options with other values
+        fireEvent.change(select, { target: { value: 'prefiero_no_identificarme' } })
+        // Check if the selected option in the dropdown is "dave"
+        expect(select.value).toBe('prefiero_no_identificarme')
+        // Similarly, you can simulate selecting options with other values
+        
+      }
+    });
+  });
+
+
 
 // describe('Expect an input that is ¿Cual es tu pais de nacimiento?', () => {
 //     test('The input field and its props of pais de nacimiento', () => {
