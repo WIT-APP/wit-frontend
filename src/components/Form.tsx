@@ -1,4 +1,5 @@
 import InputEmail from "../ui/InputEmail";
+import InputSelect from "../ui/InputSelect";
 import InputText from "../ui/InputText";
 
 const Form = () => {
@@ -8,6 +9,7 @@ const Form = () => {
         <InputEmail placeholder="Correo electrónico" children="Escribe tu correo electrónico" />
         <InputText type="date" id="date" placeholder="00/00/00" children="Fecha de nacimiento"  />
         <InputText type="number" id="phone" placeholder="Número de teléfono" children="Nombre y Apellidos" />
+        <InputSelect />
 
 
 
