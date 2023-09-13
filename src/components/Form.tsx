@@ -8,8 +8,15 @@ const Form = () => {
   const [generoValue, setGeneroValue] = useState("");
   const handleGeneroChange = (event: any) => {
     setGeneroValue(event.target.value);
-
   }
+
+  const [educacionValue, setEducacionValue] = useState("");
+  const handleEducacionChange = (event: any) => {
+    setEducacionValue(event.target.value);
+  }
+
+
+
   return (
     <form>
       <InputText type="text" id="name" placeholder="Escribe tu nombre y apellidos" children="Nombre y Apellidos" />
@@ -26,6 +33,15 @@ const Form = () => {
       <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
       <InputText type="text" id="provincia" placeholder="Escribe tu provincia de residencia" children="provincia de residencia" />
       <InputText type="number" id="codigopostal" placeholder="Escribe tu código postal" children="código postal" />
+
+      <InputSelect id="educacion" label="¿Cúal es tu nivel de estudios más alto?" value={educacionValue} options={[
+        { value: "sin estudios o estudios primarios sin finalizar", label: "Sin estudios o estudios primarios sin finalizar" },
+        { value: "estudios primarios", label: "Estudios primarios" },
+        { value: "estudios secundarios", label: "Estudios secundarios" },
+        { value: "formación profesional", label: "Formación profesional" },
+        { value: "estudios universitarios", label: "Estudios universitarios" },
+        { value: "otro", label: "Otro" },
+      ]} onChange={handleEducacionChange} />
 
 
     </form>
