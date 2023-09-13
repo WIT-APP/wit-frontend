@@ -2,12 +2,13 @@
 interface inputTextProps {
   id: string,
   type: string,
-  placeholder: string,
+  placeholder?: string,
   children: React.ReactNode
+  value?: string
     
 }
 
-const InputText =  ( { id, type,  placeholder, children }: inputTextProps) => {
+const InputText =  ( { id, type,  placeholder, children, value }: inputTextProps) => {
 
   
   return (
@@ -18,6 +19,7 @@ const InputText =  ( { id, type,  placeholder, children }: inputTextProps) => {
           type={type}
           id={id}
           name={id}
+          value={value}
           placeholder={placeholder}
         />
       </label>

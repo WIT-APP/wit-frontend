@@ -159,6 +159,12 @@ describe('Expect an input that is Telefono de contacto', () => {
 
 });
 
+
+
+
+
+
+
 describe('Se espera un select desplegable con opciones de género', () => {
     test('El desplegable tiene estas opciones', () => {
       render(<Form />)
@@ -169,26 +175,84 @@ describe('Se espera un select desplegable con opciones de género', () => {
       expect(select?.value).toBe('')
       if (select) {
         // Simulate selecting an option with the value "rigatoni"
-        fireEvent.change(select, { target: { value: 'Hombre' } })
+        fireEvent.change(select, { target: { value: 'hombre' } })
         // Check if the selected option in the dropdown is "rigatoni"
-        expect(select.value).toBe('Hombre')
+        expect(select.value).toBe('hombre')
         // Simulate selecting an option with the value "dave"
-        fireEvent.change(select, { target: { value: 'Mujer' } })
+        fireEvent.change(select, { target: { value: 'mujer' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('Mujer')
+        expect(select.value).toBe('mujer')
         // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'Otro' } })
+        fireEvent.change(select, { target: { value: 'otro' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('Otro')
+        expect(select.value).toBe('otro')
         // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'Prefiero no identificarme' } })
+        fireEvent.change(select, { target: { value: 'prefiero no identificarme' } })
         // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('Prefiero no identificarme')
+        expect(select.value).toBe('prefiero no identificarme')
         // Similarly, you can simulate selecting options with other values
         
       }
     });
   });
+
+  describe('Se espera un select radio para seleccionar el documento de identidad', () => {
+    test('El select radio tiene estas opciones', () => {
+        render(<Form />)
+      // Selecciona los botones de radio por su ID
+      const dni = document.querySelector('#dni') as HTMLSelectElement | null;
+      const nie = document.querySelector('#nie') as HTMLSelectElement | null;
+      const otro = document.querySelector('#otro') as HTMLSelectElement | null;
+
+      if (dni && nie && otro ) {
+        expect(dni.textContent).toBe('DNI')
+        expect(nie.textContent).toBe('NIE')
+        expect(otro.textContent).toBe('Otro')
+
+        // prueba el type prop
+        expect(dni.type).toBe('radio')
+        expect(nie.type).toBe('radio')
+        expect(otro.type).toBe('radio')
+
+        // prueba el name prop
+        expect(dni.name).toBe('identidad')
+        expect(nie.name).toBe('identidad')
+        expect(otro.name).toBe('identidad')
+
+        // prueba el value prop
+        fireEvent.click(dni, {
+            target: {
+                value: 'DNI'
+            }
+        })
+        expect(nie.value).toBe('NIE')
+
+        fireEvent.click(nie, {
+            target: {
+                value: 'NIE'
+            }
+        })
+        expect(nie.value).toBe('NIE')
+
+
+        fireEvent.click(otro, {
+            target: {
+                value: 'otro'
+            }
+        })
+        expect(otro.value).toBe('otro')
+
+
+    }
+
+
+
+  
+     
+    });
+  });
+
+  
   
 
 describe('Expect an input that is Cual es tu direccion de residencia', () => {
