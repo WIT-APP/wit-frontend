@@ -3,7 +3,7 @@ interface inputTextProps {
   id: string,
   type: string,
   placeholder: string,
-  children: React.ReactNode;
+  children: React.ReactNode
     
 }
 
