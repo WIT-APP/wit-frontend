@@ -429,6 +429,57 @@ describe('Expect an select that is indicanos que programa quiere cursar', () => 
     });
 });
 
+describe('Expect an select that is te identificarias con alguno de los siguientes colectivos', () => {
+    test('The select field and its props of te identificarias con alguno de los siguientes colectivos', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#colectivos'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'mujer en situación de vulnerabilidad' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('mujer en situación de vulnerabilidad')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'minorías étnicas' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('minorías étnicas')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'inmigrante o refugiado/a' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('inmigrante o refugiado/a')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'joven sin titulación y sin empleo' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('joven sin titulación y sin empleo')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'desempleada/o de larga duración o debido a la crisis del Covid-19' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('desempleada/o de larga duración o debido a la crisis del Covid-19')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'grupo de edad > 50 años' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('grupo de edad > 50 años')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'cabeza de familia monoparental' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('cabeza de familia monoparental')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'no me identifico con ninguna de las opciones anteriores' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('no me identifico con ninguna de las opciones anteriores')
+        }
+    });
+});
+
+
 describe('Expect an select that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {
     test('The select field and its props of titulacion academica', () => {
         render(<Form />)

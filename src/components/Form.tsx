@@ -20,6 +20,11 @@ const Form = () => {
     setEducacionValue(event.target.value);
   }
 
+  const [colectivosValue, setColectivosValue] = useState("");
+  const handleColectivosChange = (event: any) => {
+    setColectivosValue(event.target.value);
+  }
+
   return (
     <form>
 
@@ -55,6 +60,18 @@ const Form = () => {
         { value: "estudios universitarios", label: "Estudios universitarios" },
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
+
+      <InputSelect id="colectivos" label="¿Te identificarías con alguno de los siguientes colectivos?" value={colectivosValue} options={[
+        { value: "mujer en situación de vulnerabilidad", label: "Mujer en situación de vulnerabilidad" },
+        { value: "minorías étnicas", label: "Minorías étnicas" },
+        { value: "inmigrante o refugiado/a", label: "Inmigrante o refugiado/a" },
+        { value: "joven sin titulación y sin empleo", label: "Joven sin titulación y sin empleo" },
+        { value: "desempleada/o de larga duración o debido a la crisis del Covid-19", label: "Desempleada/o de larga duración o debido a la crisis del Covid-19" },
+        { value: "grupo de edad > 50 años", label: "Grupo de edad > 50 años" },
+        { value: "cabeza de familia monoparental", label: "Cabeza de familia monoparental" },
+        { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
+      ]} onChange={handleColectivosChange} />
+
     </form>
   );
 };
