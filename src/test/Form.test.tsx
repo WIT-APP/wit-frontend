@@ -639,7 +639,7 @@ describe('Expect an select that is indicanos cual es el acceso a internet', () =
             fireEvent.change(select, { target: { value: 'Buen acceso (tengo buena conexión a internet y dispositivo)' } })
             // Check if the selected option in the dropdown is "dave"
             expect(select.value).toBe('Buen acceso (tengo buena conexión a internet y dispositivo)')
-            
+
         }
     });
 });
@@ -679,6 +679,42 @@ describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus in
     });
 });
 
+describe('Expect an input that explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
+    test('The input field and its props of explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#razones'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'razones'
+            expect(input.textContent).toBe('razones')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('razones')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'razones'
+                }
+            })
+            expect(input.value).toBe('razones')
+
+        }
+    });
+
+});
 
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
