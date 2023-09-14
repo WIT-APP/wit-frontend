@@ -521,6 +521,44 @@ describe('Expect an select that is indicanos cual es tu titulacion academica mas
     });
 });
 
+
+describe('Expect an input that is que dedicación semanal tendrías para el proceso de formación', () => {
+    test('The input field and its props of que dedicación semanal tendrías para el proceso de formación', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#dedicacion'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = '15'
+            expect(input.textContent).toBe('15')
+
+            // prueba el type prop
+            expect(input.type).toBe('number')
+
+            // prueba el name prop
+            expect(input.name).toBe('dedicacion')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: '15'
+                }
+            })
+            expect(input.value).toBe('15')
+
+        }
+    });
+
+});
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)

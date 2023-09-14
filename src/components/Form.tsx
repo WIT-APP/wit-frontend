@@ -72,6 +72,9 @@ const Form = () => {
         { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
       ]} onChange={handleColectivosChange} />
 
+      <InputText type="number" id="dedicacion" placeholder="¿Qué dedicación semanal tendrías para el proceso de formación?" children="dedicacion" />
+
+
     </form>
   );
 };
