@@ -31,6 +31,15 @@ const Form = () => {
     setColectivosValue(event.target.value);
   }
 
+
+  const [interesesValue, setinteresesValue] = useState("");
+  const handleInteresesChange = (event: any) => {
+    setinteresesValue(event.target.value);
+
+
+  }
+
+
   return (
     <form>
 
@@ -67,7 +76,7 @@ const Form = () => {
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
 
-<InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
+      <InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
         { value: "Desempleada/o sin ingresos", label: "Desempleada/o sin ingresos" },
         { value: "Desempleada/o con subsidio por desempleo", label: "Desempleada/o con subsidio por desempleo" },
         { value: "Empleada/o a tiempo completo", label: "Empleada/o a tiempo completo" },
@@ -91,6 +100,14 @@ const Form = () => {
       <InputText type="number" id="dedicacion" placeholder="¿Qué dedicación semanal tendrías para el proceso de formación?" children="dedicacion" />
 
 
+
+      <InputSelect id="intereses" label="Escoge la opcion que mejor se ajuste a tus intereses actuales" value={interesesValue} options={[
+        { value: "Estoy interesada/o en formarme en competencias tecnológicas", label: "Estoy interesada/o en formarme en competencias tecnológicas" },
+        { value: "Estoy interesada/o en obtener un empleo en el sector tecnológico", label: "Estoy interesada/o en obtener un empleo en el sector tecnológico" },
+        { value: "Necesito formarme para conseguir un empleo estable", label: "Necesito formarme para conseguir un empleo estable" },
+        { value: "Quiero cambiar de sector profesional", label: "Quiero cambiar de sector profesional" },
+        { value: "Otra", label: "Otra" },
+      ]} onChange={handleInteresesChange} />
     </form>
   );
 };
