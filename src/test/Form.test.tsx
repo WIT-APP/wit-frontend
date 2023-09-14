@@ -554,7 +554,7 @@ describe('Expect an input that is que dedicación semanal tendrías para el proc
             })
             expect(input.value).toBe('15')
 
-        };
+        }
     });
 
     describe('Se espera un select donde indicamos en que situación profestional te encuentras', () => {
@@ -640,6 +640,41 @@ describe('Expect an select that is indicanos cual es el acceso a internet', () =
             // Check if the selected option in the dropdown is "dave"
             expect(select.value).toBe('Buen acceso (tengo buena conexión a internet y dispositivo)')
             
+        }
+    });
+});
+
+describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus intereses actuales', () => {
+    test('The select field and its props of intereses       ', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#intereses'
+        ) as HTMLInputElement | null;
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+        // está vacio?
+        expect(select?.value).toBe('')
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Estoy interesada/o en formarme en competencias tecnológicas' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Estoy interesada/o en formarme en competencias tecnológicas')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Estoy interesada/o en obtener un empleo en el sector tecnológico' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Estoy interesada/o en obtener un empleo en el sector tecnológico')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Necesito formarme para conseguir un empleo estable' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Necesito formarme para conseguir un empleo estable')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Quiero cambiar de sector profesional' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Quiero cambiar de sector profesional')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Otra' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Otra')
         }
     });
 });
