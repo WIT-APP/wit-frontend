@@ -679,7 +679,6 @@ describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus in
     });
 });
 
-<<<<<<< HEAD
 describe('Expect an input that explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
     test('The input field and its props of explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
         render(<Form />)
@@ -716,7 +715,6 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
     });
 
 });
-=======
 describe('Expect an select that is ¿Como has encontrado este programa?', () => {
     test('The select field and its props of encontrado', () => {
         render(<Form />)
@@ -753,7 +751,6 @@ describe('Expect an select that is ¿Como has encontrado este programa?', () => 
 });
 
 
->>>>>>> 7906853fb3e6cd00eb9c427dca5517795dd51291
 
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
