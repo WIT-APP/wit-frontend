@@ -2,11 +2,8 @@ import Form from './components/Form'; // Asegúrate de proporcionar la ruta corr
 
 function App() {
   return (
-    <div>
-      <h1>Frontend WIT ⚙</h1>
-      <Form />
-    </div>
-  );
+    <div><h1 className="text-blue-500 text-3xl underline">Frontend WIT ⚙</h1> </div>
+  )
 }
 
 export default App;
