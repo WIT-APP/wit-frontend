@@ -20,6 +20,17 @@ const Form = () => {
     setEducacionValue(event.target.value);
   }
 
+  const [profesionalValue, setProfesionalValue] = useState("");
+  const handleProfesionalChange = (event: any) => {
+    setProfesionalValue(event.target.value);
+  }
+
+
+  const [colectivosValue, setColectivosValue] = useState("");
+  const handleColectivosChange = (event: any) => {
+    setColectivosValue(event.target.value);
+  }
+
 
   const [interesesValue, setinteresesValue] = useState("");
   const handleInteresesChange = (event: any) => {
@@ -64,6 +75,31 @@ const Form = () => {
         { value: "estudios universitarios", label: "Estudios universitarios" },
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
+
+      <InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
+        { value: "Desempleada/o sin ingresos", label: "Desempleada/o sin ingresos" },
+        { value: "Desempleada/o con subsidio por desempleo", label: "Desempleada/o con subsidio por desempleo" },
+        { value: "Empleada/o a tiempo completo", label: "Empleada/o a tiempo completo" },
+        { value: "Empleada/o a tiempo parcial", label: "Empleada/o a tiempo parcial" },
+        { value: "Autónoma/o", label: "Autónoma/o" },
+        { value: "Estudiante", label: "Estudiante" },
+        { value: "Otro", label: "Otro" },
+      ]} onChange={handleProfesionalChange} />
+
+      <InputSelect id="colectivos" label="¿Te identificarías con alguno de los siguientes colectivos?" value={colectivosValue} options={[
+        { value: "mujer en situación de vulnerabilidad", label: "Mujer en situación de vulnerabilidad" },
+        { value: "minorías étnicas", label: "Minorías étnicas" },
+        { value: "inmigrante o refugiado/a", label: "Inmigrante o refugiado/a" },
+        { value: "joven sin titulación y sin empleo", label: "Joven sin titulación y sin empleo" },
+        { value: "desempleada/o de larga duración o debido a la crisis del Covid-19", label: "Desempleada/o de larga duración o debido a la crisis del Covid-19" },
+        { value: "grupo de edad > 50 años", label: "Grupo de edad > 50 años" },
+        { value: "cabeza de familia monoparental", label: "Cabeza de familia monoparental" },
+        { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
+      ]} onChange={handleColectivosChange} />
+
+      <InputText type="number" id="dedicacion" placeholder="¿Qué dedicación semanal tendrías para el proceso de formación?" children="dedicacion" />
+
+
 
       <InputSelect id="intereses" label="Escoge la opcion que mejor se ajuste a tus intereses actuales" value={interesesValue} options={[
         { value: "Estoy interesada/o en formarme en competencias tecnológicas", label: "Estoy interesada/o en formarme en competencias tecnológicas" },
