@@ -289,10 +289,10 @@ const Form = () => {
       />
 
       <InputText
-        type="radio"
+        type="checkbox"
         id="formacionOnline"
-        children="DNI"
         value="si"
+        children="¿Has hecho alguna vez una formación online?"
       />
     </form>
   );
