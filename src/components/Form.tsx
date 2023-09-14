@@ -20,6 +20,15 @@ const Form = () => {
     setEducacionValue(event.target.value);
   }
 
+
+  const [interesesValue, setinteresesValue] = useState("");
+  const handleInteresesChange = (event: any) => {
+    setinteresesValue(event.target.value);
+
+
+  }
+
+
   return (
     <form>
 
@@ -55,6 +64,14 @@ const Form = () => {
         { value: "estudios universitarios", label: "Estudios universitarios" },
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
+
+      <InputSelect id="intereses" label="Escoge la opcion que mejor se ajuste a tus intereses actuales" value={interesesValue} options={[
+        { value: "Estoy interesada/o en formarme en competencias tecnológicas", label: "Estoy interesada/o en formarme en competencias tecnológicas" },
+        { value: "Estoy interesada/o en obtener un empleo en el sector tecnológico", label: "Estoy interesada/o en obtener un empleo en el sector tecnológico" },
+        { value: "Necesito formarme para conseguir un empleo estable", label: "Necesito formarme para conseguir un empleo estable" },
+        { value: "Quiero cambiar de sector profesional", label: "Quiero cambiar de sector profesional" },
+        { value: "Otra", label: "Otra" },
+      ]} onChange={handleInteresesChange} />
     </form>
   );
 };
