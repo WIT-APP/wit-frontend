@@ -40,8 +40,10 @@ const Form = () => {
   const [interesesValue, setinteresesValue] = useState("");
   const handleInteresesChange = (event: any) => {
     setinteresesValue(event.target.value);
-
-
+  }
+  const [encontradoValue, setencontradoValue] = useState("");
+  const handleEncontradoChange = (event: any) => {
+    setencontradoValue(event.target.value);
   }
 
 
@@ -108,6 +110,10 @@ const Form = () => {
         { value: "Acceso limitado (tengo dispositivo y conexión a internet limitada)", label: "Acceso limitado (tengo dispositivo y conexión a internet limitada)" },
         { value: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)", label: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)" },
         { value: "Buen acceso (tengo buena conexión a internet y dispositivo)", label: "Buen acceso (tengo buena conexión a internet y dispositivo)" },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7906853fb3e6cd00eb9c427dca5517795dd51291
       ]} onChange={handleConexionChange} />
 
       <InputText type="number" id="dedicacion" placeholder="¿Qué dedicación semanal tendrías para el proceso de formación?" children="dedicacion" />
@@ -122,9 +128,19 @@ const Form = () => {
         { value: "Otra", label: "Otra" },
       ]} onChange={handleInteresesChange} />
 
+<<<<<<< HEAD
       <InputText type="text" id="razones" placeholder="Explicanos brevemente las razones por las que te gustaria unirte a esta formación" children="razones" />
 
 
+=======
+      <InputSelect id="encontrado" label="¿Cómo has encontrado este programa?" value={encontradoValue} options={[
+        { value: "Redes sociales", label: "Redes sociales" },
+        { value: "Somos F5", label: "Somos F5" },
+        { value: "Factoría F5", label: "Factoría F5" },
+        { value: "Fundación Don Bosco o sus redes sociales", label: "Fundación Don Bosco o sus redes sociales" },
+        { value: "Buscadores de internet (Google)", label: "Buscadores de internet (Google)" },
+      ]} onChange={handleEncontradoChange} />
+>>>>>>> 7906853fb3e6cd00eb9c427dca5517795dd51291
     </form>
   );
 };
