@@ -639,7 +639,7 @@ describe('Expect an select that is indicanos cual es el acceso a internet', () =
             fireEvent.change(select, { target: { value: 'Buen acceso (tengo buena conexión a internet y dispositivo)' } })
             // Check if the selected option in the dropdown is "dave"
             expect(select.value).toBe('Buen acceso (tengo buena conexión a internet y dispositivo)')
-            
+
         }
     });
 });
@@ -678,6 +678,42 @@ describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus in
         }
     });
 });
+
+describe('Expect an select that is ¿Como has encontrado este programa?', () => {
+    test('The select field and its props of encontrado', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#encontrado'
+        ) as HTMLInputElement | null;
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+        // está vacio?
+        expect(select?.value).toBe('')
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Redes sociales' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Redes sociales')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Somos F5' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Somos F5')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Factoría F5' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Factoría F5')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Fundación Don Bosco o sus redes sociales' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Fundación Don Bosco o sus redes sociales')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Buscadores de internet (Google)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Buscadores de internet (Google)')
+        }
+    });
+});
+
 
 
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {

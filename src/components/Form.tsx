@@ -40,8 +40,10 @@ const Form = () => {
   const [interesesValue, setinteresesValue] = useState("");
   const handleInteresesChange = (event: any) => {
     setinteresesValue(event.target.value);
-
-
+  }
+  const [encontradoValue, setencontradoValue] = useState("");
+  const handleEncontradoChange = (event: any) => {
+    setencontradoValue(event.target.value);
   }
 
 
@@ -102,13 +104,13 @@ const Form = () => {
         { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
       ]} onChange={handleColectivosChange} />
 
-<InputSelect id="conexion" label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?" value={conexionValue} options={[
+      <InputSelect id="conexion" label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?" value={conexionValue} options={[
         { value: "Sin acceso (no tengo conexión a internet ni dispositivo)", label: "Sin acceso (no tengo conexión a internet ni dispositivo)" },
         { value: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)", label: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)" },
         { value: "Acceso limitado (tengo dispositivo y conexión a internet limitada)", label: "Acceso limitado (tengo dispositivo y conexión a internet limitada)" },
         { value: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)", label: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)" },
         { value: "Buen acceso (tengo buena conexión a internet y dispositivo)", label: "Buen acceso (tengo buena conexión a internet y dispositivo)" },
-       
+
       ]} onChange={handleConexionChange} />
 
       <InputText type="number" id="dedicacion" placeholder="¿Qué dedicación semanal tendrías para el proceso de formación?" children="dedicacion" />
@@ -122,6 +124,14 @@ const Form = () => {
         { value: "Quiero cambiar de sector profesional", label: "Quiero cambiar de sector profesional" },
         { value: "Otra", label: "Otra" },
       ]} onChange={handleInteresesChange} />
+
+      <InputSelect id="encontrado" label="¿Cómo has encontrado este programa?" value={encontradoValue} options={[
+        { value: "Redes sociales", label: "Redes sociales" },
+        { value: "Somos F5", label: "Somos F5" },
+        { value: "Factoría F5", label: "Factoría F5" },
+        { value: "Fundación Don Bosco o sus redes sociales", label: "Fundación Don Bosco o sus redes sociales" },
+        { value: "Buscadores de internet (Google)", label: "Buscadores de internet (Google)" },
+      ]} onChange={handleEncontradoChange} />
     </form>
   );
 };
