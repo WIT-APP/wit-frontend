@@ -46,7 +46,7 @@ describe('Expect an input that is Nombre y Apellidos', () => {
         }
     });
 
-  
+
 });
 
 describe('Expect an input that is Correo electronico', () => {
@@ -167,93 +167,93 @@ describe('Expect an input that is Telefono de contacto', () => {
 
 describe('Se espera un select desplegable con opciones de género', () => {
     test('El desplegable tiene estas opciones', () => {
-      render(<Form />)
-      const select = document.querySelector('#genero') as HTMLSelectElement | null;
-      // Check if the select dropdown exists in the form component
-      expect(select).toBeTruthy()
-      // Check if the select dropdown is initially empty
-      expect(select?.value).toBe('')
-      if (select) {
-        // Simulate selecting an option with the value "rigatoni"
-        fireEvent.change(select, { target: { value: 'hombre' } })
-        // Check if the selected option in the dropdown is "rigatoni"
-        expect(select.value).toBe('hombre')
-        // Simulate selecting an option with the value "dave"
-        fireEvent.change(select, { target: { value: 'mujer' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('mujer')
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'otro' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('otro')
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, { target: { value: 'prefiero no identificarme' } })
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe('prefiero no identificarme')
-        // Similarly, you can simulate selecting options with other values
-        
-      }
-    });
-  });
+        render(<Form />)
+        const select = document.querySelector('#genero') as HTMLSelectElement | null;
+        // Check if the select dropdown exists in the form component
+        expect(select).toBeTruthy()
+        // Check if the select dropdown is initially empty
+        expect(select?.value).toBe('')
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'hombre' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('hombre')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'mujer' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('mujer')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'otro' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('otro')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'prefiero no identificarme' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('prefiero no identificarme')
+            // Similarly, you can simulate selecting options with other values
 
-  describe('Se espera un select radio para seleccionar el documento de identidad', () => {
+        }
+    });
+});
+
+describe('Se espera un select radio para seleccionar el documento de identidad', () => {
     test('El select radio tiene estas opciones', () => {
         render(<Form />)
-      // Selecciona los botones de radio por su ID
-      const dni = document.querySelector('#dni') as HTMLSelectElement | null;
-      const nie = document.querySelector('#nie') as HTMLSelectElement | null;
-      const otro = document.querySelector('#otro') as HTMLSelectElement | null;
+        // Selecciona los botones de radio por su ID
+        const dni = document.querySelector('#dni') as HTMLSelectElement | null;
+        const nie = document.querySelector('#nie') as HTMLSelectElement | null;
+        const otro = document.querySelector('#otro') as HTMLSelectElement | null;
 
-      if (dni && nie && otro ) {
-        expect(dni.textContent).toBe('DNI')
-        expect(nie.textContent).toBe('NIE')
-        expect(otro.textContent).toBe('Otro')
+        if (dni && nie && otro) {
+            expect(dni.textContent).toBe('DNI')
+            expect(nie.textContent).toBe('NIE')
+            expect(otro.textContent).toBe('Otro')
 
-        // prueba el type prop
-        expect(dni.type).toBe('radio')
-        expect(nie.type).toBe('radio')
-        expect(otro.type).toBe('radio')
+            // prueba el type prop
+            expect(dni.type).toBe('radio')
+            expect(nie.type).toBe('radio')
+            expect(otro.type).toBe('radio')
 
-        // prueba el name prop
-        expect(dni.name).toBe('identidad')
-        expect(nie.name).toBe('identidad')
-        expect(otro.name).toBe('identidad')
+            // prueba el name prop
+            expect(dni.name).toBe('identidad')
+            expect(nie.name).toBe('identidad')
+            expect(otro.name).toBe('identidad')
 
-        // prueba el value prop
-        fireEvent.click(dni, {
-            target: {
-                value: 'DNI'
-            }
-        })
-        expect(nie.value).toBe('NIE')
+            // prueba el value prop
+            fireEvent.click(dni, {
+                target: {
+                    value: 'DNI'
+                }
+            })
+            expect(nie.value).toBe('NIE')
 
-        fireEvent.click(nie, {
-            target: {
-                value: 'NIE'
-            }
-        })
-        expect(nie.value).toBe('NIE')
-
-
-        fireEvent.click(otro, {
-            target: {
-                value: 'otro'
-            }
-        })
-        expect(otro.value).toBe('otro')
+            fireEvent.click(nie, {
+                target: {
+                    value: 'NIE'
+                }
+            })
+            expect(nie.value).toBe('NIE')
 
 
-    }
+            fireEvent.click(otro, {
+                target: {
+                    value: 'otro'
+                }
+            })
+            expect(otro.value).toBe('otro')
+
+
+        }
 
 
 
-  
-     
+
+
     });
-  });
+});
 
-  
-  
+
+
 
 describe('Expect an input that is Cual es tu direccion de residencia', () => {
     test('The input field and its props of residencia', () => {
@@ -403,6 +403,81 @@ describe('Expect an input that is codigo postal', () => {
 
 });
 
+
+describe('Expect an select that is indicanos que programa quiere cursar', () => {
+    test('The select field and its props of programa quiere cursar', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#programa'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'soporte de Tecnologías de la Información' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('soporte de Tecnologías de la Información')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'automatización de Tecnologías de la Información con Python' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('automatización de Tecnologías de la Información con Python')
+        }
+    });
+});
+
+describe('Expect an select that is te identificarias con alguno de los siguientes colectivos', () => {
+    test('The select field and its props of te identificarias con alguno de los siguientes colectivos', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#colectivos'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'mujer en situación de vulnerabilidad' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('mujer en situación de vulnerabilidad')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'minorías étnicas' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('minorías étnicas')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'inmigrante o refugiado/a' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('inmigrante o refugiado/a')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'joven sin titulación y sin empleo' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('joven sin titulación y sin empleo')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'desempleada/o de larga duración o debido a la crisis del Covid-19' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('desempleada/o de larga duración o debido a la crisis del Covid-19')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'grupo de edad > 50 años' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('grupo de edad > 50 años')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'cabeza de familia monoparental' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('cabeza de familia monoparental')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'no me identifico con ninguna de las opciones anteriores' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('no me identifico con ninguna de las opciones anteriores')
+        }
+    });
+});
 
 
 describe('Expect an select that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {

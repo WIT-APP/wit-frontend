@@ -10,6 +10,11 @@ const Form = () => {
     setGeneroValue(event.target.value);
   }
 
+  const [programaValue, setProgramaValue] = useState("");
+  const handleProgramaChange = (event: any) => {
+    setProgramaValue(event.target.value);
+  }
+
   const [educacionValue, setEducacionValue] = useState("");
   const handleEducacionChange = (event: any) => {
     setEducacionValue(event.target.value);
@@ -21,10 +26,14 @@ const Form = () => {
   }
 
 
+  const [colectivosValue, setColectivosValue] = useState("");
+  const handleColectivosChange = (event: any) => {
+    setColectivosValue(event.target.value);
+  }
 
   return (
     <form>
-      
+
       <InputText type="text" id="name" placeholder="Escribe tu nombre y apellidos" children="Nombre y Apellidos" />
       <InputEmail placeholder="Correo electrónico" children="Escribe tu correo electrónico" />
       <InputText type="date" id="date" placeholder="00/00/00" children="Fecha de nacimiento" />
@@ -43,6 +52,11 @@ const Form = () => {
       <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
       <InputText type="text" id="provincia" placeholder="Escribe tu provincia de residencia" children="provincia de residencia" />
       <InputText type="number" id="codigopostal" placeholder="Escribe tu código postal" children="código postal" />
+
+      <InputSelect id="programa" label="¿Qué programa quieres cursar?" value={programaValue} options={[
+        { value: "soporte de Tecnologías de la Información", label: "Soporte de Tecnologías de la Información" },
+        { value: "automatización de Tecnologías de la Información con Python", label: "Automatización de Tecnologías de la Información con Python" },
+      ]} onChange={handleProgramaChange} />
 
       <InputSelect id="educacion" label="¿Cúal es tu nivel de estudios más alto?" value={educacionValue} options={[
         { value: "sin estudios o estudios primarios sin finalizar", label: "Sin estudios o estudios primarios sin finalizar" },
@@ -63,6 +77,16 @@ const Form = () => {
         { value: "Otro", label: "Otro" },
       ]} onChange={handleProfesionalChange} />
 
+      <InputSelect id="colectivos" label="¿Te identificarías con alguno de los siguientes colectivos?" value={colectivosValue} options={[
+        { value: "mujer en situación de vulnerabilidad", label: "Mujer en situación de vulnerabilidad" },
+        { value: "minorías étnicas", label: "Minorías étnicas" },
+        { value: "inmigrante o refugiado/a", label: "Inmigrante o refugiado/a" },
+        { value: "joven sin titulación y sin empleo", label: "Joven sin titulación y sin empleo" },
+        { value: "desempleada/o de larga duración o debido a la crisis del Covid-19", label: "Desempleada/o de larga duración o debido a la crisis del Covid-19" },
+        { value: "grupo de edad > 50 años", label: "Grupo de edad > 50 años" },
+        { value: "cabeza de familia monoparental", label: "Cabeza de familia monoparental" },
+        { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
+      ]} onChange={handleColectivosChange} />
 
     </form>
   );
