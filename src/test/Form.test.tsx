@@ -566,6 +566,47 @@ describe('Se espera un select donde indicamos en que situación profestional te 
     });
 });
 
+
+describe('Expect an select that is indicanos cual es el acceso a internet', () => {
+    test('The select field and its props of conexion', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#conexion'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Sin acceso (no tengo conexión a internet ni dispositivo)' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Sin acceso (no tengo conexión a internet ni dispositivo)')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Acceso limitado (tengo dispositivo y conexión a internet limitada)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso limitado (tengo dispositivo y conexión a internet limitada)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Buen acceso (tengo buena conexión a internet y dispositivo)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Buen acceso (tengo buena conexión a internet y dispositivo)')
+            
+        }
+    });
+});
+
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)
