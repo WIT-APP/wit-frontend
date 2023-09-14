@@ -607,122 +607,71 @@ describe("Expect an select that is indicanos cual es el acceso a internet", () =
       "#conexion"
     ) as HTMLInputElement | null;
 
-    // el input existe en el componente de formulario?
-    expect(select).toBeTruthy();
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
 
-    // está vacio?
-    expect(select?.value).toBe("");
+        // está vacio?
+        expect(select?.value).toBe('')
 
-    if (select) {
-      // Simulate selecting an option with the value "rigatoni"
-      fireEvent.change(select, {
-        target: {
-          value: "Sin acceso (no tengo conexión a internet ni dispositivo)",
-        },
-      });
-      // Check if the selected option in the dropdown is "rigatoni"
-      expect(select.value).toBe(
-        "Sin acceso (no tengo conexión a internet ni dispositivo)"
-      );
-      // Simulate selecting an option with the value "dave"
-      fireEvent.change(select, {
-        target: {
-          value:
-            "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)",
-        },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)"
-      );
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, {
-        target: {
-          value:
-            "Acceso limitado (tengo dispositivo y conexión a internet limitada)",
-        },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Acceso limitado (tengo dispositivo y conexión a internet limitada)"
-      );
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, {
-        target: {
-          value:
-            "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)",
-        },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)"
-      );
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, {
-        target: {
-          value: "Buen acceso (tengo buena conexión a internet y dispositivo)",
-        },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Buen acceso (tengo buena conexión a internet y dispositivo)"
-      );
-    }
-  });
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Sin acceso (no tengo conexión a internet ni dispositivo)' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Sin acceso (no tengo conexión a internet ni dispositivo)')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Acceso limitado (tengo dispositivo y conexión a internet limitada)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso limitado (tengo dispositivo y conexión a internet limitada)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Buen acceso (tengo buena conexión a internet y dispositivo)' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Buen acceso (tengo buena conexión a internet y dispositivo)')
+            
+        }
+    });
 });
 
-describe("Expect an select that is Escoge la opcion que mejor se ajuste a tus intereses actuales", () => {
-  test("The select field and its props of intereses       ", () => {
-    render(<Form />);
-    const select = document.querySelector(
-      "#intereses"
-    ) as HTMLInputElement | null;
-    // el input existe en el componente de formulario?
-    expect(select).toBeTruthy();
-    // está vacio?
-    expect(select?.value).toBe("");
-    if (select) {
-      // Simulate selecting an option with the value "rigatoni"
-      fireEvent.change(select, {
-        target: {
-          value: "Estoy interesada/o en formarme en competencias tecnológicas",
-        },
-      });
-      // Check if the selected option in the dropdown is "rigatoni"
-      expect(select.value).toBe(
-        "Estoy interesada/o en formarme en competencias tecnológicas"
-      );
-      // Simulate selecting an option with the value "dave"
-      fireEvent.change(select, {
-        target: {
-          value:
-            "Estoy interesada/o en obtener un empleo en el sector tecnológico",
-        },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Estoy interesada/o en obtener un empleo en el sector tecnológico"
-      );
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, {
-        target: { value: "Necesito formarme para conseguir un empleo estable" },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe(
-        "Necesito formarme para conseguir un empleo estable"
-      );
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, {
-        target: { value: "Quiero cambiar de sector profesional" },
-      });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe("Quiero cambiar de sector profesional");
-      // Similarly, you can simulate selecting options with other values
-      fireEvent.change(select, { target: { value: "Otra" } });
-      // Check if the selected option in the dropdown is "dave"
-      expect(select.value).toBe("Otra");
-    }
-  });
+describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus intereses actuales', () => {
+    test('The select field and its props of intereses       ', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#intereses'
+        ) as HTMLInputElement | null;
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+        // está vacio?
+        expect(select?.value).toBe('')
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Estoy interesada/o en formarme en competencias tecnológicas' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Estoy interesada/o en formarme en competencias tecnológicas')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Estoy interesada/o en obtener un empleo en el sector tecnológico' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Estoy interesada/o en obtener un empleo en el sector tecnológico')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Necesito formarme para conseguir un empleo estable' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Necesito formarme para conseguir un empleo estable')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Quiero cambiar de sector profesional' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Quiero cambiar de sector profesional')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Otra' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Otra')
+        }
+    });
 });
 
 describe("Se espera un select checkbox para seleccionar si se ha hecho alguna vez una formación online", () => {
@@ -782,111 +731,6 @@ describe("Se espera un select checkbox para seleccionar si se ha hecho alguna ve
 //     }
 //   });
 
-  // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
-  //     test('Un campo de input y un props de los paises', () => {
-  //         render(<Form />)
-  //         const input = document.querySelector(
-  //             'input'
-  //         ) as HTMLInputElement | null;
-
-  //         // el input existe en el componente de formulario?
-  //         expect(input).toBeTruthy()
-
-  //         // está vacio?
-  //         expect(input?.textContent).toBe('')
-
-  //         if (input) {
-  //             // prueba el input text
-  //             input.textContent = 'Francia'
-  //             expect(input.textContent).toBe('Francia')
-
-  //             // prueba el type prop
-  //             expect(input.type).toBe('country')
-
-  //             // prueba el name prop
-  //             expect(input.name).toBe('country')
-
-  //             // prueba el value prop
-  //             fireEvent.change(input, {
-  //                 target: {
-  //                     value: 'francia'
-  //                 }
-  //             })
-  //             expect(input.value).toBe('francia')
-
-  //         }
-  //     });
-
-  // });
-
-  // describe('Expect an input that is Telefono de contacto', () => {
-  //     test('The input field and its props of Telefono de contacto', () => {
-  //         render(<Form />)
-  //         const input = document.querySelector(
-  //             'input'
-  //         ) as HTMLInputElement | null;
-
-  //         // el input existe en el componente de formulario?
-  //         expect(input).toBeTruthy()
-
-  //         // está vacio?
-  //         expect(input?.textContent).toBe('')
-
-  //         if (input) {
-  //             // prueba el input text
-  //             input.textContent = 'carlos@mail.com'
-  //             expect(input.textContent).toBe('carlos@mail.com')
-
-  //             // prueba el type prop
-  //             expect(input.type).toBe('email')
-
-  //             // prueba el name prop
-  //             expect(input.name).toBe('email')
-
-  //             // prueba el value prop
-  //             fireEvent.change(input, {
-  //                 target: {
-  //                     value: 'carlos@mail.com'
-  //                 }
-  //             })
-  //             expect(input.value).toBe('carlos@mail.com')
-
-  //         }
-  //     });
-
-  // });
-
-  // describe('Expect an input that is si tienes DNI, por favor escribe tu numero de DNI aqui:', () => {
-  //     test('The input field and its props of DNI', () => {
-  //         render(<Form />)
-  //         const input = document.querySelector(
-  //             'input'
-  //         ) as HTMLInputElement | null;
-
-  //         // el input existe en el componente de formulario?
-  //         expect(input).toBeTruthy()
-
-  //         // está vacio?
-  //         expect(input?.textContent).toBe('')
-
-  //         if (input) {
-  //             // prueba el input text
-  //             input.textContent = '49203529K'
-  //             expect(input.textContent).toBe('49203529K')
-
-  //             // prueba el type prop
-  //             expect(input.type).toBe('DNI')
-
-  //             // prueba el name prop
-  //             expect(input.name).toBe('DNI')
-
-  //             // prueba el value prop
-  //             fireEvent.change(input, {
-  //                 target: {
-  //                     value: '49203529K'
-  //                 }
-  //             })
-  //             expect(input.value).toBe('49203529K')
 
   //         }
   //     });

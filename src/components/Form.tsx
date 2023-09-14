@@ -38,7 +38,12 @@ const Form = () => {
   const [interesesValue, setinteresesValue] = useState("");
   const handleInteresesChange = (event: any) => {
     setinteresesValue(event.target.value);
-  };
+  }
+  const [encontradoValue, setencontradoValue] = useState("");
+  const handleEncontradoChange = (event: any) => {
+    setencontradoValue(event.target.value);
+  }
+
 
   return (
     <form>
@@ -214,42 +219,14 @@ const Form = () => {
         onChange={handleColectivosChange}
       />
 
-      <InputSelect
-        id="conexion"
-        label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?"
-        value={conexionValue}
-        options={[
-          {
-            value: "Sin acceso (no tengo conexión a internet ni dispositivo)",
-            label: "Sin acceso (no tengo conexión a internet ni dispositivo)",
-          },
-          {
-            value:
-              "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)",
-            label:
-              "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)",
-          },
-          {
-            value:
-              "Acceso limitado (tengo dispositivo y conexión a internet limitada)",
-            label:
-              "Acceso limitado (tengo dispositivo y conexión a internet limitada)",
-          },
-          {
-            value:
-              "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)",
-            label:
-              "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)",
-          },
-          {
-            value:
-              "Buen acceso (tengo buena conexión a internet y dispositivo)",
-            label:
-              "Buen acceso (tengo buena conexión a internet y dispositivo)",
-          },
-        ]}
-        onChange={handleConexionChange}
-      />
+      <InputSelect id="conexion" label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?" value={conexionValue} options={[
+        { value: "Sin acceso (no tengo conexión a internet ni dispositivo)", label: "Sin acceso (no tengo conexión a internet ni dispositivo)" },
+        { value: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)", label: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)" },
+        { value: "Acceso limitado (tengo dispositivo y conexión a internet limitada)", label: "Acceso limitado (tengo dispositivo y conexión a internet limitada)" },
+        { value: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)", label: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)" },
+        { value: "Buen acceso (tengo buena conexión a internet y dispositivo)", label: "Buen acceso (tengo buena conexión a internet y dispositivo)" },
+
+      ]} onChange={handleConexionChange} />
 
       <InputText
         type="number"
@@ -258,42 +235,15 @@ const Form = () => {
         children="dedicacion"
       />
 
-      <InputSelect
-        id="intereses"
-        label="Escoge la opcion que mejor se ajuste a tus intereses actuales"
-        value={interesesValue}
-        options={[
-          {
-            value:
-              "Estoy interesada/o en formarme en competencias tecnológicas",
-            label:
-              "Estoy interesada/o en formarme en competencias tecnológicas",
-          },
-          {
-            value:
-              "Estoy interesada/o en obtener un empleo en el sector tecnológico",
-            label:
-              "Estoy interesada/o en obtener un empleo en el sector tecnológico",
-          },
-          {
-            value: "Necesito formarme para conseguir un empleo estable",
-            label: "Necesito formarme para conseguir un empleo estable",
-          },
-          {
-            value: "Quiero cambiar de sector profesional",
-            label: "Quiero cambiar de sector profesional",
-          },
-          { value: "Otra", label: "Otra" },
-        ]}
-        onChange={handleInteresesChange}
-      />
 
-      <InputText
-        type="checkbox"
-        id="formacionOnline"
-        value="si"
-        children="¿Has hecho alguna vez una formación online?"
-      />
+
+      <InputSelect id="intereses" label="Escoge la opcion que mejor se ajuste a tus intereses actuales" value={interesesValue} options={[
+        { value: "Estoy interesada/o en formarme en competencias tecnológicas", label: "Estoy interesada/o en formarme en competencias tecnológicas" },
+        { value: "Estoy interesada/o en obtener un empleo en el sector tecnológico", label: "Estoy interesada/o en obtener un empleo en el sector tecnológico" },
+        { value: "Necesito formarme para conseguir un empleo estable", label: "Necesito formarme para conseguir un empleo estable" },
+        { value: "Quiero cambiar de sector profesional", label: "Quiero cambiar de sector profesional" },
+        { value: "Otra", label: "Otra" },
+      ]} onChange={handleInteresesChange} />
     </form>
   );
 };
