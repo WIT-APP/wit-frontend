@@ -446,6 +446,51 @@ describe('Expect an select that is indicanos cual es tu titulacion academica mas
     });
 });
 
+describe('Se espera un select donde indicamos en que situación profestional te encuentras', () => {
+    test('The select field and its props of situación profesional', () => {
+        render(<Form />)
+        const select = document.querySelector(
+            '#profesional'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy()
+
+        // está vacio?
+        expect(select?.value).toBe('')
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, { target: { value: 'Desempleada/o sin ingresos' } })
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe('Desempleada/o sin ingresos')
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: 'Desempleada/o con subsidio por desempleo' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Desempleada/o con subsidio por desempleo')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Empleada/o a tiempo completo' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Empleada/o a tiempo completo')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Empleada/o a tiempo parcial' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Empleada/o a tiempo parcial')
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, { target: { value: 'Autónoma/o' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Autónoma/o')
+            fireEvent.change(select, { target: { value: 'Estudiante' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Estudiante')
+            fireEvent.change(select, { target: { value: 'Otro' } })
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe('Otro')
+            
+        }
+    });
+});
+
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
 //         render(<Form />)

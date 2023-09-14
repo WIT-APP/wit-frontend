@@ -15,6 +15,11 @@ const Form = () => {
     setEducacionValue(event.target.value);
   }
 
+  const [profesionalValue, setProfesionalValue] = useState("");
+  const handleProfesionalChange = (event: any) => {
+    setProfesionalValue(event.target.value);
+  }
+
 
 
   return (
@@ -47,6 +52,16 @@ const Form = () => {
         { value: "estudios universitarios", label: "Estudios universitarios" },
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
+
+<InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
+        { value: "Desempleada/o sin ingresos", label: "Desempleada/o sin ingresos" },
+        { value: "Desempleada/o con subsidio por desempleo", label: "Desempleada/o con subsidio por desempleo" },
+        { value: "Empleada/o a tiempo completo", label: "Empleada/o a tiempo completo" },
+        { value: "Empleada/o a tiempo parcial", label: "Empleada/o a tiempo parcial" },
+        { value: "Autónoma/o", label: "Autónoma/o" },
+        { value: "Estudiante", label: "Estudiante" },
+        { value: "Otro", label: "Otro" },
+      ]} onChange={handleProfesionalChange} />
 
 
     </form>
