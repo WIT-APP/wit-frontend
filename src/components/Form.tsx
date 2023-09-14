@@ -31,6 +31,11 @@ const Form = () => {
     setColectivosValue(event.target.value);
   }
 
+  const [conexionValue, setConexionValue] = useState("");
+  const handleConexionChange = (event: any) => {
+    setConexionValue(event.target.value);
+  }
+
   return (
     <form>
 
@@ -87,6 +92,15 @@ const Form = () => {
         { value: "cabeza de familia monoparental", label: "Cabeza de familia monoparental" },
         { value: "no me identifico con ninguna de las opciones anteriores", label: "No me identifico con ninguna de las opciones anteriores" },
       ]} onChange={handleColectivosChange} />
+
+<InputSelect id="conexion" label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?" value={conexionValue} options={[
+        { value: "Sin acceso (no tengo conexión a internet ni dispositivo)", label: "Sin acceso (no tengo conexión a internet ni dispositivo)" },
+        { value: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)", label: "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)" },
+        { value: "Acceso limitado (tengo dispositivo y conexión a internet limitada)", label: "Acceso limitado (tengo dispositivo y conexión a internet limitada)" },
+        { value: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)", label: "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)" },
+        { value: "Buen acceso (tengo buena conexión a internet y dispositivo)", label: "Buen acceso (tengo buena conexión a internet y dispositivo)" },
+       
+      ]} onChange={handleConexionChange} />
 
     </form>
   );
