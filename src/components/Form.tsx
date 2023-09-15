@@ -10,6 +10,11 @@ const Form = () => {
     setGeneroValue(event.target.value);
   }
 
+  const [permisoValue, setPermisoValue] = useState("");
+  const handlePermisoChange = (event: any) => {
+    setPermisoValue(event.target.value);
+  }
+
   const [programaValue, setProgramaValue] = useState("");
   const handleProgramaChange = (event: any) => {
     setProgramaValue(event.target.value);
@@ -41,13 +46,9 @@ const Form = () => {
   const handleInteresesChange = (event: any) => {
     setInteresesValue(event.target.value);
   }
-  const [encontradoValue, setEncontradoValue] = useState("");
+  const [encontradoValue, setencontradoValue] = useState("");
   const handleEncontradoChange = (event: any) => {
-    setEncontradoValue(event.target.value);
-  }
-  const [permisoValue, setPermisoValue] = useState("");
-  const handlePermisoChange = (event: any) => {
-    setPermisoValue(event.target.value);
+    setencontradoValue(event.target.value);
   }
 
 
@@ -68,6 +69,7 @@ const Form = () => {
       <InputText type="radio" id="identidad" children="NIE" value="nie" />
       <InputText type="radio" id="identidad" children="Otro" value="otro" />
 
+      
       {/* Aparece si se selecciona otro Documento de Identidad */}
       <InputText type="text" id="tipo" placeholder="Escribe tu tipo de documento" children="Indica el tipo de documento" />
       {/* Aparece si se selecciona NIE */}
@@ -77,10 +79,6 @@ const Form = () => {
         { value: "No dispongo de permiso (No es un problema para tener acceso al curso)", label: "No dispongo de permiso (No es un problema para tener acceso al curso)" },
         { value: "Otro", label: "Otro" },
       ]} onChange={handlePermisoChange} />
-
-
-
-
 
       <InputText type="text" id="direccion" placeholder="Calle, Nro, Piso" children="Calle, Nro, Piso" />
       <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
@@ -100,6 +98,8 @@ const Form = () => {
         { value: "estudios universitarios", label: "Estudios universitarios" },
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
+
+      <InputText type="text" id="titulacion" placeholder="Indica cúal es la titulación académica más alta que has obtenido" children="titulacion" />
 
       <InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
         { value: "Desempleada/o sin ingresos", label: "Desempleada/o sin ingresos" },
@@ -153,6 +153,9 @@ const Form = () => {
         { value: "Fundación Don Bosco o sus redes sociales", label: "Fundación Don Bosco o sus redes sociales" },
         { value: "Buscadores de internet (Google)", label: "Buscadores de internet (Google)" },
       ]} onChange={handleEncontradoChange} />
+
+      <InputText type="text" id="informacion" placeholder="¿Quieres añadir alguna información que consideres relevante?" children="informacion" />
+
     </form>
   );
 };
