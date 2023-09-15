@@ -37,13 +37,17 @@ const Form = () => {
   }
 
 
-  const [interesesValue, setinteresesValue] = useState("");
+  const [interesesValue, setInteresesValue] = useState("");
   const handleInteresesChange = (event: any) => {
-    setinteresesValue(event.target.value);
+    setInteresesValue(event.target.value);
   }
-  const [encontradoValue, setencontradoValue] = useState("");
+  const [encontradoValue, setEncontradoValue] = useState("");
   const handleEncontradoChange = (event: any) => {
-    setencontradoValue(event.target.value);
+    setEncontradoValue(event.target.value);
+  }
+  const [permisoValue, setPermisoValue] = useState("");
+  const handlePermisoChange = (event: any) => {
+    setPermisoValue(event.target.value);
   }
 
 
@@ -63,6 +67,20 @@ const Form = () => {
       <InputText type="radio" id="identidad" children="DNI" value="dni" />
       <InputText type="radio" id="identidad" children="NIE" value="nie" />
       <InputText type="radio" id="identidad" children="Otro" value="otro" />
+
+      {/* Aparece si se selecciona otro Documento de Identidad */}
+      <InputText type="text" id="tipo" placeholder="Escribe tu tipo de documento" children="Indica el tipo de documento" />
+      {/* Aparece si se selecciona NIE */}
+      <InputSelect id="permiso" label="Indica el carácter de tu permiso en España" value={permisoValue} options={[
+        { value: "Permiso de residencia y trabajo", label: "Permiso de residencia y trabajo" },
+        { value: "Permiso de residencia y estudios", label: "Permiso de residencia y estudios" },
+        { value: "No dispongo de permiso (No es un problema para tener acceso al curso)", label: "No dispongo de permiso (No es un problema para tener acceso al curso)" },
+        { value: "Otro", label: "Otro" },
+      ]} onChange={handlePermisoChange} />
+
+
+
+
 
       <InputText type="text" id="direccion" placeholder="Calle, Nro, Piso" children="Calle, Nro, Piso" />
       <InputText type="text" id="ciudad" placeholder="Escribe tu ciudad de residencia" children="ciudad de residencia" />
