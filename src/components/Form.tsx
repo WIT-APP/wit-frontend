@@ -83,6 +83,8 @@ const Form = () => {
         { value: "otro", label: "Otro" },
       ]} onChange={handleEducacionChange} />
 
+      <InputText type="text" id="titulacion" placeholder="Indica cúal es la titulación académica más alta que has obtenido" children="titulacion" />
+
       <InputSelect id="profesional" label="¿En qué situación profesional te encuentras?" value={profesionalValue} options={[
         { value: "Desempleada/o sin ingresos", label: "Desempleada/o sin ingresos" },
         { value: "Desempleada/o con subsidio por desempleo", label: "Desempleada/o con subsidio por desempleo" },
@@ -135,6 +137,9 @@ const Form = () => {
         { value: "Fundación Don Bosco o sus redes sociales", label: "Fundación Don Bosco o sus redes sociales" },
         { value: "Buscadores de internet (Google)", label: "Buscadores de internet (Google)" },
       ]} onChange={handleEncontradoChange} />
+
+      <InputText type="text" id="informacion" placeholder="¿Quieres añadir alguna información que consideres relevante?" children="informacion" />
+
     </form>
   );
 };

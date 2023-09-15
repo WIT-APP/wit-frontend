@@ -521,6 +521,44 @@ describe('Expect an select that is indicanos cual es tu titulacion academica mas
     });
 });
 
+describe('Expect an input that indica cúal es la titulación académica más alta que has obtenido', () => {
+    test('The input field and its props of indica cúal es la titulación académica más alta que has obtenido', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#titulacion'
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'titulacion'
+            expect(input.textContent).toBe('titulacion')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('titulacion')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'titulacion'
+                }
+            })
+            expect(input.value).toBe('titulacion')
+
+        }
+    });
+
+});
+
+
 
 describe('Expect an input that is que dedicación semanal tendrías para el proceso de formación', () => {
     test('The input field and its props of que dedicación semanal tendrías para el proceso de formación', () => {
@@ -715,6 +753,7 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
     });
 
 });
+
 describe('Expect an select that is ¿Como has encontrado este programa?', () => {
     test('The select field and its props of encontrado', () => {
         render(<Form />)
@@ -750,7 +789,42 @@ describe('Expect an select that is ¿Como has encontrado este programa?', () => 
     });
 });
 
+describe('Expect an input that quieres añadir alguna información que consideres relevante', () => {
+    test('The input field and its props quieres of añadir alguna información que consideres relevante', () => {
+        render(<Form />)
+        const input = document.querySelector(
+            '#informacion'
+        ) as HTMLInputElement | null;
 
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy()
+
+        // está vacio?
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'informacion'
+            expect(input.textContent).toBe('informacion')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('informacion')
+
+            // prueba el value prop
+            fireEvent.change(input, {
+                target: {
+                    value: 'informacion'
+                }
+            })
+            expect(input.value).toBe('informacion')
+
+        }
+    });
+
+});
 
 // describe('Se espera un input de ¿Cual es tu pais de nacimiento?', () => {
 //     test('Un campo de input y un props de los paises', () => {
