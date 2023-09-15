@@ -4,6 +4,7 @@ export interface Applicant {
     nombre_apellidos: string;
     correo_electronico: string;
     telefono: number;
+    estado: string;
     genero: string;
     fecha_de_nacimiento: Date;
     pais_de_nacimiento: string;
@@ -11,6 +12,7 @@ export interface Applicant {
     numero_documento_id: string;
     direccion: string;
     ciudad: string;
+    provincia: string;
     codigo_postal: number;
     pais_de_residencia: string;
     programa_cursar: string;

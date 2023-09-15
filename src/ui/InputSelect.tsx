@@ -8,7 +8,7 @@ interface InputSelectProps {
   label: string;
   value: string;
   options: Option[];
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (event: ChangeEvent<HTMLSelectElement> ) => void;
 }
 
 function InputSelect({
@@ -18,11 +18,12 @@ function InputSelect({
   options,
   onChange,
 }: InputSelectProps) {
+  
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}  className="block font-medium text-gray-700 mb-2">{label}</label>
       <select id={id} name={id} value={value} onChange={onChange}>
-        <option value="" disabled selected hidden>
+        <option value="" disabled selected hidden >
           Selecciona una opción
         </option>
         {options.map((option) => (

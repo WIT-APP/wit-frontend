@@ -1,10 +1,10 @@
 import { ApplicantList } from "./ApplicantList"
+import Form from "./components/Form";
 
 function App() {
   return (
-    <ApplicantList/>
-/*     <div><h1 className="text-blue-500 text-3xl underline">Frontend WIT ⚙</h1> </div>
- */  )
+    <Form/>
+    )
 }
 
 export default App;
