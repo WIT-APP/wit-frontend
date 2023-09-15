@@ -463,7 +463,6 @@ describe('Expect an input that is codigo postal', () => {
 
             // prueba el type prop
             expect(input.type).toBe('number')
-
             // prueba el name prop
             expect(input.name).toBe('codigopostal')
 
