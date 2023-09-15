@@ -18,6 +18,7 @@ export default {
     extend: {
       backgroundColor: {
         'grey-transparent': 'rgba(207, 211, 212, 0.72)',
+        'black': '#1E1E1E'
       },
       borderRadius: {
         'radius-050': '0.5rem',

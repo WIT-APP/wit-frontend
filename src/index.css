@@ -8,6 +8,15 @@
   }
 }
 
+.custom-button {
+  display: flex;
+  width: 10rem;
+  height: 2.75rem;
+  padding: 1.0625rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
 
 /* 
 body {
