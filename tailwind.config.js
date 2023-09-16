@@ -10,6 +10,7 @@ export default {
       "blue": "#517bbd",
       "yellow": "#f4b40e",
       "gray": "#c3c5c7",
+      'black': '#1E1E1E'
     },
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"]
@@ -23,6 +24,28 @@ export default {
       borderRadius: {
         'radius-050': '0.5rem',
         'radius-075': '0.75rem',
+      },
+      width: {
+        '128': '1000px',
+        '129': '500px'
+      },
+      height: {
+        '128':'500px',
+        '150': '150px'
+      },
+      padding: {
+        '15': '3.75rem', 
+      },
+      fontSize: {
+        'xs': '12px',
+        'sm': '14px',
+        'base': '16px', 
+        'lg': '18px',
+        'xl': '20px',
+        '2xl': '40px',       
+      },
+      borderColor: {
+        'gray-300': '#c3c5c7',
       },
     },
   },

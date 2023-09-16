@@ -7,10 +7,10 @@ export const useAllApplicants = () => {
     isError,
     data: applicant,
   } = useQuery({
-    queryKey: ["applicants"],
+    queryKey: ['applicants'],
     queryFn: async (): Promise<Applicant[]> => {
       const response = await fetch(
-        "http://localhost:3000/applicant"
+       'https://wit-backend-factoriaf5.up.railway.app/applicant'
       );
       const data = await response.json();
       console.log(data)
