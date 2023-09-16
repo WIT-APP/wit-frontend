@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 interface inputTextProps {
   id: string;
   type: string;
@@ -5,6 +7,7 @@ interface inputTextProps {
   children: React.ReactNode;
   value?: string;
   expandText: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const InputText = ({
@@ -14,6 +17,7 @@ const InputText = ({
   children,
   value,
   expandText,
+  onChange,
 }: inputTextProps) => {
   return (
     <div className="mb-4 ">
@@ -27,6 +31,7 @@ const InputText = ({
           id={id}
           name={id}
           value={value}
+          onChange={onChange}
           placeholder={placeholder}
           className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050"
         />

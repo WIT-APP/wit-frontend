@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import InputEmail from "../ui/InputEmail";
 import InputSelect from "../ui/InputSelect";
 import InputText from "../ui/InputText";
@@ -8,6 +8,36 @@ import { InputCheckbox } from "../ui/InputCheckbox";
 import InputSelectCountry from "../ui/InputSelectCountry";
 
 const Form = () => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setApplicant((prevApplicant) => ({
+      ...prevApplicant,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(applicant);
+  };
+
+  const [applicant, setApplicant] = useState({
+    nombre_apellidos: "",
+    correo_electronico: "",
+    telefono: "",
+    fecha_de_nacimiento: "",
+    pais_de_nacimiento: "",
+    numero_documento_id: "",
+    direccion: "",
+    ciudad: "",
+    provincia: "",
+    codigo_postal: "",
+    estudio_mas_alto: "",
+    dedicacion_semanal: "",
+    razones_para_unir: "",
+    mas_informacion: "",
+  });
+
   const [generoValue, setGeneroValue] = useState("");
   const handleGeneroChange = (event: any) => {
     setGeneroValue(event.target.value);
@@ -92,7 +122,7 @@ const Form = () => {
   };
 
   return (
-    <div className="w-screen flex items-center justify-end bg-[url('/public/form-image.jpg')] bg-contain bg-no-repeat bg-left bg-fixed bg-lightgray">
+    <div className="w-screen flex items-center justify-end bg-[url('/form-image.jpg')] bg-contain bg-no-repeat bg-left bg-fixed bg-lightgray">
       <div className="w-2/4 flex flex-col justify-between items-center bg-gray rounded-lg border-2 border-white m-10 shadow-lg p-10">
         <div className="w-7/8">
           <h1 className="text-2xl font-bold mt-4 mb-8 text-center">
@@ -103,25 +133,28 @@ const Form = () => {
             ¡Que empiece la aventura!
           </p>
         </div>
-        <form className="w-4/5 mt-10">
+        <form onSubmit={(e) => handleSubmit(e)} className="w-4/5 mt-10">
           <div className="">
             <InputText
               type="text"
-              id="name"
+              id="nombre_apellidos"
               placeholder="Escribe tu nombre y apellidos"
               children="Nombre y Apellidos"
+              onChange={handleChange}
               expandText=""
             />
             <InputEmail
               placeholder="Escribe tu correo electrónico"
               children="Correo electrónico"
+              onChange={handleChange}
             />
             <InputText
               type="number"
-              id="phone"
+              id="telefono"
               placeholder="8023456789"
               children="Número de teléfono"
               expandText=""
+              onChange={handleChange}
             />
             <InputSelect
               id="genero"
@@ -140,61 +173,28 @@ const Form = () => {
             />
             <InputText
               type="date"
-              id="date"
+              id="fecha_de_nacimiento"
               placeholder="00/00/00"
               children="¿Cuál es tu fecha de nacimiento?"
               expandText=""
+              onChange={handleChange}
             />
             <InputText
               type="text"
               id="pais_de_nacimiento"
-              placeholder="¡Nos gusta la diversidad de culturas! Escribe tu país. 
-          "
-              children="¿Cuál es tu país de nacimiento?
-          "
+              placeholder="¡Nos gusta la diversidad de culturas! Escribe tu país."
+              children="¿Cuál es tu país de nacimiento?"
               expandText=""
+              onChange={handleChange}
             />
             <DocumentoIdentidad />
-            {/*     <InputText type="radio" id="identidad" children="DNI" value="dni" />
-        <InputText type="radio" id="identidad" children="NIE" value="nie" />
-        <InputText type="radio" id="identidad" children="Otro" value="otro" /> */}
-            {/* Aparece si se selecciona otro Documento de Identidad */}
-            {/*     <InputText
-          type="text"
-          id="tipo"
-          placeholder="Escribe tu tipo de documento"
-          children="Indica el tipo de documento"
-        /> */}
-            {/* Aparece si se selecciona NIE */}
-            {/*  <InputSelect
-          id="permiso"
-          label="Indica el carácter de tu permiso en España"
-          value={permisoValue}
-          options={[
-            {
-              value: "Permiso de residencia y trabajo",
-              label: "Permiso de residencia y trabajo",
-            },
-            {
-              value: "Permiso de residencia y estudios",
-              label: "Permiso de residencia y estudios",
-            },
-            {
-              value:
-                "No dispongo de permiso (No es un problema para tener acceso al curso)",
-              label:
-                "No dispongo de permiso (No es un problema para tener acceso al curso)",
-            },
-            { value: "Otro", label: "Otro" },
-          ]}
-          onChange={handlePermisoChange}
-        /> */}
             <InputText
               type="text"
               id="numero_documento_id"
               placeholder="Escribe el numero de tu documento identidad"
               children="Por favor escribe tu número de documento de identidad aquí"
               expandText=""
+              onChange={handleChange}
             />
             <InputText
               type="text"
@@ -202,6 +202,7 @@ const Form = () => {
               placeholder="Calle, Nº, Piso"
               children="¿Cuál es tu dirección de residencia? "
               expandText="Esta formación está abierta a todas/os independientemente del lugar de nacimiento o nacionalidad. Sin embargo, es necesario que acredites el lugar en el que resides habitualmente en España"
+              onChange={handleChange}
             />
             <InputText
               type="text"
@@ -209,6 +210,7 @@ const Form = () => {
               placeholder="Escribe tu ciudad de residencia"
               children="¿En qué ciudad resides?"
               expandText=""
+              onChange={handleChange}
             />
             <InputText
               type="text"
@@ -216,6 +218,7 @@ const Form = () => {
               placeholder="Escribe tu provincia de residencia"
               children="¿En qué província resides?"
               expandText=""
+              onChange={handleChange}
             />
             <InputSelectCountry
               id="pais_de_residencia"
@@ -225,10 +228,11 @@ const Form = () => {
             />
             <InputText
               type="number"
-              id="codigopostal"
+              id="codigo_postal"
               placeholder="Escribe tu código postal"
               children="Código postal"
               expandText=""
+              onChange={handleChange}
             />
             <InputSelect
               id="programa"
@@ -283,10 +287,11 @@ const Form = () => {
             />
             <InputText
               type="text"
-              id="titulacion"
+              id="estudio_mas_alto"
               placeholder="Escribe tu titulación más alta"
               children="Indica cúal es la titulación académica más alta que has obtenido"
               expandText=""
+              onChange={handleChange}
             />
             <InputSelect
               id="profesional"
@@ -346,10 +351,11 @@ const Form = () => {
             />
             <InputText
               type="number"
-              id="dedicacion"
+              id="dedicacion_semanal"
               placeholder="Escribe el numero de horas semanal "
               children="¿Qué dedicación semanal tendrías para el proceso de formación?"
               expandText="Para este programa, estimamos una dedicación media de 15 horas a la semana, lo equivalente a 3 horas diarias."
+              onChange={handleChange}
             />
             <InputSelect
               id="conexion"
@@ -401,10 +407,11 @@ const Form = () => {
             />
             <InputText
               type="text"
-              id="razones"
+              id="razones_para_unir"
               placeholder="Escribe las razones"
               children="Explicanos brevemente las razones por las que te gustaria unirte a esta formación"
               expandText="Nos encanta leeros y saber más de vosotros. Estaremos un tiempo compartiendo conocimiento y nuevas experiencias. ¡Así que no te cortes!"
+              onChange={handleChange}
             />
             <InputSelect
               id="encontrado"
@@ -427,10 +434,11 @@ const Form = () => {
             />
             <InputText
               type="text"
-              id="informacion"
+              id="mas_informacion"
               placeholder="Escribe aquí"
               children="¿Quieres añadir alguna información que consideres relevante?"
               expandText="Somos todo oídos ;) "
+              onChange={handleChange}
             />
             <button
               type="submit"
