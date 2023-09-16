@@ -9,7 +9,11 @@ export default {
       "green": "#009966",
       "blue": "#517bbd",
       "yellow": "#f4b40e",
+      "lightgray": "#eeeeee",
       "gray": "#c3c5c7",
+      "darkgray": "#767676",
+      "white": "#ffffff",
+      "black": "#000000",
     },
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"]
@@ -24,6 +28,9 @@ export default {
         'radius-050': '0.5rem',
         'radius-075': '0.75rem',
       },
+      backgroundImage: {
+        'hero': "url('form-images.jpg')",
+      }
     },
   },
   plugins: [
