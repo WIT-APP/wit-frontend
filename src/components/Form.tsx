@@ -6,68 +6,9 @@ import InputText from "../ui/InputText";
 import { DocumentoIdentidad } from "../ui/DocumentoIdentidad";
 import { InputCheckbox } from "../ui/InputCheckbox";
 import InputSelectCountry from "../ui/InputSelectCountry";
+import { CreateApplicant } from "../interfaces/applicant.interface";
 
 const Form = () => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setApplicant((prevApplicant) => ({
-      ...prevApplicant,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(applicant);
-  };
-
-  const [applicant, setApplicant] = useState({
-    nombre_apellidos: "",
-    correo_electronico: "",
-    telefono: "",
-    fecha_de_nacimiento: "",
-    pais_de_nacimiento: "",
-    numero_documento_id: "",
-    direccion: "",
-    ciudad: "",
-    provincia: "",
-    codigo_postal: "",
-    estudio_mas_alto: "",
-    dedicacion_semanal: "",
-    razones_para_unir: "",
-    mas_informacion: "",
-  });
-
-  const [generoValue, setGeneroValue] = useState("");
-  const handleGeneroChange = (event: any) => {
-    setGeneroValue(event.target.value);
-  };
-
-  /*  const [permisoValue, setPermisoValue] = useState("");
-  const handlePermisoChange = (event: any) => {
-    setPermisoValue(event.target.value);
-  }; */
-
-  const [programaValue, setProgramaValue] = useState("");
-  const handleProgramaChange = (event: any) => {
-    setProgramaValue(event.target.value);
-  };
-
-  const [educacionValue, setEducacionValue] = useState("");
-  const handleEducacionChange = (event: any) => {
-    setEducacionValue(event.target.value);
-  };
-
-  const [profesionalValue, setProfesionalValue] = useState("");
-  const handleProfesionalChange = (event: any) => {
-    setProfesionalValue(event.target.value);
-  };
-
-  const [colectivosValue, setColectivosValue] = useState<string[]>([]);
-
-  const handleColectivosChange = (selectedValues: string[]) => {
-    setColectivosValue(selectedValues);
-  };
   const colectivosOptions = [
     {
       value: "mujer en situación de vulnerabilidad",
@@ -102,28 +43,92 @@ const Form = () => {
     },
   ];
 
-  const [conexionValue, setConexionValue] = useState("");
-  const handleConexionChange = (event: any) => {
-    setConexionValue(event.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setApplicant((prevApplicant) => ({
+      ...prevApplicant,
+      [name]: value,
+    }));
   };
 
-  const [formacionValue, setFormacionValue] = useState("");
-  const handleFormacionChange = (event: any) => {
-    setFormacionValue(event.target.value);
+  const handleSelectChange = (event: any) => {
+    const { name, value } = event.target;
+    setApplicant((Applicant) => ({
+      ...Applicant,
+      [name]: value,
+    }));
   };
 
-  const [interesesValue, setInteresesValue] = useState("");
-  const handleInteresesChange = (event: any) => {
-    setInteresesValue(event.target.value);
+  const handleSelectNumberChange = (event: any) => {
+    const { name, value } = event.target;
+    const number = parseInt(value);
+    setApplicant((Applicant) => ({
+      ...Applicant,
+      [name]: number,
+    }));
   };
-  const [encontradoValue, setencontradoValue] = useState("");
-  const handleEncontradoChange = (event: any) => {
-    setencontradoValue(event.target.value);
+
+  const handleSelectBooleanChange = (event: any) => {
+    const { name, value } = event.target;
+    if (value == "Si") {
+      setApplicant((Applicant) => ({
+        ...Applicant,
+        [name]: true,
+      }));
+    } else {
+      setApplicant((Applicant) => ({
+        ...Applicant,
+        [name]: false,
+      }));
+    }
   };
+
+  const handleColectivosChange = (selectedValues: string[]) => {
+    setApplicant((prevAplicant) => ({
+      ...prevAplicant,
+      colectivo: selectedValues,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(applicant);
+    console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
+    console.log(`value: ${applicant.colectivo}`);
+  };
+
+  const [applicant, setApplicant] = useState<CreateApplicant>({
+    nombre_apellidos: "",
+    correo_electronico: "",
+    telefono: 0,
+    genero: "",
+    fecha_de_nacimiento: "",
+    pais_de_nacimiento: "",
+    documento_de_identidad: "",
+    numero_documento_id: "",
+    direccion: "",
+    ciudad: "",
+    provincia: "",
+    codigo_postal: 0,
+    pais_de_residencia: "",
+    programa_cursar: "",
+    permiso: "",
+    colectivo: [],
+    educacion: "",
+    estudio_mas_alto: "",
+    situacion_profesional: "",
+    intereses_actuales: "",
+    dedicacion_semanal: 0,
+    acceso_internet_dispositivos: "",
+    formacion_online: false,
+    razones_para_unir: "",
+    encontrar_programa: "",
+    mas_informacion: "",
+  });
 
   return (
-    <div className="w-screen flex items-center justify-end bg-[url('/form-image.jpg')] bg-contain bg-no-repeat bg-left bg-fixed bg-lightgray">
-      <div className="w-2/4 flex flex-col justify-between items-center bg-gray rounded-lg border-2 border-white m-10 shadow-lg p-10">
+    <div className="md:justify-end md:bg-[url('/form-image.jpg')] md:bg-lightgray lg:bg-contain w-screen flex items-center justify-center bg-lightgreen bg-cover bg-no-repeat bg-left bg-fixed ">
+      <div className="sm:w-3/4 md:w-2/3 lg:w-2/4 flex flex-col justify-between items-center bg-lightgray md:bg-gray rounded-lg border-2 border-white m-10 shadow-lg p-10">
         <div className="w-7/8">
           <h1 className="text-2xl font-bold mt-4 mb-8 text-center">
             Estás a un paso de conseguir tu BECA de Google
@@ -154,12 +159,11 @@ const Form = () => {
               placeholder="8023456789"
               children="Número de teléfono"
               expandText=""
-              onChange={handleChange}
+              onChange={handleSelectNumberChange}
             />
             <InputSelect
               id="genero"
               label="¿Cómo describirías tu género?"
-              value={generoValue}
               options={[
                 { value: "hombre", label: "Hombre" },
                 { value: "mujer", label: "Mujer" },
@@ -169,7 +173,7 @@ const Form = () => {
                   label: "Prefiero no identificarme",
                 },
               ]}
-              onChange={handleGeneroChange}
+              onChange={handleSelectChange}
             />
             <InputText
               type="date"
@@ -187,7 +191,11 @@ const Form = () => {
               expandText=""
               onChange={handleChange}
             />
+
+            {/* FALTA POR ARREGLAR !!!!!!!!!!!!!!! */}
             <DocumentoIdentidad />
+            {/* FALTA ! */}
+
             <InputText
               type="text"
               id="numero_documento_id"
@@ -223,8 +231,7 @@ const Form = () => {
             <InputSelectCountry
               id="pais_de_residencia"
               label="¿En qué país resides?"
-              value={educacionValue}
-              onChange={handleEducacionChange}
+              onChange={handleSelectChange}
             />
             <InputText
               type="number"
@@ -232,12 +239,11 @@ const Form = () => {
               placeholder="Escribe tu código postal"
               children="Código postal"
               expandText=""
-              onChange={handleChange}
+              onChange={handleSelectNumberChange}
             />
             <InputSelect
-              id="programa"
+              id="programa_cursar"
               label="¿Qué programa quieres cursar?"
-              value={programaValue}
               options={[
                 {
                   value: "soporte de Tecnologías de la Información",
@@ -250,19 +256,18 @@ const Form = () => {
                     "Automatización de Tecnologías de la Información con Python",
                 },
               ]}
-              onChange={handleProgramaChange}
+              onChange={handleSelectChange}
             />
             <InputCheckbox
               label="¿Te identificarías con alguno de los siguientes colectivos?"
               options={colectivosOptions}
-              selectedValues={colectivosValue}
+              selectedValues={applicant.colectivo}
               onChange={handleColectivosChange}
               expandText="Con este programa queremos favorecer a colectivos en situación de vulnerabilidad. Selecciona todas las opciones que se correspondan con tu situación."
             />
             <InputSelect
               id="educacion"
               label="¿Cúal es tu nivel de estudios más alto?"
-              value={educacionValue}
               options={[
                 {
                   value: "sin estudios o estudios primarios sin finalizar",
@@ -283,7 +288,7 @@ const Form = () => {
                 },
                 { value: "otro", label: "Otro" },
               ]}
-              onChange={handleEducacionChange}
+              onChange={handleSelectChange}
             />
             <InputText
               type="text"
@@ -294,9 +299,8 @@ const Form = () => {
               onChange={handleChange}
             />
             <InputSelect
-              id="profesional"
+              id="situacion_profesional"
               label="¿En qué situación profesional te encuentras?"
-              value={profesionalValue}
               options={[
                 {
                   value: "Desempleada/o sin ingresos",
@@ -318,12 +322,11 @@ const Form = () => {
                 { value: "Estudiante", label: "Estudiante" },
                 { value: "Otro", label: "Otro" },
               ]}
-              onChange={handleProfesionalChange}
+              onChange={handleSelectChange}
             />
             <InputSelect
-              id="intereses"
+              id="intereses_actuales"
               label="Escoge la opcion que mejor se ajuste a tus intereses actuales"
-              value={interesesValue}
               options={[
                 {
                   value:
@@ -347,7 +350,7 @@ const Form = () => {
                 },
                 { value: "Otra", label: "Otra" },
               ]}
-              onChange={handleInteresesChange}
+              onChange={handleSelectChange}
             />
             <InputText
               type="number"
@@ -355,12 +358,11 @@ const Form = () => {
               placeholder="Escribe el numero de horas semanal "
               children="¿Qué dedicación semanal tendrías para el proceso de formación?"
               expandText="Para este programa, estimamos una dedicación media de 15 horas a la semana, lo equivalente a 3 horas diarias."
-              onChange={handleChange}
+              onChange={handleSelectNumberChange}
             />
             <InputSelect
-              id="conexion"
+              id="acceso_internet_dispositivos"
               label="¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?"
-              value={conexionValue}
               options={[
                 {
                   value:
@@ -393,17 +395,16 @@ const Form = () => {
                     "Buen acceso (tengo buena conexión a internet y dispositivo)",
                 },
               ]}
-              onChange={handleConexionChange}
+              onChange={handleSelectChange}
             />
             <InputSelect
-              id=" formacion_online"
+              id="formacion_online"
               label="¿Has hecho alguna vez una formación online?"
-              value={formacionValue}
               options={[
-                { value: "Sí", label: "Sí" },
+                { value: "Si", label: "Si" },
                 { value: "No", label: "No" },
               ]}
-              onChange={handleFormacionChange}
+              onChange={handleSelectBooleanChange}
             />
             <InputText
               type="text"
@@ -414,9 +415,8 @@ const Form = () => {
               onChange={handleChange}
             />
             <InputSelect
-              id="encontrado"
+              id="encontrar_programa"
               label="¿Cómo has encontrado este programa?"
-              value={encontradoValue}
               options={[
                 { value: "Redes sociales", label: "Redes sociales" },
                 { value: "Somos F5", label: "Somos F5" },
@@ -430,7 +430,7 @@ const Form = () => {
                   label: "Buscadores de internet (Google)",
                 },
               ]}
-              onChange={handleEncontradoChange}
+              onChange={handleSelectChange}
             />
             <InputText
               type="text"
@@ -442,7 +442,7 @@ const Form = () => {
             />
             <button
               type="submit"
-              className="bg-blue text-sm text-white py-3 mt-6 rounded-lg w-1/4"
+              className="bg-blue text-sm text-white py-3 mt-6 rounded-lg w-1/4 shadow-lg"
             >
               Aceptar
             </button>

@@ -6,7 +6,7 @@ interface Option {
 interface InputSelectProps {
   id: string;
   label: string;
-  value: string;
+  // value: string;
   options: Option[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -14,7 +14,7 @@ interface InputSelectProps {
 function InputSelect({
   id,
   label,
-  value,
+  // value,
   options,
   onChange,
 }: InputSelectProps) {
@@ -26,7 +26,7 @@ function InputSelect({
       <select
         id={id}
         name={id}
-        value={value}
+        // value={value}
         onChange={onChange}
         className="font-normal w-full px-3 py-2 rounded-radius-050 text-justify"
       >
