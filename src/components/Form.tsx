@@ -95,7 +95,7 @@ const Form = () => {
 
   return (
     <div className="md:justify-end md:bg-[url('/form-image.jpg')] md:bg-lightgray lg:bg-contain w-screen flex items-center justify-center bg-lightgreen bg-cover bg-no-repeat bg-left bg-fixed p-4 md:mb-16">
-      <div className="sm:w-3/4 md:w-2/3 lg:w-2/4 flex flex-col justify-between items-center bg-lightgray md:bg-gray rounded-lg border-2 border-white m-10 shadow-lg p-10">
+      <div className="sm:w-3/4 sm:m-10 sm:p-10 md:w-2/3 md:bg-gray lg:w-2/4 p-5 m-5 flex flex-col justify-between items-center bg-lightgray rounded-lg border-2 border-white shadow-lg">
         <div className="w-7/8">
           <h1 className="text-2xl font-bold mt-4 mb-8 text-center">
             Estás a un paso de conseguir tu BECA de Google
@@ -105,7 +105,7 @@ const Form = () => {
             ¡Que empiece la aventura!
           </p>
         </div>
-        <form onSubmit={(e) => handleSubmit(e)} className="w-4/5 mt-10">
+        <form onSubmit={(e) => handleSubmit(e)} className="sm:w-4/5 mt-10">
           <div className="">
             <InputText
               type="text"
@@ -439,7 +439,7 @@ const Form = () => {
             />
             <button
               type="submit"
-              className="bg-blue text-sm text-white py-3 mt-6 rounded-lg w-1/4 shadow-lg"
+              className="bg-blue text-sm text-white p-3 py-3 mt-6 rounded-lg sm:w-1/4 shadow-lg"
             >
               Aceptar
             </button>
