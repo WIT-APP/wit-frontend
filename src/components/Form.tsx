@@ -7,6 +7,7 @@ import { DocumentoIdentidad } from "../ui/DocumentoIdentidad";
 import { InputCheckbox } from "../ui/InputCheckbox";
 import InputSelectCountry from "../ui/InputSelectCountry";
 import { CreateApplicant } from "../interfaces/applicant.interface";
+import InputTextarea from "../ui/InputTextarea";
 
 const Form = () => {
   const colectivosOptions = [
@@ -44,6 +45,14 @@ const Form = () => {
   ];
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setApplicant((prevApplicant) => ({
+      ...prevApplicant,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setApplicant((prevApplicant) => ({
       ...prevApplicant,
@@ -204,13 +213,12 @@ const Form = () => {
               expandText=""
               onChange={handleChange}
             />
-            <InputText
-              type="text"
+            <InputTextarea
               id="direccion"
               placeholder="Calle, Nº, Piso"
               children="¿Cuál es tu dirección de residencia? "
               expandText="Esta formación está abierta a todas/os independientemente del lugar de nacimiento o nacionalidad. Sin embargo, es necesario que acredites el lugar en el que resides habitualmente en España"
-              onChange={handleChange}
+              onChange={handleChangeTextarea}
             />
             <InputText
               type="text"
@@ -290,13 +298,12 @@ const Form = () => {
               ]}
               onChange={handleSelectChange}
             />
-            <InputText
-              type="text"
+            <InputTextarea
               id="estudio_mas_alto"
               placeholder="Escribe tu titulación más alta"
               children="Indica cúal es la titulación académica más alta que has obtenido"
               expandText=""
-              onChange={handleChange}
+              onChange={handleChangeTextarea}
             />
             <InputSelect
               id="situacion_profesional"
@@ -406,13 +413,12 @@ const Form = () => {
               ]}
               onChange={handleSelectBooleanChange}
             />
-            <InputText
-              type="text"
+            <InputTextarea
               id="razones_para_unir"
               placeholder="Escribe las razones"
               children="Explicanos brevemente las razones por las que te gustaria unirte a esta formación"
               expandText="Nos encanta leeros y saber más de vosotros. Estaremos un tiempo compartiendo conocimiento y nuevas experiencias. ¡Así que no te cortes!"
-              onChange={handleChange}
+              onChange={handleChangeTextarea}
             />
             <InputSelect
               id="encontrar_programa"
@@ -432,13 +438,12 @@ const Form = () => {
               ]}
               onChange={handleSelectChange}
             />
-            <InputText
-              type="text"
+            <InputTextarea
               id="mas_informacion"
               placeholder="Escribe aquí"
               children="¿Quieres añadir alguna información que consideres relevante?"
               expandText="Somos todo oídos ;) "
-              onChange={handleChange}
+              onChange={handleChangeTextarea}
             />
             <button
               type="submit"

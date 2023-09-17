@@ -33,7 +33,7 @@ const InputText = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050"
+          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050 overflow-x-auto"
         />
       </label>
     </div>
