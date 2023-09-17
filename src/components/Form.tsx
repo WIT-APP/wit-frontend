@@ -11,34 +11,34 @@ import { CreateApplicant } from "../interfaces/applicant.interface";
 const Form = () => {
   const colectivosOptions = [
     {
-      value: "mujer en situación de vulnerabilidad",
+      value: "Mujer en situación de vulnerabilidad",
       label: "Mujer en situación de vulnerabilidad",
     },
-    { value: "minorías étnicas", label: "Minorías étnicas" },
+    { value: "Minorías étnicas", label: "Minorías étnicas" },
     {
-      value: "inmigrante o refugiado/a",
-      label: "Inmigrante o refugiado/a",
+      value: "Inmigrante o refugiada/o",
+      label: "Inmigrante o refugiada/o",
     },
     {
-      value: "joven sin titulación y sin empleo",
+      value: "Joven sin titulación y sin empleo",
       label: "Joven sin titulación y sin empleo",
     },
     {
       value:
-        "desempleada/o de larga duración o debido a la crisis del Covid-19",
+        "Desempleada/o de larga duración o debido a la crisis del Covid-19",
       label:
         "Desempleada/o de larga duración o debido a la crisis del Covid-19",
     },
     {
-      value: "grupo de edad > 50 años",
+      value: "Grupo de edad > 50 años",
       label: "Grupo de edad > 50 años",
     },
     {
-      value: "cabeza de familia monoparental",
+      value: "Cabeza de familia monoparental",
       label: "Cabeza de familia monoparental",
     },
     {
-      value: "no me identifico con ninguna de las opciones anteriores",
+      value: "No me identifico con ninguna de las opciones anteriores",
       label: "No me identifico con ninguna de las opciones anteriores",
     },
   ];
@@ -165,11 +165,11 @@ const Form = () => {
               id="genero"
               label="¿Cómo describirías tu género?"
               options={[
-                { value: "hombre", label: "Hombre" },
-                { value: "mujer", label: "Mujer" },
-                { value: "otro", label: "Otro" },
+                { value: "Hombre", label: "Hombre" },
+                { value: "Mujer", label: "Mujer" },
+                { value: "Otro", label: "Otro" },
                 {
-                  value: "prefiero no identificarme",
+                  value: "Prefiero no identificarme",
                   label: "Prefiero no identificarme",
                 },
               ]}
@@ -246,12 +246,12 @@ const Form = () => {
               label="¿Qué programa quieres cursar?"
               options={[
                 {
-                  value: "soporte de Tecnologías de la Información",
+                  value: "Soporte de Tecnologías de la Información",
                   label: "Soporte de Tecnologías de la Información",
                 },
                 {
                   value:
-                    "automatización de Tecnologías de la Información con Python",
+                    "Automatización de Tecnologías de la Información con Python",
                   label:
                     "Automatización de Tecnologías de la Información con Python",
                 },
@@ -270,23 +270,23 @@ const Form = () => {
               label="¿Cúal es tu nivel de estudios más alto?"
               options={[
                 {
-                  value: "sin estudios o estudios primarios sin finalizar",
+                  value: "Sin estudios o estudios primarios sin finalizar",
                   label: "Sin estudios o estudios primarios sin finalizar",
                 },
-                { value: "estudios primarios", label: "Estudios primarios" },
+                { value: "Estudios primarios", label: "Estudios primarios" },
                 {
-                  value: "estudios secundarios",
+                  value: "Estudios secundarios",
                   label: "Estudios secundarios",
                 },
                 {
-                  value: "formación profesional",
+                  value: "Formación profesional",
                   label: "Formación profesional",
                 },
                 {
-                  value: "estudios universitarios",
+                  value: "Estudios universitarios",
                   label: "Estudios universitarios",
                 },
-                { value: "otro", label: "Otro" },
+                { value: "Otro", label: "Otro" },
               ]}
               onChange={handleSelectChange}
             />
@@ -336,9 +336,9 @@ const Form = () => {
                 },
                 {
                   value:
-                    "Estoy interesada/o en obtener un empleo en el sector tecnológico",
+                    "Estoy interesada/o en obtener un empleo del sector tecnológico",
                   label:
-                    "Estoy interesada/o en obtener un empleo en el sector tecnológico",
+                    "Estoy interesada/o en obtener un empleo del sector tecnológico",
                 },
                 {
                   value: "Necesito formarme para conseguir un empleo estable",
@@ -372,27 +372,27 @@ const Form = () => {
                 },
                 {
                   value:
-                    "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)",
+                    "Acceso muy limitado (tengo dispositivo pero no tengo internet)",
                   label:
-                    "Acceso muy limitado (tengo dispositivo pero no tengo conexión a internet)",
+                    "Acceso muy limitado (tengo dispositivo pero no tengo internet)",
                 },
                 {
                   value:
-                    "Acceso limitado (tengo dispositivo y conexión a internet limitada)",
+                    "Acceso limitado (tengo dispositivo e internet limitado)",
                   label:
-                    "Acceso limitado (tengo dispositivo y conexión a internet limitada)",
+                    "Acceso limitado (tengo dispositivo e internet limitado)",
                 },
                 {
                   value:
-                    "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)",
+                    "Acesso medio (tengo dispositivo e internet de baja calidad)",
                   label:
-                    "Acceso medio (tengo dispositivo y conexión a internet, a pesar de no ser de buena calidad)",
+                    "Acesso medio (tengo dispositivo e internet de baja calidad)",
                 },
                 {
                   value:
-                    "Buen acceso (tengo buena conexión a internet y dispositivo)",
+                    "Buen acceso (tengo buena conexion a internet y dispositivo)",
                   label:
-                    "Buen acceso (tengo buena conexión a internet y dispositivo)",
+                    "Buen acceso (tengo buena conexion a internet y dispositivo)",
                 },
               ]}
               onChange={handleSelectChange}
@@ -420,7 +420,7 @@ const Form = () => {
               options={[
                 { value: "Redes sociales", label: "Redes sociales" },
                 { value: "Somos F5", label: "Somos F5" },
-                { value: "Factoría F5", label: "Factoría F5" },
+                { value: "Factoria F5", label: "Factoria F5" },
                 {
                   value: "Fundación Don Bosco o sus redes sociales",
                   label: "Fundación Don Bosco o sus redes sociales",
