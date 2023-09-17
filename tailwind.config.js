@@ -10,7 +10,8 @@ export default {
       "blue": "#517bbd",
       "yellow": "#f4b40e",
       "gray": "#c3c5c7",
-      'black': '#1E1E1E'
+      'black': '#1E1E1E',
+      "white":"#ffffff"
     },
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"]

@@ -23,7 +23,7 @@ export const ApplicantsTable = () => {
           <h1 className='text-black text-xl font-bold mx-3 mt-4 '>Todos los Nuevos Aspirantes</h1>
           <h3 className='text-green text-m font-bold mx-3 mb-3'>Pre-aprobados</h3>
         </div>
-        <button className='mr-12'>Exportar</button>
+        <button className='mr-12 bg-blue rounded text-white custom-button'>Exportar</button>
       </div>
       
       <table className='table-auto mx-4'>
