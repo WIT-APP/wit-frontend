@@ -7,9 +7,9 @@ export const DocumentoIdentidad = () => {
   const [permisoValue, setPermisoValue] = useState("");
 
   const radioOptions = [
-    { id: "dni", label: "DNI", value: "dni" },
-    { id: "nie", label: "NIE", value: "nie" },
-    { id: "otro", label: "Otro", value: "otro" },
+    { id: "DNI", label: "DNI", value: "DNI" },
+    { id: "NIE", label: "NIE", value: "NIE" },
+    { id: "Otro", label: "Otro", value: "Otro" },
   ];
 
   const handleRadioChange = (event: any) => {
