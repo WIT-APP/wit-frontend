@@ -10,40 +10,7 @@ import { CreateApplicant } from "../interfaces/applicant.interface";
 import InputTextarea from "../ui/InputTextarea";
 
 const Form = () => {
-  const colectivosOptions = [
-    {
-      value: "Mujer en situación de vulnerabilidad",
-      label: "Mujer en situación de vulnerabilidad",
-    },
-    { value: "Minorías étnicas", label: "Minorías étnicas" },
-    {
-      value: "Inmigrante o refugiada/o",
-      label: "Inmigrante o refugiada/o",
-    },
-    {
-      value: "Joven sin titulación y sin empleo",
-      label: "Joven sin titulación y sin empleo",
-    },
-    {
-      value:
-        "Desempleada/o de larga duración o debido a la crisis del Covid-19",
-      label:
-        "Desempleada/o de larga duración o debido a la crisis del Covid-19",
-    },
-    {
-      value: "Grupo de edad > 50 años",
-      label: "Grupo de edad > 50 años",
-    },
-    {
-      value: "Cabeza de familia monoparental",
-      label: "Cabeza de familia monoparental",
-    },
-    {
-      value: "No me identifico con ninguna de las opciones anteriores",
-      label: "No me identifico con ninguna de las opciones anteriores",
-    },
-  ];
-
+ 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setApplicant((prevApplicant) => ({
@@ -136,7 +103,7 @@ const Form = () => {
   });
 
   return (
-    <div className="md:justify-end md:bg-[url('/form-image.jpg')] md:bg-lightgray lg:bg-contain w-screen flex items-center justify-center bg-lightgreen bg-cover bg-no-repeat bg-left bg-fixed ">
+    <div className="md:justify-end md:bg-[url('/form-image.jpg')] md:bg-lightgray lg:bg-contain w-screen flex items-center justify-center bg-lightgreen bg-cover bg-no-repeat bg-left bg-fixed p-4 md:mb-16">
       <div className="sm:w-3/4 sm:m-10 sm:p-10 md:w-2/3 md:bg-gray lg:w-2/4 p-5 m-5 flex flex-col justify-between items-center bg-lightgray rounded-lg border-2 border-white shadow-lg">
         <div className="w-7/8">
           <h1 className="text-2xl font-bold mt-4 mb-8 text-center">
@@ -268,7 +235,37 @@ const Form = () => {
             />
             <InputCheckbox
               label="¿Te identificarías con alguno de los siguientes colectivos?"
-              options={colectivosOptions}
+              options={ [   {
+                value: "Mujer en situación de vulnerabilidad",
+                label: "Mujer en situación de vulnerabilidad",
+              },
+              { value: "Minorías étnicas", label: "Minorías étnicas" },
+              {
+                value: "Inmigrante o refugiada/o",
+                label: "Inmigrante o refugiada/o",
+              },
+              {
+                value: "Joven sin titulación y sin empleo",
+                label: "Joven sin titulación y sin empleo",
+              },
+              {
+                value:
+                  "Desempleada/o de larga duración o debido a la crisis del Covid-19",
+                label:
+                  "Desempleada/o de larga duración o debido a la crisis del Covid-19",
+              },
+              {
+                value: "Grupo de edad > 50 años",
+                label: "Grupo de edad > 50 años",
+              },
+              {
+                value: "Cabeza de familia monoparental",
+                label: "Cabeza de familia monoparental",
+              },
+              {
+                value: "No me identifico con ninguna de las opciones anteriores",
+                label: "No me identifico con ninguna de las opciones anteriores",
+              },]}
               selectedValues={applicant.colectivo}
               onChange={handleColectivosChange}
               expandText="Con este programa queremos favorecer a colectivos en situación de vulnerabilidad. Selecciona todas las opciones que se correspondan con tu situación."
