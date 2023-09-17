@@ -107,7 +107,11 @@ const Form = () => {
     console.log(applicant);
     console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
     console.log(`value: ${applicant.colectivo}`);
+<<<<<<< HEAD
   }; */
+=======
+  };
+>>>>>>> a40540752c33e46464341fcab39247310b9f59b0
 
   const [applicant, setApplicant] = useState<CreateApplicant>({
     nombre_apellidos: "",
