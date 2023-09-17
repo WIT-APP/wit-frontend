@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Applicant } from "../interfaces/applicant.interface";
+import { CreateApplicant } from "../interfaces/applicant.interface";
 
-const newApplication = async (applicant: Applicant) => {
+const newApplication = async (applicant: CreateApplicant) => {
   const response = await fetch(
     "https://wit-backend-factoriaf5.up.railway.app/applicant",
     {
@@ -21,15 +21,18 @@ const newApplication = async (applicant: Applicant) => {
   return result;
 };
 
-const queryClient = useQueryClient();
+
 
 
 export const useNewApplication = () => {
-  return useMutation(newApplication, {
-    onSuccess: () => {
-        console.log("New application submitted")
+  const queryClient = useQueryClient();
+  return useMutation(
+    (applicant: CreateApplicant) => newApplication(applicant),
+    {
+      onSuccess: () => {
+        console.log("New application submitted");
         queryClient.invalidateQueries(["applicants"]);
-
-    },
-  });
+      },
+    }
+  );
 };

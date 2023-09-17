@@ -351,7 +351,7 @@ describe('Expect an input that is Cual es tu direccion de residencia', () => {
             expect(input.textContent).toBe('C/Montblanc n-1 3-2')
 
             // prueba el type prop
-            expect(input.type).toBe('text')
+            expect(input.type).toBe('textarea')
 
             // prueba el name prop
             expect(input.name).toBe('direccion')
@@ -812,7 +812,7 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
             expect(input.textContent).toBe('razones')
 
             // prueba el type prop
-            expect(input.type).toBe('text')
+            expect(input.type).toBe('textarea')
 
             // prueba el name prop
             expect(input.name).toBe('razones')
@@ -884,7 +884,7 @@ describe('Expect an input that quieres añadir alguna información que considere
             expect(input.textContent).toBe('informacion')
 
             // prueba el type prop
-            expect(input.type).toBe('text')
+            expect(input.type).toBe('textarea')
 
             // prueba el name prop
             expect(input.name).toBe('informacion')

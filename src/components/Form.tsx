@@ -8,6 +8,7 @@ import { InputCheckbox } from "../ui/InputCheckbox";
 import InputSelectCountry from "../ui/InputSelectCountry";
 import { CreateApplicant } from "../interfaces/applicant.interface";
 import InputTextarea from "../ui/InputTextarea";
+import { useNewApplication } from "../services/RegisterApplicant";
 
 const Form = () => {
  
@@ -65,14 +66,49 @@ const Form = () => {
       colectivo: selectedValues,
     }));
   };
+/*   
+  const mutation = useNewApplication();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      mutation.mutateAsync(applicant);
+      console.log('Application submitted successfully');
+    } catch (error:any) {
+      console.error('Error submitting application:', error.message);
+    }
     console.log(applicant);
     console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
     console.log(`value: ${applicant.colectivo}`);
   };
-
+ */
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch("https://wit-backend-factoriaf5.up.railway.app/applicant", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(applicant),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error submitting application");
+      }
+  
+      console.log('Application submitted successfully');
+    } catch (error:any) {
+      console.error('Error submitting application:', error.message);
+    }
+  
+    console.log(applicant);
+    console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
+    console.log(`value: ${applicant.colectivo}`);
+  };
+  
   const [applicant, setApplicant] = useState<CreateApplicant>({
     nombre_apellidos: "",
     correo_electronico: "",
@@ -80,7 +116,7 @@ const Form = () => {
     genero: "",
     fecha_de_nacimiento: "",
     pais_de_nacimiento: "",
-    documento_de_identidad: "",
+    documento_de_identidad: "NIE",
     numero_documento_id: "",
     direccion: "",
     ciudad: "",
