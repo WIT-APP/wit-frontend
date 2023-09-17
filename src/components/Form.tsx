@@ -108,7 +108,7 @@ const Form = () => {
     console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
     console.log(`value: ${applicant.colectivo}`);
   };
-  
+
   const [applicant, setApplicant] = useState<CreateApplicant>({
     nombre_apellidos: "",
     correo_electronico: "",

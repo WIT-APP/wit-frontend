@@ -33,7 +33,7 @@ describe('Expect an input that is Nombre y Apellidos', () => {
             expect(input.type).toBe('text')
 
             // prueba el name prop
-            expect(input.name).toBe('name')
+            expect(input.name).toBe('nombre_apellidos')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -53,7 +53,7 @@ describe('Expect an input that is Correo electronico', () => {
     test('The input field and its props of Correo electronico', () => {
         render(<Form />)
         const input = document.querySelector(
-            '#email'
+            '#correo_electronico'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -71,7 +71,7 @@ describe('Expect an input that is Correo electronico', () => {
             expect(input.type).toBe('email')
 
             // prueba el name prop
-            expect(input.name).toBe('email')
+            expect(input.name).toBe('correo_electronico')
 
             // prueba el value prop
             fireEvent.change(input, {
