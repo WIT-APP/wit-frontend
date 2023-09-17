@@ -11,7 +11,6 @@ import InputTextarea from "../ui/InputTextarea";
 import { useNewApplication } from "../services/RegisterApplicant";
 
 const Form = () => {
- 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setApplicant((prevApplicant) => ({
@@ -66,49 +65,50 @@ const Form = () => {
       colectivo: selectedValues,
     }));
   };
-/*   
+
   const mutation = useNewApplication();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       mutation.mutateAsync(applicant);
-      console.log('Application submitted successfully');
-    } catch (error:any) {
-      console.error('Error submitting application:', error.message);
+      console.log("Application submitted successfully");
+    } catch (error: any) {
+      console.error("Error submitting application:", error.message);
     }
     console.log(applicant);
-    console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
-    console.log(`value: ${applicant.colectivo}`);
   };
- */
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+
+  /*   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
-      const response = await fetch("https://wit-backend-factoriaf5.up.railway.app/applicant", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(applicant),
-      });
-  
+      const response = await fetch(
+        "https://wit-backend-factoriaf5.up.railway.app/applicant",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(applicant),
+        }
+      );
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Error submitting application");
       }
-  
-      console.log('Application submitted successfully');
-    } catch (error:any) {
-      console.error('Error submitting application:', error.message);
+
+      console.log("Application submitted successfully");
+    } catch (error: any) {
+      console.error("Error submitting application:", error.message);
     }
-  
+
     console.log(applicant);
     console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
     console.log(`value: ${applicant.colectivo}`);
-  };
-  
+  }; */
+
   const [applicant, setApplicant] = useState<CreateApplicant>({
     nombre_apellidos: "",
     correo_electronico: "",
@@ -124,7 +124,7 @@ const Form = () => {
     codigo_postal: 0,
     pais_de_residencia: "",
     programa_cursar: "",
-    permiso: "",
+    permiso: "Permiso de residencia y trabajo",
     colectivo: [],
     educacion: "",
     estudio_mas_alto: "",
@@ -271,37 +271,41 @@ const Form = () => {
             />
             <InputCheckbox
               label="¿Te identificarías con alguno de los siguientes colectivos?"
-              options={ [   {
-                value: "Mujer en situación de vulnerabilidad",
-                label: "Mujer en situación de vulnerabilidad",
-              },
-              { value: "Minorías étnicas", label: "Minorías étnicas" },
-              {
-                value: "Inmigrante o refugiada/o",
-                label: "Inmigrante o refugiada/o",
-              },
-              {
-                value: "Joven sin titulación y sin empleo",
-                label: "Joven sin titulación y sin empleo",
-              },
-              {
-                value:
-                  "Desempleada/o de larga duración o debido a la crisis del Covid-19",
-                label:
-                  "Desempleada/o de larga duración o debido a la crisis del Covid-19",
-              },
-              {
-                value: "Grupo de edad > 50 años",
-                label: "Grupo de edad > 50 años",
-              },
-              {
-                value: "Cabeza de familia monoparental",
-                label: "Cabeza de familia monoparental",
-              },
-              {
-                value: "No me identifico con ninguna de las opciones anteriores",
-                label: "No me identifico con ninguna de las opciones anteriores",
-              },]}
+              options={[
+                {
+                  value: "Mujer en situación de vulnerabilidad",
+                  label: "Mujer en situación de vulnerabilidad",
+                },
+                { value: "Minorías étnicas", label: "Minorías étnicas" },
+                {
+                  value: "Inmigrante o refugiada/o",
+                  label: "Inmigrante o refugiada/o",
+                },
+                {
+                  value: "Joven sin titulación y sin empleo",
+                  label: "Joven sin titulación y sin empleo",
+                },
+                {
+                  value:
+                    "Desempleada/o de larga duración o debido a la crisis del Covid-19",
+                  label:
+                    "Desempleada/o de larga duración o debido a la crisis del Covid-19",
+                },
+                {
+                  value: "Grupo de edad > 50 años",
+                  label: "Grupo de edad > 50 años",
+                },
+                {
+                  value: "Cabeza de familia monoparental",
+                  label: "Cabeza de familia monoparental",
+                },
+                {
+                  value:
+                    "No me identifico con ninguna de las opciones anteriores",
+                  label:
+                    "No me identifico con ninguna de las opciones anteriores",
+                },
+              ]}
               selectedValues={applicant.colectivo}
               onChange={handleColectivosChange}
               expandText="Con este programa queremos favorecer a colectivos en situación de vulnerabilidad. Selecciona todas las opciones que se correspondan con tu situación."
