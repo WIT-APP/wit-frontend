@@ -66,6 +66,65 @@ const Form = () => {
     }));
   };
 
+  const [applicant, setApplicant] = useState<CreateApplicant>({
+    nombre_apellidos: "",
+    correo_electronico: "",
+    telefono: 0,
+    genero: "",
+    fecha_de_nacimiento: "",
+    pais_de_nacimiento: "",
+    documento_de_identidad: "",
+    numero_documento_id: "",
+    direccion: "",
+    ciudad: "",
+    provincia: "",
+    codigo_postal: 0,
+    pais_de_residencia: "",
+    programa_cursar: "",
+    permiso: "",
+    colectivo: [],
+    educacion: "",
+    estudio_mas_alto: "",
+    situacion_profesional: "",
+    intereses_actuales: "",
+    dedicacion_semanal: 0,
+    acceso_internet_dispositivos: "",
+    formacion_online: false,
+    razones_para_unir: "",
+    encontrar_programa: "",
+    mas_informacion: "",
+  });
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [tipoDocumento, setTipoDocumento] = useState("");
+  const [permisoValue, setPermisoValue] = useState("");
+
+  const handleSelectedOptionChange = (value: any) => {
+    setSelectedOption(value);
+    setApplicant((prevApplicant) => ({
+      ...prevApplicant,
+      documento_de_identidad: value,
+    }));
+  };
+
+  const handleTipoDocumentoChange = (value: any) => {
+    setTipoDocumento(value);
+    // if (selectedOption == "Otro") {
+    //   setApplicant((prevApplicant) => ({
+    //     ...prevApplicant,
+    //     documento_de_identidad: value,
+    //   }));
+    // }
+  };
+
+  const handlePermisoValueChange = (value: any) => {
+    setPermisoValue(value);
+    setApplicant((prevApplicant) => ({
+      ...prevApplicant,
+      permiso: value,
+    }));
+  };
+
   const mutation = useNewApplication();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -108,35 +167,6 @@ const Form = () => {
     console.log(`tipo colectivo: ${typeof applicant.colectivo}`);
     console.log(`value: ${applicant.colectivo}`);
   }; */
-
-  const [applicant, setApplicant] = useState<CreateApplicant>({
-    nombre_apellidos: "",
-    correo_electronico: "",
-    telefono: 0,
-    genero: "",
-    fecha_de_nacimiento: "",
-    pais_de_nacimiento: "",
-    documento_de_identidad: "NIE",
-    numero_documento_id: "",
-    direccion: "",
-    ciudad: "",
-    provincia: "",
-    codigo_postal: 0,
-    pais_de_residencia: "",
-    programa_cursar: "",
-    permiso: "Permiso de residencia y trabajo",
-    colectivo: [],
-    educacion: "",
-    estudio_mas_alto: "",
-    situacion_profesional: "",
-    intereses_actuales: "",
-    dedicacion_semanal: 0,
-    acceso_internet_dispositivos: "",
-    formacion_online: false,
-    razones_para_unir: "",
-    encontrar_programa: "",
-    mas_informacion: "",
-  });
 
   return (
     <div className="md:justify-end md:bg-[url('/form-image.jpg')] md:bg-lightgray lg:bg-contain w-screen flex items-center justify-center bg-lightgreen bg-cover bg-no-repeat bg-left bg-fixed p-4 md:mb-16">
@@ -205,7 +235,11 @@ const Form = () => {
             />
 
             {/* FALTA POR ARREGLAR !!!!!!!!!!!!!!! */}
-            <DocumentoIdentidad />
+            <DocumentoIdentidad
+              onSelectedOptionChange={handleSelectedOptionChange}
+              onTipoDocumentoChange={handleTipoDocumentoChange}
+              onPermisoValueChange={handlePermisoValueChange}
+            />
             {/* FALTA ! */}
 
             <InputText
