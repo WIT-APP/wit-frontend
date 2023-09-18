@@ -83,7 +83,7 @@ const Form = () => {
     codigo_postal: 0,
     pais_de_residencia: "",
     programa_cursar: "",
-    permiso: "",
+    permiso: "Permiso de residencia y trabajo",
     colectivo: [],
     educacion: "",
     estudio_mas_alto: "",
@@ -520,7 +520,6 @@ const Form = () => {
               onChange={handleChangeTextarea}
             />
             <button
-              onClick={notify}
               type="submit"
               className="bg-blue text-sm text-white p-3 py-3 mt-6 rounded-lg sm:w-1/4 shadow-lg"
             >
