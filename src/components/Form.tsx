@@ -135,6 +135,7 @@ const Form = () => {
     } catch (error: any) {
       console.error("Error submitting application:", error.message);
     }
+    alert("Su aplicacion ha sido completada ! Gracias por aplicar !");
     console.log(applicant);
   };
 
