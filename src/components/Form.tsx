@@ -9,6 +9,8 @@ import InputSelectCountry from "../ui/InputSelectCountry";
 import { CreateApplicant } from "../interfaces/applicant.interface";
 import InputTextarea from "../ui/InputTextarea";
 import { useNewApplication } from "../services/RegisterApplicant";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Form = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -125,6 +127,9 @@ const Form = () => {
     }));
   };
 
+  const notify = () =>
+    toast("Su aplicacion ha sido completada ! Gracias por aplicar !");
+
   const mutation = useNewApplication();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -135,7 +140,6 @@ const Form = () => {
     } catch (error: any) {
       console.error("Error submitting application:", error.message);
     }
-    alert("Su aplicacion ha sido completada ! Gracias por aplicar !");
     console.log(applicant);
   };
 
@@ -234,7 +238,6 @@ const Form = () => {
               expandText=""
               onChange={handleChange}
             />
-
             {/* FALTA POR ARREGLAR !!!!!!!!!!!!!!! */}
             <DocumentoIdentidad
               onSelectedOptionChange={handleSelectedOptionChange}
@@ -242,7 +245,6 @@ const Form = () => {
               onPermisoValueChange={handlePermisoValueChange}
             />
             {/* FALTA ! */}
-
             <InputText
               type="text"
               id="numero_documento_id"
@@ -518,11 +520,13 @@ const Form = () => {
               onChange={handleChangeTextarea}
             />
             <button
+              onClick={notify}
               type="submit"
               className="bg-blue text-sm text-white p-3 py-3 mt-6 rounded-lg sm:w-1/4 shadow-lg"
             >
               Aceptar
             </button>
+            <ToastContainer />
           </div>
         </form>
       </div>
