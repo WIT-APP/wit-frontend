@@ -18,10 +18,10 @@ describe('Expect an input that is Nombre y Apellidos', () => {
 
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
-            const input = document.querySelector(
+        );
+        const input = document.querySelector(
             'input'
         ) as HTMLInputElement | null;
 
@@ -60,9 +60,9 @@ describe('Expect an input that is Correo electronico', () => {
     test('The input field and its props of Correo electronico', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#correo_electronico'
         ) as HTMLInputElement | null;
@@ -100,9 +100,9 @@ describe('Se espera un input que es la fecha de nacimiento', () => {
     test('The input field and its props of fecha de nacimiento', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#fecha_de_nacimiento'
         ) as HTMLInputElement | null;
@@ -141,9 +141,9 @@ describe('Expect an input that is Telefono de contacto', () => {
     test('The input field and its props of Telefono de contacto', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#telefono'
         ) as HTMLInputElement | null;
@@ -188,9 +188,9 @@ describe('Se espera un select desplegable con opciones de género', () => {
     test('El desplegable tiene estas opciones', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector('#genero') as HTMLSelectElement | null;
         // Check if the select dropdown exists in the form component
         expect(select).toBeTruthy()
@@ -225,122 +225,122 @@ describe('Se espera un select radio para seleccionar el documento de identidad',
     test('El select radio tiene estas opciones', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
-          const dniLabel = document.querySelector('label[for=dni]');
-          const nieLabel = document.querySelector('label[for=nie]');
-          const otroLabel = document.querySelector('label[for=otro]');
-        
-          if (dniLabel && nieLabel && otroLabel) {
+        );
+        const dniLabel = document.querySelector('label[for=dni]');
+        const nieLabel = document.querySelector('label[for=nie]');
+        const otroLabel = document.querySelector('label[for=otro]');
+
+        if (dniLabel && nieLabel && otroLabel) {
             expect(dniLabel.textContent).toBe('DNI');
             expect(nieLabel.textContent).toBe('NIE');
             expect(otroLabel.textContent).toBe('Otro');
-        
+
             // Test the type prop
             const dniInput = dniLabel.querySelector('input[type=radio]');
             const nieInput = nieLabel.querySelector('input[type=radio]');
             const otroInput = otroLabel.querySelector('input[type=radio]');
-        
+
             expect(dniInput).toBeTruthy();
             expect(nieInput).toBeTruthy();
             expect(otroInput).toBeTruthy();
-        
+
             // Test the name prop
             expect(dniInput?.name).toBe('identidad');
             expect(nieInput?.name).toBe('identidad');
             expect(otroInput?.name).toBe('identidad');
-        
+
             // Test the value prop
             fireEvent.click(dniInput);
             expect(dniInput?.checked).toBe(true);
             expect(nieInput?.checked).toBe(false);
             expect(otroInput?.checked).toBe(false);
-        
+
             fireEvent.click(nieInput);
             expect(dniInput?.checked).toBe(false);
             expect(nieInput?.checked).toBe(true);
             expect(otroInput?.checked).toBe(false);
-        
+
             fireEvent.click(otroInput);
             expect(dniInput?.checked).toBe(false);
             expect(nieInput?.checked).toBe(false);
             expect(otroInput?.checked).toBe(true);
-          }
-        });
-}); 
+        }
+    });
+});
 
 
 describe("Expect an input that is tipo de documento", () => {
     test("The input field and its props of tipo de documento", () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
-          const input = document.querySelector('#tipo') as HTMLInputElement | null;
+        );
+        const input = document.querySelector('#tipo') as HTMLInputElement | null;
 
-          // el input existe en el componente de formulario?
-          expect(input).toBeTruthy();
-      
-          if (input) {
+        // el input existe en el componente de formulario?
+        expect(input).toBeTruthy();
+
+        if (input) {
             // prueba el input text
             fireEvent.change(input, { target: { value: 'Otro documento' } });
             expect(input.value).toBe('Otro documento');
-      
+
             // prueba el type prop
             expect(input.type).toBe('text');
-      
+
             // prueba el name prop
             expect(input.name).toBe('tipo');
-          }
-        });
-      });
+        }
+    });
+});
 
-  describe("Expect an select that is carácter de permiso en España", () => {
+describe("Expect an select that is carácter de permiso en España", () => {
     test("The select field and its props of permiso en España", () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
-      const select = document.querySelector(
-        "#permiso"
-      ) as HTMLInputElement | null;
-  
-      // el input existe en el componente de formulario?
-      expect(select).toBeTruthy();
-  
-      // está vacio?
-      expect(select?.value).toBe("");
-  
-      if (select) {
-        // Simulate selecting an option with the value "rigatoni"
-        fireEvent.change(select, {
-          target: { value: "Permiso de residencia y trabajo" },
-        });
-        // Check if the selected option in the dropdown is "rigatoni"
-        expect(select.value).toBe("Permiso de residencia y trabajo");
-        // Simulate selecting an option with the value "dave"
-        fireEvent.change(select, { target: { value: "Permiso de residencia y estudios" } });
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe("Permiso de residencia y estudios");
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, {
-          target: { value: "No dispongo de permiso (No es un problema para tener acceso al curso)" },
-        });
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe("No dispongo de permiso (No es un problema para tener acceso al curso)");
-        // Similarly, you can simulate selecting options with other values
-        fireEvent.change(select, {
-          target: { value: "Otro" },
-        });
-        // Check if the selected option in the dropdown is "dave"
-        expect(select.value).toBe("Otro");      
-        
-      }
+        );
+        const select = document.querySelector(
+            "#permiso"
+        ) as HTMLInputElement | null;
+
+        // el input existe en el componente de formulario?
+        expect(select).toBeTruthy();
+
+        // está vacio?
+        expect(select?.value).toBe("");
+
+        if (select) {
+            // Simulate selecting an option with the value "rigatoni"
+            fireEvent.change(select, {
+                target: { value: "Permiso de residencia y trabajo" },
+            });
+            // Check if the selected option in the dropdown is "rigatoni"
+            expect(select.value).toBe("Permiso de residencia y trabajo");
+            // Simulate selecting an option with the value "dave"
+            fireEvent.change(select, { target: { value: "Permiso de residencia y estudios" } });
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe("Permiso de residencia y estudios");
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, {
+                target: { value: "No dispongo de permiso (No es un problema para tener acceso al curso)" },
+            });
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe("No dispongo de permiso (No es un problema para tener acceso al curso)");
+            // Similarly, you can simulate selecting options with other values
+            fireEvent.change(select, {
+                target: { value: "Otro" },
+            });
+            // Check if the selected option in the dropdown is "dave"
+            expect(select.value).toBe("Otro");
+
+        }
     });
-  });
+});
 
 
 
@@ -349,9 +349,9 @@ describe('Expect an input that is Cual es tu direccion de residencia', () => {
     test('The input field and its props of residencia', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#direccion'
         ) as HTMLInputElement | null;
@@ -390,9 +390,9 @@ describe('Se espera un input en que ciudad resides', () => {
     test('The input field and its props of residencia', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#ciudad'
         ) as HTMLInputElement | null;
@@ -431,9 +431,9 @@ describe('Expect an input that is en que provincia resides', () => {
     test('The input field and its props of provincia', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#provincia'
         ) as HTMLInputElement | null;
@@ -472,9 +472,9 @@ describe('Expect an input that is codigo postal', () => {
     test('The input field and its props of codigo postal', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#codigo_postal'
         ) as HTMLInputElement | null;
@@ -513,9 +513,9 @@ describe('Expect an select that is indicanos que programa quiere cursar', () => 
     test('The select field and its props of programa quiere cursar', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#programa_cursar'
         ) as HTMLInputElement | null;
@@ -526,32 +526,32 @@ describe('Expect an select that is indicanos que programa quiere cursar', () => 
         expect(select).toBeTruthy();
 
         if (select) {
-          // Simulate selecting an option with the value "Soporte de Tecnologías de la Información"
-          fireEvent.change(select, {
-            target: { value: 'Soporte de Tecnologías de la Información' },
-          });
-          // Check if the selected option in the dropdown is "Soporte de Tecnologías de la Información"
-          expect(select.value).toBe('Soporte de Tecnologías de la Información');
-    
-          // Simulate selecting an option with the value "Automatización de Tecnologías de la Información con Python"
-          fireEvent.change(select, {
-            target: { value: 'Automatización de Tecnologías de la Información con Python' },
-          });
-          // Check if the selected option in the dropdown is "Automatización de Tecnologías de la Información con Python"
-          expect(select.value).toBe(
-            'Automatización de Tecnologías de la Información con Python'
-          );
+            // Simulate selecting an option with the value "Soporte de Tecnologías de la Información"
+            fireEvent.change(select, {
+                target: { value: 'Soporte de Tecnologías de la Información' },
+            });
+            // Check if the selected option in the dropdown is "Soporte de Tecnologías de la Información"
+            expect(select.value).toBe('Soporte de Tecnologías de la Información');
+
+            // Simulate selecting an option with the value "Automatización de Tecnologías de la Información con Python"
+            fireEvent.change(select, {
+                target: { value: 'Automatización de Tecnologías de la Información con Python' },
+            });
+            // Check if the selected option in the dropdown is "Automatización de Tecnologías de la Información con Python"
+            expect(select.value).toBe(
+                'Automatización de Tecnologías de la Información con Python'
+            );
         }
-      });
     });
+});
 
 describe('Expect an select that is te identificarias con alguno de los siguientes colectivos', () => {
     test('The select field and its props of te identificarias con alguno de los siguientes colectivos', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#colectivos'
         ) as HTMLInputElement | null;
@@ -604,9 +604,9 @@ describe('Expect an select that is indicanos cual es tu titulacion academica mas
     test('The select field and its props of titulacion academica', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#educacion'
         ) as HTMLInputElement | null;
@@ -649,41 +649,41 @@ describe('Expect an input that indica cúal es la titulación académica más al
     test('The input field and its props of indica cúal es la titulación académica más alta que has obtenido', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
-          const input = document.querySelector(
+        );
+        const input = document.querySelector(
             '#estudio_mas_alto'
-          ) as HTMLInputElement | null;
-      
-          // Check if the input element exists in the form component
-          expect(input).toBeTruthy();
-      
-          if (input) {
+        ) as HTMLInputElement | null;
+
+        // Check if the input element exists in the form component
+        expect(input).toBeTruthy();
+
+        if (input) {
             // Set the input value
             fireEvent.change(input, {
-              target: {
-                value: 'titulacion', // Set the value directly using the value property
-              },
+                target: {
+                    value: 'titulacion', // Set the value directly using the value property
+                },
             });
-      
+
             // Check if the input value has been set correctly
             expect(input.value).toBe('titulacion');
-      
+
             // Check other props
             expect(input.type).toBe('textarea');
             expect(input.name).toBe('estudio_mas_alto');
-          }
-        });
-      });
+        }
+    });
+});
 
 describe('Expect an input that is que dedicación semanal tendrías para el proceso de formación', () => {
     test('The input field and its props of que dedicación semanal tendrías para el proceso de formación', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#dedicacion_semanal'
         ) as HTMLInputElement | null;
@@ -720,9 +720,9 @@ describe('Expect an input that is que dedicación semanal tendrías para el proc
         test('The select field and its props of situación profesional', () => {
             render(
                 <QueryClientProvider client={queryClient}>
-                  <Form />
+                    <Form />
                 </QueryClientProvider>
-              );      
+            );
             const select = document.querySelector(
                 '#situacion_profesional'
             ) as HTMLInputElement | null;
@@ -772,9 +772,9 @@ describe('Expect an select that is indicanos cual es el acceso a internet', () =
     test('The select field and its props of conexion', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#acceso_internet_dispositivos'
         ) as HTMLInputElement | null;
@@ -815,9 +815,9 @@ describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus in
     test('The select field and its props of intereses       ', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#intereses_actuales'
         ) as HTMLInputElement | null;
@@ -854,9 +854,9 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
     test('The input field and its props of explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#razones_para_unir'
         ) as HTMLInputElement | null;
@@ -895,9 +895,9 @@ describe('Expect an select that is ¿Como has encontrado este programa?', () => 
     test('The select field and its props of encontrado', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const select = document.querySelector(
             '#encontrar_programa'
         ) as HTMLInputElement | null;
@@ -934,9 +934,9 @@ describe('Expect an input that quieres añadir alguna información que considere
     test('The input field and its props quieres of añadir alguna información que consideres relevante', () => {
         render(
             <QueryClientProvider client={queryClient}>
-              <Form />
+                <Form />
             </QueryClientProvider>
-          );      
+        );
         const input = document.querySelector(
             '#mas_informacion'
         ) as HTMLInputElement | null;
