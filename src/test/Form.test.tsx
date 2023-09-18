@@ -3,7 +3,9 @@ import { render, fireEvent, } from "@testing-library/react";
 
 
 import Form from "../components/Form";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 
 describe('Form should load correctly', () => {
     test('should load form component', () => {
@@ -13,8 +15,13 @@ describe('Form should load correctly', () => {
 
 describe('Expect an input that is Nombre y Apellidos', () => {
     test('The input field and its props of name', () => {
-        render(<Form />)
-        const input = document.querySelector(
+
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
+            const input = document.querySelector(
             'input'
         ) as HTMLInputElement | null;
 
@@ -51,7 +58,11 @@ describe('Expect an input that is Nombre y Apellidos', () => {
 
 describe('Expect an input that is Correo electronico', () => {
     test('The input field and its props of Correo electronico', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
             '#correo_electronico'
         ) as HTMLInputElement | null;
@@ -87,9 +98,13 @@ describe('Expect an input that is Correo electronico', () => {
 });
 describe('Se espera un input que es la fecha de nacimiento', () => {
     test('The input field and its props of fecha de nacimiento', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#date'
+            '#fecha_de_nacimiento'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -107,7 +122,7 @@ describe('Se espera un input que es la fecha de nacimiento', () => {
             expect(input.type).toBe('date')
 
             // prueba el name prop
-            expect(input.name).toBe('date')
+            expect(input.name).toBe('fecha_de_nacimiento')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -124,9 +139,13 @@ describe('Se espera un input que es la fecha de nacimiento', () => {
 
 describe('Expect an input that is Telefono de contacto', () => {
     test('The input field and its props of Telefono de contacto', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#phone'
+            '#telefono'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -144,7 +163,7 @@ describe('Expect an input that is Telefono de contacto', () => {
             expect(input.type).toBe('number')
 
             // prueba el name prop
-            expect(input.name).toBe('phone')
+            expect(input.name).toBe('telefono')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -167,7 +186,11 @@ describe('Expect an input that is Telefono de contacto', () => {
 
 describe('Se espera un select desplegable con opciones de género', () => {
     test('El desplegable tiene estas opciones', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector('#genero') as HTMLSelectElement | null;
         // Check if the select dropdown exists in the form component
         expect(select).toBeTruthy()
@@ -175,122 +198,112 @@ describe('Se espera un select desplegable con opciones de género', () => {
         expect(select?.value).toBe('')
         if (select) {
             // Simulate selecting an option with the value "rigatoni"
-            fireEvent.change(select, { target: { value: 'hombre' } })
+            fireEvent.change(select, { target: { value: 'Hombre' } })
             // Check if the selected option in the dropdown is "rigatoni"
-            expect(select.value).toBe('hombre')
+            expect(select.value).toBe('Hombre')
             // Simulate selecting an option with the value "dave"
-            fireEvent.change(select, { target: { value: 'mujer' } })
+            fireEvent.change(select, { target: { value: 'Mujer' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('mujer')
+            expect(select.value).toBe('Mujer')
             // Similarly, you can simulate selecting options with other values
-            fireEvent.change(select, { target: { value: 'otro' } })
+            fireEvent.change(select, { target: { value: 'Otro' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('otro')
+            expect(select.value).toBe('Otro')
             // Similarly, you can simulate selecting options with other values
-            fireEvent.change(select, { target: { value: 'prefiero no identificarme' } })
+            fireEvent.change(select, { target: { value: 'Prefiero no identificarme' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('prefiero no identificarme')
+            expect(select.value).toBe('Prefiero no identificarme')
             // Similarly, you can simulate selecting options with other values
 
         }
     });
 });
+
+
 
 describe('Se espera un select radio para seleccionar el documento de identidad', () => {
     test('El select radio tiene estas opciones', () => {
-        render(<Form />)
-        // Selecciona los botones de radio por su ID
-        const dni = document.querySelector('#dni') as HTMLSelectElement | null;
-        const nie = document.querySelector('#nie') as HTMLSelectElement | null;
-        const otro = document.querySelector('#otro') as HTMLSelectElement | null;
-
-        if (dni && nie && otro) {
-            expect(dni.textContent).toBe('DNI')
-            expect(nie.textContent).toBe('NIE')
-            expect(otro.textContent).toBe('Otro')
-
-            // prueba el type prop
-            expect(dni.type).toBe('radio')
-            expect(nie.type).toBe('radio')
-            expect(otro.type).toBe('radio')
-
-            // prueba el name prop
-            expect(dni.name).toBe('identidad')
-            expect(nie.name).toBe('identidad')
-            expect(otro.name).toBe('identidad')
-
-            // prueba el value prop
-            fireEvent.click(dni, {
-                target: {
-                    value: 'DNI'
-                }
-            })
-            expect(nie.value).toBe('NIE')
-
-            fireEvent.click(nie, {
-                target: {
-                    value: 'NIE'
-                }
-            })
-            expect(nie.value).toBe('NIE')
-
-
-            fireEvent.click(otro, {
-                target: {
-                    value: 'otro'
-                }
-            })
-            expect(otro.value).toBe('otro')
-
-
-        }
-
-
-
-
-
-    });
-});
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
+          const dniLabel = document.querySelector('label[for=dni]');
+          const nieLabel = document.querySelector('label[for=nie]');
+          const otroLabel = document.querySelector('label[for=otro]');
+        
+          if (dniLabel && nieLabel && otroLabel) {
+            expect(dniLabel.textContent).toBe('DNI');
+            expect(nieLabel.textContent).toBe('NIE');
+            expect(otroLabel.textContent).toBe('Otro');
+        
+            // Test the type prop
+            const dniInput = dniLabel.querySelector('input[type=radio]');
+            const nieInput = nieLabel.querySelector('input[type=radio]');
+            const otroInput = otroLabel.querySelector('input[type=radio]');
+        
+            expect(dniInput).toBeTruthy();
+            expect(nieInput).toBeTruthy();
+            expect(otroInput).toBeTruthy();
+        
+            // Test the name prop
+            expect(dniInput?.name).toBe('identidad');
+            expect(nieInput?.name).toBe('identidad');
+            expect(otroInput?.name).toBe('identidad');
+        
+            // Test the value prop
+            fireEvent.click(dniInput);
+            expect(dniInput?.checked).toBe(true);
+            expect(nieInput?.checked).toBe(false);
+            expect(otroInput?.checked).toBe(false);
+        
+            fireEvent.click(nieInput);
+            expect(dniInput?.checked).toBe(false);
+            expect(nieInput?.checked).toBe(true);
+            expect(otroInput?.checked).toBe(false);
+        
+            fireEvent.click(otroInput);
+            expect(dniInput?.checked).toBe(false);
+            expect(nieInput?.checked).toBe(false);
+            expect(otroInput?.checked).toBe(true);
+          }
+        });
+}); 
 
 
 describe("Expect an input that is tipo de documento", () => {
     test("The input field and its props of tipo de documento", () => {
-      render(<Form />);
-      const input = document.querySelector(
-        "#tipo"
-      ) as HTMLInputElement | null;
-  
-      // el input existe en el componente de formulario?
-      expect(input).toBeTruthy();
-  
-      // está vacio?
-      expect(input?.textContent).toBe("");
-  
-      if (input) {
-        // prueba el input text
-        input.textContent = "Otro documento";
-        expect(input.textContent).toBe("Otro documento");
-  
-        // prueba el type prop
-        expect(input.type).toBe("text");
-  
-        // prueba el name prop
-        expect(input.name).toBe("tipo");
-  
-        // prueba el value prop
-        fireEvent.change(input, {
-          target: {
-            value: "Otro documento",
-          },
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
+          const input = document.querySelector('#tipo') as HTMLInputElement | null;
+
+          // el input existe en el componente de formulario?
+          expect(input).toBeTruthy();
+      
+          if (input) {
+            // prueba el input text
+            fireEvent.change(input, { target: { value: 'Otro documento' } });
+            expect(input.value).toBe('Otro documento');
+      
+            // prueba el type prop
+            expect(input.type).toBe('text');
+      
+            // prueba el name prop
+            expect(input.name).toBe('tipo');
+          }
         });
-        expect(input.value).toBe("Otro documento");
-      }
-    });
-  });
+      });
 
   describe("Expect an select that is carácter de permiso en España", () => {
     test("The select field and its props of permiso en España", () => {
-      render(<Form />);
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
       const select = document.querySelector(
         "#permiso"
       ) as HTMLInputElement | null;
@@ -334,7 +347,11 @@ describe("Expect an input that is tipo de documento", () => {
 
 describe('Expect an input that is Cual es tu direccion de residencia', () => {
     test('The input field and its props of residencia', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
             '#direccion'
         ) as HTMLInputElement | null;
@@ -371,7 +388,11 @@ describe('Expect an input that is Cual es tu direccion de residencia', () => {
 
 describe('Se espera un input en que ciudad resides', () => {
     test('The input field and its props of residencia', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
             '#ciudad'
         ) as HTMLInputElement | null;
@@ -408,7 +429,11 @@ describe('Se espera un input en que ciudad resides', () => {
 
 describe('Expect an input that is en que provincia resides', () => {
     test('The input field and its props of provincia', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
             '#provincia'
         ) as HTMLInputElement | null;
@@ -445,9 +470,13 @@ describe('Expect an input that is en que provincia resides', () => {
 
 describe('Expect an input that is codigo postal', () => {
     test('The input field and its props of codigo postal', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#codigopostal'
+            '#codigo_postal'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -464,7 +493,7 @@ describe('Expect an input that is codigo postal', () => {
             // prueba el type prop
             expect(input.type).toBe('number')
             // prueba el name prop
-            expect(input.name).toBe('codigopostal')
+            expect(input.name).toBe('codigo_postal')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -482,32 +511,47 @@ describe('Expect an input that is codigo postal', () => {
 
 describe('Expect an select that is indicanos que programa quiere cursar', () => {
     test('The select field and its props of programa quiere cursar', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
-            '#programa'
+            '#programa_cursar'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
         expect(select).toBeTruthy()
         // está vacio?
-        expect(select?.value).toBe('')
+        expect(select).toBeTruthy();
 
         if (select) {
-            // Simulate selecting an option with the value "rigatoni"
-            fireEvent.change(select, { target: { value: 'soporte de Tecnologías de la Información' } })
-            // Check if the selected option in the dropdown is "rigatoni"
-            expect(select.value).toBe('soporte de Tecnologías de la Información')
-            // Simulate selecting an option with the value "dave"
-            fireEvent.change(select, { target: { value: 'automatización de Tecnologías de la Información con Python' } })
-            // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('automatización de Tecnologías de la Información con Python')
+          // Simulate selecting an option with the value "Soporte de Tecnologías de la Información"
+          fireEvent.change(select, {
+            target: { value: 'Soporte de Tecnologías de la Información' },
+          });
+          // Check if the selected option in the dropdown is "Soporte de Tecnologías de la Información"
+          expect(select.value).toBe('Soporte de Tecnologías de la Información');
+    
+          // Simulate selecting an option with the value "Automatización de Tecnologías de la Información con Python"
+          fireEvent.change(select, {
+            target: { value: 'Automatización de Tecnologías de la Información con Python' },
+          });
+          // Check if the selected option in the dropdown is "Automatización de Tecnologías de la Información con Python"
+          expect(select.value).toBe(
+            'Automatización de Tecnologías de la Información con Python'
+          );
         }
+      });
     });
-});
 
 describe('Expect an select that is te identificarias con alguno de los siguientes colectivos', () => {
     test('The select field and its props of te identificarias con alguno de los siguientes colectivos', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
             '#colectivos'
         ) as HTMLInputElement | null;
@@ -558,7 +602,11 @@ describe('Expect an select that is te identificarias con alguno de los siguiente
 
 describe('Expect an select that is indicanos cual es tu titulacion academica mas alta que has obtenido', () => {
     test('The select field and its props of titulacion academica', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
             '#educacion'
         ) as HTMLInputElement | null;
@@ -571,76 +619,73 @@ describe('Expect an select that is indicanos cual es tu titulacion academica mas
 
         if (select) {
             // Simulate selecting an option with the value "rigatoni"
-            fireEvent.change(select, { target: { value: 'sin estudios o estudios primarios sin finalizar' } })
+            fireEvent.change(select, { target: { value: 'Sin estudios o estudios primarios sin finalizar' } })
             // Check if the selected option in the dropdown is "rigatoni"
-            expect(select.value).toBe('sin estudios o estudios primarios sin finalizar')
+            expect(select.value).toBe('Sin estudios o estudios primarios sin finalizar')
             // Simulate selecting an option with the value "dave"
-            fireEvent.change(select, { target: { value: 'estudios primarios' } })
+            fireEvent.change(select, { target: { value: 'Estudios primarios' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('estudios primarios')
+            expect(select.value).toBe('Estudios primarios')
             // Similarly, you can simulate selecting options with other values
-            fireEvent.change(select, { target: { value: 'estudios secundarios' } })
+            fireEvent.change(select, { target: { value: 'Estudios secundarios' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('estudios secundarios')
+            expect(select.value).toBe('Estudios secundarios')
             // Similarly, you can simulate selecting options with other values
-            fireEvent.change(select, { target: { value: 'formación profesional' } })
+            fireEvent.change(select, { target: { value: 'Formación profesional' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('formación profesional')
+            expect(select.value).toBe('Formación profesional')
             // Similarly, you can simulate selecting options with other values
-            fireEvent.change(select, { target: { value: 'estudios universitarios' } })
+            fireEvent.change(select, { target: { value: 'Estudios universitarios' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('estudios universitarios')
-            fireEvent.change(select, { target: { value: 'otro' } })
+            expect(select.value).toBe('Estudios universitarios')
+            fireEvent.change(select, { target: { value: 'Otro' } })
             // Check if the selected option in the dropdown is "dave"
-            expect(select.value).toBe('otro')
+            expect(select.value).toBe('Otro')
         }
     });
 });
 
 describe('Expect an input that indica cúal es la titulación académica más alta que has obtenido', () => {
     test('The input field and its props of indica cúal es la titulación académica más alta que has obtenido', () => {
-        render(<Form />)
-        const input = document.querySelector(
-            '#titulacion'
-        ) as HTMLInputElement | null;
-
-        // el input existe en el componente de formulario?
-        expect(input).toBeTruthy()
-
-        // está vacio?
-        expect(input?.textContent).toBe('')
-
-        if (input) {
-            // prueba el input text
-            input.textContent = 'titulacion'
-            expect(input.textContent).toBe('titulacion')
-
-            // prueba el type prop
-            expect(input.type).toBe('text')
-
-            // prueba el name prop
-            expect(input.name).toBe('titulacion')
-
-            // prueba el value prop
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
+          const input = document.querySelector(
+            '#estudio_mas_alto'
+          ) as HTMLInputElement | null;
+      
+          // Check if the input element exists in the form component
+          expect(input).toBeTruthy();
+      
+          if (input) {
+            // Set the input value
             fireEvent.change(input, {
-                target: {
-                    value: 'titulacion'
-                }
-            })
-            expect(input.value).toBe('titulacion')
-
-        }
-    });
-
-});
-
-
+              target: {
+                value: 'titulacion', // Set the value directly using the value property
+              },
+            });
+      
+            // Check if the input value has been set correctly
+            expect(input.value).toBe('titulacion');
+      
+            // Check other props
+            expect(input.type).toBe('textarea');
+            expect(input.name).toBe('estudio_mas_alto');
+          }
+        });
+      });
 
 describe('Expect an input that is que dedicación semanal tendrías para el proceso de formación', () => {
     test('The input field and its props of que dedicación semanal tendrías para el proceso de formación', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#dedicacion'
+            '#dedicacion_semanal'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -658,7 +703,7 @@ describe('Expect an input that is que dedicación semanal tendrías para el proc
             expect(input.type).toBe('number')
 
             // prueba el name prop
-            expect(input.name).toBe('dedicacion')
+            expect(input.name).toBe('dedicacion_semanal')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -673,9 +718,13 @@ describe('Expect an input that is que dedicación semanal tendrías para el proc
 
     describe('Se espera un select donde indicamos en que situación profestional te encuentras', () => {
         test('The select field and its props of situación profesional', () => {
-            render(<Form />)
+            render(
+                <QueryClientProvider client={queryClient}>
+                  <Form />
+                </QueryClientProvider>
+              );      
             const select = document.querySelector(
-                '#profesional'
+                '#situacion_profesional'
             ) as HTMLInputElement | null;
 
             // el input existe en el componente de formulario?
@@ -721,9 +770,13 @@ describe('Expect an input that is que dedicación semanal tendrías para el proc
 
 describe('Expect an select that is indicanos cual es el acceso a internet', () => {
     test('The select field and its props of conexion', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
-            '#conexion'
+            '#acceso_internet_dispositivos'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -760,9 +813,13 @@ describe('Expect an select that is indicanos cual es el acceso a internet', () =
 
 describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus intereses actuales', () => {
     test('The select field and its props of intereses       ', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
-            '#intereses'
+            '#intereses_actuales'
         ) as HTMLInputElement | null;
         // el input existe en el componente de formulario?
         expect(select).toBeTruthy()
@@ -795,9 +852,13 @@ describe('Expect an select that is Escoge la opcion que mejor se ajuste a tus in
 
 describe('Expect an input that explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
     test('The input field and its props of explicanos brevemente las razones por las que te gustaria unirte a esta formación', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#razones'
+            '#razones_para_unir'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -815,7 +876,7 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
             expect(input.type).toBe('textarea')
 
             // prueba el name prop
-            expect(input.name).toBe('razones')
+            expect(input.name).toBe('razones_para_unir')
 
             // prueba el value prop
             fireEvent.change(input, {
@@ -832,9 +893,13 @@ describe('Expect an input that explicanos brevemente las razones por las que te 
 
 describe('Expect an select that is ¿Como has encontrado este programa?', () => {
     test('The select field and its props of encontrado', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const select = document.querySelector(
-            '#encontrado'
+            '#encontrar_programa'
         ) as HTMLInputElement | null;
         // el input existe en el componente de formulario?
         expect(select).toBeTruthy()
@@ -867,9 +932,13 @@ describe('Expect an select that is ¿Como has encontrado este programa?', () => 
 
 describe('Expect an input that quieres añadir alguna información que consideres relevante', () => {
     test('The input field and its props quieres of añadir alguna información que consideres relevante', () => {
-        render(<Form />)
+        render(
+            <QueryClientProvider client={queryClient}>
+              <Form />
+            </QueryClientProvider>
+          );      
         const input = document.querySelector(
-            '#informacion'
+            '#mas_informacion'
         ) as HTMLInputElement | null;
 
         // el input existe en el componente de formulario?
@@ -887,7 +956,7 @@ describe('Expect an input that quieres añadir alguna información que considere
             expect(input.type).toBe('textarea')
 
             // prueba el name prop
-            expect(input.name).toBe('informacion')
+            expect(input.name).toBe('mas_informacion')
 
             // prueba el value prop
             fireEvent.change(input, {

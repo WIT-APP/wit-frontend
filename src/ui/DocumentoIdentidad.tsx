@@ -38,7 +38,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4" data-testid="documento-identidad">
       <label
         htmlFor="identidad"
         className="block font-medium text-gray-700 mb-2"
