@@ -12,13 +12,21 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
+// export type Payment = {
+//   id: string
+//   amount: number
+//   status: "pending" | "processing" | "success" | "failed"
+//   email: string
+// }
 
+export type Payment = {
+  id: string  
+  nombre: string
+  apellidos: string
+  correo_electronico: string
+  telefono: string
+  fecha_de_aplicacion: string
+}
 
 // crear esto en un json. Columnas de la tabla
 export const columns: ColumnDef<Payment>[] = [
@@ -42,11 +50,15 @@ export const columns: ColumnDef<Payment>[] = [
         enableHiding: false,
       },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "nombre",
+    header: "Nombre",
   },
   {
-    accessorKey: "email",
+    accessorKey: "apellidos",
+    header: "Apellidos",
+  },  
+  {
+    accessorKey: "correo_electronico",
     header: ({ column }) => {
         return (
           <Button
@@ -60,18 +72,22 @@ export const columns: ColumnDef<Payment>[] = [
       },
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
+    accessorKey: "telefono",
+    header: <div className="text-right">Telefono</div>
+  }, 
+  // {
+  //   accessorKey: "amount",
+  //   header: () => <div className="text-right">Amount</div>,
+  //   cell: ({ row }) => {
+  //     const amount = parseFloat(row.getValue("amount"))
+  //     const formatted = new Intl.NumberFormat("en-US", {
+  //       style: "currency",
+  //       currency: "USD",
+  //     }).format(amount)
  
-      return <div className="text-right font-medium">{formatted}</div>
-    },
-  },
+  //     return <div className="text-right font-medium">{formatted}</div>
+  //   },
+  // },
   {
     id: "actions",
     cell: ({ row }) => {
