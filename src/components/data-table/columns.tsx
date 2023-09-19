@@ -25,7 +25,7 @@ export type Payment = {
   apellidos: string
   correo_electronico: string
   telefono: string
-  fecha_de_aplicacion: string
+  fecha_de_applicacion: string
 }
 
 // crear esto en un json. Columnas de la tabla
@@ -73,8 +73,17 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "telefono",
-    header: <div className="text-right">Telefono</div>
+    header: "Telefono"
   }, 
+  {
+    accessorKey: "fecha_de_applicacion",
+    header: () =>  <div className="text-right">Fecha de aplicación</div>,
+    cell: ({ row }) => (
+      <div className="text-right">
+        <span>{row.getValue("fecha_de_applicacion")}</span>
+      </div>
+    )
+  },  
   // {
   //   accessorKey: "amount",
   //   header: () => <div className="text-right">Amount</div>,

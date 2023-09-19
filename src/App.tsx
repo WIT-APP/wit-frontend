@@ -1,7 +1,7 @@
 
 import { Footer } from "./components/Footer";
 import Form from "./components/Form";
-import Pruebas from "./components/Pruebas";
+import Pruebas from "./components/AspirantsTable";
 
 
 
