@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import InputEmail from "../ui/InputEmail";
-import InputSelect from "../ui/InputSelect";
-import InputText from "../ui/InputText";
-import { DocumentoIdentidad } from "../ui/DocumentoIdentidad";
-import { InputCheckbox } from "../ui/InputCheckbox";
+import InputEmail from "./ui/InputEmail";
+import InputSelect from "./ui/InputSelect";
+import InputText from "./ui/InputText";
+import { DocumentoIdentidad } from "./ui/DocumentoIdentidad";
+import { InputCheckbox } from "./ui/InputCheckbox";
 
 const Form = () => {
   const [generoValue, setGeneroValue] = useState("");
@@ -91,7 +91,10 @@ const Form = () => {
     setencontradoValue(event.target.value);
   };
 
+  //Pasar el array de datos para pintar cada pregunta
+
   return (
+    
     <form className="max-w-md mx-auto mt-10 ">
       <div className="border border-gray-900/10 pb-12">
         <InputText
