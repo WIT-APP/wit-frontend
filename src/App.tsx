@@ -1,19 +1,22 @@
-// import { ApplicantList } from "./ApplicantList"
-import Form from "./components/Form";
-// import { ApplicantsTable } from "./components/AspirantsTable";
-// import { SummaryTable } from "./components/SummaryTable";
+
 import { Footer } from "./components/Footer";
+import Form from "./components/Form";
+import Pruebas from "./components/Pruebas";
+
+
+
+
 
 
 function App() {
   return (
-    <>
-      {/* <Form/> */}
-      {/* <SummaryTable/>
-      <ApplicantsTable/> */}
-    <Footer />
+    <>    
+   <Pruebas />
+   <Form />
+
+      <Footer />
     </>
-    )
+  );
 }
 
 export default App;
