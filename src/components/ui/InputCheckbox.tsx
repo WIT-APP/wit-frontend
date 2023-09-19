@@ -1,11 +1,7 @@
-interface CheckboxOption {
-  value: string;
-  label: string;
-}
 
 interface CheckboxGroupProps {
   label: string;
-  options: CheckboxOption[];
+  options: string[];
   selectedValues: string[];
   onChange: (selectedValues: string[]) => void;
   expandText: string;
@@ -36,14 +32,14 @@ export const InputCheckbox = ({
         </span>
       </label>
       {options.map((option) => (
-        <div key={option.value} className="flex items-center mb-2 mr-2">
+        <div key={option} className="flex items-center mb-2 mr-2">
           <input
             type="checkbox"
-            checked={selectedValues.includes(option.value)}
-            onChange={() => handleCheckboxChange(option.value)}
+            checked={selectedValues.includes(option)}
+            onChange={() => handleCheckboxChange(option)}
             className="mr-2"
           />
-          {option.value}
+          {option}
         </div>
       ))}
     </div>

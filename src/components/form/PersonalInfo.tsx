@@ -4,6 +4,7 @@ import InputEmail from '../ui/InputEmail';
 import InputSelect from '../ui/InputSelect';
 import { ChangeEvent } from 'react';
 import { InputCheckbox } from '../ui/InputCheckbox';
+import { Button } from '../ui/Button';
 
 export const PersonalInfo = () => {
     const { isLoading, isError, question } = useCategoryQuestion('Personal');
@@ -12,6 +13,7 @@ export const PersonalInfo = () => {
     if (isError) return 'An error has occurred' 
 
     return (
+        <>
         <div>
           {question?.map((q) => {
             if (q.type === 'text') {
@@ -70,7 +72,10 @@ export const PersonalInfo = () => {
             }
             return null; // Handle other types or return null if needed
           })}
+          
         </div>
+        
+        </>
       );
     };
 
