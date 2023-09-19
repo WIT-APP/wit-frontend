@@ -10,7 +10,8 @@ export const useAllApplicants = () => {
     queryKey: ['applicants'],
     queryFn: async (): Promise<Applicant[]> => {
       const response = await fetch(
-       'https://wit-backend-factoriaf5.up.railway.app/applicant'
+      //  'https://wit-backend-factoriaf5.up.railway.app/applicant'
+      'http://localhost:3000/applicant'
       );
       const data = await response.json();
       console.log(data)

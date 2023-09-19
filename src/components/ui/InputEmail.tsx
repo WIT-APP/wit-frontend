@@ -1,23 +1,27 @@
+import { ChangeEventHandler } from "react";
+
 interface inputEmailProps {
-    placeholder: string,
-    children: React.ReactNode;
+  placeholder: string;
+  children: React.ReactNode;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const InputEmail = ({ placeholder, children }: inputEmailProps) => {
+const InputEmail = ({ placeholder, children, onChange }: inputEmailProps) => {
   return (
     <div className="mb-4">
-      <label htmlFor="email" className="block font-medium text-gray-700 mb-2">
+      <label htmlFor="email" className="block text-gray-700 mb-2 font-medium">
         {children}
+        <input
+          type="email"
+          id="correo_electronico"
+          name="correo_electronico"
+          onChange={onChange}
+          placeholder={placeholder}
+          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050"
+        />
       </label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder={placeholder}
-        className="form-input font-normal w-full px-3 py-2 rounded-radius-050"
-      />
     </div>
   );
 };
 
-export default InputEmail
+export default InputEmail;

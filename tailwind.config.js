@@ -7,12 +7,17 @@ export default {
   theme: {
     colors: {
       "green": "#009966",
+      "superlightgreen": "#eaf7f2",
+      "lightgreen": "#D6EFE6",
       "blue": "#517bbd",
       "yellow": "#f4b40e",
+      "lightgray": "#eeeeee",
       "gray": "#c3c5c7",
       'black': '#1E1E1E',
-      "white":"#ffffff"
+      "white":"#ffffff",
+      "darkgray": "#767676"
     },
+    
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"]
 
@@ -48,6 +53,9 @@ export default {
       borderColor: {
         'gray-300': '#c3c5c7',
       },
+      backgroundImage: {
+        'hero': "url('form-images.jpg')",
+      }
     },
   },
   plugins: [
