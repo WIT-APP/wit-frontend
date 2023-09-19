@@ -2,12 +2,13 @@
 import { DataTable } from './data-table/data-table'
 // import * as data from '../../data/applicants.json'
 import { columns } from './data-table/columns'
+import { useAllApplicants } from '../services/AllApplicants';
 
 const data = [
     {
         "id": "1a2b3c4d",
         "amount": 50,
-        "status": "completed",
+        "status": "processing",
         "email": "john.doe@example.com"
       },
       {
@@ -19,7 +20,7 @@ const data = [
       {
         "id": "9i0j1k2l",
         "amount": 120,
-        "status": "completed",
+        "status": "processing",
         "email": "alice.johnson@example.com"
       },
       {
@@ -31,13 +32,13 @@ const data = [
       {
         "id": "7q8r9s0t",
         "amount": 90,
-        "status": "completed",
+        "status": "processing",
         "email": "sarah.brown@example.com"
       },
       {
         "id": "a1b2c3d4",
         "amount": 60,
-        "status": "completed",
+        "status": "processing",
         "email": "emma.johnson@example.com"
       },
       {
@@ -49,7 +50,7 @@ const data = [
       {
         "id": "i9j0k1l2",
         "amount": 80,
-        "status": "completed",
+        "status": "processing",
         "email": "olivia.davis@example.com"
       },
       {
@@ -61,7 +62,7 @@ const data = [
       {
         "id": "q7r8s9t0u",
         "amount": 110,
-        "status": "completed",
+        "status": "processing",
         "email": "ava.miller@example.com"
       },
       {
@@ -73,7 +74,7 @@ const data = [
       {
         "id": "0a1b2c3d4e",
         "amount": 95,
-        "status": "completed",
+        "status": "failed",
         "email": "mia.anderson@example.com"
       },
       {
@@ -85,7 +86,7 @@ const data = [
       {
         "id": "k0l1m2n3o4p",
         "amount": 40,
-        "status": "completed",
+        "status": "processing",
         "email": "sophia.martin@example.com"
       },
       {
@@ -97,7 +98,7 @@ const data = [
       {
         "id": "w0x1y2z3a4b",
         "amount": 120,
-        "status": "completed",
+        "status": "success",
         "email": "mia.garcia@example.com"
       },
       {
@@ -109,7 +110,7 @@ const data = [
       {
         "id": "i0j1k2l3m4n",
         "amount": 85,
-        "status": "completed",
+        "status": "processing",
         "email": "olivia.hernandez@example.com"
       },
       {
@@ -121,7 +122,7 @@ const data = [
       {
         "id": "u0v1w2x3y4z",
         "amount": 105,
-        "status": "completed",
+        "status": "processing",
         "email": "emma.gonzalez@example.com"
       },
       {
@@ -133,7 +134,7 @@ const data = [
       {
         "id": "g6h7i8j9k0l",
         "amount": 42,
-        "status": "completed",
+        "status": "success",
         "email": "sophia.lopez@example.com"
       },
       {
@@ -145,7 +146,7 @@ const data = [
       {
         "id": "s6t7u8v9w0x",
         "amount": 72,
-        "status": "completed",
+        "status": "processing",
         "email": "ava.lewis@example.com"
       },
       {
@@ -159,6 +160,17 @@ const data = [
 
 
 function Pruebas() {
+    const { isLoading, isError, applicant } = useAllApplicants();
+  console.log(applicant)
+  
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching data.</div>;
+  }
+  
   return (
     
     <div className="container mx-auto py-10">
