@@ -25,6 +25,7 @@ export const SummaryTable = () => {
     for (const entry of data) {
       const program = entry.programa_cursar;
 
+      //No harcodear
       if (program.includes("Python")) {
         totalApplicantsPython++;
       } else {
