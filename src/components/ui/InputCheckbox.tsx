@@ -43,7 +43,7 @@ export const InputCheckbox = ({
             onChange={() => handleCheckboxChange(option.value)}
             className="mr-2"
           />
-          {option.label}
+          {option.value}
         </div>
       ))}
     </div>

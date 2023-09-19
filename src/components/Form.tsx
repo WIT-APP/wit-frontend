@@ -499,7 +499,7 @@ const Form = () => {
               type="submit"
               className="bg-blue text-sm text-white p-3 py-3 mt-6 rounded-lg sm:w-1/4 shadow-lg"
             >
-              Aceptar
+              Enviar
             </button>
             <ToastContainer />
           </div>

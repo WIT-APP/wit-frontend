@@ -1,12 +1,9 @@
 import { ChangeEvent } from "react";
-interface Option {
-  label: string;
-  value: string;
-}
+
 interface InputSelectProps {
   id: string;
   label: string;
-  options: Option[];
+  options: string[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -25,9 +22,9 @@ function InputSelect({ id, label, options, onChange }: InputSelectProps) {
         <option value="" disabled selected hidden>
           Selecciona una opción
         </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+        {options.map((option:string) => (
+          <option key={option} value={option}>
+            {option}
           </option>
         ))}
       </select>
