@@ -8,7 +8,7 @@ async function getData(): Promise<Payment[]> {
       id: "728ed52f",
       amount: 100,
       status: "pending",
-      email: "m@example.com",
+      email: "angela@example.com",
     },
     // ...
   ]
