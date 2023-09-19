@@ -1,19 +1,11 @@
-// import { ApplicantList } from "./ApplicantList"
-// import Form from "./components/Form";
-// import { ApplicantsTable } from "./components/AspirantsTable";
-// import { SummaryTable } from "./components/SummaryTable";
-import { Footer } from "./components/Footer";
-import { PersonalInfo } from "./components/form/PersonalInfo";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./utils/router";
 
 
 function App() {
   return (
     <>
-      <PersonalInfo/>
-
-      {/* <SummaryTable/>
-      <ApplicantsTable/> */}
-    <Footer />
+      <RouterProvider router={router} />
     </>
     )
 }
