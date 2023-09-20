@@ -54,11 +54,31 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "nombre",
-    header: "Nombre",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nombre
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "apellidos",
-    header: "Apellidos",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Apellidos
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "correo_electronico",
@@ -76,14 +96,10 @@ export const columns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center space-x-2">
-          
-            <span className="w-6 h-6 text-blue flex items-center justify-center">
-              <IoMail />
-            </span>
-         
-          <div className="w-36 truncate">
-            {row.getValue("correo_electronico")}
-          </div>
+          <span className="text-blue text-xl flex items-center justify-center">
+            <IoMail />
+          </span>
+          <span>{row.getValue("correo_electronico")}</span>
         </div>
       );
     },
@@ -93,18 +109,43 @@ export const columns: ColumnDef<Applicant>[] = [
     header: "Telefono",
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
-        <span className="text-green items-center">
+        <span className="text-green text-xl items-center">
           <IoLogoWhatsapp />
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
     ),
   },
+  // {
+  //   accessorKey: "fecha_de_applicacion",
+  //   header: () => <div className="text-right">Fecha de aplicación</div>,
+  //   cell: ({ row }) => (
+  //     <div className="text-right">
+  //       <span>{row.getValue("fecha_de_applicacion")}</span>
+  //     </div>
+  //   ),
+  // },
   {
     accessorKey: "fecha_de_applicacion",
-    header: () => <div className="text-right">Fecha de aplicación</div>,
+    header: ({ column }) => {
+      return (
+        <div className="flex justify-end">
+
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="text-right ml-auto" // Alinea el botón a la derecha
+          >
+          <div className="flex items-center">
+            <div className="mr-2">Fecha de aplicación</div>
+            <ArrowUpDown className="h-4 w-4" />
+          </div>
+        </Button>
+          </div>
+      );
+    },
     cell: ({ row }) => (
-      <div className="text-right">
+      <div className="text-right mr-4">
         <span>{row.getValue("fecha_de_applicacion")}</span>
       </div>
     ),
