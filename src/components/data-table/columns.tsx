@@ -65,6 +65,7 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("nombre")}</div>,
   },
   {
     accessorKey: "apellidos",
@@ -79,6 +80,7 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("apellidos")}</div>,
   },
   {
     accessorKey: "correo_electronico",
@@ -95,8 +97,8 @@ export const columns: ColumnDef<Applicant>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="flex items-center space-x-2">
-          <span className="text-blue text-xl flex items-center justify-center">
+        <div className="flex items-center space-x-2 ml-4">
+          <span className="text-blue text-xl flex items-center justify-center cursor-pointer">
             <IoMail />
           </span>
           <span>{row.getValue("correo_electronico")}</span>
@@ -109,7 +111,7 @@ export const columns: ColumnDef<Applicant>[] = [
     header: "Telefono",
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
-        <span className="text-green text-xl items-center">
+        <span className="text-green text-xl items-center cursor-pointer">
           <IoLogoWhatsapp />
         </span>
         <span>{row.getValue("telefono")}</span>
