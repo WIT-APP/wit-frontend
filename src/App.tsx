@@ -1,7 +1,6 @@
 
+import AspirantsTable from "./components/AspirantsTable";
 import { Footer } from "./components/Footer";
-import Form from "./components/Form";
-import Pruebas from "./components/AspirantsTable";
 
 
 
@@ -11,10 +10,10 @@ import Pruebas from "./components/AspirantsTable";
 function App() {
   return (
     <>    
-   <Pruebas />
-   {/* <Form /> */}
+    <AspirantsTable />
 
-      <Footer />
+
+      {/* <Footer /> */}
     </>
   );
 }
