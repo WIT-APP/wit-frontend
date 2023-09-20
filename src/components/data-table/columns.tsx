@@ -116,7 +116,7 @@ export const columns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
         <span className="text-green text-xl items-center cursor-pointer">
-          <Modal textButton={iconWhatsapp} nombre={row.getValue("nombre")}  />
+          <Modal textButton={iconWhatsapp} nombre={row.getValue("nombre")} programa_cursar={row.getValue("programa_cursar")}  />
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
