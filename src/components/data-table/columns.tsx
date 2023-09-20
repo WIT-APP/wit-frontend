@@ -12,6 +12,9 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import Modal from "../Modal";
+
+const iconWhatsapp = <IoLogoWhatsapp />;
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -28,6 +31,7 @@ export type Applicant = {
   apellidos: string;
   correo_electronico: string;
   telefono: string;
+  programa_cursar: string;
   fecha_de_applicacion: string;
 };
 
@@ -112,11 +116,27 @@ export const columns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
         <span className="text-green text-xl items-center cursor-pointer">
-          <IoLogoWhatsapp />
+          <Modal textButton={iconWhatsapp} nombre={row.getValue("nombre")}  />
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
     ),
+  },
+
+  {
+    accessorKey: "programa_cursar",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Programa a Cursar
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("programa_cursar")}</div>,
   },
   // {
   //   accessorKey: "fecha_de_applicacion",
@@ -132,18 +152,17 @@ export const columns: ColumnDef<Applicant>[] = [
     header: ({ column }) => {
       return (
         <div className="flex justify-end">
-
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="text-right ml-auto" // Alinea el botón a la derecha
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="text-right ml-auto" // Alinea el botón a la derecha
           >
-          <div className="flex items-center">
-            <div className="mr-2">Fecha de aplicación</div>
-            <ArrowUpDown className="h-4 w-4" />
-          </div>
-        </Button>
-          </div>
+            <div className="flex items-center">
+              <div className="mr-2">Fecha de aplicación</div>
+              <ArrowUpDown className="h-4 w-4" />
+            </div>
+          </Button>
+        </div>
       );
     },
     cell: ({ row }) => (
