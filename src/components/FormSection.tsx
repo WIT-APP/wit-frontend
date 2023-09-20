@@ -85,18 +85,16 @@ export const FormSection = (question : PersonalInfoProps) => {
                   id={q.id_question}                />
               );
             }else if (q.type === 'telefono') {
-              //Crear input phone number component
               return (
                 <InputPhoneNumber
                   key={q.id}
                   children={q.text}
-                  expandText={q.expandText} 
-                  id={q.id_question}                />
+                  expandText={q.expandText}
+                  id={q.id_question} 
+                  type={q.type}                />
               );
             } else if (q.type === 'radio') {
               return (
-
-                //crear radio component
                 <InputRadioBox 
                 key={q.id}
                 label={q.text} 
@@ -124,7 +122,7 @@ export const FormSection = (question : PersonalInfoProps) => {
               );
             }
 
-            return null; // Handle other types or return null if needed
+            return null; 
           })}
           
         </div>
