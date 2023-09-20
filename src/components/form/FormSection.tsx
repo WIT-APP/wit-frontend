@@ -1,21 +1,25 @@
 import InputText from '../ui/InputText'
-import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
+// import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
 import InputEmail from '../ui/InputEmail';
 import InputSelect from '../ui/InputSelect';
-import { ChangeEvent } from 'react';
 import { InputCheckbox } from '../ui/InputCheckbox';
-import { Button } from '../ui/Button';
+import { Question } from '../../interfaces/question.interface';
 
-export const PersonalInfo = () => {
-    const { isLoading, isError, question } = useCategoryQuestion('Personal');
 
-    if (isLoading) return 'Loading...'
-    if (isError) return 'An error has occurred' 
+interface PersonalInfoProps {
+    data:Question[] | undefined; 
+}
+
+
+export const FormSection = (question : PersonalInfoProps) => {
+
+    const handleSelect = () => {};
+    const handleCheckbox = () => {}; 
 
     return (
         <>
         <div>
-          {question?.map((q) => {
+          {question.data?.map((q) => {
             if (q.type === 'text') {
               return (
                 <InputText
@@ -41,9 +45,7 @@ export const PersonalInfo = () => {
                   id={q.id_question}
                   label={q.text}
                   options={q.options}
-                  onChange={(event: ChangeEvent<HTMLSelectElement>): void => {
-                    throw new Error('Function not implemented.');
-                  }}
+                  onChange={handleSelect}
                 />
               );
             } else if (q.type === 'date') {
@@ -63,9 +65,7 @@ export const PersonalInfo = () => {
                   label={q.text}
                   options={q.options}
                   selectedValues={[]}
-                  onChange={(selectedValues: string[]): void => {
-                    throw new Error('Function not implemented.');
-                  }}
+                  onChange={handleCheckbox}
                   expandText={q.expandText}
                 />
               );
