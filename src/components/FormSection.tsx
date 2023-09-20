@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import InputText from './ui/InputText'
 // import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
 import InputEmail from './ui/InputEmail';
@@ -6,6 +7,8 @@ import { InputCheckbox } from './ui/InputCheckbox';
 import { Question } from '../interfaces/question.interface';
 import InputTextarea from './ui/InputTextarea';
 import { DocumentoIdentidad } from './ui/DocumentoIdentidad';
+import { InputRadioBox } from './ui/InputRadioBox';
+import { InputPhoneNumber } from './ui/InputPhoneNumber';
 
 
 interface PersonalInfoProps {
@@ -84,7 +87,7 @@ export const FormSection = (question : PersonalInfoProps) => {
             }else if (q.type === 'telefono') {
               //Crear input phone number component
               return (
-                <InputTextarea
+                <InputPhoneNumber
                   key={q.id}
                   children={q.text}
                   expandText={q.expandText} 
@@ -94,22 +97,24 @@ export const FormSection = (question : PersonalInfoProps) => {
               return (
 
                 //crear radio component
-                <InputTextarea
-                  key={q.id}
-                  children={q.text}
-                  expandText={q.expandText} 
-                  id={q.id_question}                />
+                <InputRadioBox 
+                key={q.id}
+                label={q.text} 
+                options={q.options} 
+                selectedValue={''} 
+                onChange={function (selectedValue: string): void {
+                  throw new Error('Function not implemented.');
+                } } 
+                expandText={q.expandText}/>
               );
             }else if (q.type === 'document') {
               return (
-
-                //crear radio component
                 <DocumentoIdentidad
                   key={q.id}
                   onSelectedOptionChange={function (value: string): void {
                     throw new Error('Function not implemented.');
                   } } 
-                  onTipoDocumentoChange={function (value: stringy): void {
+                  onTipoDocumentoChange={function (value: string): void {
                     throw new Error('Function not implemented.');
                   } } 
                   onPermisoValueChange={function (value: string): void {
