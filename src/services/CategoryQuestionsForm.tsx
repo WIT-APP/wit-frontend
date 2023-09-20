@@ -15,6 +15,7 @@ const fetchQuestions = async (category: string): Promise<Question[]|undefined> =
   } catch (error) {
     console.error('Error fetching questions:', error);
   }
+
 };
 
 export const useCategoryQuestion = (category: string) => {

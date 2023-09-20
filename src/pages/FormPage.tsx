@@ -1,6 +1,6 @@
 //carga los datos de react query para pasarselos al component form 
 import { useState } from 'react'
-import { FormSection } from '../components/form/FormSection'
+import { FormSection } from '../components/FormSection'
 // import { Footer } from '../components/Footer'
 // import { Button } from '../components/ui/Button'
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm'
