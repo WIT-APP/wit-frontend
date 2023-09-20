@@ -16,6 +16,7 @@ export default {
       'black': '#1E1E1E',
       "white":"#ffffff",
       "darkgray": "#767676"
+      
     },
     
     fontFamily: {
@@ -25,7 +26,8 @@ export default {
     extend: {
       backgroundColor: {
         'grey-transparent': 'rgba(207, 211, 212, 0.72)',
-        'black': '#1E1E1E'
+        'black': '#1E1E1E',
+        'black-transparent': '#0b0b048b'
       },
       borderRadius: {
         'radius-050': '0.5rem',
@@ -54,7 +56,10 @@ export default {
         'gray-300': '#c3c5c7',
       },
       backgroundImage: {
-        'hero': "url('form-image.jpg')",
+        'hero': "url('desktop.jpg')"
+      },
+      margin: {
+        "150":"800px"
       }
     },
   },
