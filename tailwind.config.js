@@ -54,7 +54,7 @@ export default {
         'gray-300': '#c3c5c7',
       },
       backgroundImage: {
-        'hero': "url('form-images.jpg')",
+        'hero': "url('form-image.jpg')",
       }
     },
   },

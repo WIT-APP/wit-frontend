@@ -1,10 +1,8 @@
-//carga los datos de react query para pasarselos al component form 
 import { useState } from 'react'
 import { FormSection } from '../components/FormSection'
-// import { Footer } from '../components/Footer'
 // import { Button } from '../components/ui/Button'
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm'
-// import { Question } from '../interfaces/question.interface'
+import { Footer } from '../components/Footer'
 
 
 //llamada a la category, personal info recive el metodo que modifica category(state de categorías, custom hook) y el array de datos
@@ -17,7 +15,6 @@ const pages = [
 
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  // const [questionsData, setQuestionsData] = useState<Question[] | undefined>(undefined);
 
   const {
     isLoading,
@@ -42,7 +39,8 @@ export const FormPage = () => {
   const onSubmit = () => {};
   
   return (
-    <div>
+    
+    <div  className="md:justify-end md:bg-[url('/form-image.jpg')]  bg-cover bg-no-repeat bg-left bg-fixed p-4 md:mb-16">
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (
@@ -66,6 +64,8 @@ export const FormPage = () => {
         Enviar
       </button>
       {isFetching ? <span> Loading...</span> : null}{' '}
+      <Footer/>
     </div>
+
   );
 }
