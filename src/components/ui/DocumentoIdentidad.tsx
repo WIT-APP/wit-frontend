@@ -57,7 +57,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
                 value={option.value}
                 checked={selectedOption === option.value}
                 onChange={handleRadioChange}
-                className="form-radio mr-2"
+                className="form-radio mr-2 mb-2"
               />
               {option.label}
             </label>
@@ -66,7 +66,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
       </div>
       {selectedOption === "Otro" && (
         <div className="mt-4">
-          <label htmlFor="tipo" className="block text-gray-700 mb-2">
+          <label htmlFor="tipo" className="block font-medium text-gray-700 mb-3">
             Si dispones de otro documento de identidad, por favor indícanos qué
             tipo de documento de identidad
           </label>
@@ -76,7 +76,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
             placeholder="Escribe tu tipo de documento"
             value={tipoDocumento}
             onChange={handleTipoDocumento}
-            className="form-input w-full px-3 py-2 rounded-radius-050"
+            className="form-input w-full px-3 py-2 mb-2"
           />
         </div>
       )}
@@ -92,7 +92,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
               "Otro",
             ]}
             onChange={handlePermisoChange} 
-            value={""}          
+            value={""}    
           />
         </div>
       )}

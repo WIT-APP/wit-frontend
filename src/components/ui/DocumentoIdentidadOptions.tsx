@@ -32,9 +32,9 @@ export const DocumentoIdentidadOptions = ({
       <label htmlFor="identidad" className="block font-medium text-gray-700 mb-2">
         {label}
       </label>
-      <div className="flex">
+      <div className="flex mb-4">
         {options.map((option) => (
-          <div key={option} className="mr-4">
+          <div key={option} className=" mb-2 mr-2">
             <label htmlFor={option} className="flex items-center">
               <input
                 type="radio"

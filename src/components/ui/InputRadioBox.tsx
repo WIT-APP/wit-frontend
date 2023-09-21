@@ -20,11 +20,11 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
   };
 
   return (
-    <div className="">
-      <label className="block font-medium text-gray-700 mb-1">
+    <div className="mb-4">
+      <label className="block font-medium text-gray-700 mb-3">
         {label}
         <br />
-        <span className="opacity-70 font-normal text-justify">
+        <span className="opacity-70 font-normal text-justify mt-2">
           {expandText}
         </span>
       </label>
@@ -36,7 +36,7 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
             value={option}
             checked={selectedValue === option}
             onChange={() => handleRadioChange(option)}
-            className="mr-2"
+            className="mr-2 "
           />
           <label htmlFor={option}>{option}</label>
         </div>
