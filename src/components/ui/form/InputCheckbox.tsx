@@ -23,8 +23,8 @@ export const InputCheckbox = ({
   };
 
   return (
-    <div className="mt-4">
-      <label className="block font-medium text-white mb-3">
+    <div className="mt-2">
+      <label className="block font-medium text-white mb-2">
         {label}
         <br />
         <span className="opacity-70 text-white font-normal text-justify">

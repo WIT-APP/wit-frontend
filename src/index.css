@@ -77,6 +77,25 @@
 
     --ring: 217.2 32.6% 17.5%;
   }
+    /* Customize the scrollbar width */
+  ::-webkit-scrollbar {
+    width: 3px; 
+  }
+
+  /* Customize the scrollbar track */
+  ::-webkit-scrollbar-track {
+    /* Add your track styles here */
+    background: #D6EFE6; 
+    border-radius: 3px;
+  }
+
+  /* Customize the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    /* Add your thumb styles here */
+    background: #f4b40e; /* You can change the background color of the thumb */
+    border-radius: 3px; 
+    height: 1px !important
+  }
 }
 
 
