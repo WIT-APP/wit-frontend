@@ -23,7 +23,7 @@ export const FormSection = (question : PersonalInfoProps) => {
 
     return (
         <>
-        <div className='w-100 rounded p-8 text-sm'>
+        <div className='w-100 rounded p-8 text-sm '>
           {question.data?.map((q) => {
             if (q.type === 'text') {
               return (

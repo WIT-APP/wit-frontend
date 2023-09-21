@@ -20,16 +20,16 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
   };
 
   return (
-    <div className="mb-4">
-      <label className="block font-medium text-gray-700 mb-3">
+    <div className="mt-4">
+      <label className="block font-medium text-white mb-3">
         {label}
         <br />
-        <span className="opacity-70 font-normal text-justify mt-2">
+        <span className="opacity-70 font-normal text-justify mt-4">
           {expandText}
         </span>
       </label>
       {options.map((option) => (
-        <div key={option} className="flex items-center mb-2 mr-2">
+        <div key={option} className="flex items-center text-white mb-2 mr-2">
           <input
             type="radio"
             id={option} // Usa un id único para cada botón de radio

@@ -28,9 +28,9 @@ export const FormPage = () => {
   
   return (
     
-    <div className="flex md:justify-end md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14">
-      <div className='w-full md:w-129 p-4 mx-auto md:mx-12 md:my-14 md:bg-grey-transparent rounded container bg-gray2'>
-      <h2 className='text-black2 text-l font-bold mx-3 mt-4 -mb-1'>Información {pages[currentPage]}</h2>
+    <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 md:mt-0 ">
+      <div className='w-full md:w-129 p-4 mx-auto md:mx-12 md:my-14 md:bg-purpleblue2 rounded container bg-gray2 overflow-y-scroll max-h-screen'>
+      <h2 className='text-yellow2 text-xl font-bold mx-3 mt-8'>Sección {pages[currentPage]}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (
@@ -56,7 +56,6 @@ export const FormPage = () => {
       {isFetching ? <span> Loading...</span> : null}{' '}
       </div>
       
-      <Footer/>
     </div>
   )
  

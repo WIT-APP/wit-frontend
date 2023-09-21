@@ -19,7 +19,7 @@ function AspirantsTable() {
 
   return (
     
-    <div className=" container mx-auto p-4">
+    <div className=" container mx-auto p-4 overflow-y-scroll max-h-screen">
     <DataTable columns={columns} data={applicant} />
   </div>
 

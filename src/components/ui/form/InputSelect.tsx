@@ -9,8 +9,8 @@ interface InputSelectProps {
 }
 export const InputSelect= ({ id, label, options, value, onChange }: InputSelectProps) => {
   return (
-    <div className="mb-4 mt-4">
-      <label htmlFor={id} className="block font-medium text-gray-700 mb-3">
+    <div className="mt-4">
+      <label htmlFor={id} className="block font-medium text-white mb-3">
         {label}
       </label>
       <select

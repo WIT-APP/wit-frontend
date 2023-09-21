@@ -8,8 +8,8 @@ interface inputEmailProps {
 
 const InputEmail = ({ placeholder, children, onChange }: inputEmailProps) => {
   return (
-    <div className="mb-4">
-      <label htmlFor="email" className="block text-gray-700 font-medium mb-3">
+    <div className="mt-4">
+      <label htmlFor="email" className="block text-white font-medium mb-3">
         {children}
         <input
           type="email"
