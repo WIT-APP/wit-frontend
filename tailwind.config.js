@@ -105,7 +105,7 @@ module.exports = {
         'gray-300': '#c3c5c7',
       },
       backgroundImage: {
-        'hero': "url('desktop.jpg')"
+        'hero': "url('/Desktop (3).jpg')"
       },
       margin: {
         "150":"800px"

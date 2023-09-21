@@ -11,8 +11,8 @@ export default function Sidebar({ children }) {
         expanded ? "sm:min-w-[250px] sm:w-1/5" : "sm:w-20 w-0"
       }`}
     >
-      <nav className="h-full flex flex-col bg-black border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center text-white">
+      <nav className="h-full flex flex-col bg-black2 border-r shadow-sm">
+        <div className="p-4 pb-2 flex justify-between items-center text-yellow2">
           {/* <img
             src=""
             className={`overflow-hidden transition-all ${
@@ -29,12 +29,11 @@ export default function Sidebar({ children }) {
           </p>
           <button
             onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg hover:bg-lightgreen bg-green"
+            className="p-1.5 rounded-lg hover:bg-lightgreen2 bg-green2"
           >
             {expanded ? <ChevronLeft /> : <ChevronRight />}
           </button>
         </div>
-
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
@@ -48,8 +47,8 @@ export default function Sidebar({ children }) {
             `}
           >
             <div>
-              <h4 className="font-semibold text-yellow"> TITO </h4>
-              <span className="text-xs text-yellow"> TITO@gmail.com </span>
+              <h4 className="font-semibold text-yellow2"> TITO </h4>
+              <span className="text-xs text-yellow2"> TITO@gmail.com </span>
             </div>
           </div>
         </div>
@@ -57,13 +56,12 @@ export default function Sidebar({ children }) {
     </aside>
   );
 }
-
 export function SidebarItem({ icon, text, active, alert }) {
   const { expanded } = useContext(SidebarContext);
   return (
     <li
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
-        ${active ? "bg-green text-white" : "hover:bg-lightgreen text-white"} 
+        ${active ? "bg-green2 text-yellow2" : "hover:bg-lightgreen2 text-yellow2"} 
         ${expanded ? "" : "max-sm:hidden sm:top-2"}`}
     >
       {icon}
@@ -76,17 +74,16 @@ export function SidebarItem({ icon, text, active, alert }) {
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-white ${
+          className={`absolute right-2 w-2 h-2 rounded bg-yellow2 ${
             expanded ? "" : "hidden sm:top-2 sm:block"
           }`}
         />
       )}
-
       {!expanded && (
         <div
           className={`hidden sm:block 
       absolute left-full rounded-md px2 py-1 ml-6
-      bg-lightgreen text-green text-sm
+      bg-lightgreen2 text-green2 text-sm
       invisible opacity-20 -translate-x-3 transition-all
       group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
     `}
