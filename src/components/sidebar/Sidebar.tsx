@@ -12,7 +12,7 @@ export default function Sidebar({ children }) {
       }`}
     >
       <nav className="h-full flex flex-col bg-black border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center text-yellow">
+        <div className="p-4 pb-2 flex justify-between items-center text-white">
           {/* <img
             src=""
             className={`overflow-hidden transition-all ${
@@ -63,7 +63,7 @@ export function SidebarItem({ icon, text, active, alert }) {
   return (
     <li
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
-        ${active ? "bg-green text-yellow" : "hover:bg-lightgreen text-yellow"} 
+        ${active ? "bg-green text-white" : "hover:bg-lightgreen text-white"} 
         ${expanded ? "" : "max-sm:hidden sm:top-2"}`}
     >
       {icon}
@@ -76,7 +76,7 @@ export function SidebarItem({ icon, text, active, alert }) {
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-yellow ${
+          className={`absolute right-2 w-2 h-2 rounded bg-white ${
             expanded ? "" : "hidden sm:top-2 sm:block"
           }`}
         />
