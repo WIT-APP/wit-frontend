@@ -9,7 +9,7 @@ import {
 import { Applicant } from "./data-table/columns";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/oldButton";
 import { IoLogoWhatsapp } from "react-icons/io";
 
 type ModalProps = Partial<Applicant> & {
@@ -24,7 +24,7 @@ function Modal({
   telefono,
 }: ModalProps) {
   const [open, setOpen] = useState(false);
-//   Refactorizar esta parte??
+  //   Refactorizar esta parte??
   const [mensaje, setMensaje] = useState(
     `Hola ${nombre}! Soy Daniela, de Somos F5. Te escribo para recordarte que mañana nos vemos en la Sesión de Selección para el BOOTCAMP DE ${programa_cursar?.toUpperCase()} :) La sesión empieza a las 15:30h (hora peninsular). Hablaremos del programa y haremos una entrevista personal. Por favor, confírmame si estarás. La asistencia es obligatoria para entrar en el bootcamp. Aquí te dejo el enlace de Zoom: https://us06web.zoom.us/j/6368867811 Un saludo, Dani`
   );

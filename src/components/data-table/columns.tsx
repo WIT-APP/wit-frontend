@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/oldButton";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,8 +15,6 @@ import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
-
-
 
 export type Applicant = {
   id: string;
@@ -109,7 +107,13 @@ export const columns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
         <span className="text-green text-xl items-center cursor-pointer">
-          <Modal textButton={iconWhatsapp} nombre={row.getValue("nombre")} programa_cursar={row.getValue("programa_cursar")} apellidos={row.getValue("apellidos")} telefono={row.getValue("telefono")}  />
+          <Modal
+            textButton={iconWhatsapp}
+            nombre={row.getValue("nombre")}
+            programa_cursar={row.getValue("programa_cursar")}
+            apellidos={row.getValue("apellidos")}
+            telefono={row.getValue("telefono")}
+          />
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
@@ -129,7 +133,9 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="ml-4">{row.getValue("programa_cursar")}</div>,
+    cell: ({ row }) => (
+      <div className="ml-4">{row.getValue("programa_cursar")}</div>
+    ),
   },
   // {
   //   accessorKey: "fecha_de_applicacion",
