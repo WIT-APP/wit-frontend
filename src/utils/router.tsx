@@ -9,7 +9,7 @@ import { FormPage } from "../pages/FormPage";
       element: <div>Hello world!</div>,
     },
     {
-        path: "/register",
+        path: "/newapplicant/register",
         element: <FormPage/>,
       },
   ]);
