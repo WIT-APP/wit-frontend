@@ -84,7 +84,7 @@ export const FormSection = (question : PersonalInfoProps) => {
                   expandText={q.expandText} 
                   id={q.id_question}                />
               );
-            }else if (q.type === 'telefono') {
+            }else if (q.type === 'phone') {
               return (
                 <InputPhoneNumber
                   key={q.id}
