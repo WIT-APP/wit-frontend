@@ -17,7 +17,7 @@ const InputEmail = ({ placeholder, children, onChange }: inputEmailProps) => {
           name="correo_electronico"
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2"
+          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-md"
         />
       </label>
     </div>

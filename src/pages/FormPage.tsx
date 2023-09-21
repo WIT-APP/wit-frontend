@@ -42,7 +42,7 @@ export const FormPage = () => {
     
     <div className="flex md:justify-end md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-16">
       <div className='w-full md:w-129 p-4 mx-auto md:mx-12 md:my-12 md:bg-grey-transparent rounded container bg-gray2'>
-      <h2 className='text-black text-l font-bold mx-3 mt-4 -mb-1'>Información {pages[currentPage]}</h2>
+      <h2 className='text-black2 text-l font-bold mx-3 mt-4 -mb-1'>Información {pages[currentPage]}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import InputText from './ui/InputText'
+import InputText from './ui/form/InputText'
 // import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
-import InputEmail from './ui/InputEmail';
-import {InputSelect} from './ui/InputSelect';
-import { InputCheckbox } from './ui/InputCheckbox';
+import InputEmail from './ui/form/InputEmail';
+import {InputSelect} from './ui/form/InputSelect';
+import { InputCheckbox } from './ui/form/InputCheckbox';
 import { Question } from '../interfaces/question.interface';
-import InputTextarea from './ui/InputTextarea';
-import { DocumentoIdentidad } from './ui/DocumentoIdentidad';
-import { InputRadioBox } from './ui/InputRadioBox';
-import { InputPhoneNumber } from './ui/InputPhoneNumber';
+import InputTextarea from './ui/form/InputTextarea';
+import { DocumentoIdentidad } from './ui/form/DocumentoIdentidad';
+import { InputRadioBox } from './ui/form/InputRadioBox';
+import { InputPhoneNumber } from './ui/form/InputPhoneNumber';
 
 
 interface PersonalInfoProps {

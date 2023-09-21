@@ -76,7 +76,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
             placeholder="Escribe tu tipo de documento"
             value={tipoDocumento}
             onChange={handleTipoDocumento}
-            className="form-input w-full px-3 py-2 mb-2"
+            className="form-input w-full px-3 py-2 mb-2 rounded-md"
           />
         </div>
       )}

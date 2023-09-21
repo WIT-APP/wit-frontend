@@ -2,17 +2,15 @@ import { ChangeEventHandler } from "react";
 
 interface inputTextProps {
   id: string;
-  type: string;
   placeholder?: string;
   children: React.ReactNode;
   value?: string;
   expandText: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-const InputText = ({
+const InputTextarea = ({
   id,
-  type,
   placeholder,
   children,
   value,
@@ -26,18 +24,17 @@ const InputText = ({
         <span className="opacity-70 font-normal text-justify mt-2">
           {expandText}
         </span>
-        <input
-          type={type}
+        <textarea
           id={id}
           name={id}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050 overflow-x-auto"
-        />
+          className="mt-2 form-input font-normal w-full px-3 py-2 overflow-x-auto rounded-md"
+        ></textarea>
       </label>
     </div>
   );
 };
 
-export default InputText;
+export default InputTextarea;

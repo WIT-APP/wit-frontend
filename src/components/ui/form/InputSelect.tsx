@@ -18,7 +18,7 @@ export const InputSelect= ({ id, label, options, value, onChange }: InputSelectP
         name={id}
         value={value} // Utiliza la prop value para establecer la opción seleccionada
         onChange={onChange}
-        className="font-normal w-full px-3 py-2 text-justify mb-2 mr-2"
+        className="font-normal w-full px-3 py-2 text-justify mb-2 mr-2 rounded-md"
       >
         <option value="" disabled hidden>
           Selecciona una opción
