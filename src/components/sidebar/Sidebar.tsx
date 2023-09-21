@@ -12,7 +12,7 @@ export default function Sidebar({ children }) {
       }`}
     >
       <nav className="h-full flex flex-col bg-black border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center text-white">
+        <div className="p-4 pb-2 flex justify-between items-center text-yellow">
           {/* <img
             src=""
             className={`overflow-hidden transition-all ${
@@ -48,8 +48,8 @@ export default function Sidebar({ children }) {
             `}
           >
             <div>
-              <h4 className="font-semibold text-white"> TITO </h4>
-              <span className="text-xs text-white"> TITO@gmail.com </span>
+              <h4 className="font-semibold text-yellow"> TITO </h4>
+              <span className="text-xs text-yellow"> TITO@gmail.com </span>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export function SidebarItem({ icon, text, active, alert }) {
   return (
     <li
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
-        ${active ? "bg-green text-white" : "hover:bg-lightgreen text-white"} 
+        ${active ? "bg-green text-yellow" : "hover:bg-lightgreen text-yellow"} 
         ${expanded ? "" : "max-sm:hidden sm:top-2"}`}
     >
       {icon}
@@ -76,7 +76,7 @@ export function SidebarItem({ icon, text, active, alert }) {
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-white ${
+          className={`absolute right-2 w-2 h-2 rounded bg-yellow ${
             expanded ? "" : "hidden sm:top-2 sm:block"
           }`}
         />
@@ -96,38 +96,4 @@ export function SidebarItem({ icon, text, active, alert }) {
       )}
     </li>
   );
-}
-
-// imports de la llamada al componente sidebar
-// import Sidebar, { SidebarItem } from "./components/sidebar/Sidebar";
-// import {
-//   LifeBuoy,
-//   Receipt,
-//   Boxes,
-//   Package,
-//   UserCircle,
-//   BarChart3,
-//   LayoutDashboard,
-//   Settings,
-// } from "lucide-react";
-
-// llamada al componente
-{
-  /* <AspirantsTable />
-
-<Sidebar>
-  <SidebarItem
-    icon={<LayoutDashboard size={20} />}
-    text="Dashboard"
-    alert
-  />
-  <SidebarItem icon={<BarChart3 size={20} />} text="Statistics" active />
-  <SidebarItem icon={<UserCircle size={20} />} text="User" />
-  <SidebarItem icon={<Boxes size={20} />} text="Inventory" />
-  <SidebarItem icon={<Package size={20} />} text="Orders" alert />
-  <SidebarItem icon={<Receipt size={20} />} text="Billings" />
-  <hr className="my-3" />
-  <SidebarItem icon={<Settings size={20} />} text="Settings" />
-  <SidebarItem icon={<LifeBuoy size={20} />} text="Help" />
-</Sidebar> */
 }
