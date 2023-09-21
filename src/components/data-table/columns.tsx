@@ -91,9 +91,20 @@ export const columns: ColumnDef<Applicant>[] = [
       );
     },
     cell: ({ row }) => {
+      const handleEmailClick = () => {
+        const correoElectronico: string = row.getValue("correo_electronico");
+
+        const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+          correoElectronico
+        )}`;
+        window.open(gmailURL, "_blank");
+      };
       return (
         <div className="flex items-center space-x-2 ml-4">
-          <span className="text-blue2 text-xl flex items-center justify-center cursor-pointer">
+          <span
+            onClick={handleEmailClick}
+            className="text-blue2 text-xl flex items-center justify-center cursor-pointer"
+          >
             <IoMail />
           </span>
           <span>{row.getValue("correo_electronico")}</span>

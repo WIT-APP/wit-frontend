@@ -5,10 +5,7 @@ import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
 import AspirantsTable from "@/components/AspirantsTable";
 
-export async function loader() {
-  const tables = await getTables();
-  return { tables };
-}
+
 
   export const router = createBrowserRouter([
     {
