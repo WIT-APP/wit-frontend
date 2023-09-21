@@ -12,65 +12,80 @@ describe('Form should load correctly', () => {
     });
 });
 
+describe('Form should load all questions from the queryclient', () => {
+    test('Render question "Nombre"', async () => {
+    // Render the component with the query provider
+    render(
+        <QueryClientProvider client={queryClient}>
+        <FormPage />
+        </QueryClientProvider>
+    );
 
-test('Render FormPage with data', async () => {
-  // Render the component with the query provider
-  render(
-    <QueryClientProvider client={queryClient}>
-      <FormPage />
-    </QueryClientProvider>
-  );
+    // Use waitFor to wait for the data to load
+    await waitFor(() => {
+        
+        // Add your assertions here
+        const input = screen.getByLabelText('Nombre');
+        expect(input).toBeTruthy();
 
-  // Use waitFor to wait for the data to load
-  await waitFor(() => {
+        expect(input?.textContent).toBe('')
+
+        if (input) {
+            // prueba el input text
+            input.textContent = 'Carlos Saiz'
+            expect(input.textContent).toBe('Carlos Saiz')
+
+            // prueba el type prop
+            expect(input.type).toBe('text')
+
+            // prueba el name prop
+            expect(input.name).toBe('name')
+
+            // prueba el value prop
+            // userEvent.type(input, 'Carlos Saiz');
+            // expect(input.value).toBe('Carlos Saiz')
+        }
+    });
+    });
+    test('Render question "Apellidos"', async () => {
+        // Render the component with the query provider
+        render(
+            <QueryClientProvider client={queryClient}>
+            <FormPage />
+            </QueryClientProvider>
+        );
     
-    // Add your assertions here
-    const input = screen.getByLabelText('Nombre');
-    expect(input).toBeTruthy();
-
-    expect(input?.textContent).toBe('')
-
-    if (input) {
-        // prueba el input text
-        input.textContent = 'Carlos Saiz'
-        expect(input.textContent).toBe('Carlos Saiz')
-
-        // prueba el type prop
-        expect(input.type).toBe('text')
-
-        // prueba el name prop
-        expect(input.name).toBe('nombre')
-
-        // prueba el value prop
-        userEvent.type(input, 'Carlos Saiz');
-        // expect(input.value).toBe('Carlos Saiz')
-
-    }
-  });
+        // Use waitFor to wait for the data to load
+        await waitFor(() => {
+            
+            // Add your assertions here
+            const inputLastname = document.querySelector(
+                '#lastname'
+            ) as HTMLInputElement | null;
+            expect(inputLastname).toBeTruthy();
+    
+            expect(inputLastname?.textContent).toBe('')
+    
+            if (inputLastname) {
+             // prueba el input text
+             inputLastname.textContent = 'Saiz'
+            expect(inputLastname.textContent).toBe('Saiz')
+    
+             // prueba el type prop
+            expect(inputLastname.type).toBe('text')
+    
+            //  prueba el name prop
+            expect(inputLastname.name).toBe('lastname')
+    
+            //     // prueba el value prop
+            //     userEvent.type(input, 'Carlos Saiz');
+            //     // expect(input.value).toBe('Carlos Saiz')
+            }
+        });
+        });
 });
 
-// describe('Expect an input that is Nombre', () => {
-//     test('The input field and its props of name', () => {
 
-//         render(
-//             <QueryClientProvider client={queryClient}>
-//                 <FormPage/>
-//             </QueryClientProvider>
-//         );
-
-//         await waitFor(() => {
-//             // Add your assertions here
-//             const input = screen.getByLabelText('Nombre');
-//             expect(input).toBeInTheDocument();
-//           });
-//         // // está vacio?
-        // expect(input?.textContent).toBe('')
-
-        
-//     });
-
-
-// });
 
 // describe('Expect an input that is Correo electronico', () => {
 //     test('The input field and its props of Correo electronico', () => {
