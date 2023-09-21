@@ -1,10 +1,11 @@
+import imagefooter from '../../public/footer-image.png' 
 
 export const Footer = () => {
   return (
-    <footer className="bg-green text-white fixed bottom-0 w-full p-2 hidden sm:block ">
+    <footer className="bg-green text-white fixed bottom-0 p-2 w-full hidden sm:block ">
     <div className="flex justify-center items-center">
       <img
-        src="footer-image.png"
+        src={imagefooter}
         alt="Footer Image"
         style={{ objectPosition: 'center bottom', width: "30%" }}
       />
