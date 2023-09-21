@@ -1,3 +1,4 @@
+import AspirantsTable from "@/components/AspirantsTable";
 import Sidebar, { SidebarItem } from "../components/sidebar/Sidebar";
 import {
   LifeBuoy,
@@ -72,7 +73,7 @@ function Dashboard() {
           <SidebarItem icon={<Settings size={20} />} text="Settings" />
           <SidebarItem icon={<LifeBuoy size={20} />} text="Help" />
         </Sidebar>
-        <Outlet/>
+        <AspirantsTable/>
     </div>
   
   )
