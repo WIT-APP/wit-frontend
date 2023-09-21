@@ -20,10 +20,10 @@ import AspirantsTable from "@/components/AspirantsTable";
         path: "/dashboard",
         element: <Dashboard/>,
         children: [
-          {
-            path: "/aspirantsTable",
-            element: <AspirantsTable/>,
-          }
+          // {
+          //   path: "/aspirantsTable",
+          //   element: <AspirantsTable/>,
+          // }
         ],
       },
   ]);

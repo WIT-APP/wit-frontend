@@ -12,13 +12,13 @@ import {
 } from "lucide-react";
 import { Outlet, useLoaderData, Link } from "react-router";
 
-export async function action() {
-  const tables = await createTable();
-  return { tables };
-}
+// export async function action() {
+//   const tables = await createTable();
+//   return { tables };
+// }
 
 function Dashboard() {
-  const { tables } = useLoaderData();
+  // const { tables } = useLoaderData();
   // const navigate = useNavigate(); // Obtiene la función de navegación
 
   // // Supongamos que tienes información de usuario disponible, como un objeto 'user'.
@@ -57,7 +57,7 @@ function Dashboard() {
   //   </div>
   // );
   return(
-    <div >
+    <div className="flex">
         <Sidebar>
           <SidebarItem
             icon={<LayoutDashboard size={20} />}
@@ -74,6 +74,7 @@ function Dashboard() {
           <SidebarItem icon={<LifeBuoy size={20} />} text="Help" />
         </Sidebar>
         <AspirantsTable/>
+        <Outlet/>
     </div>
   
   )
