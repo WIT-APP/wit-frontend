@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/oldButton";
+import { Button } from "../ui/Button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

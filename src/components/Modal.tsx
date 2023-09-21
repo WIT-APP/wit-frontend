@@ -9,7 +9,7 @@ import {
 import { Applicant } from "./data-table/columns";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import { Button } from "@/components/ui/oldButton";
+import { Button } from "@/components/ui/Button";
 import { IoLogoWhatsapp } from "react-icons/io";
 
 type ModalProps = Partial<Applicant> & {

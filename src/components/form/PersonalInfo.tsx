@@ -4,7 +4,7 @@ import InputEmail from "../ui/InputEmail";
 import InputSelect from "../ui/InputSelect";
 import { ChangeEvent } from "react";
 import { InputCheckbox } from "../ui/InputCheckbox";
-import { Button } from "../ui/oldButton";
+import { Button } from "../ui/Button";
 
 export const PersonalInfo = () => {
   const { isLoading, isError, question } = useCategoryQuestion("Personal");
