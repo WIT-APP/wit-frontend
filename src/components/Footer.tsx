@@ -1,7 +1,7 @@
 
 export const Footer = () => {
   return (
-    <footer className="bg-green text-white fixed bottom-0 w-full p-2 hidden sm:block">
+    <footer className="bg-green text-white fixed bottom-0 w-full p-2 hidden sm:block ">
     <div className="flex justify-center items-center">
       <img
         src="footer-image.png"

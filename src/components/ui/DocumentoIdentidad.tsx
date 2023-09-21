@@ -1,10 +1,11 @@
-import { useState } from "react";
-import InputSelect from "./InputSelect";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ChangeEvent, useState } from "react";
+import {InputSelect} from "./InputSelect";
 
 interface DocumentoIdentidadProps {
-  onSelectedOptionChange: (event: any) => void;
-  onTipoDocumentoChange: (event: any) => void;
-  onPermisoValueChange: (event: any) => void;
+  onSelectedOptionChange: (value: string) => void;
+  onTipoDocumentoChange: (value: string) => void;
+  onPermisoValueChange: (value: string) => void;
 }
 
 export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
@@ -22,17 +23,17 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
     { id: "Otro", label: "Otro", value: "Otro" },
   ];
 
-  const handleRadioChange = (event: any) => {
+  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
     onSelectedOptionChange(event.target.value);
   };
 
-  const handlePermisoChange = (event: any) => {
+  const handlePermisoChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setPermisoValue(event.target.value);
     onPermisoValueChange(event.target.value);
   };
 
-  const handleTipoDocumento = (event: any) => {
+  const handleTipoDocumento = (event: ChangeEvent<HTMLInputElement>) => {
     setTipoDocumento(event.target.value);
     onTipoDocumentoChange(event.target.value);
   };
@@ -85,23 +86,13 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
             id="permiso"
             label="Indica el carácter de tu permiso en España"
             options={[
-              {
-                value: "Permiso de residencia y trabajo",
-                label: "Permiso de residencia y trabajo",
-              },
-              {
-                value: "Permiso de residencia y estudios",
-                label: "Permiso de residencia y estudios",
-              },
-              {
-                value:
-                  "No dispongo de permiso (No es un problema para tener acceso al curso)",
-                label:
-                  "No dispongo de permiso (No es un problema para tener acceso al curso)",
-              },
-              { value: "Otro", label: "Otro" },
+              "Permiso de residencia y trabajo",
+              "Permiso de residencia y estudios",
+              "No dispongo de permiso (No es un problema para tener acceso al curso)",
+              "Otro",
             ]}
-            onChange={handlePermisoChange}
+            onChange={handlePermisoChange} 
+            value={""}          
           />
         </div>
       )}

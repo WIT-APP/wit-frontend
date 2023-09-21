@@ -20,6 +20,7 @@ module.exports = {
       'black': '#1E1E1E',
       "white":"#ffffff",
       "darkgray": "#767676"
+      
     },
     container: {
       center: true,
@@ -63,6 +64,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      backgroundColor: {
+        'grey-transparent': 'rgba(207, 211, 212, 0.72)',
+        'black': '#1E1E1E',
+        'black-transparent': '#0b0b048b'
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -83,8 +88,29 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      padding: {
+        '15': '3.75rem', 
+      },
+      fontSize: {
+        'xs': '12px',
+        'sm': '14px',
+        'base': '16px', 
+        'lg': '18px',
+        'xl': '20px',
+        '2xl': '40px',       
+      },
+      borderColor: {
+        'gray-300': '#c3c5c7',
+      },
+      backgroundImage: {
+        'hero': "url('desktop.jpg')"
+      },
+      margin: {
+        "150":"800px"
+      }
     },
   },
   // eslint-disable-next-line no-undef
   plugins: [require("tailwindcss-animate")],
+}
 }
