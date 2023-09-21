@@ -32,7 +32,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DownloadTableExcel } from 'react-export-table-to-excel';
+import { downloadExcel } from 'react-export-table-to-excel';
 import { useRef } from "react";
+import { useDownloadExcel } from 'react-export-table-to-excel';
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -43,7 +46,15 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const tableRef = useRef(null);
+  const header = ["Nombre", "Apellidos", "Email", "Telefono", "Programa a Cursar", "Fecha de aplicación"];
+  const [selectedRows, setSelectedRows] = React.useState<TData[]>([]);
+  const tableRef = useRef(null); // Referencia a la tabla
+
+  
+
+
+
+  
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -62,7 +73,14 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
+    onRowSelectionChange: (selectedRowIds) => {
+      // Use the selectedRowIds to update the selectedRows state
+      const selectedData = data.filter((row) => selectedRowIds[row.id]);
+      setSelectedRows(selectedData);
+      
+      // Update the rowSelection state as well
+      setRowSelection(selectedRowIds);
+    },
     state: {
       sorting,
       columnFilters,
@@ -71,8 +89,15 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: 'Tabla de usuarios',
+    sheet: 'Usuarios'
+});
+
   return (
     <div>
+      <button  onClick={onDownload}>Descargar Excel</button>
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -188,7 +213,7 @@ export function DataTable<TData, TValue>({
           Next
         </Button>
       </div>
-      <DownloadTableExcel
+      {/* <DownloadTableExcel
                     filename="users table"
                     sheet="users"
                     currentTableRef={tableRef.current}
@@ -196,7 +221,7 @@ export function DataTable<TData, TValue>({
 
                    <button> Export excel </button>
 
-                </DownloadTableExcel>
+                </DownloadTableExcel> */}
     </div>
   );
 }
