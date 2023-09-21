@@ -191,7 +191,7 @@ const Form = () => {
               type="text"
               id="nombre_apellidos"
               placeholder="Escribe tu nombre y apellidos"
-              children="Nombre y Apellidos"
+              children="nu"
               onChange={handleChange}
               expandText=""
             />
