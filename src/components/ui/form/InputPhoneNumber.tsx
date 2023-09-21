@@ -45,7 +45,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
  
 
   return (
-    <div>
+    <div className="mb-4">
       <InputText
         type={type} 
         id={id}

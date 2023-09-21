@@ -28,9 +28,9 @@ export const FormPage = () => {
   
   return (
     
-    <div  className="md:justify-end md:bg-[url('/background.jpg')]  bg-cover bg-no-repeat bg-left bg-fixed md:mb-16 ">
-      <div className='w-129 md:bg-grey-transparent p-4 mx-150 rounded container'>
-      <h2 className='text-black2 text-l font-bold mx-3 mt-4'>Información {pages[currentPage]}</h2>
+    <div className="flex md:justify-end md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14">
+      <div className='w-full md:w-129 p-4 mx-auto md:mx-12 md:my-14 md:bg-grey-transparent rounded container bg-gray2'>
+      <h2 className='text-black2 text-l font-bold mx-3 mt-4 -mb-1'>Información {pages[currentPage]}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (
@@ -38,7 +38,7 @@ export const FormPage = () => {
       ) : (
         <FormSection data={question}/>
       )}
-      <div className='flex justify-evenly text-sm'>
+      <div className='flex justify-evenly text-sm mb-4'>
         <button onClick={goToPreviousPage} disabled={currentPage === 0}>
           Previous Page
         </button>{' '}

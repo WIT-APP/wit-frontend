@@ -21,9 +21,9 @@ const InputText = ({
 }: inputTextProps) => {
   return (
     <div className="mb-4 ">
-      <label htmlFor={id} className="block text-gray-700 mb-2 font-medium ">
+      <label htmlFor={id} className="block text-gray-700 font-medium mb-3">
         {children} <br />
-        <span className="opacity-70 font-normal text-justify">
+        <span className="opacity-70 font-normal text-justify mt-2">
           {expandText}
         </span>
         <input
@@ -33,7 +33,7 @@ const InputText = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-radius-050 overflow-x-auto"
+          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-md overflow-x-auto"
         />
       </label>
     </div>
