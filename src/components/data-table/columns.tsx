@@ -12,15 +12,11 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import Modal from "../Modal";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-// export type Payment = {
-//   id: string
-//   amount: number
-//   status: "pending" | "processing" | "success" | "failed"
-//   email: string
-// }
+const iconWhatsapp = <IoLogoWhatsapp />;
+
+
 
 export type Applicant = {
   id: string;
@@ -28,6 +24,7 @@ export type Applicant = {
   apellidos: string;
   correo_electronico: string;
   telefono: string;
+  programa_cursar: string;
   fecha_de_applicacion: string;
 };
 
@@ -65,6 +62,7 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("nombre")}</div>,
   },
   {
     accessorKey: "apellidos",
@@ -79,6 +77,7 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("apellidos")}</div>,
   },
   {
     accessorKey: "correo_electronico",
@@ -95,8 +94,8 @@ export const columns: ColumnDef<Applicant>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="flex items-center space-x-2">
-          <span className="text-blue text-xl flex items-center justify-center">
+        <div className="flex items-center space-x-2 ml-4">
+          <span className="text-blue text-xl flex items-center justify-center cursor-pointer">
             <IoMail />
           </span>
           <span>{row.getValue("correo_electronico")}</span>
@@ -109,12 +108,28 @@ export const columns: ColumnDef<Applicant>[] = [
     header: "Telefono",
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
-        <span className="text-green text-xl items-center">
-          <IoLogoWhatsapp />
+        <span className="text-green text-xl items-center cursor-pointer">
+          <Modal textButton={iconWhatsapp} nombre={row.getValue("nombre")} programa_cursar={row.getValue("programa_cursar")} apellidos={row.getValue("apellidos")} telefono={row.getValue("telefono")}  />
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
     ),
+  },
+
+  {
+    accessorKey: "programa_cursar",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Programa a Cursar
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="ml-4">{row.getValue("programa_cursar")}</div>,
   },
   // {
   //   accessorKey: "fecha_de_applicacion",
@@ -130,18 +145,17 @@ export const columns: ColumnDef<Applicant>[] = [
     header: ({ column }) => {
       return (
         <div className="flex justify-end">
-
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="text-right ml-auto" // Alinea el botón a la derecha
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="text-right ml-auto" // Alinea el botón a la derecha
           >
-          <div className="flex items-center">
-            <div className="mr-2">Fecha de aplicación</div>
-            <ArrowUpDown className="h-4 w-4" />
-          </div>
-        </Button>
-          </div>
+            <div className="flex items-center">
+              <div className="mr-2">Fecha de aplicación</div>
+              <ArrowUpDown className="h-4 w-4" />
+            </div>
+          </Button>
+        </div>
       );
     },
     cell: ({ row }) => (

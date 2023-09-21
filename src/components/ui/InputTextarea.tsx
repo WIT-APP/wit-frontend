@@ -5,7 +5,7 @@ interface inputTextProps {
   placeholder?: string;
   children: React.ReactNode;
   value?: string;
-  expandText: string;
+  expandText?: string;
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
