@@ -197,7 +197,7 @@ export const columns: ColumnDef<Applicant>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const applicant = row.original;
 
       return (
         <DropdownMenu>
@@ -210,13 +210,13 @@ export const columns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(applicant.id)}
             >
-              Copy payment ID
+              Copy applicant ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View applicant details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
