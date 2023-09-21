@@ -79,6 +79,14 @@
   }
 }
 
+
+
+/* @layer base {
+  * {
+    @apply font-montserrat
+  }
+} */
+/* 
 .custom-button {
   display: flex;
   width: 10rem;
@@ -87,8 +95,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
-  color: #0b0b048b;
-}
+} */
 
 /* 
 body {

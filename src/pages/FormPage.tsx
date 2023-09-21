@@ -1,30 +1,18 @@
-import { useState } from 'react'
-import { FormSection } from '../components/FormSection'
+//carga los datos de react query para pasarselos al component form
+import { useState } from "react";
+import { FormSection } from "../components/FormSection";
 // import { Button } from '../components/ui/Button'
-import { useCategoryQuestion } from '../services/CategoryQuestionsForm'
-import { Footer } from '../components/Footer'
-
+import { useCategoryQuestion } from "../services/CategoryQuestionsForm";
+import { Footer } from "../components/Footer";
 
 //llamada a la category, personal info recive el metodo que modifica category(state de categorías, custom hook) y el array de datos
-const pages = [
-  'Personal',
-  'Sociodemografica',
-  'Academica',
-  'Formacion'
-]
+const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
-  const {
-    isLoading,
-    isError,
-    error,
-    isFetching,
-    isPreviousData,
-    question,
-  } = useCategoryQuestion(pages[currentPage]);
-
+  const { isLoading, isError, error, isFetching, isPreviousData, question } =
+    useCategoryQuestion(pages[currentPage]);
 
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
@@ -70,6 +58,6 @@ export const FormPage = () => {
       
       <Footer/>
     </div>
-
-  );
-}
+  )
+ 
+};
