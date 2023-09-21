@@ -42,7 +42,7 @@ export const FormPage = () => {
     
     <div  className="md:justify-end md:bg-black-transparent md:bg-[url('/form-image.jpg')]  bg-cover bg-no-repeat bg-left bg-fixed md:mb-16 ">
       <div className='w-129 md:bg-grey-transparent p-4 mx-150 rounded container'>
-      <h2 className='text-black text-l font-bold mx-3 mt-4'>Información {pages[currentPage]}</h2>
+      <h2 className='text-black2 text-l font-bold mx-3 mt-4'>Información {pages[currentPage]}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (
