@@ -10,7 +10,7 @@ interface inputTextProps {
   expandText: string;
   additionalClass?: string
   required?: boolean;
-  onChange?: (value: string) => void;
+  onInputChange?: (value: string) => void;
 }
 
 export const InputText = ({
@@ -22,14 +22,13 @@ export const InputText = ({
   expandText,
   additionalClass,
   required,
-  onChange,
+  onInputChange,
 }: inputTextProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    if (onChange) {
-      onChange(newValue); // Call the onChange callback with the new value
-    }
+    onInputChange?.(newValue); // Call the onChange callback with the new value
+    
     console.log(newValue)
   };
   return (

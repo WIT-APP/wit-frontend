@@ -56,6 +56,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
         children={children}
         expandText={expandText}
         required={required}
+        onChange={handleInputChange}
       />
       {!isValid && (
         <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
