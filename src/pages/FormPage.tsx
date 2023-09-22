@@ -44,19 +44,21 @@ export const FormPage = () => {
   };
 
   /*VALIDACION A COMPLETAR - INICIO*/
-  const validateCampo1 = (value) => {
+  const validateNombre_apellidos = (value) => {
     if (!value) {
       return "Campo obligatorio";
     }
-    // Agrega otras validaciones según tus necesidades
-    return ""; // Si no hay errores
+    return "Dato correcto";
   };
 
-  const validateCampo2 = (value) => {
-    // Valida el campo 2
+  const validateCorreo_electronico = (value) => {
+    if (!value) {
+      return "Campo obligatorio";
+    }
+    return "Dato correcto";
   };
 
-  const handleCampo1Change = (e) => {
+  const handleNombre_apellidosChange = (e) => {
     const value = e.target.value;
     setFormData({ ...formData,nombre_apellidos,correo_electronico, telefono, fecha_aplicacion,programa_cursar: value });
     const error = validateCampo1(value);
@@ -65,8 +67,7 @@ export const FormPage = () => {
 
   const onSubmit = () => {
     const nombre_apellidosError = validateNombre_apellidos(formData.nombre_apellidos);
-    const campo2Error = validateCampo2(formData.campo2);
-    // Agrega más validaciones si es necesario
+    const correo_electronicoError = validateCorreo_electronico(formData.correo_electronico);
 
     if (campo1Error || campo2Error) {
       // Hay errores en el formulario, muestra los mensajes de error
