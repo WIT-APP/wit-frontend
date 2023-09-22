@@ -6,6 +6,7 @@ interface inputTextProps {
   children: React.ReactNode;
   value?: string;
   expandText?: string;
+  type:string;
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
@@ -15,6 +16,7 @@ const InputTextarea = ({
   children,
   value,
   expandText,
+  type,
   onChange,
 }: inputTextProps) => {
   return (
@@ -27,10 +29,11 @@ const InputTextarea = ({
         <textarea
           id={id}
           name={id}
+          type={type}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2 overflow-x-auto rounded-md"
+          className="mt-2 form-textarea font-normal w-full px-3 py-2 overflow-x-auto rounded-md"
         ></textarea>
       </label>
     </div>

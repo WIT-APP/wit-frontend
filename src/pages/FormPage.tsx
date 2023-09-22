@@ -28,8 +28,8 @@ export const FormPage = () => {
   
   return (
     
-    <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 ">
-      <div className='w-full md:w-129 p-4 mx-auto md:mx-12 md:my-14 md:bg-purpleblue2 rounded container bg-gray2 overflow-y-scroll scrollbar-thumb-base max-h-screen'>
+    <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
+      <div className='w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base'>
       <div className="m-2 flex">
         <img src={witLogo} alt="" />
         <h2 className='text-yellow2 text-xl font-bold mt-6 ml-1'>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -123,7 +124,7 @@ module.exports = {
       
   },
   plugins: [
-    // eslint-disable-next-line no-undef
-    require("tailwindcss-animate")
+    require("tailwindcss-animate"),
+    require('@tailwindcss/forms'),
   ],
 }
