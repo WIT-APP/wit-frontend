@@ -40,10 +40,10 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
   };
 
   return (
-    <div className="mt-2 " data-testid="documento-identidad">
+    <div className="mt-5 " data-testid="documento-identidad">
       <label
         htmlFor="identidad"
-        className="block font-medium text-white mb-2"
+        className="block font-bold text-white mb-2"
       >
         Documento de Identidad
       </label>
