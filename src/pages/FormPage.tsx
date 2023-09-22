@@ -13,15 +13,15 @@ export const FormPage = () => {
 
   /*VALIDACION A COMPLETAR - INICIO*/
   const [formData, setFormData] = useState({
-    campo1: "", // Agrega aquí los campos del formulario
-    campo2: "",
-    // ...
+    nombre: "", 
+    email: "",
+    telefono:"",
   });
 
   const [formErrors, setFormErrors] = useState({
-    campo1: "", // Agrega aquí los campos del formulario
-    campo2: "",
-    // ...
+    nombre: "El nombre ingresaso no es valido",
+    email: "El email ingresaso no es valido",
+    telefono:"El telefono ingresaso no es valido",
   });
   /*VALIDACION A COMPLETAR - FIN*/
 
@@ -120,5 +120,4 @@ export const FormPage = () => {
       
     </div>
   )
- 
 };
