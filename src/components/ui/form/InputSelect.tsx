@@ -40,7 +40,7 @@ export const InputSelect = ({
         name={id}
         value={selectedValue}
         onChange={handleSelectChange}
-        className="font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-gray-400"
+        className="font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2"
       >
         <option value="" disabled hidden>
           Selecciona una opción

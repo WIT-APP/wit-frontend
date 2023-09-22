@@ -110,16 +110,7 @@ export const FormSection = (question : PersonalInfoProps) => {
             }else if (q.type === 'document') {
               return (
                 <DocumentoIdentidad
-                  key={q.id}
-                  onSelectedOptionChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } } 
-                  onTipoDocumentoChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } } 
-                  onPermisoValueChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } }   
+                  key={q.id}  
                 />
               );
             }

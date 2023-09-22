@@ -3,6 +3,7 @@ import { useState } from "react";
 interface CheckboxGroupProps {
   label: string;
   options: string[];
+  selectedValues: string[]
   onChange: (selectedValues: string[]) => void;
   expandText: string;
 }
@@ -30,7 +31,7 @@ export const InputCheckbox = ({
 
 
   return (
-    <div className="mt-2">
+    <div className="mt-5">
       <label className="block font-medium text-white mb-2">
         {label}
         <br />
