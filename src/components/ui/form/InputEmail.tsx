@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useState } from "react";
 import {InputText} from "./InputText";
 
 
@@ -22,13 +22,35 @@ const InputEmail = (
     value,
     expandText,
     additionalClass,
+    onChange,
   }: inputEmailProps
 ) => {
-  additionalClass = 'pl-10'
+  const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputChange = (inputValue: string) => {
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+
+    if (emailPattern.test(inputValue)) {
+      setIsValid(true);
+      setErrorMessage("");
+      onChange?.(inputValue);
+    } else if (inputValue === "") {
+      setIsValid(true);
+      setErrorMessage("");
+      onChange?.("");
+    } else {
+      setIsValid(false);
+      setErrorMessage("Por favor, ingresa un número de teléfono válido.");
+      return errorMessage;
+    } 
+    
+  };
+
+  additionalClass = `pl-10${!isValid ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : ''}`
   return (
     
     <div>
-      {/* <label htmlFor="email-address-icon" className="block mb-2 text-sm font-medium text-white">Correo Electronico</label> */}
         <div className="relative">
           <div className="absolute inset-y-12 left-0 flex items-center pl-3.5 pointer-events-none">
             <svg className="w-4 h-4 text-yellow2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
@@ -44,8 +66,12 @@ const InputEmail = (
           children={children} 
           expandText={expandText} 
           additionalClass={` ${additionalClass}`}
+          onInputChange={handleInputChange}
           />
         </div>
+        {!isValid && (
+        <p className="text-red-600 text-sm mt-1">{errorMessage}</p>
+      )}
       </div>
    
   );
