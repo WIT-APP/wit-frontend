@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/Aplicante",
+        path: "/:Aplicante",
         element: <ApplicantPage />,
       },
       {
@@ -27,28 +27,28 @@ export const router = createBrowserRouter([
         element: <PreApprovedPage />,
       },
       {
-        path: "/Rechazado",
-        element: <RejectedPage />,
+        path: "/:Rechazado",
+        element: <ApplicantPage />,
       },
       {
-        path: "/Invitado",
-        element: <InvitedPage />,
+        path: "/:Invitado",
+        element: <ApplicantPage />,
       },
       {
-        path: "/Entrevistado",
-        element: <InterviewedPage />,
+        path: "/:Entrevistado",
+        element: <ApplicantPage />,
       },
       {
-        path: "/Matriculado",
-        element: <EnrolledPage />,
+        path: "/:Matriculado",
+        element: <ApplicantPage />,
       },
       {
-        path: "/Certificado",
-        element: <CertifiedPage />,
+        path: "/:Certificado",
+        element: <ApplicantPage />,
       },
       {
-        path: "/Baja",
-        element: <UnlistedPage />,
+        path: "/:Baja",
+        element: <ApplicantPage />,
       },
       {
         path: "/Ajustes",
@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/Login",
+    path: "/:Login",
     element: <LoginPage />,
   },
   {
