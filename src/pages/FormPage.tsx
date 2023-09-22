@@ -11,6 +11,21 @@ const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
+  /*VALIDACION A COMPLETAR - INICIO*/
+  const [formData, setFormData] = useState({
+    campo1: "", // Agrega aquí los campos del formulario
+    campo2: "",
+    // ...
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    campo1: "", // Agrega aquí los campos del formulario
+    campo2: "",
+    // ...
+  });
+  /*VALIDACION A COMPLETAR - FIN*/
+
+
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
 
@@ -24,7 +39,48 @@ export const FormPage = () => {
     }
   };
 
-  const onSubmit = () => {};
+  /*VALIDACION A COMPLETAR - INICIO*/
+  const validateCampo1 = (value) => {
+    if (!value) {
+      return "Campo obligatorio";
+    }
+    // Agrega otras validaciones según tus necesidades
+    return ""; // Si no hay errores
+  };
+
+  const validateCampo2 = (value) => {
+    // Valida el campo 2
+  };
+
+  const handleCampo1Change = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, campo1: value });
+    const error = validateCampo1(value);
+    setFormErrors({ ...formErrors, campo1: error });
+  };
+
+  const handleCampo2Change = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, campo2: value });
+    const error = validateCampo2(value);
+    setFormErrors({ ...formErrors, campo2: error });
+  };
+  
+
+  const onSubmit = () => {
+    const campo1Error = validateCampo1(formData.campo1);
+    const campo2Error = validateCampo2(formData.campo2);
+    // Agrega más validaciones si es necesario
+
+    if (campo1Error || campo2Error) {
+      // Hay errores en el formulario, muestra los mensajes de error
+      setFormErrors({ campo1: campo1Error, campo2: campo2Error });
+    } else {
+      // No hay errores, realiza la acción de envío del formulario
+      // Ejemplo: enviar datos al servidor o realizar alguna acción
+    }
+  };
+  /*VALIDACION A COMPLETAR - FIN*/
   
   return (
     
