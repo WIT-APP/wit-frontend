@@ -11,6 +11,7 @@ import PreApprovedPage from "@/pages/PreApprovedPage";
 import CertifiedPage from "@/pages/CertifiedPage";
 import SettingsPage from "@/pages/SettingsPage";
 import HelpPage from "@/pages/HelpPage";
+import LoginPage from "@/pages/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
         element: <HelpPage />,
       },
     ],
+  },
+  {
+    path: "/Login",
+    element: <LoginPage />,
   },
   {
     path: "/newapplicant/register",
