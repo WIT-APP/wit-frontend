@@ -58,21 +58,13 @@ export const FormPage = () => {
 
   const handleCampo1Change = (e) => {
     const value = e.target.value;
-    setFormData({ ...formData, campo1: value });
+    setFormData({ ...formData,nombre_apellidos,correo_electronico, telefono, fecha_aplicacion,programa_cursar: value });
     const error = validateCampo1(value);
-    setFormErrors({ ...formErrors, campo1: error });
-  };
-
-  const handleCampo2Change = (e) => {
-    const value = e.target.value;
-    setFormData({ ...formData, campo2: value });
-    const error = validateCampo2(value);
-    setFormErrors({ ...formErrors, campo2: error });
-  };
-  
+    setFormErrors({ ...formErrors,nombre_apellidos,correo_electronico, telefono,fecha_aplicacion,programa_cursar: error });
+  };  
 
   const onSubmit = () => {
-    const campo1Error = validateCampo1(formData.campo1);
+    const nombre_apellidosError = validateNombre_apellidos(formData.nombre_apellidos);
     const campo2Error = validateCampo2(formData.campo2);
     // Agrega más validaciones si es necesario
 
