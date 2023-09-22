@@ -31,7 +31,7 @@ export const InputSelect = ({
   };
 
   return  (
-    <div className="mt-2">
+    <div className="mt-5">
       <label htmlFor={id} className="block font-medium text-white mb-2">
         {label}
       </label>
