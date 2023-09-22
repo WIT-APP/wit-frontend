@@ -142,7 +142,66 @@ export function DataTable<TData, TValue>({
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo:  row.colectivo.map((item) => item).join(', ')|| [],
+        Colectivo: row.colectivo.map((item) => item).join(", ") || [],
+        Educacion: row.educacion || "",
+        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Situacion profesional": row.situacion_profesional || "",
+        "Intereses actuales": row.intereses_actuales || "",
+        "Dedicación semanal": row.dedicacion_semanal || "",
+        "Acceso a internet y dispositivos":
+          row.acceso_internet_dispositivos || "",
+        "Formación online": row.formacion_online || "",
+        "Razones para unirse": row.razones_unirse || "",
+        "Donde encontró el programa": row.encontrar_programa || "",
+        "Mas información": row.mas_informacion || "",
+      };
+    });
+
+    console.log(rowsForExcel);
+
+    downloadExcel({
+      fileName: "Tabla de usuarios",
+      sheet: "Usuarios",
+      tablePayload: {
+        header,
+        body: rowsForExcel, // Utiliza las filas seleccionadas
+      },
+    });
+  }
+
+
+  function handleDownloadExcelAll() {
+    // console.log(rowSelection);
+    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
+      .filter((index) => rowSelection[index])
+      .map((index) => data[parseInt(index)].id);
+    console.log(selectedRowIds);
+
+    const selectedRowsToExport = data.filter((row) =>
+      selectedRowIds.includes(row.id)
+    );
+
+    const rowsForExcel = data.map((row) => {
+      return {
+        Nombre: row.nombre || "",
+        Apellidos: row.apellidos || "",
+        Email: row.correo_electronico || "",
+        Telefono: row.telefono || "",
+        "Programa a Cursar": row.programa_cursar || "",
+        Estado: row.estado || "",
+        "Fecha de aplicación": row.fecha_de_applicacion || "",
+        Genero: row.genero || "",
+        "Fecha de nacimiento": row.fecha_de_nacimiento || "",
+        "Pais de nacimiento": row.pais_de_nacimiento || "",
+        "Documento de identidad": row.documento_de_identidad || "",
+        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
+        Dirección: row.direccion || "",
+        "Codigo Postal": row.codigo_postal || "",
+        Ciudad: row.ciudad || "",
+        Provincia: row.provincia || "",
+        "País de residencia": row.pais_de_residencia || "",
+        Permiso: row.permiso || "",
+        Colectivo: row.colectivo.map((item) => item).join(", ") || [],
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_altos || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -171,8 +230,13 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <button onClick={handleDownloadExcel}>Descargar Excel</button>
-      <div className="flex items-center py-4">
+    
+
+      <div className="este flex items-center py-4">
+      <div className="flex gap-8 justify-between">
+        <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
+        <button onClick={handleDownloadExcelAll}>Descargar todos</button>
+      </div>
         <Input
           placeholder="Filter emails..."
           value={
