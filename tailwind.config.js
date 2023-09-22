@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -118,12 +120,17 @@ module.exports = {
         '128':'500px',
         '150': '150px'
       },
-  
+
+     
   },
       
   },
   plugins: [
-    // eslint-disable-next-line no-undef
-    require("tailwindcss-animate")
+    require("tailwindcss-animate"),
+    require('@tailwindcss/forms')({
+      // strategy: 'base', // only generate global styles
+      strategy: 'class', // only generate classes
+    }),
+
   ],
 }

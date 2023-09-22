@@ -1,7 +1,8 @@
 export interface Applicant {
   id: number;
   fecha_de_applicacion: Date;
-  nombre_apellidos: string;
+  nombre: string;
+  apellidos: string;
   correo_electronico: string;
   telefono: number;
   estado: string;

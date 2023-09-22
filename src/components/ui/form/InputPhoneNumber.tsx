@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
-import InputText from "./InputText";
+import {InputText} from "./InputText";
 
 interface InputPhoneNumberProps {
   id: string;
@@ -9,6 +9,7 @@ interface InputPhoneNumberProps {
   children: React.ReactNode;
   value?: string;
   expandText: string;
+  required?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -20,6 +21,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
   value,
   expandText,
   onChange,
+  required
 }) => {
     const [isValid, setIsValid] = useState(true); // Estado para rastrear la validez
     const [errorMessage, setErrorMessage] = useState(""); // Mensaje de error
@@ -47,13 +49,14 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
   return (
     <div className="mt-2">
       <InputText
-        type={type} 
+        type={type}
         id={id}
         value={value}
-        onChange={handleInputChange}
         placeholder={placeholder}
         children={children}
         expandText={expandText}
+        required={required}
+        onChange={handleInputChange}
       />
       {!isValid && (
         <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
