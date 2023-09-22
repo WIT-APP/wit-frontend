@@ -18,13 +18,14 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    
 
     extend: {
       colors: {
         green2: "#009966",
         lightgreen2: "#D6EFE6",
         superlightgreen2: "#eaf7f2",
-        purpleblue2: "#6d7dcd",
+        purpleblue2: "#6d7dcdd4",
         blue2: "#517bbd",
         yellow2: "#f4b40e",   
         lightgray2: "#eeeeee",
@@ -111,13 +112,15 @@ module.exports = {
       },
       width: {
         '128': '1000px',
-        '129': '500px'
+        '129': '700px'
       },
       height: {
         '128':'500px',
         '150': '150px'
       },
-    },
+  
+  },
+      
   },
   plugins: [
     // eslint-disable-next-line no-undef

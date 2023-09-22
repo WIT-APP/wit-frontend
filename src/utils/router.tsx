@@ -1,30 +1,71 @@
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
-import AspirantsTable from "@/components/AspirantsTable";
+import ApplicantPage from "@/pages/ApplicantPage";
+import RejectedPage from "@/pages/RejectedPage";
+import InvitedPage from "@/pages/InvitedPage";
+import InterviewedPage from "@/pages/InterviewedPage";
+import EnrolledPage from "@/pages/EnrolledPage";
+import UnlistedPage from "@/pages/UnlistedPage";
+import PreApprovedPage from "@/pages/PreApprovedPage";
+import CertifiedPage from "@/pages/CertifiedPage";
+import SettingsPage from "@/pages/SettingsPage";
+import HelpPage from "@/pages/HelpPage";
+import LoginPage from "@/pages/LoginPage";
 
-
-
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: '',
-    },
-    {
-        path: "/newapplicant/register",
-        element: <FormPage/>,
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/Aplicante",
+        element: <ApplicantPage />,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard/>,
-        children: [
-          // {
-          //   path: "/aspirantsTable",
-          //   element: <AspirantsTable/>,
-          // }
-        ],
+        path: "/Preaprobado",
+        element: <PreApprovedPage />,
       },
-  ]);
-  
+      {
+        path: "/Rechazado",
+        element: <RejectedPage />,
+      },
+      {
+        path: "/Invitado",
+        element: <InvitedPage />,
+      },
+      {
+        path: "/Entrevistado",
+        element: <InterviewedPage />,
+      },
+      {
+        path: "/Matriculado",
+        element: <EnrolledPage />,
+      },
+      {
+        path: "/Certificado",
+        element: <CertifiedPage />,
+      },
+      {
+        path: "/Baja",
+        element: <UnlistedPage />,
+      },
+      {
+        path: "/Ajustes",
+        element: <SettingsPage />,
+      },
+      {
+        path: "/Ayuda",
+        element: <HelpPage />,
+      },
+    ],
+  },
+  {
+    path: "/Login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/newapplicant/register",
+    element: <FormPage />,
+  },
+]);

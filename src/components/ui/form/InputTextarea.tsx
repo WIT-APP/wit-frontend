@@ -18,8 +18,8 @@ const InputTextarea = ({
   onChange,
 }: inputTextProps) => {
   return (
-    <div className="mb-4 ">
-      <label htmlFor={id} className="block text-gray-700 font-medium mb-3">
+    <div className="mt-2">
+      <label htmlFor={id} className="block text-white font-medium mb-2">
         {children} <br />
         <span className="opacity-70 font-normal text-justify mt-2">
           {expandText}

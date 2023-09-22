@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useState } from "react";
 import {InputSelect} from "./InputSelect";
+import InputText from "./InputText";
 
 interface DocumentoIdentidadProps {
   onSelectedOptionChange: (value: string) => void;
@@ -39,17 +40,17 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
   };
 
   return (
-    <div className="mb-4" data-testid="documento-identidad">
+    <div className="mt-2 " data-testid="documento-identidad">
       <label
         htmlFor="identidad"
-        className="block font-medium text-gray-700 mb-2"
+        className="block font-medium text-white mb-2"
       >
         Documento de Identidad
       </label>
       <div className="flex">
         {radioOptions.map((option) => (
           <div key={option.id} className="mr-4">
-            <label htmlFor={option.id} className="flex items-center">
+            <label htmlFor={option.id} className="flex items-center text-white">
               <input
                 type="radio"
                 id={option.id}
@@ -66,22 +67,18 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
       </div>
       {selectedOption === "Otro" && (
         <div className="mt-4">
-          <label htmlFor="tipo" className="block font-medium text-gray-700 mb-3">
-            Si dispones de otro documento de identidad, por favor indícanos qué
-            tipo de documento de identidad
-          </label>
-          <input
+          <InputText
             type="text"
             id="tipo"
             placeholder="Escribe tu tipo de documento"
             value={tipoDocumento}
-            onChange={handleTipoDocumento}
-            className="form-input w-full px-3 py-2 mb-2 rounded-md"
-          />
+            onChange={handleTipoDocumento} 
+            children={'Si dispones de otro documento de identidad, por favor indícanos qué tipo de documento de identidad'} 
+            expandText={""}          />
         </div>
       )}
       {(selectedOption === "NIE" || selectedOption === "Otro") && (
-        <div className="mb-4">
+        <div className="mb-4 ">
           <InputSelect
             id="permiso"
             label="Indica el carácter de tu permiso en España"

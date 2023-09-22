@@ -29,7 +29,9 @@ const notifyError = () =>
 
 const newApplication = async (applicant: CreateApplicant) => {
   const response = await fetch(
-    "https://wit-backend-factoriaf5.up.railway.app/applicant",
+    // "https://wit-backend-factoriaf5.up.railway.app/applicant",
+    'http://localhost:3000/applicant',
+
     {
       method: "POST",
       headers: {

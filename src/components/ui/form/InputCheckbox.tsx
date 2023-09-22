@@ -23,21 +23,21 @@ export const InputCheckbox = ({
   };
 
   return (
-    <div className="mb-4">
-      <label className="block font-medium text-gray-700 mb-3">
+    <div className="mt-2">
+      <label className="block font-medium text-white mb-2">
         {label}
         <br />
-        <span className="opacity-70 font-normal text-justify mt-2">
+        <span className="opacity-70 text-white font-normal text-justify">
           {expandText}
         </span>
       </label>
       {options.map((option) => (
-        <div key={option} className="flex items-center mb-2 mr-2">
+        <div key={option} className="flex items-center text-white mt-2 mr-2">
           <input
             type="checkbox"
             checked={selectedValues.includes(option)}
             onChange={() => handleCheckboxChange(option)}
-            className="mr-2"
+            className="mr-2 "
           />
           {option}
         </div>
