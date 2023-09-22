@@ -88,8 +88,8 @@ export function DataTable<TData, TValue>({
   });
 
   function handleDownloadExcel() {
-    console.log(selectedRows);
-    console.log(rowSelection);
+    // console.log(selectedRows);
+    // console.log(rowSelection);
     const selectedRowIds = Object.keys(rowSelection)
     .filter((index) => rowSelection[index])
     .map((index) => data[parseInt(index)].id);
