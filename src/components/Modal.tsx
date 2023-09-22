@@ -68,7 +68,7 @@ function Modal({
         <Button variant="ghost">Atras</Button>
         <Button
           onClick={() => handleSendMessage(telefono, mensaje)}
-          className="bg-green hover:bg-yellow"
+          className="bg-green2 hover:bg-yellow2"
         >
           <IoLogoWhatsapp className="mr-2 h-4 w-4" /> Enviar Mensaje
         </Button>

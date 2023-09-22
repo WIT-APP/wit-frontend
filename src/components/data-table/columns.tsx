@@ -23,6 +23,7 @@ export type Applicant = {
   correo_electronico: string;
   telefono: string;
   programa_cursar: string;
+  estado: string;
   fecha_de_applicacion: string;
 };
 
@@ -148,6 +149,23 @@ export const columns: ColumnDef<Applicant>[] = [
       <div className="ml-4">{row.getValue("programa_cursar")}</div>
     ),
   },
+  {
+    accessorKey: "estado",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Estado
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="ml-4">{row.getValue("estado")}</div>
+    ),
+  },
   // {
   //   accessorKey: "fecha_de_applicacion",
   //   header: () => <div className="text-right">Fecha de aplicación</div>,
@@ -181,23 +199,11 @@ export const columns: ColumnDef<Applicant>[] = [
       </div>
     ),
   },
-  // {
-  //   accessorKey: "amount",
-  //   header: () => <div className="text-right">Amount</div>,
-  //   cell: ({ row }) => {
-  //     const amount = parseFloat(row.getValue("amount"))
-  //     const formatted = new Intl.NumberFormat("en-US", {
-  //       style: "currency",
-  //       currency: "USD",
-  //     }).format(amount)
 
-  //     return <div className="text-right font-medium">{formatted}</div>
-  //   },
-  // },
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const applicant = row.original;
 
       return (
         <DropdownMenu>
@@ -210,13 +216,13 @@ export const columns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(applicant.id)}
             >
-              Copy payment ID
+              Copy applicant ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View applicant details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
