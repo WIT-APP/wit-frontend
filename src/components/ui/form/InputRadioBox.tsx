@@ -24,7 +24,7 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
 
   return (
     <div className="mt-5">
-      <label className="block font-medium text-white mb-2">
+      <label className="block font-bold text-white mb-2">
         {label}
         <br />
         <span className="opacity-70 font-normal text-justify mt-2">

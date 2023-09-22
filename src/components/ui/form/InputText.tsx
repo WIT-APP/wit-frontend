@@ -33,8 +33,8 @@ export const InputText = ({
     console.log(newValue)
   };
   return (
-    <div className="mt-2">
-      <label htmlFor={id} className="block mb-2 text-sm font-medium text-white">
+    <div className="mt-5">
+      <label htmlFor={id} className="block text-white font-bold mb-2">
         {children} <br />
         <span className="opacity-70 text-justify mt-2">
           {expandText}
