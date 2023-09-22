@@ -58,20 +58,31 @@ export const FormPage = () => {
     return "Dato correcto";
   };
 
-  const handleNombre_apellidosChange = (e) => {
+  const handleNombreApellidosChange = (e) => {
     const value = e.target.value;
-    setFormData({ ...formData,nombre_apellidos,correo_electronico, telefono, fecha_aplicacion,programa_cursar: value });
-    const error = validateCampo1(value);
-    setFormErrors({ ...formErrors,nombre_apellidos,correo_electronico, telefono,fecha_aplicacion,programa_cursar: error });
-  };  
+    setFormData({ ...formData, nombre_apellidos: value });
+    const error = validateNombreApellidos(value);
+    setFormErrors({ ...formErrors, nombre_apellidos: error });
+  };
+
+  const handleCorreoElectronicoChange = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, correo_electronico: value });
+    const error = validateCorreoElectronico(value);
+    setFormErrors({ ...formErrors, correo_electronico: error });
+  };
 
   const onSubmit = () => {
-    const nombre_apellidosError = validateNombre_apellidos(formData.nombre_apellidos);
-    const correo_electronicoError = validateCorreo_electronico(formData.correo_electronico);
+    const nombreApellidosError = validateNombreApellidos(formData.nombre_apellidos);
+    const correoElectronicoError = validateCorreoElectronico(
+      formData.correo_electronico
+    );
 
-    if (campo1Error || campo2Error) {
-      // Hay errores en el formulario, muestra los mensajes de error
-      setFormErrors({ campo1: campo1Error, campo2: campo2Error });
+    if (nombreApellidosError || correoElectronicoError) {
+      setFormErrors({
+        nombre_apellidos: nombreApellidosError,
+        correo_electronico: correoElectronicoError,
+      });
     } else {
       // No hay errores, realiza la acción de envío del formulario
       // Ejemplo: enviar datos al servidor o realizar alguna acción
