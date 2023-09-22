@@ -31,12 +31,10 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DownloadTableExcel } from 'react-export-table-to-excel';
-import { downloadExcel } from 'react-export-table-to-excel';
-import { useRef } from "react";
+import { downloadExcel } from "react-export-table-to-excel";
 
 interface DataTableProps<TData, TValue> {
-  [x: string]: any;
+  // [x: string]: any;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
@@ -50,16 +48,42 @@ interface SelectedRowData {
   fecha_de_applicacion: string;
 }
 
-
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const header = ["Nombre", "Apellidos", "Email", "Telefono", "Programa a Cursar", "Fecha de aplicación"];
-  const [selectedRows, setSelectedRows] = React.useState<TData[]>([]);
+  const header = [
+    "Nombre",
+    "Apellidos",
+    "Email",
+    "Telefono",
+    "Programa a Cursar",
+    "Estado",
+    "Fecha de aplicación",
+    "Genero",
+    "Fecha de nacimiento",
+    "Pais de nacimiento",
+    "Tipo de Docuemnto de identidad",
+    "Documento de Identidad",
+    "Dirección",
+    "Codigo Postal",
+    "Ciudad",
+    "Provincia",
+    "País de residencia",
+    "Permiso",
+    "Colectivo",
+    "Educacion",
+    "Estudios mas altos",
+    "Situacion profesional",
+    "Intereses actuales",
+    "Dedicación semanal",
+    "Acceso a internet y dispositivos",
+    "Formación online",
+    "Razones para unirse",
+    "Donde encontró el programa",
+    "Mas información",
+  ];
 
-
-  
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -78,7 +102,7 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange:setRowSelection,
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
@@ -88,17 +112,15 @@ export function DataTable<TData, TValue>({
   });
 
   function handleDownloadExcel() {
-    // console.log(selectedRows);
     // console.log(rowSelection);
-    const selectedRowIds = Object.keys(rowSelection)
-    .filter((index) => rowSelection[index])
-    .map((index) => data[parseInt(index)].id);
+    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
+      .filter((index) => rowSelection[index])
+      .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
-    
 
-
-    const selectedRowsToExport = data.filter((row) => selectedRowIds.includes(row.id));
-
+    const selectedRowsToExport = data.filter((row) =>
+      selectedRowIds.includes(row.id)
+    );
 
     const rowsForExcel = selectedRowsToExport.map((row) => {
       return {
@@ -107,21 +129,35 @@ export function DataTable<TData, TValue>({
         Email: row.correo_electronico || "",
         Telefono: row.telefono || "",
         "Programa a Cursar": row.programa_cursar || "",
+        Estado: row.estado || "",
         "Fecha de aplicación": row.fecha_de_applicacion || "",
+        Genero: row.genero || "",
+        "Fecha de nacimiento": row.fecha_de_nacimiento || "",
+        "Pais de nacimiento": row.pais_de_nacimiento || "",
+        "Documento de identidad": row.documento_de_identidad || "",
+        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
+        Dirección: row.direccion || "",
+        "Codigo Postal": row.codigo_postal || "",
+        Ciudad: row.ciudad || "",
+        Provincia: row.provincia || "",
+        "País de residencia": row.pais_de_residencia || "",
+        Permiso: row.permiso || "",
+        Colectivo:  row.colectivo.map((item) => item).join(', ')|| [],
+        Educacion: row.educacion || "",
+        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Situacion profesional": row.situacion_profesional || "",
+        "Intereses actuales": row.intereses_actuales || "",
+        "Dedicación semanal": row.dedicacion_semanal || "",
+        "Acceso a internet y dispositivos":
+          row.acceso_internet_dispositivos || "",
+        "Formación online": row.formacion_online || "",
+        "Razones para unirse": row.razones_unirse || "",
+        "Donde encontró el programa": row.encontrar_programa || "",
+        "Mas información": row.mas_informacion || "",
       };
     });
-    
+
     console.log(rowsForExcel);
-  
-
-
-
-   
-    
-  
-    
-
-    
 
     downloadExcel({
       fileName: "Tabla de usuarios",
