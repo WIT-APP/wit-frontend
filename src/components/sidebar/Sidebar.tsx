@@ -1,5 +1,6 @@
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { createContext, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SidebarContext = createContext();
 
@@ -11,8 +12,8 @@ export default function Sidebar({ children }) {
         expanded ? "sm:min-w-[250px] sm:w-1/5" : "sm:w-20 w-0"
       }`}
     >
-      <nav className="h-full flex flex-col bg-black2 border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center text-yellow2">
+      <nav className="h-full flex flex-col bg-green2 border-r shadow-sm">
+        <div className="p-4 pb-2 flex justify-between items-center text-white2">
           {/* <img
             src=""
             className={`overflow-hidden transition-all ${
@@ -29,7 +30,7 @@ export default function Sidebar({ children }) {
           </p>
           <button
             onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg hover:bg-lightgreen2 bg-green2"
+            className="p-1.5 rounded-lg hover:bg-yellow2 bg-green2"
           >
             {expanded ? <ChevronLeft /> : <ChevronRight />}
           </button>
@@ -59,38 +60,40 @@ export default function Sidebar({ children }) {
 export function SidebarItem({ icon, text, active, alert }) {
   const { expanded } = useContext(SidebarContext);
   return (
-    <li
-      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
-        ${active ? "bg-green2 text-yellow2" : "hover:bg-lightgreen2 text-yellow2"} 
+    <Link to={`/${text}`}>
+      <li
+        className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
+        ${active ? "bg-green2 text-yellow2" : "hover:bg-yellow2 text-white2"} 
         ${expanded ? "" : "max-sm:hidden sm:top-2"}`}
-    >
-      {icon}
-      <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
-        }`}
       >
-        {text}
-      </span>
-      {alert && (
-        <div
-          className={`absolute right-2 w-2 h-2 rounded bg-yellow2 ${
-            expanded ? "" : "hidden sm:top-2 sm:block"
+        {icon}
+        <span
+          className={`overflow-hidden transition-all ${
+            expanded ? "w-52 ml-3" : "w-0"
           }`}
-        />
-      )}
-      {!expanded && (
-        <div
-          className={`hidden sm:block 
+        >
+          {text}
+        </span>
+        {alert && (
+          <div
+            className={`absolute right-2 w-2 h-2 rounded bg-yellow2 ${
+              expanded ? "" : "hidden sm:top-2 sm:block"
+            }`}
+          />
+        )}
+        {!expanded && (
+          <div
+            className={`hidden sm:block 
       absolute left-full rounded-md px2 py-1 ml-6
       bg-lightgreen2 text-green2 text-sm
       invisible opacity-20 -translate-x-3 transition-all
       group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
     `}
-        >
-          {text}
-        </div>
-      )}
-    </li>
+          >
+            {text}
+          </div>
+        )}
+      </li>
+    </Link>
   );
 }
