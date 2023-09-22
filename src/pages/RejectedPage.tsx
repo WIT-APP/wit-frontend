@@ -1,9 +1,8 @@
-import React from "react";
+import { RejectedTable } from "@/components/tables/RejectedTable";
 
 export default function RejectedPage() {
   return (
     <div>
-      <h1>Rejected</h1>
-    </div>
+<RejectedTable/>    </div>
   );
 }
