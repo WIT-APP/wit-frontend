@@ -55,7 +55,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
         additionalClass={!isValid ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : ''}
       />
       {!isValid && (
-        <p className="text-red-600 text-sm mt-1">{errorMessage}</p>
+        <p className="text-red-800 font-bold text-sm mt-1">{errorMessage}</p>
       )}
     </div>
   );
