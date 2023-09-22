@@ -1,14 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
-import ApplicantPage from "@/pages/ApplicantPage";
-import RejectedPage from "@/pages/RejectedPage";
-import InvitedPage from "@/pages/InvitedPage";
-import InterviewedPage from "@/pages/InterviewedPage";
-import EnrolledPage from "@/pages/EnrolledPage";
-import UnlistedPage from "@/pages/UnlistedPage";
+import TablePage from "@/pages/TablePage";
 import PreApprovedPage from "@/pages/PreApprovedPage";
-import CertifiedPage from "@/pages/CertifiedPage";
 import SettingsPage from "@/pages/SettingsPage";
 import HelpPage from "@/pages/HelpPage";
 import LoginPage from "@/pages/LoginPage";
@@ -20,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/:Aplicante",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/Preaprobado",
@@ -28,27 +22,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/:Rechazado",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/:Invitado",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/:Entrevistado",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/:Matriculado",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/:Certificado",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/:Baja",
-        element: <ApplicantPage />,
+        element: <TablePage />,
       },
       {
         path: "/Ajustes",
@@ -61,7 +55,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/:Login",
+    path: "/Login",
     element: <LoginPage />,
   },
   {

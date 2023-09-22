@@ -3,12 +3,14 @@ import { DataTable } from "@/components/data-table/data-table";
 import useFilterByEstado from "@/services/GetByEstado";
 import { useParams } from "react-router-dom";
 
-export default function ApplicantPage() {
+export default function TablePage() {
   const estado = "Aplicante";
   const param = useParams();
   console.log(param);
 
-  const { formattedApplicants, isError, isLoading } = useFilterByEstado(estado);
+  const { formattedApplicants, isError, isLoading } = useFilterByEstado(
+    param.Aplicante
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;

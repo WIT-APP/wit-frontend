@@ -37,12 +37,6 @@ export default function SideBarDashboard() {
           onClick={() => handleItemClick("Preaprobado")}
         />
         <SidebarItem
-          icon={<X size={20} />}
-          text="Rechazado"
-          active={activeItem === "Rechazado"}
-          onClick={() => handleItemClick("Rechazado")}
-        />
-        <SidebarItem
           icon={<MailCheck size={20} />}
           text="Invitado"
           active={activeItem === "Invitado"}
@@ -65,6 +59,12 @@ export default function SideBarDashboard() {
           text="Certificado"
           active={activeItem === "Certificado"}
           onClick={() => handleItemClick("Certificado")}
+        />
+        <SidebarItem
+          icon={<X size={20} />}
+          text="Rechazado"
+          active={activeItem === "Rechazado"}
+          onClick={() => handleItemClick("Rechazado")}
         />
         <SidebarItem
           icon={<DoorOpen size={20} />}
