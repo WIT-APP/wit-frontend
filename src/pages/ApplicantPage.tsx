@@ -1,9 +1,9 @@
-import AspirantsTable from "@/components/AspirantsTable";
+import ApplicantsTable from "@/components/tables/ApplicantTable";
 
 export default function ApplicantPage() {
   return (
     <div>
-      <AspirantsTable />
+      <ApplicantsTable/>
     </div>
   );
 }
