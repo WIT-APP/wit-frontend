@@ -34,13 +34,22 @@ import {
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { useRef } from "react";
-import { useDownloadExcel } from 'react-export-table-to-excel';
-
 
 interface DataTableProps<TData, TValue> {
+  [x: string]: any;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+interface SelectedRowData {
+  id: number;
+  nombre: string;
+  apellidos: string;
+  correo_electronico: string;
+  telefono: string;
+  programa_cursar: string;
+  fecha_de_applicacion: string;
+}
+
 
 export function DataTable<TData, TValue>({
   columns,
@@ -48,10 +57,6 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const header = ["Nombre", "Apellidos", "Email", "Telefono", "Programa a Cursar", "Fecha de aplicación"];
   const [selectedRows, setSelectedRows] = React.useState<TData[]>([]);
-  const tableRef = useRef(null); // Referencia a la tabla
-
-  
-
 
 
   
@@ -73,14 +78,7 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: (selectedRowIds) => {
-      // Use the selectedRowIds to update the selectedRows state
-      const selectedData = data.filter((row) => selectedRowIds[row.id]);
-      setSelectedRows(selectedData);
-      
-      // Update the rowSelection state as well
-      setRowSelection(selectedRowIds);
-    },
+    onRowSelectionChange:setRowSelection,
     state: {
       sorting,
       columnFilters,
@@ -89,15 +87,55 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Tabla de usuarios',
-    sheet: 'Usuarios'
-});
+  function handleDownloadExcel() {
+    console.log(selectedRows);
+    console.log(rowSelection);
+    const selectedRowIds = Object.keys(rowSelection)
+    .filter((index) => rowSelection[index])
+    .map((index) => data[parseInt(index)].id);
+    console.log(selectedRowIds);
+    
+
+
+    const selectedRowsToExport = data.filter((row) => selectedRowIds.includes(row.id));
+
+
+    const rowsForExcel = selectedRowsToExport.map((row) => {
+      return {
+        Nombre: row.nombre || "",
+        Apellidos: row.apellidos || "",
+        Email: row.correo_electronico || "",
+        Telefono: row.telefono || "",
+        "Programa a Cursar": row.programa_cursar || "",
+        "Fecha de aplicación": row.fecha_de_applicacion || "",
+      };
+    });
+    
+    console.log(rowsForExcel);
+  
+
+
+
+   
+    
+  
+    
+
+    
+
+    downloadExcel({
+      fileName: "Tabla de usuarios",
+      sheet: "Usuarios",
+      tablePayload: {
+        header,
+        body: rowsForExcel, // Utiliza las filas seleccionadas
+      },
+    });
+  }
 
   return (
     <div>
-      <button  onClick={onDownload}>Descargar Excel</button>
+      <button onClick={handleDownloadExcel}>Descargar Excel</button>
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -141,7 +179,7 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
       </div>
       <div className="rounded-md border">
-        <Table ref={tableRef}>
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

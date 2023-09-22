@@ -148,6 +148,15 @@ export const columns: ColumnDef<Applicant>[] = [
       <div className="ml-4">{row.getValue("programa_cursar")}</div>
     ),
   },
+  // {
+  //   accessorKey: "fecha_de_applicacion",
+  //   header: () => <div className="text-right">Fecha de aplicación</div>,
+  //   cell: ({ row }) => (
+  //     <div className="text-right">
+  //       <span>{row.getValue("fecha_de_applicacion")}</span>
+  //     </div>
+  //   ),
+  // },
   {
     accessorKey: "fecha_de_applicacion",
     header: ({ column }) => {
@@ -172,6 +181,7 @@ export const columns: ColumnDef<Applicant>[] = [
       </div>
     ),
   },
+
   {
     id: "actions",
     cell: ({ row }) => {
