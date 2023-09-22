@@ -1,7 +1,9 @@
+import AspirantsTable from "@/components/AspirantsTable";
+
 export default function ApplicantPage() {
   return (
     <div>
-      <h1>Applicant</h1>
+      <AspirantsTable />
     </div>
   );
 }
