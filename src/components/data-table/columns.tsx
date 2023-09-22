@@ -23,6 +23,7 @@ export type Applicant = {
   correo_electronico: string;
   telefono: string;
   programa_cursar: string;
+  estado: string;
   fecha_de_applicacion: string;
 };
 
@@ -146,6 +147,23 @@ export const columns: ColumnDef<Applicant>[] = [
     },
     cell: ({ row }) => (
       <div className="ml-4">{row.getValue("programa_cursar")}</div>
+    ),
+  },
+  {
+    accessorKey: "estado",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Estado
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="ml-4">{row.getValue("estado")}</div>
     ),
   },
   // {
