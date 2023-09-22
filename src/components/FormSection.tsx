@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import InputText from './ui/form/InputText'
-// import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
+import {InputText} from './ui/form/InputText'
 import InputEmail from './ui/form/InputEmail';
 import {InputSelect} from './ui/form/InputSelect';
 import { InputCheckbox } from './ui/form/InputCheckbox';
@@ -20,10 +19,12 @@ export const FormSection = (question : PersonalInfoProps) => {
 
     const handleSelect = () => {};
     const handleCheckbox = () => {}; 
+    const handleRadiobox = () => {}
+    const handleText = () => {}
 
     return (
         <>
-        <div className='w-100 rounded p-8 text-sm m-0'>
+        <form className='w-100 rounded p-8 text-sm m-0'>
           {question.data?.map((q) => {
             if (q.type === 'text') {
               return (
@@ -34,6 +35,8 @@ export const FormSection = (question : PersonalInfoProps) => {
                   expandText={q.expandText}
                   children={q.text}
                   placeholder={q.placeholder}
+                  required={q.obligatory}
+                  onChange={handleText}
                 />
               );
             } else if (q.type === 'email') {
@@ -41,8 +44,10 @@ export const FormSection = (question : PersonalInfoProps) => {
                 <InputEmail
                   key={q.id}
                   placeholder={q.placeholder}
-                  children={q.text}
-                />
+                  children={q.text} 
+                  id={q.id_question} 
+                  type={q.type} 
+                  expandText={q.expandText}                />
               );
             } else if (q.type === 'select') {
               return (
@@ -96,28 +101,18 @@ export const FormSection = (question : PersonalInfoProps) => {
             } else if (q.type === 'radio') {
               return (
                 <InputRadioBox 
-                key={q.id}
-                label={q.text} 
-                options={q.options} 
-                selectedValue={''} 
-                onChange={function (selectedValue: string): void {
-                  throw new Error('Function not implemented.');
-                } } 
-                expandText={q.expandText}/>
+                  key={q.id}
+                  label={q.text}
+                  options={q.options}
+                  selectedValue={''}
+                  expandText={q.expandText} 
+                  onChange={handleRadiobox}               
+                />
               );
             }else if (q.type === 'document') {
               return (
                 <DocumentoIdentidad
-                  key={q.id}
-                  onSelectedOptionChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } } 
-                  onTipoDocumentoChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } } 
-                  onPermisoValueChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
-                  } }   
+                  key={q.id}  
                 />
               );
             }
@@ -125,7 +120,7 @@ export const FormSection = (question : PersonalInfoProps) => {
             return null; 
           })}
           
-        </div>
+        </form>
         
         </>
       );

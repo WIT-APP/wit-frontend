@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useState } from "react";
 import {InputSelect} from "./InputSelect";
-import InputText from "./InputText";
+import {InputText} from "./InputText";
+import { InputRadioBox } from "./InputRadioBox";
 
 interface DocumentoIdentidadProps {
   onSelectedOptionChange: (value: string) => void;
@@ -9,72 +10,46 @@ interface DocumentoIdentidadProps {
   onPermisoValueChange: (value: string) => void;
 }
 
-export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
-  onSelectedOptionChange,
-  onTipoDocumentoChange,
-  onPermisoValueChange,
-}) => {
+export const DocumentoIdentidad = () => {
   const [selectedOption, setSelectedOption] = useState("");
-  const [tipoDocumento, setTipoDocumento] = useState("");
   const [permisoValue, setPermisoValue] = useState("");
 
   const radioOptions = [
-    { id: "DNI", label: "DNI", value: "DNI" },
-    { id: "NIE", label: "NIE", value: "NIE" },
-    { id: "Otro", label: "Otro", value: "Otro" },
+    "DNI" ,
+    "NIE",
+    "Otro",
   ];
 
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
-    onSelectedOptionChange(event.target.value);
+  const handleRadioChange = (selectedValue: string) => {
+    setSelectedOption(selectedValue);
+    console.log(selectedOption)
   };
 
-  const handlePermisoChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setPermisoValue(event.target.value);
-    onPermisoValueChange(event.target.value);
+  const handlePermisoChange = (selectedValue: string) => {
+    setPermisoValue(selectedValue);
+    console.log(permisoValue)
   };
 
-  const handleTipoDocumento = (event: ChangeEvent<HTMLInputElement>) => {
-    setTipoDocumento(event.target.value);
-    onTipoDocumentoChange(event.target.value);
-  };
-
-  return (
-    <div className="mt-2 " data-testid="documento-identidad">
-      <label
-        htmlFor="identidad"
-        className="block font-medium text-white mb-2"
-      >
-        Documento de Identidad
-      </label>
+   return (
+    <div className="mt-5 " data-testid="documento-identidad">
       <div className="flex">
-        {radioOptions.map((option) => (
-          <div key={option.id} className="mr-4">
-            <label htmlFor={option.id} className="flex items-center text-white">
-              <input
-                type="radio"
-                id={option.id}
-                name="identidad"
-                value={option.value}
-                checked={selectedOption === option.value}
-                onChange={handleRadioChange}
-                className="form-radio mr-2 mb-2"
-              />
-              {option.label}
-            </label>
-          </div>
-        ))}
+        <InputRadioBox 
+            label={"Documento de Identidad"} 
+            options={radioOptions} 
+            selectedValue={selectedOption} 
+            onChange={handleRadioChange} 
+            expandText={""}
+        />          
       </div>
       {selectedOption === "Otro" && (
-        <div className="mt-4">
+        <div className="mb-4">
           <InputText
             type="text"
             id="tipo"
             placeholder="Escribe tu tipo de documento"
-            value={tipoDocumento}
-            onChange={handleTipoDocumento} 
             children={'Si dispones de otro documento de identidad, por favor indícanos qué tipo de documento de identidad'} 
-            expandText={""}          />
+            expandText={""}       
+          />
         </div>
       )}
       {(selectedOption === "NIE" || selectedOption === "Otro") && (
@@ -88,8 +63,8 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
               "No dispongo de permiso (No es un problema para tener acceso al curso)",
               "Otro",
             ]}
-            onChange={handlePermisoChange} 
-            value={""}    
+            value={permisoValue} 
+            onChange={handlePermisoChange }  
           />
         </div>
       )}
