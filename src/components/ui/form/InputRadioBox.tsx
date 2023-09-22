@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface RadioBoxGroupProps {
   label: string;
@@ -11,16 +11,19 @@ interface RadioBoxGroupProps {
 export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
   options,
   selectedValue,
-  onChange,
   expandText,
   label,
+  onChange,
 }) => {
-  const handleRadioChange = (value: string) => {
-    onChange(value);
+  const [localSelectedValue, setLocalSelectedValue] = useState(selectedValue);
+
+  const handleRadioChange = (option: string) => {
+    setLocalSelectedValue(option);
+    onChange(option);
   };
 
   return (
-    <div className="mt-2">
+    <div className="mt-5">
       <label className="block font-medium text-white mb-2">
         {label}
         <br />
@@ -32,11 +35,11 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
         <div key={option} className="flex items-center text-white mb-2 mr-2">
           <input
             type="radio"
-            id={option} // Usa un id único para cada botón de radio
+            id={option}
             value={option}
-            checked={selectedValue === option}
+            checked={localSelectedValue === option}
             onChange={() => handleRadioChange(option)}
-            className="mr-2 "
+            className="mr-2"
           />
           <label htmlFor={option}>{option}</label>
         </div>

@@ -31,7 +31,7 @@ const InputTextarea = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto rounded-md"
+          className="mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto rounded-md focus:ring-yellow2 focus:border-yellow2"
         ></textarea>
       </div>
   );

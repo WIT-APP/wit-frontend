@@ -52,7 +52,6 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
         type={type}
         id={id}
         value={value}
-        onChange={handleInputChange}
         placeholder={placeholder}
         children={children}
         expandText={expandText}

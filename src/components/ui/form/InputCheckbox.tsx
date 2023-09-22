@@ -10,7 +10,6 @@ interface CheckboxGroupProps {
 
 export const InputCheckbox = ({
   options,
-  onChange,
   expandText,
   label,
 }: CheckboxGroupProps) => {
@@ -26,7 +25,6 @@ export const InputCheckbox = ({
 
     console.log('updatedValues:', updatedValues);
 
-    onChange(updatedValues);
   };
 
 

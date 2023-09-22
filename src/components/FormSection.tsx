@@ -19,10 +19,12 @@ export const FormSection = (question : PersonalInfoProps) => {
 
     const handleSelect = () => {};
     const handleCheckbox = () => {}; 
+    const handleRadiobox = () => {}
+    const handleText = () => {}
 
     return (
         <>
-        <div className='w-100 rounded p-8 text-sm m-0'>
+        <form className='w-100 rounded p-8 text-sm m-0'>
           {question.data?.map((q) => {
             if (q.type === 'text') {
               return (
@@ -34,6 +36,7 @@ export const FormSection = (question : PersonalInfoProps) => {
                   children={q.text}
                   placeholder={q.placeholder}
                   required={q.obligatory}
+                  onChange={handleText}
                 />
               );
             } else if (q.type === 'email') {
@@ -98,14 +101,13 @@ export const FormSection = (question : PersonalInfoProps) => {
             } else if (q.type === 'radio') {
               return (
                 <InputRadioBox 
-                key={q.id}
-                label={q.text} 
-                options={q.options} 
-                selectedValue={''} 
-                onChange={function (selectedValue: string): void {
-                  throw new Error('Function not implemented.');
-                } } 
-                expandText={q.expandText}/>
+                  key={q.id}
+                  label={q.text}
+                  options={q.options}
+                  selectedValue={''}
+                  expandText={q.expandText} 
+                  onChange={handleRadiobox}               
+                />
               );
             }else if (q.type === 'document') {
               return (
@@ -118,7 +120,7 @@ export const FormSection = (question : PersonalInfoProps) => {
             return null; 
           })}
           
-        </div>
+        </form>
         
         </>
       );

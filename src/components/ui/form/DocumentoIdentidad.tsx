@@ -12,7 +12,6 @@ interface DocumentoIdentidadProps {
 
 export const DocumentoIdentidad = () => {
   const [selectedOption, setSelectedOption] = useState("");
-  const [tipoDocumento, setTipoDocumento] = useState("");
   const [permisoValue, setPermisoValue] = useState("");
 
   const radioOptions = [

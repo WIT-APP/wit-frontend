@@ -30,6 +30,7 @@ export const InputText = ({
     if (onChange) {
       onChange(newValue); // Call the onChange callback with the new value
     }
+    console.log(newValue)
   };
   return (
     <div className="mt-2">
@@ -46,7 +47,7 @@ export const InputText = ({
           onChange={handleInputChange}
           placeholder={placeholder}
           required={required}
-          className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-blue-500 focus:border-blue-500 px-3 py-2 rounded-md overflow-x-auto  p-2.5 ${additionalClass} placeholder-gray-400`}
+          className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 ${additionalClass} placeholder-gray-400`}
         />
       </label>
     </div>

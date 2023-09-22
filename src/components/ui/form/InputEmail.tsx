@@ -22,7 +22,6 @@ const InputEmail = (
     value,
     expandText,
     additionalClass,
-    onChange,
   }: inputEmailProps
 ) => {
   additionalClass = 'pl-10'
@@ -37,17 +36,10 @@ const InputEmail = (
               <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
             </svg>
           </div>
-          {/* <input 
-          type="email" 
-          id="email-address-icon" 
-          className=" text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" 
-          placeholder={'ejemplo@mail.com'}
-          /> */}
           <InputText 
           type={type}
           id={id}
           value={value}
-          onChange={onChange}
           placeholder={placeholder} 
           children={children} 
           expandText={expandText} 
