@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useState } from "react";
 import {InputSelect} from "./InputSelect";
-import InputText from "./InputText";
+import {InputText} from "./InputText";
 
 interface DocumentoIdentidadProps {
   onSelectedOptionChange: (value: string) => void;
@@ -58,7 +58,7 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
                 value={option.value}
                 checked={selectedOption === option.value}
                 onChange={handleRadioChange}
-                className="form-radio mr-2 mb-2"
+                className='w-4 h-4 focus:ring-inset'
               />
               {option.label}
             </label>

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import InputText from './ui/form/InputText'
-// import { useCategoryQuestion } from '../../services/CategoryQuestionsForm';
+import {InputText} from './ui/form/InputText'
 import InputEmail from './ui/form/InputEmail';
 import {InputSelect} from './ui/form/InputSelect';
 import { InputCheckbox } from './ui/form/InputCheckbox';
@@ -34,6 +33,7 @@ export const FormSection = (question : PersonalInfoProps) => {
                   expandText={q.expandText}
                   children={q.text}
                   placeholder={q.placeholder}
+                  required={q.obligatory}
                 />
               );
             } else if (q.type === 'email') {
@@ -41,8 +41,10 @@ export const FormSection = (question : PersonalInfoProps) => {
                 <InputEmail
                   key={q.id}
                   placeholder={q.placeholder}
-                  children={q.text}
-                />
+                  children={q.text} 
+                  id={q.id_question} 
+                  type={q.type} 
+                  expandText={q.expandText}                />
               );
             } else if (q.type === 'select') {
               return (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -125,6 +126,10 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require('@tailwindcss/forms'),
+    require('@tailwindcss/forms')({
+      // strategy: 'base', // only generate global styles
+      strategy: 'class', // only generate classes
+    }),
+
   ],
 }
