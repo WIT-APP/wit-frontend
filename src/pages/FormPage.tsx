@@ -13,15 +13,19 @@ export const FormPage = () => {
 
   /*VALIDACION A COMPLETAR - INICIO*/
   const [formData, setFormData] = useState({
-    nombre: "", 
-    email: "",
-    telefono:"",
+    nombre_apellidos: "",
+    correo_electronico: "",
+    telefono: "",
+    fecha_aplicacion: "",
+    programa_cursar:"",
   });
 
   const [formErrors, setFormErrors] = useState({
-    nombre: "El nombre ingresaso no es valido",
-    email: "El email ingresaso no es valido",
-    telefono:"El telefono ingresaso no es valido",
+    nombre_apellidos: "El dato ingresado no es valido",
+    correo_electronico: "El dato ingresado no es valido",
+    telefono: "El dato ingresado no es valido",
+    fecha_aplicacion: "El dato ingresado no es valido",
+    programa_cursar:"El dato ingresado no es valido",
   });
   /*VALIDACION A COMPLETAR - FIN*/
 
