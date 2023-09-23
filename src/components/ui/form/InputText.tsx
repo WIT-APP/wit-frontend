@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, ChangeEventHandler } from "react";
+import { ChangeEvent } from "react";
 
 interface inputTextProps {
   id: string;
@@ -27,7 +26,7 @@ export const InputText = ({
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    onInputChange?.(newValue); // Call the onChange callback with the new value
+    onInputChange?.(newValue);
     
     console.log(newValue)
   };

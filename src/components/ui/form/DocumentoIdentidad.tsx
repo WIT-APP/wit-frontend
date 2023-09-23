@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import {InputSelect} from "./InputSelect";
 import {InputText} from "./InputText";
 import { InputRadioBox } from "./InputRadioBox";
 
-interface DocumentoIdentidadProps {
-  onSelectedOptionChange: (value: string) => void;
-  onTipoDocumentoChange: (value: string) => void;
-  onPermisoValueChange: (value: string) => void;
-}
 
 export const DocumentoIdentidad = () => {
   const [selectedOption, setSelectedOption] = useState("");

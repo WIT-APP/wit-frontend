@@ -1,4 +1,3 @@
-// InputPhoneNumber.tsx
 import React, { useState } from "react";
 import { InputText } from "./InputText";
 

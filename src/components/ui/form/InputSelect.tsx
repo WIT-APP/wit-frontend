@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface InputSelectProps {
   id: string;
@@ -18,7 +18,6 @@ export const InputSelect = ({
 
   const [selectedValue, setSelectedValue] = useState(value);
 
-  // Update the selectedValue state when the value prop changes
   useEffect(() => {
     setSelectedValue(value);
   }, [value]);
