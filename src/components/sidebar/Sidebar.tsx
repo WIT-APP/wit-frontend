@@ -41,7 +41,6 @@ export default function Sidebar({ children }) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         <div className="border-t flex p-3">
-          {/* <img src="" alt="" className="w-10 h-10 rounded-md"/> */}
           <div
             className={`
             flex justify-bettween items-center overflow-hidden transition-all ${
@@ -64,7 +63,7 @@ export function SidebarItem({ icon, text, active, alert, onClick }) {
 
   const handleClick = () => {
     if (onClick) {
-      onClick(); // Call the onClick function if it's provided
+      onClick();
     }
   };
 

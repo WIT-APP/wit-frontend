@@ -17,7 +17,6 @@ export default function SideBarDashboard() {
   const [activeItem, setActiveItem] = useState("Aplicante");
 
   const handleItemClick = (text) => {
-    // Update the activeItem state when a sidebar item is clicked
     setActiveItem(text);
   };
 
