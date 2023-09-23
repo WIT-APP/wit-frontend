@@ -33,8 +33,40 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
 
+type TData = {
+  id: number;
+  nombre: string;
+  apellidos: string;
+  correo_electronico: string;
+  telefono: string;
+  programa_cursar: string;
+  fecha_de_applicacion: string;
+  genero: string;
+  fecha_de_nacimiento: string;
+  pais_de_nacimiento: string;
+  tipo_documento_identidad: string;
+  documento_de_identidad: string;
+  direccion: string;
+  codigo_postal: string;
+  ciudad: string;
+  provincia: string;
+  pais_de_residencia: string;
+  permiso: string;
+  colectivo: string[];
+  educacion: string;
+  estudio_mas_altos: string;
+  situacion_profesional: string;
+  intereses_actuales: string;
+  dedicacion_semanal: string;
+  acceso_internet_dispositivos: string;
+  formacion_online: string;
+  razones_unirse: string;
+  encontrar_programa: string;
+  mas_informacion: string;
+};
+
+
 interface DataTableProps<TData, TValue> {
-  // [x: string]: any;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
@@ -114,7 +146,7 @@ export function DataTable<TData, TValue>({
   function handleDownloadExcel() {
     // console.log(rowSelection);
     const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => rowSelection[index])
+      .filter((index) => (rowSelection as Record<string, string>)[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
 
