@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar, { SidebarItem } from "./Sidebar";
+import Sidebar from "./Sidebar";
 import {
   Users,
   UserCheck,
@@ -12,12 +12,12 @@ import {
   LifeBuoy,
   ClipboardSignature,
 } from "lucide-react";
+import { SidebarItem } from "./SidebarItem";
 
 export default function SideBarDashboard() {
-  const [activeItem, setActiveItem] = useState("Aplicante");
+  const [activeItem, setActiveItem] = useState("");
 
-  const handleItemClick = (text) => {
-    // Update the activeItem state when a sidebar item is clicked
+  const handleItemClick = (text: string) => {
     setActiveItem(text);
   };
 
@@ -35,12 +35,6 @@ export default function SideBarDashboard() {
           text="Preaprobado"
           active={activeItem === "Preaprobado"}
           onClick={() => handleItemClick("Preaprobado")}
-        />
-        <SidebarItem
-          icon={<X size={20} />}
-          text="Rechazado"
-          active={activeItem === "Rechazado"}
-          onClick={() => handleItemClick("Rechazado")}
         />
         <SidebarItem
           icon={<MailCheck size={20} />}
@@ -65,6 +59,12 @@ export default function SideBarDashboard() {
           text="Certificado"
           active={activeItem === "Certificado"}
           onClick={() => handleItemClick("Certificado")}
+        />
+        <SidebarItem
+          icon={<X size={20} />}
+          text="Rechazado"
+          active={activeItem === "Rechazado"}
+          onClick={() => handleItemClick("Rechazado")}
         />
         <SidebarItem
           icon={<DoorOpen size={20} />}

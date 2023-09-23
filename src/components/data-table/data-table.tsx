@@ -32,11 +32,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
+import { Applicant } from "../../interfaces/applicant.interface";
+
 
 interface DataTableProps<TData, TValue> {
-  // [x: string]: any;
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data: Applicant[];
 }
 interface SelectedRowData {
   id: number;
@@ -48,7 +49,7 @@ interface SelectedRowData {
   fecha_de_applicacion: string;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends Applicant, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -114,7 +115,7 @@ export function DataTable<TData, TValue>({
   function handleDownloadExcel() {
     // console.log(rowSelection);
     const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => rowSelection[index])
+      .filter((index) => (rowSelection as Record<string, string>)[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
 
@@ -144,14 +145,14 @@ export function DataTable<TData, TValue>({
         Permiso: row.permiso || "",
         Colectivo: row.colectivo.map((item) => item).join(", ") || [],
         Educacion: row.educacion || "",
-        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
         "Intereses actuales": row.intereses_actuales || "",
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
         "Formación online": row.formacion_online || "",
-        "Razones para unirse": row.razones_unirse || "",
+        "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
       };
@@ -169,17 +170,12 @@ export function DataTable<TData, TValue>({
     });
   }
 
-
   function handleDownloadExcelAll() {
     // console.log(rowSelection);
     const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
       .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
-
-    const selectedRowsToExport = data.filter((row) =>
-      selectedRowIds.includes(row.id)
-    );
 
     const rowsForExcel = data.map((row) => {
       return {
@@ -203,14 +199,14 @@ export function DataTable<TData, TValue>({
         Permiso: row.permiso || "",
         Colectivo: row.colectivo.map((item) => item).join(", ") || [],
         Educacion: row.educacion || "",
-        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
         "Intereses actuales": row.intereses_actuales || "",
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
         "Formación online": row.formacion_online || "",
-        "Razones para unirse": row.razones_unirse || "",
+        "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
       };
@@ -230,13 +226,11 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-    
-
       <div className="este flex items-center py-4">
-      <div className="flex gap-8 justify-between">
-        <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
-        <button onClick={handleDownloadExcelAll}>Descargar todos</button>
-      </div>
+        <div className="flex gap-8 justify-between">
+          <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
+          <button onClick={handleDownloadExcelAll}>Descargar todos</button>
+        </div>
         <Input
           placeholder="Filter emails..."
           value={

@@ -1,11 +1,20 @@
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { createContext, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { ReactNode, createContext, useState } from "react";
+
 import witLogo from "../../assets/witLogo.png";
+interface SidebarContextType {
+  expanded: boolean;
+}
 
-const SidebarContext = createContext();
+interface SidebarProps {
+  children: ReactNode;
+}
 
-export default function Sidebar({ children }) {
+export const SidebarContext = createContext<SidebarContextType>({
+  expanded: false,
+});
+
+export default function Sidebar({ children }: SidebarProps) {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -41,7 +50,6 @@ export default function Sidebar({ children }) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         <div className="border-t flex p-3">
-          {/* <img src="" alt="" className="w-10 h-10 rounded-md"/> */}
           <div
             className={`
             flex justify-bettween items-center overflow-hidden transition-all ${
@@ -57,57 +65,5 @@ export default function Sidebar({ children }) {
         </div>
       </nav>
     </aside>
-  );
-}
-export function SidebarItem({ icon, text, active, alert, onClick }) {
-  const { expanded } = useContext(SidebarContext);
-
-  const handleClick = () => {
-    if (onClick) {
-      onClick(); // Call the onClick function if it's provided
-    }
-  };
-
-  return (
-    <Link to={`/${text}`}>
-      <li
-        className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-color group
-        ${
-          active
-            ? "bg-lightgreen2 text-yellow2"
-            : "hover:bg-yellow2 text-white2"
-        } 
-        ${expanded ? "" : "max-sm:hidden sm:top-2"}`}
-        onClick={handleClick}
-      >
-        {icon}
-        <span
-          className={`overflow-hidden transition-all ${
-            expanded ? "w-52 ml-3" : "w-0"
-          }`}
-        >
-          {text}
-        </span>
-        {alert && (
-          <div
-            className={`absolute right-2 w-2 h-2 rounded bg-yellow2 ${
-              expanded ? "" : "hidden sm:top-2 sm:block"
-            }`}
-          />
-        )}
-        {!expanded && (
-          <div
-            className={`hidden sm:block 
-      absolute left-full rounded-md px2 py-1 ml-6
-      bg-lightgreen2 text-green2 text-sm
-      invisible opacity-20 -translate-x-3 transition-all
-      group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
-    `}
-          >
-            {text}
-          </div>
-        )}
-      </li>
-    </Link>
   );
 }
