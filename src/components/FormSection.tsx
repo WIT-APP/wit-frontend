@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {InputText} from './ui/form/InputText'
 import InputEmail from './ui/form/InputEmail';
 import {InputSelect} from './ui/form/InputSelect';
@@ -20,8 +19,7 @@ export const FormSection = (question : PersonalInfoProps) => {
     const handleSelect = () => {};
     const handleCheckbox = () => {}; 
     const handleRadiobox = () => {}
-    const handleText = () => {}
-
+    
     return (
         <>
         <form className='w-100 rounded p-8 text-sm m-0'>

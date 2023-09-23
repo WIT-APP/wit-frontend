@@ -4,7 +4,6 @@ import { FormSection } from "../components/FormSection";
 import witLogo from "../assets/witLogo.png";
 import { useCategoryQuestion } from "../services/CategoryQuestionsForm";
 
-//llamada a la category, personal info recive el metodo que modifica category(state de categorías, custom hook) y el array de datos
 const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
 export const FormPage = () => {
