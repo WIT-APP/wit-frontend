@@ -5,11 +5,9 @@ import { useParams } from "react-router-dom";
 
 export default function TablePage() {
   const param = useParams();
-  console.log(param);
+  const estado = param?.Aplicante || "";
 
-  const { formattedApplicants, isError, isLoading } = useFilterByEstado(
-    param.Aplicante
-  );
+  const { formattedApplicants, isError, isLoading } = useFilterByEstado(estado);
 
   if (isLoading) {
     return <div>Loading...</div>;

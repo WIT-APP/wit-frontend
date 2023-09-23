@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar, { SidebarItem } from "./Sidebar";
+import Sidebar from "./Sidebar";
 import {
   Users,
   UserCheck,
@@ -12,11 +12,12 @@ import {
   LifeBuoy,
   ClipboardSignature,
 } from "lucide-react";
+import { SidebarItem } from "./SidebarItem";
 
 export default function SideBarDashboard() {
-  const [activeItem, setActiveItem] = useState("Aplicante");
+  const [activeItem, setActiveItem] = useState("");
 
-  const handleItemClick = (text) => {
+  const handleItemClick = (text: string) => {
     setActiveItem(text);
   };
 
