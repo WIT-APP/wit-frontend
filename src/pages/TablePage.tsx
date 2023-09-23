@@ -4,7 +4,6 @@ import useFilterByEstado from "@/services/GetByEstado";
 import { useParams } from "react-router-dom";
 
 export default function TablePage() {
-  const estado = "Aplicante";
   const param = useParams();
   console.log(param);
 
