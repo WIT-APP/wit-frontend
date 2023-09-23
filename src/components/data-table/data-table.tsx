@@ -34,6 +34,7 @@ import {
 import { downloadExcel } from "react-export-table-to-excel";
 import { Applicant } from "../../interfaces/applicant.interface";
 
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: Applicant[];
@@ -48,7 +49,7 @@ interface SelectedRowData {
   fecha_de_applicacion: string;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends Applicant, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -175,10 +176,6 @@ export function DataTable<TData, TValue>({
       .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
-
-    // const selectedRowsToExport = data.filter((row) =>
-    //   selectedRowIds.includes(row.id)
-    // );
 
     const rowsForExcel = data.map((row) => {
       return {
