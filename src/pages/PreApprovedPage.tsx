@@ -10,7 +10,7 @@ export default function PreApproved() {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (isError || !applicant) {
     return <div>Error fetching data.</div>;
   }
 

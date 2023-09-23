@@ -32,43 +32,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
-
-type TData = {
-  id: number;
-  nombre: string;
-  apellidos: string;
-  correo_electronico: string;
-  telefono: string;
-  programa_cursar: string;
-  fecha_de_applicacion: string;
-  genero: string;
-  fecha_de_nacimiento: string;
-  pais_de_nacimiento: string;
-  tipo_documento_identidad: string;
-  documento_de_identidad: string;
-  direccion: string;
-  codigo_postal: string;
-  ciudad: string;
-  provincia: string;
-  pais_de_residencia: string;
-  permiso: string;
-  colectivo: string[];
-  educacion: string;
-  estudio_mas_altos: string;
-  situacion_profesional: string;
-  intereses_actuales: string;
-  dedicacion_semanal: string;
-  acceso_internet_dispositivos: string;
-  formacion_online: string;
-  razones_unirse: string;
-  encontrar_programa: string;
-  mas_informacion: string;
-};
-
+import { Applicant } from "../../interfaces/applicant.interface";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data: Applicant[];
 }
 interface SelectedRowData {
   id: number;
@@ -176,14 +144,14 @@ export function DataTable<TData, TValue>({
         Permiso: row.permiso || "",
         Colectivo: row.colectivo.map((item) => item).join(", ") || [],
         Educacion: row.educacion || "",
-        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
         "Intereses actuales": row.intereses_actuales || "",
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
         "Formación online": row.formacion_online || "",
-        "Razones para unirse": row.razones_unirse || "",
+        "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
       };
@@ -201,7 +169,6 @@ export function DataTable<TData, TValue>({
     });
   }
 
-
   function handleDownloadExcelAll() {
     // console.log(rowSelection);
     const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
@@ -209,9 +176,9 @@ export function DataTable<TData, TValue>({
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
 
-    const selectedRowsToExport = data.filter((row) =>
-      selectedRowIds.includes(row.id)
-    );
+    // const selectedRowsToExport = data.filter((row) =>
+    //   selectedRowIds.includes(row.id)
+    // );
 
     const rowsForExcel = data.map((row) => {
       return {
@@ -235,14 +202,14 @@ export function DataTable<TData, TValue>({
         Permiso: row.permiso || "",
         Colectivo: row.colectivo.map((item) => item).join(", ") || [],
         Educacion: row.educacion || "",
-        "Estudios mas altos": row.estudio_mas_altos || "",
+        "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
         "Intereses actuales": row.intereses_actuales || "",
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
         "Formación online": row.formacion_online || "",
-        "Razones para unirse": row.razones_unirse || "",
+        "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
       };
@@ -262,13 +229,11 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-    
-
       <div className="este flex items-center py-4">
-      <div className="flex gap-8 justify-between">
-        <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
-        <button onClick={handleDownloadExcelAll}>Descargar todos</button>
-      </div>
+        <div className="flex gap-8 justify-between">
+          <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
+          <button onClick={handleDownloadExcelAll}>Descargar todos</button>
+        </div>
         <Input
           placeholder="Filter emails..."
           value={
