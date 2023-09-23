@@ -1,4 +1,4 @@
-//carga los datos de react query para pasarselos al component form
+import classnames from 'classnames';
 import { useState } from "react";
 import { FormSection } from "../components/FormSection";
 import witLogo from "../assets/witLogo.png";
@@ -24,7 +24,7 @@ export const FormPage = () => {
   };
 
   const onSubmit = () => {};
-
+ 
   return (
     <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <div className="w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base">
@@ -45,21 +45,27 @@ export const FormPage = () => {
           <button
             onClick={goToPreviousPage}
             disabled={currentPage === 0}
-            className="btn-form btn-form-green"
+            className={classnames('btn-form', 'btn-form-green', {
+              invisible: currentPage === 0,
+            })}
           >
             Previous Page
           </button>{" "}
           <button
             onClick={goToNextPage}
             disabled={isPreviousData || currentPage === pages.length - 1}
-            className="btn-form btn-form-green"
+            className={classnames('btn-form', 'btn-form-green', {
+              invisible: currentPage === pages.length - 1,
+            })}
           >
             Next Page
           </button>
           <button
-            className="btn-form btn-form-green"
             onClick={onSubmit}
             disabled={currentPage !== pages.length - 1}
+            className={classnames('btn-form', 'btn-form-green', {
+              invisible: currentPage !== pages.length - 1,
+            })}
           >
             Enviar
           </button>
