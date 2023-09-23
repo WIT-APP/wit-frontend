@@ -108,7 +108,7 @@ const InputEmail = (
         </div>
         <InputText
           type={type}
-          id={id}
+          id={'confirm_email'}
           value={value}
           placeholder={placeholder}
           children={'Confirma tu correo electronico'}
