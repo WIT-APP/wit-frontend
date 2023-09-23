@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// InputPhoneNumber.tsx
 import React, { useState } from "react";
-import {InputText} from "./InputText";
+import { InputText } from "./InputText";
 
 interface InputPhoneNumberProps {
   id: string;
@@ -9,7 +9,6 @@ interface InputPhoneNumberProps {
   children: React.ReactNode;
   value?: string;
   expandText: string;
-  required?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -21,33 +20,30 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
   value,
   expandText,
   onChange,
-  required
 }) => {
-    const [isValid, setIsValid] = useState(true); // Estado para rastrear la validez
-    const [errorMessage, setErrorMessage] = useState(""); // Mensaje de error
+  const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
+  const handleInputChange = (inputValue: string) => {
     const mobileNumberPattern = /^[0-9]{9}$/;
 
     if (mobileNumberPattern.test(inputValue)) {
-      setIsValid(true); // El valor es válido
-      setErrorMessage(""); // Borra el mensaje de error
+      setIsValid(true);
+      setErrorMessage("");
       onChange?.(inputValue);
     } else if (inputValue === "") {
-      setIsValid(true); // El valor está vacío (permitido)
-      setErrorMessage(""); // Borra el mensaje de error
+      setIsValid(true);
+      setErrorMessage("");
       onChange?.("");
     } else {
-      setIsValid(false); // El valor no cumple el patrón
+      setIsValid(false);
       setErrorMessage("Por favor, ingresa un número de teléfono válido.");
       return errorMessage;
     }
-    }
- 
+  };
 
   return (
-    <div className="mt-2">
+    <div className="mt-5">
       <InputText
         type={type}
         id={id}
@@ -55,11 +51,11 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
         placeholder={placeholder}
         children={children}
         expandText={expandText}
-        required={required}
-        onChange={handleInputChange}
+        onInputChange={handleInputChange} // Pass the callback function
+        additionalClass={!isValid ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : ''}
       />
       {!isValid && (
-        <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
+        <p className="text-red-800 font-bold text-sm mt-1">{errorMessage}</p>
       )}
     </div>
   );

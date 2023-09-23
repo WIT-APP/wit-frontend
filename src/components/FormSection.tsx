@@ -36,7 +36,6 @@ export const FormSection = (question : PersonalInfoProps) => {
                   children={q.text}
                   placeholder={q.placeholder}
                   required={q.obligatory}
-                  onChange={handleText}
                 />
               );
             } else if (q.type === 'email') {
