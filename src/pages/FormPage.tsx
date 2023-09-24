@@ -11,6 +11,21 @@ export interface FormValues {
   [key: string]: string ; 
 }
 
+const validate = (values) => {
+  const errors = {};
+
+  // Add your validation logic here for the fields in FormSection
+  if (!values.nombre) {
+    errors.nombre = 'Required';
+  }
+  if (!values.apellidos) {
+    errors.apellidos = 'Required';
+  }
+  // Add validations for other fields as needed
+
+  return errors;
+};
+
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -59,6 +74,7 @@ export const FormPage = () => {
       encontrar_programa:'',
       mas_informacion:'',
     },
+    validate,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -85,6 +101,7 @@ export const FormPage = () => {
           data={question} 
           values={formik.values}
           onChange={formik.handleChange}
+          validate={validate}
           />
         )}
         
@@ -102,7 +119,7 @@ export const FormPage = () => {
             onClick={goToNextPage}
             disabled={isPreviousData || currentPage === pages.length - 1}
             className={classnames('btn-form', 'btn-form-green', {
-              invisible: currentPage === pages.length - 1,
+            invisible: currentPage === pages.length - 1,
             })}
           >
             Next Page

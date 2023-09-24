@@ -8,10 +8,11 @@ import { FormValues } from "@/pages/FormPage";
 
 interface DocumentoIdentidadProps {
  
-  onChange: (value: string) => void; 
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value:string;
 }
 
-export const DocumentoIdentidad = ({ onChange }: DocumentoIdentidadProps) => {
+export const DocumentoIdentidad = ({ onChange,value }: DocumentoIdentidadProps) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [permisoValue, setPermisoValue] = useState("");
 
@@ -62,7 +63,7 @@ export const DocumentoIdentidad = ({ onChange }: DocumentoIdentidadProps) => {
           label={"Documento de Identidad"}
           options={radioOptions}
           selectedValue={selectedOption}
-          onChange={handleRadioChange}
+          onChange={formik.handleChange}
           expandText={""}
           id={'documento_de_identidad'}
         />
