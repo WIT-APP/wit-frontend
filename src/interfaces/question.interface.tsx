@@ -2,7 +2,7 @@ export interface Question {
     id: number;
     text: string;
     type: string;
-    options: [];
+    options: string[];
     category: string;
     placeholder: string;
     expandText: string;
