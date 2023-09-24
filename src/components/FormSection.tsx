@@ -9,6 +9,7 @@ import { InputRadioBox } from './ui/form/InputRadioBox';
 import { InputPhoneNumber } from './ui/form/InputPhoneNumber';
 import { FormValues } from '@/pages/FormPage';
 import { InputToggle } from './ui/form/InputToggle';
+//import { useState } from 'react';
 
 
 
@@ -16,13 +17,30 @@ interface PersonalInfoProps {
     data:Question[] | undefined;
     values: FormValues; 
     onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+    colectivo: string[]; // Receive colectivo as a prop
+    setColectivo: (colectivo: string[]) => void;
 
 }
 
 
 export const FormSection = (
-  { data, values, onChange }: PersonalInfoProps 
+  { data, 
+    //values,
+    colectivo, // Receive colectivo from props
+   // setColectivo, // Receive the setter function from props 
+    onChange }: PersonalInfoProps 
   ) => {
+    // const [selectedValues, setSelectedValues] = useState<string[]>([]);
+    
+    // const handleCheckboxChange = (option: string) => {
+    //   setSelectedValues((prevSelectedValues) => {
+    //     if (prevSelectedValues.includes(option)) {
+    //       return prevSelectedValues.filter((value) => value !== option);
+    //     } else {
+    //       return [...prevSelectedValues, option];
+    //     }
+    //   });
+    // };
 
     // const validateField = (fieldName, fieldValue) => {
     //   const errors = {};
@@ -87,7 +105,7 @@ export const FormSection = (
                   />
               );
             } else if (q.type === 'select') {
-              const questionValue = values[q.id_question]
+              //const questionValue = values[q.id_question]
               return (
                 <InputSelect
                   key={q.id}
@@ -95,7 +113,8 @@ export const FormSection = (
                   label={q.text}
                   options={q.options}
                   onChange={onChange} 
-                  value={questionValue}   
+                  value={''}
+                  //value={questionValue}   
                 />
               );
             } else if (q.type === 'date') {
@@ -119,26 +138,26 @@ export const FormSection = (
                   label={q.text}
                   options={q.options}
                   id={q.id_question}
-                  //selectedValues={questionValue}
-                  selectedValues={[]}
+                  selectedValues={colectivo} // Use the colectivo prop
+                  //onChange={(selectedValues) => setColectivo(selectedValues)} // Update colectivo in the parent component
                   onChange={onChange}
                   expandText={q.expandText}
                 />
               );
             }else if (q.type === 'textarea') {
-              const questionValue = values[q.id_question]
+              //const questionValue = values[q.id_question]
               return (
                 <InputTextarea
                   key={q.id}
                   children={q.text}
                   expandText={q.expandText} 
                   id={q.id_question} 
-                  value={questionValue}
+                 //value={questionValue}
                   onChange={onChange}
                 />
               );
             }else if (q.type === 'phone') {
-              const questionValue = values[q.id_question]
+              //const questionValue = values[q.id_question]
               return (
                 <InputPhoneNumber
                   key={q.id}
@@ -147,7 +166,7 @@ export const FormSection = (
                   id={q.id_question} 
                   type={q.type}
                   onChange={onChange}
-                  value={questionValue}              
+                  //value={questionValue}              
                   />
               );
             } else if (q.type === 'radio') {
@@ -165,16 +184,16 @@ export const FormSection = (
                 />
               );
             }else if (q.type === 'document') {
-              const questionValue = values[q.id_question]
+             // const questionValue = values[q.id_question]
               // Falta capturar respuesta
               return (
                 <DocumentoIdentidad
                   key={q.id}
                   onChange={onChange} 
-                  value={questionValue}              />
+                  value={'questionValue'}              />
               );
             }else if (q.type === 'toggle') {
-             const questionValue = values[q.id_question]
+             //const questionValue = values[q.id_question]
              // Falta capturar respuesta
               return (
                 <InputToggle
@@ -182,7 +201,7 @@ export const FormSection = (
                   onChange={onChange} 
                   id={q.id_question} 
                   children={q.text}
-                  value={questionValue} 
+                  //value={questionValue} 
                 />
               );
             }

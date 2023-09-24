@@ -3,12 +3,39 @@ import { useState } from "react";
 import { FormSection } from "../components/FormSection";
 import witLogo from "../assets/witLogo.png";
 import { useCategoryQuestion } from "../services/CategoryQuestionsForm";
-import { useFormik, Formik, Form, Field } from 'formik';
+import { useFormik, 
+  //Formik, Form, Field 
+} from 'formik';
 
 const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
 export interface FormValues {
-  [key: string]: string ; 
+  nombre: string,
+  apellidos:string,
+  correo_electronico:string,
+  telefono:number,
+  genero:string,
+  numero_documento_id:string,
+  documento_de_identidad:string,
+  tipo_documento_identidad:string,
+  permiso:string,
+  direccion:string,
+  ciudad:string,
+  provincia:string,
+  pais_de_residencia:string,
+  codigo_postal:number,
+  programa_cursar:string,
+  colectivo:string[],
+  educacion:string,
+  estudio_mas_alto:string,
+  situacion_profesional:string,
+  intereses_actuales:string,
+  dedicacion_semanal:number,
+  acceso_internet_dispositivos:string,
+  formacion_online:boolean,
+  razones_para_unir:string,
+  encontrar_programa:string,
+  mas_informacion:string, 
 }
 
 //const validate = (values) => {
@@ -48,8 +75,7 @@ export const FormPage = () => {
       nombre: '',
       apellidos:'',
       correo_electronico:'',
-      //numero
-      telefono:'',
+      telefono:0,
       genero:'',
       numero_documento_id:'',
       documento_de_identidad:'',
@@ -59,20 +85,16 @@ export const FormPage = () => {
       ciudad:'',
       provincia:'',
       pais_de_residencia:'',
-      //numero
-      codigo_postal:'',
+      codigo_postal:0,
       programa_cursar:'',
-      //empty array
-      colectivo:'',
+      colectivo:[''],
       educacion:'',
       estudio_mas_alto:'',
       situacion_profesional:'',
       intereses_actuales:'',
-      //integer >0
-      dedicacion_semanal:'',
+      dedicacion_semanal:0,
       acceso_internet_dispositivos:'',
-      //boolean
-      formacion_online:'',
+      formacion_online:false,
       razones_para_unir:'',
       encontrar_programa:'',
       mas_informacion:'',
@@ -84,7 +106,7 @@ export const FormPage = () => {
       alert(result)
     },
   });
-
+  const [colectivo, setColectivo] = useState<string[]>([]);
  
   return (
     <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
@@ -102,11 +124,14 @@ export const FormPage = () => {
         ) : isError ? (
           <div>Error: {error?.message}</div>
         ) : (
+        
           <FormSection 
           data={question} 
           values={formik.values}
           onChange={formik.handleChange}
           //validate={validate}
+          colectivo={colectivo}
+          setColectivo={setColectivo} // Pass the setter function
           />
         )}
         
