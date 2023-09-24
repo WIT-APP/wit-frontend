@@ -48,6 +48,7 @@ export const FormPage = () => {
             className={classnames('btn-form', 'btn-form-green', {
               invisible: currentPage === 0,
             })}
+            data-testid="previous-page-button"
           >
             Previous Page
           </button>{" "}
@@ -57,6 +58,7 @@ export const FormPage = () => {
             className={classnames('btn-form', 'btn-form-green', {
               invisible: currentPage === pages.length - 1,
             })}
+            data-testid="next-page-button" 
           >
             Next Page
           </button>

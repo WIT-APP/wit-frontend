@@ -1,16 +1,16 @@
-/* import { describe, expect, test } from "vitest";
-import { render,screen, waitFor } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+ import { describe, expect, test } from "vitest";
+/* import { render,screen, waitFor } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; */
 import { FormPage } from "../pages/FormPage";
 
-const queryClient = new QueryClient();
-
+/* const queryClient = new QueryClient();
+ */
 describe('Form should load correctly', () => {
     test('should load form component', () => {
         expect(<FormPage/>).toStrictEqual(<FormPage/>);
     });
 });
-
+/*
 describe('Form should load all questions from the queryclient', () => {
     test('Render question "Nombre"', async () => {
     // Render the component with the query provider
