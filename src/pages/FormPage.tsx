@@ -79,7 +79,6 @@ export const FormPage = () => {
     },
     // validate,
     onSubmit: values => {
-     
       const result  =JSON.stringify(values, null, 2);
       console.log(result)
       alert(result)

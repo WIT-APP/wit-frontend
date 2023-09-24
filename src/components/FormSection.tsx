@@ -24,34 +24,34 @@ export const FormSection = (
   { data, values, onChange }: PersonalInfoProps 
   ) => {
 
-    const validateField = (fieldName, fieldValue) => {
-      const errors = {};
+    // const validateField = (fieldName, fieldValue) => {
+    //   const errors = {};
   
-      if (fieldName === 'nombre' && !fieldValue) {
-        errors[fieldName] = 'Required';
-      }
+    //   if (fieldName === 'nombre' && !fieldValue) {
+    //     errors[fieldName] = 'Required';
+    //   }
       
-      if (fieldName === 'apellidos' && !fieldValue) {
-        errors[fieldName] = 'Required';
-      }
+    //   if (fieldName === 'apellidos' && !fieldValue) {
+    //     errors[fieldName] = 'Required';
+    //   }
   
-      // Add validations for other fields as needed
+    //   // Add validations for other fields as needed
   
-      return errors;
-    };
+    //   return errors;
+    // };
   
-    const handleFieldChange = (fieldName, fieldValue) => {
-      // Validate the field
-      const fieldErrors = validateField(fieldName, fieldValue);
+    // const handleFieldChange = (fieldName, fieldValue) => {
+    //   // Validate the field
+    //   const fieldErrors = validateField(fieldName, fieldValue);
   
-      // Update the form values and errors
-      const newValues = { ...values, [fieldName]: fieldValue };
-      const newErrors = { ...formik.errors, ...fieldErrors };
+    //   // Update the form values and errors
+    //   const newValues = { ...values, [fieldName]: fieldValue };
+    //   const newErrors = { ...formik.errors, ...fieldErrors };
   
-      // Update the form state
-      formik.setValues(newValues);
-      formik.setErrors(newErrors);
-    };
+    //   // Update the form state
+    //   formik.setValues(newValues);
+    //   formik.setErrors(newErrors);
+    // };
 
     
     return (
@@ -88,7 +88,7 @@ export const FormSection = (
               );
             } else if (q.type === 'select') {
               // Falta capturar respuesta
-              //const questionValue = values[q.id_question]
+              const questionValue = values[q.id_question]
               return (
                 <InputSelect
                   key={q.id}
@@ -96,7 +96,7 @@ export const FormSection = (
                   label={q.text}
                   options={q.options}
                   onChange={onChange} 
-                  value={''}   
+                  value={questionValue}   
                 />
               );
             } else if (q.type === 'date') {
