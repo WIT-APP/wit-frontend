@@ -11,7 +11,7 @@ interface InputSelectProps {
 export const InputSelect = ({
   id,
   label,
-  //value,
+  value,
   options,
   onChange,
 }: InputSelectProps) => {
@@ -37,10 +37,11 @@ export const InputSelect = ({
       <select
         id={id}
         name={id}
-        //value={selectedValue}
+        value={value}
         onChange={onChange}
         className="font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2"
       >
+        {/*Posible error para deployment 'selected'*/}
         <option value="" disabled selected hidden>
           Selecciona una opción
         </option>

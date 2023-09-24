@@ -5,23 +5,23 @@ interface RadioBoxGroupProps {
   id:string,
   options: string[];
   selectedValue: string;
-  onChange: (selectedValue: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   expandText: string;
 }
 
 export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
   options,
-  selectedValue,
+  //selectedValue,
   expandText,
   label,
   onChange,
 }) => {
-  const [localSelectedValue, setLocalSelectedValue] = useState(selectedValue);
+  //const [localSelectedValue, setLocalSelectedValue] = useState(selectedValue);
 
-  const handleRadioChange = (option: string) => {
-    setLocalSelectedValue(option);
-    onChange(option);
-  };
+  // const handleRadioChange = (option: string) => {
+  //   setLocalSelectedValue(option);
+  //   onChange(option);
+  // };
 
   return (
     <div className="mt-5">
@@ -38,8 +38,8 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
             type="radio"
             id={option}
             value={option}
-            checked={localSelectedValue === option}
-            onChange={() => handleRadioChange(option)}
+            //checked={localSelectedValue === option}
+            onChange={onChange}
             className="mr-2"
           />
           <label htmlFor={option}>{option}</label>

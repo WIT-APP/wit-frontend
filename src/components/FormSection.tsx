@@ -59,7 +59,7 @@ export const FormSection = (
         <div className='w-100 rounded p-8 text-sm m-0'>
           {data?.map((q) => {
             if (q.type === 'text') {
-              const questionValue = values[q?.id_question]
+              //const questionValue = values[q?.id_question]
               return (
                 <InputText
                   key={q.id}
@@ -69,7 +69,7 @@ export const FormSection = (
                   children={q.text}
                   placeholder={q.placeholder}
                   required={q.obligatory}
-                  value={questionValue}
+                  //value={questionValue}
                   onChange={onChange}
                 />
               );
@@ -87,7 +87,6 @@ export const FormSection = (
                   />
               );
             } else if (q.type === 'select') {
-              // Falta capturar respuesta
               const questionValue = values[q.id_question]
               return (
                 <InputSelect
@@ -152,7 +151,6 @@ export const FormSection = (
                   />
               );
             } else if (q.type === 'radio') {
-              // Falta capturar respuesta
               //const questionValue = values[q.id_question]
               return (
                 <InputRadioBox 
