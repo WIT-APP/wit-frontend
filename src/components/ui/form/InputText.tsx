@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+
 
 interface inputTextProps {
   id: string;
@@ -9,7 +9,7 @@ interface inputTextProps {
   expandText: string;
   additionalClass?: string
   required?: boolean;
-  onInputChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputText = ({
@@ -21,15 +21,10 @@ export const InputText = ({
   expandText,
   additionalClass,
   required,
-  onInputChange,
+  onChange
 }: inputTextProps) => {
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    onInputChange?.(newValue);
-    
-    console.log(newValue)
-  };
+  
   return (
     <div className="mt-5">
       <label htmlFor={id} className="block text-white font-bold mb-2">
@@ -42,7 +37,7 @@ export const InputText = ({
           id={id}
           name={id}
           value={value}
-          onChange={handleInputChange}
+          onChange={onChange}
           placeholder={placeholder}
           required={required}
           className={`${additionalClass} mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400`}
