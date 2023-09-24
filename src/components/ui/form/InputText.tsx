@@ -17,7 +17,7 @@ export const InputText = ({
   type,
   placeholder,
   children,
-  value,
+  //value,
   expandText,
   additionalClass,
   required,
@@ -36,7 +36,7 @@ export const InputText = ({
           type={type}
           id={id}
           name={id}
-          value={value}
+          //value={value}
           onChange={onChange}
           placeholder={placeholder}
           required={required}

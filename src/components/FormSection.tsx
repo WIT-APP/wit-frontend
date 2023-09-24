@@ -15,7 +15,7 @@ import { InputToggle } from './ui/form/InputToggle';
 interface PersonalInfoProps {
     data:Question[] | undefined;
     values: FormValues; 
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLElement>) => void;
 
 }
 
@@ -87,6 +87,7 @@ export const FormSection = (
                   />
               );
             } else if (q.type === 'select') {
+              // Falta capturar respuesta
               //const questionValue = values[q.id_question]
               return (
                 <InputSelect
@@ -111,6 +112,7 @@ export const FormSection = (
                 />
               );
             } else if (q.type === 'checkbox') {
+              // Falta capturar respuesta
               //const questionValue = values[q.id_question]
               return (
                 <InputCheckbox
@@ -125,19 +127,19 @@ export const FormSection = (
                 />
               );
             }else if (q.type === 'textarea') {
-              //const questionValue = values[q.id_question]
+              const questionValue = values[q.id_question]
               return (
                 <InputTextarea
                   key={q.id}
                   children={q.text}
                   expandText={q.expandText} 
                   id={q.id_question} 
-                  //value={questionValue}
+                  value={questionValue}
                   onChange={onChange}
                 />
               );
             }else if (q.type === 'phone') {
-              //const questionValue = values[q.id_question]
+              const questionValue = values[q.id_question]
               return (
                 <InputPhoneNumber
                   key={q.id}
@@ -146,10 +148,11 @@ export const FormSection = (
                   id={q.id_question} 
                   type={q.type}
                   onChange={onChange}
-                  //value={questionValue}              
+                  value={questionValue}              
                   />
               );
             } else if (q.type === 'radio') {
+              // Falta capturar respuesta
               //const questionValue = values[q.id_question]
               return (
                 <InputRadioBox 
@@ -165,6 +168,7 @@ export const FormSection = (
               );
             }else if (q.type === 'document') {
               const questionValue = values[q.id_question]
+              // Falta capturar respuesta
               return (
                 <DocumentoIdentidad
                   key={q.id}
@@ -172,14 +176,15 @@ export const FormSection = (
                   value={questionValue}              />
               );
             }else if (q.type === 'toggle') {
-             //const questionValue = values[q.id_question]
+             const questionValue = values[q.id_question]
+             // Falta capturar respuesta
               return (
                 <InputToggle
                   key={q.id}
                   onChange={onChange} 
                   id={q.id_question} 
                   children={q.text}
-                  //value={questionValue} 
+                  value={questionValue} 
                 />
               );
             }

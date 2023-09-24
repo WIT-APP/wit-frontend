@@ -11,20 +11,20 @@ export interface FormValues {
   [key: string]: string ; 
 }
 
-const validate = (values) => {
-  const errors = {};
+//const validate = (values) => {
+//   const errors = {};
 
-  // Add your validation logic here for the fields in FormSection
-  if (!values.nombre) {
-    errors.nombre = 'Required';
-  }
-  if (!values.apellidos) {
-    errors.apellidos = 'Required';
-  }
-  // Add validations for other fields as needed
+//   // Add your validation logic here for the fields in FormSection
+//   if (!values.nombre) {
+//     errors.nombre = 'Required';
+//   }
+//   if (!values.apellidos) {
+//     errors.apellidos = 'Required';
+//   }
+//   // Add validations for other fields as needed
 
-  return errors;
-};
+//   return errors;
+// };
 
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -42,14 +42,13 @@ export const FormPage = () => {
     }
   };
 
-  //remove after apply formik
-  const onSubmit = () => {};
 
   const formik = useFormik<FormValues>({
     initialValues: {
       nombre: '',
       apellidos:'',
       correo_electronico:'',
+      //numero
       telefono:'',
       genero:'',
       numero_documento_id:'',
@@ -60,23 +59,30 @@ export const FormPage = () => {
       ciudad:'',
       provincia:'',
       pais_de_residencia:'',
+      //numero
       codigo_postal:'',
       programa_cursar:'',
+      //empty array
       colectivo:'',
       educacion:'',
       estudio_mas_alto:'',
       situacion_profesional:'',
       intereses_actuales:'',
+      //integer >0
       dedicacion_semanal:'',
       acceso_internet_dispositivos:'',
+      //boolean
       formacion_online:'',
       razones_para_unir:'',
       encontrar_programa:'',
       mas_informacion:'',
     },
-    validate,
+    // validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+     
+      const result  =JSON.stringify(values, null, 2);
+      console.log(result)
+      alert(result)
     },
   });
 
@@ -101,7 +107,7 @@ export const FormPage = () => {
           data={question} 
           values={formik.values}
           onChange={formik.handleChange}
-          validate={validate}
+          //validate={validate}
           />
         )}
         
@@ -125,7 +131,6 @@ export const FormPage = () => {
             Next Page
           </button>
           <button
-            onClick={onSubmit}
             disabled={currentPage !== pages.length - 1}
             className={classnames('btn-form', 'btn-form-green', {
               invisible: currentPage !== pages.length - 1,
