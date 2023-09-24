@@ -20,7 +20,7 @@ export const FormSection = (question : PersonalInfoProps) => {
     const handleSelect = () => {};
     const handleCheckbox = () => {}; 
     const handleRadiobox = () => {}
-    const handleText = () => {}
+    // const handleText = () => {}
 
     return (
         <>

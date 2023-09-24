@@ -20,7 +20,7 @@ export const SummaryTable = () => {
   const totalNewApplicants = applicant?.length;
 
 
-  const countPythonPreference = (data: Promise<Applicant[]>) => {
+  const countPythonPreference = async (data: Promise<Applicant[]>) => {
       
     for (const entry of data) {
       const program = entry.programa_cursar;
