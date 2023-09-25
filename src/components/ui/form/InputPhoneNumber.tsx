@@ -4,6 +4,7 @@ import { InputText } from "./InputText";
 
 interface InputPhoneNumberProps {
   id: string;
+  required?: boolean;
   type: string;
   placeholder?: string;
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
   children,
   value,
   expandText,
+  required,
   onChange,
 }) => {
   // const [isValid, setIsValid] = useState(true);
@@ -52,6 +54,7 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
         children={children}
         expandText={expandText}
         onChange={onChange}
+        required={required}
         //additionalClass={!isValid ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : ''}
       />
       {/* {!isValid && (

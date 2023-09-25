@@ -6,6 +6,7 @@ interface inputTextProps {
   children: React.ReactNode;
   value?: string;
   expandText?: string;
+  required?: boolean;
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
@@ -14,6 +15,7 @@ const InputTextarea = ({
   placeholder,
   children,
   //value,
+  required,
   expandText,
   onChange,
 }: inputTextProps) => {
@@ -30,6 +32,7 @@ const InputTextarea = ({
           name={id}
           //value={value}
           onChange={onChange}
+          required={required}
           placeholder={placeholder}
           className="mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto rounded-md focus:ring-yellow2 focus:border-yellow2"
         ></textarea>

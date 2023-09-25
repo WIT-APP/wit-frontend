@@ -7,6 +7,7 @@ interface inputEmailProps {
   placeholder?: string;
   children: React.ReactNode;
   value?: string;
+  required?: boolean;
   expandText: string;
   additionalClass?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -19,6 +20,7 @@ const InputEmail = (
     placeholder,
     children,
     value,
+    required,
     expandText,
     additionalClass,
     onChange,
@@ -85,6 +87,7 @@ const InputEmail = (
           placeholder={placeholder} 
           children={children} 
           expandText={expandText} 
+          required={required}
           additionalClass={` ${additionalClass}`}
           onChange={onChange}
           />

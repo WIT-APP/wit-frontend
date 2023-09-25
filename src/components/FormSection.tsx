@@ -84,6 +84,7 @@ export const FormSection = (
                   type={q.type} 
                   expandText={q.expandText}
                   onChange={onChange}
+                  required={q.obligatory}
                   />
               );
             } else if (q.type === 'select') {
@@ -95,7 +96,8 @@ export const FormSection = (
                   label={q.text}
                   options={q.options}
                   onChange={onChange} 
-                  value={questionValue}   
+                  value={questionValue}
+                  required={q.obligatory}   
                 />
               );
             } else if (q.type === 'date') {
@@ -108,6 +110,7 @@ export const FormSection = (
                   expandText={q.expandText}
                   children={q.text}
                   onChange={onChange}
+                  required={q.obligatory}
                 />
               );
             } else if (q.type === 'checkbox') {
@@ -122,6 +125,7 @@ export const FormSection = (
                   //selectedValues={questionValue}
                   selectedValues={[]}
                   onChange={onChange}
+                  required={q.obligatory}
                   expandText={q.expandText}
                 />
               );
@@ -135,6 +139,7 @@ export const FormSection = (
                   id={q.id_question} 
                   value={questionValue}
                   onChange={onChange}
+                  required={q.obligatory}
                 />
               );
             }else if (q.type === 'phone') {
@@ -147,7 +152,8 @@ export const FormSection = (
                   id={q.id_question} 
                   type={q.type}
                   onChange={onChange}
-                  value={questionValue}              
+                  value={questionValue}
+                  required={q.obligatory}               
                   />
               );
             } else if (q.type === 'radio') {
@@ -181,7 +187,8 @@ export const FormSection = (
                   onChange={onChange} 
                   id={q.id_question} 
                   children={q.text}
-                  value={questionValue} 
+                  value={questionValue}
+                  required={q.obligatory} 
                 />
               );
             }

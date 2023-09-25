@@ -6,6 +6,7 @@ interface InputSelectProps {
   options: string[];
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   value: string;
+  required?: boolean;
 }
 
 export const InputSelect = ({
@@ -13,6 +14,7 @@ export const InputSelect = ({
   label,
   value,
   options,
+  required,
   onChange,
 }: InputSelectProps) => {
 
@@ -39,6 +41,7 @@ export const InputSelect = ({
         name={id}
         value={value}
         onChange={onChange}
+        required={required}
         className="font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2"
       >
         {/*Posible error para deployment 'selected'*/}
