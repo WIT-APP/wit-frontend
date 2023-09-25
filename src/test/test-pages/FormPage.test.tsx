@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 const queryClient = new QueryClient();
 
-describe("Form should load correctly", () => {
+describe("Form Page", () => {
   test("should load form component", () => {
     expect(<FormPage />).toStrictEqual(<FormPage />);
   });
@@ -309,7 +309,7 @@ describe("Form Questions - Sociodemografica", () => {
       ).toBeTruthy();
     });
   });
-  
+
   afterEach(() => {
     cleanup();
   });
@@ -325,7 +325,7 @@ describe("Form Questions - Academica", () => {
         "¿Cúal es tu nivel de estudios más alto?"
       ) as HTMLInputElement;
       expect(educationQuestion).toBeTruthy();
-  
+
       const options = [
         "Sin estudios o estudios primarios sin finalizar",
         "Estudios primarios",
@@ -334,7 +334,7 @@ describe("Form Questions - Academica", () => {
         "Estudios universitarios",
         "Otro",
       ];
-  
+
       options.forEach((option) => {
         expect(screen.getByText(option)).toBeTruthy();
       });
@@ -350,31 +350,30 @@ describe("Form Questions - Academica", () => {
       expect(tituloQuestion.name).toBe("estudio_mas_alto");
     });
   });
-    
+
   test("should render question '¿En qué situación profesional te encuentras?' with correct radio options", async () => {
     await waitFor(() => {
       const situacionProfesionalQuestion = screen.getByText(
         "¿En qué situación profesional te encuentras?"
-      ) as HTMLInputElement ;
-  
+      ) as HTMLSelectElement;
+
       expect(situacionProfesionalQuestion).toBeTruthy();
       /* expect(situacionProfesionalQuestion.type).toBe("radio");
       expect(situacionProfesionalQuestion.name).toBe("situacion_profesional");  */
-  
-  
+
       const options = [
-          "Desempleada/o sin ingresos",
-          "Desempleada/o con subsidio por desempleo",
-          "Empleada/o a tiempo completo",
-          "Empleada/o a tiempo parcial",
-          "Autónoma/o",
-          "Estudiante",
-          "Otra"
+        "Desempleada/o sin ingresos",
+        "Desempleada/o con subsidio por desempleo",
+        "Empleada/o a tiempo completo",
+        "Empleada/o a tiempo parcial",
+        "Autónoma/o",
+        "Estudiante",
+        "Otra",
       ];
-        expect(options).toHaveLength(7);
-        options.forEach((option) => {
-            expect(screen.getByText(option)).toBeTruthy();
-          });
+      expect(options).toHaveLength(7);
+      options.forEach((option) => {
+        expect(screen.getByText(option)).toBeTruthy();
+      });
     });
   });
   afterEach(() => {
@@ -390,14 +389,23 @@ describe("Form Questions - Formacion", () => {
     await waitFor(() => {
       const programaCursarQuestion = screen.getByText(
         "¿Qué programa quieres cursar?"
-      ) as HTMLInputElement;
-  
-      expect(programaCursarQuestion).toBeTruthy();
+      ) as HTMLSelectElement;
+
+       expect(programaCursarQuestion).toBeTruthy();
+      /*if (programaCursarQuestion) {
+        expect(programaCursarQuestion.type).toBe("radio");
+        expect(programaCursarQuestion.name).toBe("programa_cursar"); */
+
+
       /* expect(programaCursarQuestion.type).toBe("radio");
       expect(programaCursarQuestion.name).toBe("programa_cursar"); */
-      const option1 = screen.getByLabelText("Soporte de Tecnologías de la Información");
-      const option2 = screen.getByLabelText("Automatización de Tecnologías de la Información con Python");
-  
+      const option1 = screen.getByLabelText(
+        "Soporte de Tecnologías de la Información"
+      );
+      const option2 = screen.getByLabelText(
+        "Automatización de Tecnologías de la Información con Python"
+      );
+
       expect(option1).toBeTruthy();
       expect(option2).toBeTruthy();
     });
@@ -407,57 +415,70 @@ describe("Form Questions - Formacion", () => {
       const interesesActualesQuestion = screen.getByText(
         "Escoge la opcion que mejor se ajuste a tus intereses actuales"
       ) as HTMLSelectElement;
-  
+
       expect(interesesActualesQuestion).toBeTruthy();
       /* expect(interesesActualesQuestion.type).toBe("radio");
       expect(interesesActualesQuestion.name).toBe("intereses_actuales"); */
-  
-      const option1 = screen.getByLabelText("Estoy interesada/o en formarme en competencias tecnológicas") as HTMLInputElement;
-      const option2 = screen.getByLabelText("Estoy interesada/o en obtener un empleo del sector tecnológico") as HTMLInputElement;
-      const option3 = screen.getByLabelText("Necesito formarme para conseguir un empleo estable") as HTMLInputElement;
-      const option4 = screen.getByLabelText("Quiero cambiar de sector profesional") as HTMLInputElement;
+
+      const option1 = screen.getByLabelText(
+        "Estoy interesada/o en formarme en competencias tecnológicas"
+      ) as HTMLInputElement;
+      const option2 = screen.getByLabelText(
+        "Estoy interesada/o en obtener un empleo del sector tecnológico"
+      ) as HTMLInputElement;
+      const option3 = screen.getByLabelText(
+        "Necesito formarme para conseguir un empleo estable"
+      ) as HTMLInputElement;
+      const option4 = screen.getByLabelText(
+        "Quiero cambiar de sector profesional"
+      ) as HTMLInputElement;
       const option5 = screen.getByLabelText("Otra") as HTMLInputElement;
-  
+
       expect(option1).toBeTruthy();
       expect(option2).toBeTruthy();
       expect(option3).toBeTruthy();
       expect(option4).toBeTruthy();
       expect(option5).toBeTruthy();
-  
-      expect(option1.value).toBe("Estoy interesada/o en formarme en competencias tecnológicas");
-      expect(option2.value).toBe("Estoy interesada/o en obtener un empleo del sector tecnológico");
-      expect(option3.value).toBe("Necesito formarme para conseguir un empleo estable");
+
+      expect(option1.value).toBe(
+        "Estoy interesada/o en formarme en competencias tecnológicas"
+      );
+      expect(option2.value).toBe(
+        "Estoy interesada/o en obtener un empleo del sector tecnológico"
+      );
+      expect(option3.value).toBe(
+        "Necesito formarme para conseguir un empleo estable"
+      );
       expect(option4.value).toBe("Quiero cambiar de sector profesional");
       expect(option5.value).toBe("Otra");
     });
   });
-    test('should render the question "¿Qué dedicación semanal tendrías para el proceso de formación?" with the correct text input', async () => {
+  test('should render the question "¿Qué dedicación semanal tendrías para el proceso de formación?" with the correct text input', async () => {
+    await waitFor(() => {
+      const dedicacionSemanalInput = screen.getByText(
+        "¿Qué dedicación semanal tendrías para el proceso de formación?"
+      ) as HTMLInputElement | null;
 
-        await waitFor(() => {
-            const dedicacionSemanalInput = screen.getByText(
-                "¿Qué dedicación semanal tendrías para el proceso de formación?",
-            ) as HTMLInputElement | null;
-  
-            expect(dedicacionSemanalInput).toBeTruthy();
-            /* expect(dedicacionSemanalInput?.type).toBe('text');
+      expect(dedicacionSemanalInput).toBeTruthy();
+      /* expect(dedicacionSemanalInput?.type).toBe('text');
             expect(dedicacionSemanalInput?.name).toBe('dedicacion_semanal'); */
-        });
     });
+  });
   test('should render the question "¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos?" with correct options', async () => {
     await waitFor(() => {
       const accessQuestion = screen.getByText(
         "¿Cómo describirías tu acceso a internet y a dispositivos tecnológicos (ordenador, tablet…)?"
       );
       expect(accessQuestion).toBeTruthy();
-  
+
       const optionsText = [
-        'Sin acceso (no tengo conexión a internet ni dispositivo)',
-        'Acceso muy limitado (tengo dispositivo pero no tengo internet)',
-        'Acceso limitado (tengo dispositivo e internet limitado)',
-        'Acesso medio (tengo dispositivo e internet de baja calidad)',
-        'Buen acceso (tengo buena conexion a internet y dispositivo)'
+        "Sin acceso (no tengo conexión a internet ni dispositivo)",
+        "Acceso muy limitado (tengo dispositivo pero no tengo internet)",
+        "Acceso limitado (tengo dispositivo e internet limitado)",
+        "Acesso medio (tengo dispositivo e internet de baja calidad)",
+        "Buen acceso (tengo buena conexion a internet y dispositivo)",
       ];
-  
+
       optionsText.forEach((option) => {
         expect(option).toBeTruthy();
       });
@@ -466,10 +487,9 @@ describe("Form Questions - Formacion", () => {
   test('should render the question "Explicanos brevemente las razones por las que te gustaría unirte a esta formación" with correct textarea', async () => {
     await waitFor(() => {
       const textareaQuestion = screen.getByText(
-        'Explicanos brevemente las razones por las que te gustaria unirte a esta formación'
+        "Explicanos brevemente las razones por las que te gustaria unirte a esta formación"
       );
       expect(textareaQuestion).toBeTruthy();
-  
     });
   });
 
@@ -479,7 +499,7 @@ describe("Form Questions - Formacion", () => {
         "¿Cómo has encontrado este programa?"
       );
       expect(accessQuestion).toBeTruthy();
-  
+
       const optionsText = [
         "Redes sociales",
         "Somos F5",
@@ -487,11 +507,11 @@ describe("Form Questions - Formacion", () => {
         "Fundación Don Bosco o sus redes sociales",
         "Buscadores de internet (Google)",
       ];
-  
+
       optionsText.forEach((option) => {
         const radio = screen.getByText(option) as HTMLInputElement;
         expect(radio).toBeTruthy();
-       /*  expect(radio.type).toBe("radio");
+        /*  expect(radio.type).toBe("radio");
         expect(radio.name).toBe("encontrar_programa"); */
       });
     });
@@ -499,24 +519,22 @@ describe("Form Questions - Formacion", () => {
   test('should render the question "¿Quieres añadir alguna información que consideres relevante?" with correct textarea', async () => {
     await waitFor(() => {
       const textareaQuestion = screen.getByText(
-        '¿Quieres añadir alguna información que consideres relevante?'
+        "¿Quieres añadir alguna información que consideres relevante?"
       );
-  
+
       expect(textareaQuestion).toBeTruthy();
-  
-      const textarea = screen.getByRole('textbox', { name: /Somos todo oídos/i });
-  
+
+      const textarea = screen.getByRole("textbox", {
+        name: /Somos todo oídos/i,
+      });
+
       expect(textarea).toBeTruthy();
-  
-      expect(textarea.tagName).toBe('TEXTAREA');
-      expect(textarea.getAttribute('name')).toBe('mas_informacion');
+
+      expect(textarea.tagName).toBe("TEXTAREA");
+      expect(textarea.getAttribute("name")).toBe("mas_informacion");
     });
   });
-  
 
-  
-  
-  
   /* test('should render the question "¿Has hecho alguna vez una formación online?" with correct toggle options', async () => {
     await waitFor(() => {
       const formacionOnlineQuestion = screen.getByText(
@@ -535,8 +553,33 @@ describe("Form Questions - Formacion", () => {
       });
     });
   }); */
-    
+
   afterEach(() => {
     cleanup();
+  });
+});
+
+describe("FormPage", () => {
+  beforeEach(() => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <FormPage />
+      </QueryClientProvider>
+    );
+  });
+
+  test("should render Previous Page button", () => {
+    const previousPageButton = screen.getByTestId("previous-page-button");
+    expect(previousPageButton).not.toBeNull();
+  });
+
+  test("should render Next Page button", () => {
+    const nextPageButton = screen.getByTestId("next-page-button");
+    expect(nextPageButton).not.toBeNull();
+  });
+
+  test("should render Send button", () => {
+    const sendButton = screen.getByText("Enviar");
+    expect(sendButton).not.toBeNull();
   });
 });
