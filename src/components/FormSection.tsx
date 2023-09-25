@@ -15,7 +15,7 @@ import { InputToggle } from './ui/form/InputToggle';
 interface PersonalInfoProps {
     data:Question[] | undefined;
     values: FormValues; 
-    onChange: (e: React.ChangeEvent<HTMLElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLElement> | string) => void;
 
 }
 
@@ -151,17 +151,16 @@ export const FormSection = (
                   />
               );
             } else if (q.type === 'radio') {
-              //const questionValue = values[q.id_question]
               return (
                 <InputRadioBox 
                   key={q.id}
                   label={q.text}
                   options={q.options}
                   id={q.id_question}
-                  //selectedValue={questionValue}
+                  selectedValue={values[q.id_question]} 
                   expandText={q.expandText} 
-                  onChange={onChange}
-                  selectedValue={''}              
+                  onChange={onChange}  
+                  required={q.obligatory}       
                 />
               );
             }else if (q.type === 'document') {

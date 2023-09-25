@@ -3,7 +3,9 @@ import { useState } from "react";
 import { FormSection } from "../components/FormSection";
 import witLogo from "../assets/witLogo.png";
 import { useCategoryQuestion } from "../services/CategoryQuestionsForm";
-import { useFormik, Formik, Form, Field } from 'formik';
+import { useFormik,
+  // Formik, Form, Field
+ } from 'formik';
 
 const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
