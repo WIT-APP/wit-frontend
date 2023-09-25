@@ -20,6 +20,8 @@ export const FormSection = (question : PersonalInfoProps) => {
     const handleCheckbox = () => {}; 
     const handleRadiobox = () => {}
     
+    // const handleText = () => {}
+
     return (
         <>
         <form className='w-100 rounded p-8 text-sm m-0'>
