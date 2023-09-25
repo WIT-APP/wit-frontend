@@ -6,12 +6,14 @@ interface CheckboxGroupProps {
   selectedValues: string[]
   onChange: (selectedValues: string[]) => void;
   expandText: string;
+  id:string
 }
 
 export const InputCheckbox = ({
   options,
   expandText,
   label,
+  id,
 }: CheckboxGroupProps) => {
 
   const [selectedValues, setSelectedValues] = useState(['']); // Corrected
@@ -30,7 +32,7 @@ export const InputCheckbox = ({
 
   return (
     <div className="mt-5">
-      <label className="block font-bold text-white mb-3">
+      <label className="block font-bold text-white mb-3" id={id}>
         {label}
         <br />
         <span className="opacity-70 text-white font-normal text-justify">
