@@ -54,7 +54,7 @@ export const FormSection = (
     // };
 
     
-    // const handleText = () => {}
+     const handleText = () => {}
 
     return (
         <>
@@ -126,8 +126,7 @@ export const FormSection = (
                   id={q.id_question}
                   //selectedValues={questionValue}
                   selectedValues={[]}
-                  onChange={onChange}
-                  required={q.obligatory}
+                  onChange={handleText}
                   expandText={q.expandText}
                 />
               );
