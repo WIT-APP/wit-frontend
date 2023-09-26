@@ -19,7 +19,6 @@ export const FormPage = () => {
     fecha_aplicacion: "",
     programa_cursar:"",
   });
-
   const [formErrors, setFormErrors] = useState({
     nombre_apellidos: "El dato ingresado no es valido",
     correo_electronico: "El dato ingresado no es valido",
@@ -74,8 +73,7 @@ export const FormPage = () => {
 
   const onSubmit = () => {
     const nombreApellidosError = validateNombreApellidos(formData.nombre_apellidos);
-    const correoElectronicoError = validateCorreoElectronico(
-      formData.correo_electronico
+    const correoElectronicoError = validateCorreoElectronico(formData.correo_electronico
     );
 
     if (nombreApellidosError || correoElectronicoError) {
