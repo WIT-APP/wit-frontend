@@ -31,7 +31,7 @@ export interface FormValues {
 
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const formContainerRef = useRef<HTMLDivElement | null>(null);
+  const formContainerRef = useRef(null);
 
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
@@ -101,11 +101,9 @@ export const FormPage = () => {
   });
 
   return (
-    <div
-      ref={formContainerRef}
-      className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen"
-    >
+    <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <form
+        ref={formContainerRef}
         className="w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base"
         onSubmit={formik.handleSubmit}
       >
