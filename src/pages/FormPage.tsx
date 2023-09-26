@@ -31,7 +31,7 @@ export interface FormValues {
 
 export const FormPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const formContainerRef = useRef(null);
+  const formContainerRef = useRef<HTMLFormElement | null>(null);
 
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
