@@ -1,15 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
-import InputText from "./InputText";
+import React from "react";
+// { useState }
+import { InputText } from "./InputText";
 
 interface InputPhoneNumberProps {
   id: string;
+  required?: boolean;
   type: string;
   placeholder?: string;
   children: React.ReactNode;
   value?: string;
   expandText: string;
-  onChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
@@ -19,45 +20,46 @@ export const InputPhoneNumber: React.FC<InputPhoneNumberProps> = ({
   children,
   value,
   expandText,
+  required,
   onChange,
 }) => {
-    const [isValid, setIsValid] = useState(true); // Estado para rastrear la validez
-    const [errorMessage, setErrorMessage] = useState(""); // Mensaje de error
+  // const [isValid, setIsValid] = useState(true);
+  // const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    const mobileNumberPattern = /^[0-9]{9}$/;
+  // const handleInputChange = (inputValue: string) => {
+  //   const mobileNumberPattern = /^[0-9]{9}$/;
 
-    if (mobileNumberPattern.test(inputValue)) {
-      setIsValid(true); // El valor es válido
-      setErrorMessage(""); // Borra el mensaje de error
-      onChange?.(inputValue);
-    } else if (inputValue === "") {
-      setIsValid(true); // El valor está vacío (permitido)
-      setErrorMessage(""); // Borra el mensaje de error
-      onChange?.("");
-    } else {
-      setIsValid(false); // El valor no cumple el patrón
-      setErrorMessage("Por favor, ingresa un número de teléfono válido.");
-      return errorMessage;
-    }
-    }
- 
+  //   if (mobileNumberPattern.test(inputValue)) {
+  //     setIsValid(true);
+  //     setErrorMessage("");
+  //     onChange?.(inputValue);
+  //   } else if (inputValue === "") {
+  //     setIsValid(true);
+  //     setErrorMessage("");
+  //     onChange?.("");
+  //   } else {
+  //     setIsValid(false);
+  //     setErrorMessage("Por favor, ingresa un número de teléfono válido.");
+  //     return errorMessage;
+  //   }
+  // };
 
   return (
-    <div className="mt-2">
+    <div className="mt-5">
       <InputText
-        type={type} 
+        type={type}
         id={id}
         value={value}
-        onChange={handleInputChange}
         placeholder={placeholder}
         children={children}
         expandText={expandText}
+        onChange={onChange}
+        required={required}
+        //additionalClass={!isValid ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400' : ''}
       />
-      {!isValid && (
-        <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
-      )}
+      {/* {!isValid && (
+        <p className="text-red-800 font-bold text-sm mt-1">{errorMessage}</p>
+      )} */}
     </div>
   );
 };

@@ -1,30 +1,65 @@
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
-import AspirantsTable from "@/components/AspirantsTable";
+import TablePage from "@/pages/TablePage";
+import PreApprovedPage from "@/pages/PreApprovedPage";
+import SettingsPage from "@/pages/SettingsPage";
+import HelpPage from "@/pages/HelpPage";
+import LoginPage from "@/pages/LoginPage";
 
-
-
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: '',
-    },
-    {
-        path: "/newapplicant/register",
-        element: <FormPage/>,
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/:Aplicante",
+        element: <TablePage />,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard/>,
-        children: [
-          // {
-          //   path: "/aspirantsTable",
-          //   element: <AspirantsTable/>,
-          // }
-        ],
+        path: "/Preaprobado",
+        element: <PreApprovedPage />,
       },
-  ]);
-  
+      {
+        path: "/:Rechazado",
+        element: <TablePage />,
+      },
+      {
+        path: "/:Invitado",
+        element: <TablePage />,
+      },
+      {
+        path: "/:Entrevistado",
+        element: <TablePage />,
+      },
+      {
+        path: "/:Matriculado",
+        element: <TablePage />,
+      },
+      {
+        path: "/:Certificado",
+        element: <TablePage />,
+      },
+      {
+        path: "/:Baja",
+        element: <TablePage />,
+      },
+      {
+        path: "/Ajustes",
+        element: <SettingsPage />,
+      },
+      {
+        path: "/Ayuda",
+        element: <HelpPage />,
+      },
+    ],
+  },
+  {
+    path: "/Login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/newapplicant/register",
+    element: <FormPage />,
+  },
+]);

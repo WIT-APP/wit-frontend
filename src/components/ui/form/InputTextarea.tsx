@@ -6,7 +6,7 @@ interface inputTextProps {
   children: React.ReactNode;
   value?: string;
   expandText?: string;
-  type:string;
+  required?: boolean;
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
@@ -14,29 +14,29 @@ const InputTextarea = ({
   id,
   placeholder,
   children,
-  value,
+  //value,
+  required,
   expandText,
-  type,
   onChange,
 }: inputTextProps) => {
   return (
-    <div className="mt-2">
-      <label htmlFor={id} className="block text-white font-medium mb-2">
+    <div className="mt-5">
+      <label htmlFor={id} className="block text-white font-bold mb-2">
         {children} <br />
         <span className="opacity-70 font-normal text-justify mt-2">
           {expandText}
         </span>
+      </label>
         <textarea
           id={id}
           name={id}
-          type={type}
-          value={value}
+          //value={value}
           onChange={onChange}
+          required={required}
           placeholder={placeholder}
-          className="mt-2 form-textarea font-normal w-full px-3 py-2 overflow-x-auto rounded-md"
+          className="mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto rounded-md focus:ring-yellow2 focus:border-yellow2"
         ></textarea>
-      </label>
-    </div>
+      </div>
   );
 };
 

@@ -1,7 +1,8 @@
 export interface Applicant {
-  id: number;
+  id: number | string;
   fecha_de_applicacion: Date;
-  nombre_apellidos: string;
+  nombre: string;
+  apellidos: string;
   correo_electronico: string;
   telefono: number;
   estado: string;
@@ -9,6 +10,7 @@ export interface Applicant {
   fecha_de_nacimiento: Date;
   pais_de_nacimiento: string;
   documento_de_identidad: string;
+  tipo_documento_identidad: string;
   numero_documento_id: string;
   direccion: string;
   ciudad: string;
@@ -31,12 +33,14 @@ export interface Applicant {
 }
 
 export interface CreateApplicant {
-  nombre_apellidos: string;
+  nombre: string;
+  apellidos: string;
   correo_electronico: string;
   telefono: number;
   genero: string;
   fecha_de_nacimiento: string;
   pais_de_nacimiento: string;
+  tipo_documento_identidad: string;
   documento_de_identidad: string;
   numero_documento_id: string;
   direccion: string;

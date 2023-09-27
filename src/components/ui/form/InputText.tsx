@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+
 
 interface inputTextProps {
   id: string;
@@ -7,37 +7,44 @@ interface inputTextProps {
   children: React.ReactNode;
   value?: string;
   expandText: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  additionalClass?: string
+  required?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputText = ({
+export const InputText = ({
   id,
   type,
   placeholder,
   children,
-  value,
+  //value,
   expandText,
-  onChange,
+  additionalClass,
+  required,
+  onChange
 }: inputTextProps) => {
+
+  
   return (
-    <div className="mt-2">
-      <label htmlFor={id} className="block text-white font-medium mb-2">
+    <div className="mt-5">
+      <label htmlFor={id} className="block text-white font-bold mb-2">
         {children} <br />
-        <span className="opacity-70 font-normal text-justify mt-2">
+        <span className="opacity-70 text-justify mt-2">
           {expandText}
         </span>
         <input
           type={type}
           id={id}
           name={id}
-          value={value}
+          //value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="mt-2 form-input font-normal w-full px-3 py-2 rounded-md overflow-x-auto"
+          required={required}
+          className={`${additionalClass} mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400`}
         />
       </label>
     </div>
   );
 };
 
-export default InputText;
+

@@ -2,7 +2,6 @@ import { describe, expect, test } from "vitest";
 import { render,screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FormPage } from "../pages/FormPage";
-import userEvent from '@testing-library/user-event';
 
 const queryClient = new QueryClient();
 
@@ -25,7 +24,7 @@ describe('Form should load all questions from the queryclient', () => {
     await waitFor(() => {
         
         // Add your assertions here
-        const input = screen.getByLabelText('Nombre');
+        const input:HTMLInputElement = screen.getByLabelText('Nombre');
         expect(input).toBeTruthy();
 
         expect(input?.textContent).toBe('')

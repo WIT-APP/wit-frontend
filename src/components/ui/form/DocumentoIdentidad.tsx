@@ -1,80 +1,83 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import {InputSelect} from "./InputSelect";
-import InputText from "./InputText";
+import {InputText} from "./InputText";
+import { InputRadioBox } from "./InputRadioBox";
+import { useFormik } from 'formik';
+import { FormValues } from "@/pages/FormPage";
 
 interface DocumentoIdentidadProps {
-  onSelectedOptionChange: (value: string) => void;
-  onTipoDocumentoChange: (value: string) => void;
-  onPermisoValueChange: (value: string) => void;
+ 
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value:string;
 }
 
-export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
-  onSelectedOptionChange,
-  onTipoDocumentoChange,
-  onPermisoValueChange,
-}) => {
+export const DocumentoIdentidad = ({ onChange,value }: DocumentoIdentidadProps) => {
   const [selectedOption, setSelectedOption] = useState("");
-  const [tipoDocumento, setTipoDocumento] = useState("");
   const [permisoValue, setPermisoValue] = useState("");
 
   const radioOptions = [
-    { id: "DNI", label: "DNI", value: "DNI" },
-    { id: "NIE", label: "NIE", value: "NIE" },
-    { id: "Otro", label: "Otro", value: "Otro" },
+    "DNI" ,
+    "NIE",
+    "Otro",
   ];
 
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
-    onSelectedOptionChange(event.target.value);
+  const handleRadioChange = (selectedValue: string) => {
+    setSelectedOption(selectedValue);
+
+    // Handle conditional logic here based on selectedValue
+    if (selectedValue === "Otro") {
+      // Handle changes for "Otro" option
+      formik.setFieldValue("documento_de_identidad", ""); // Clear the value if needed
+      formik.setFieldValue("tipo_documento_identidad", ""); // Clear the value if needed
+      formik.setFieldValue("permiso", ""); // Clear the value if needed
+    }
+
+    console.log(selectedValue);
   };
 
-  const handlePermisoChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setPermisoValue(event.target.value);
-    onPermisoValueChange(event.target.value);
+  const handlePermisoChange = (selectedValue: string) => {
+    setPermisoValue(selectedValue);
+    console.log(permisoValue);
   };
 
-  const handleTipoDocumento = (event: ChangeEvent<HTMLInputElement>) => {
-    setTipoDocumento(event.target.value);
-    onTipoDocumentoChange(event.target.value);
-  };
+  const formik = useFormik<FormValues>({
+    initialValues: {
+      documento_de_identidad: '',
+      tipo_documento_identidad: '',
+      permiso: '',
+    },
+    onSubmit: (values) => {
+      values.documento_de_identidad = ""; // Modify the value in the formik values
+      values.tipo_documento_identidad = ""; // Modify the value in the formik values
+      values.permiso = ""; // Modify the value in the formik values
+      
+      console.log(values);
+    },
+  });
 
   return (
-    <div className="mt-2 " data-testid="documento-identidad">
-      <label
-        htmlFor="identidad"
-        className="block font-medium text-white mb-2"
-      >
-        Documento de Identidad
-      </label>
+    <div className="mt-5 " data-testid="documento-identidad">
       <div className="flex">
-        {radioOptions.map((option) => (
-          <div key={option.id} className="mr-4">
-            <label htmlFor={option.id} className="flex items-center text-white">
-              <input
-                type="radio"
-                id={option.id}
-                name="identidad"
-                value={option.value}
-                checked={selectedOption === option.value}
-                onChange={handleRadioChange}
-                className="form-radio mr-2 mb-2"
-              />
-              {option.label}
-            </label>
-          </div>
-        ))}
+        <InputRadioBox
+          label={"Documento de Identidad"}
+          options={radioOptions}
+          selectedValue={selectedOption}
+          onChange={formik.handleChange}
+          expandText={""}
+          id={'documento_de_identidad'}
+        />
       </div>
       {selectedOption === "Otro" && (
-        <div className="mt-4">
+        <div className="mb-4">
           <InputText
             type="text"
-            id="tipo"
+            id="tipo_documento_identidad"
             placeholder="Escribe tu tipo de documento"
-            value={tipoDocumento}
-            onChange={handleTipoDocumento} 
-            children={'Si dispones de otro documento de identidad, por favor indícanos qué tipo de documento de identidad'} 
-            expandText={""}          />
+            children={'Si dispones de otro documento de identidad, por favor indícanos qué tipo de documento de identidad'}
+            expandText={""}
+            onChange={formik.handleChange}
+          />
         </div>
       )}
       {(selectedOption === "NIE" || selectedOption === "Otro") && (
@@ -88,8 +91,8 @@ export const DocumentoIdentidad: React.FC<DocumentoIdentidadProps> = ({
               "No dispongo de permiso (No es un problema para tener acceso al curso)",
               "Otro",
             ]}
-            onChange={handlePermisoChange} 
-            value={""}    
+            value={permisoValue}
+            onChange={formik.handleChange}
           />
         </div>
       )}
