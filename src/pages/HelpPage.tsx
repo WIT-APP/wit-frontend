@@ -5,10 +5,12 @@ import FAQItem from '../components/help-page/FAQItem';
 const FAQPage: React.FC = () => {
   
   return (
-    <div>
+    <div className='overflow-hidden flex max-h-screen'>
+    <div className='container overflow-y-scroll scrollbar-thumb-base'>
       <ProjectBio /> {/* Renderiza el componente ProjectBio aquí */}
-      <h1 className="text-2xl font-semibold mb-4">Preguntas Frecuentes</h1>
+      <h1 className="text-2xl font-semibold mb-4 ">Preguntas Frecuentes</h1>
       <FAQItem />
+    </div>
     </div>
   );
 };

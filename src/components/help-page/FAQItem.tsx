@@ -11,7 +11,7 @@ const FaqItem: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className='container'>
       {faqData.map((item, index) => (
         <div key={index} className="border border-gray-300 rounded p-3 mb-4">
           <h2 className="text-xl font-semibold mb-2">{item.pregunta}</h2>
