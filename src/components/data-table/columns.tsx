@@ -15,6 +15,23 @@ import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
+const estadosPosibles = [
+  "Aplicante",
+  "Preaprobado",
+  "Invitado",
+  "Confirmado",
+  "Entrevistado",
+  "Matriculado",
+  "Certificado",
+  "Rechazado",
+  "Baja",
+];
+
+const handleEstadoChange = (e, applicant) => {
+  // Aquí puedes actualizar el estado actual del solicitante en tus datos o realizar otras acciones necesarias
+  const nuevoEstado = e.target.value;
+  console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+};
 
 export type Applicant = {
   id: string;
@@ -162,19 +179,20 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="ml-4">{row.getValue("estado")}</div>
-    ),
+    cell: ({ row }) => <div className="ml-4">
+      <select
+      value={row.getValue("estado")}
+      onChange={(e) => handleEstadoChange(e, row.original)}
+      >
+        {estadosPosibles.map((estado) =>
+        <option value={estado}>{estado}</option>
+        )}
+
+
+      </select>
+      
+      </div>,
   },
-  // {
-  //   accessorKey: "fecha_de_applicacion",
-  //   header: () => <div className="text-right">Fecha de aplicación</div>,
-  //   cell: ({ row }) => (
-  //     <div className="text-right">
-  //       <span>{row.getValue("fecha_de_applicacion")}</span>
-  //     </div>
-  //   ),
-  // },
   {
     accessorKey: "fecha_de_applicacion",
     header: ({ column }) => {
