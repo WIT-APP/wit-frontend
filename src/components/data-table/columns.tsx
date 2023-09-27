@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
+import { UpdateEstado } from "@/services/UpdateEstado";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -27,9 +28,29 @@ const estadosPosibles = [
   "Baja",
 ];
 
-const handleEstadoChange = (e, applicant) => {
-  // Aquí puedes actualizar el estado actual del solicitante en tus datos o realizar otras acciones necesarias
+const handleEstadoChange = (
+  e: React.ChangeEvent<HTMLSelectElement>,
+  applicant: Applicant
+) => {
   const nuevoEstado = e.target.value;
+  // Abrir modal para confirmar y actualizar estado
+
+  // llamada  al endpoint para actualizar el estado del solicitante
+  try {
+    // Llama a la función UpdateEstado que realiza una solicitud al servidor de manera asincrónica
+    const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
+
+    if (error) {
+      // Maneja el error de manera apropiada, por ejemplo, mostrando un mensaje de error al usuario
+      console.error('Error al actualizar el estado:', error);
+    } else {
+      // Si la actualización fue exitosa, puedes realizar acciones adicionales, si es necesario
+      console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+    }
+  } catch (error) {
+    // Maneja errores de excepción si ocurren durante la solicitud
+    console.error('Error al actualizar el estado:', error);
+  }
   console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
 };
 
@@ -179,19 +200,20 @@ export const columns: ColumnDef<Applicant>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="ml-4">
-      <select
-      value={row.getValue("estado")}
-      onChange={(e) => handleEstadoChange(e, row.original)}
-      >
-        {estadosPosibles.map((estado) =>
-        <option value={estado}>{estado}</option>
-        )}
-
-
-      </select>
-      
-      </div>,
+    cell: ({ row }) => (
+      <div className="ml-4">
+        <select
+          value={row.getValue("estado")}
+          onChange={(e) => handleEstadoChange(e, row.original)}
+        >
+          {estadosPosibles.map((estado, index) => (
+            <option key={index} value={estado}>
+              {estado}
+            </option>
+          ))}
+        </select>
+      </div>
+    ),
   },
   {
     accessorKey: "fecha_de_applicacion",
