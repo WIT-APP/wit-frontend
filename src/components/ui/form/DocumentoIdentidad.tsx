@@ -12,7 +12,7 @@ interface DocumentoIdentidadProps {
   value:string;
 }
 
-export const DocumentoIdentidad = ({ onChange,value }: DocumentoIdentidadProps) => {
+export const DocumentoIdentidad = (value ) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [permisoValue, setPermisoValue] = useState("");
 

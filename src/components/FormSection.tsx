@@ -24,6 +24,8 @@ export const FormSection = (
   { data, values, onChange }: PersonalInfoProps 
   ) => {
 
+    
+
     // const validateField = (fieldName, fieldValue) => {
     //   const errors = {};
   
@@ -117,14 +119,14 @@ export const FormSection = (
               );
             } else if (q.type === 'checkbox') {
               // Falta capturar respuesta
-              //const questionValue = values[q.id_question]
+              const questionValue = values[q.id_question]
               return (
                 <InputCheckbox
                   key={q.id}
                   label={q.text}
                   options={q.options}
                   id={q.id_question}
-                  //selectedValues={questionValue}
+                  value={questionValue}
                   selectedValues={[]}
                   onChange={handleText}
                   expandText={q.expandText}
