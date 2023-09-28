@@ -1,31 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+//{ useState } 
+
 
 interface RadioBoxGroupProps {
   label: React.ReactNode;
   id: string;
   options: string[];
   selectedValue: string;
-  onChange: (selectedValue: string) => void;
   expandText?: string;
   required?: boolean;
 }
 
 export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
   options,
-  selectedValue,
+  //selectedValue,
   expandText,
   label,
-  onChange,
   required,
   id
 }) => {
-  const [localSelectedValue, setLocalSelectedValue] = useState(selectedValue);
+  //const [localSelectedValue, setLocalSelectedValue] = useState(selectedValue);
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setLocalSelectedValue(newValue);
-    onChange(newValue);
-  };
+  // const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newValue = event.target.value;
+  //   setLocalSelectedValue(newValue);
+  //   //onChange(newValue);
+  // };
 
   return (
     <div className="mt-5">
@@ -43,8 +43,7 @@ export const InputRadioBox: React.FC<RadioBoxGroupProps> = ({
             id={id}
             name={id}
             value={option}
-            checked={localSelectedValue === option}
-            onChange={handleRadioChange}
+            //checked={localSelectedValue === option}
             className="mr-2"
             required={required}
           />
