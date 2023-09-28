@@ -18,7 +18,7 @@ import { UpdateEstado } from "@/services/UpdateEstado";
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
   "Aplicante",
-  // "Preaprobado",
+  "Preaprobado",
   "Invitado",
   "Confirmado",
   "Entrevistado",
