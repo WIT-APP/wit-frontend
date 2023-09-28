@@ -21,6 +21,7 @@ const estadosPosibles = [
   "Aplicante",
   "Preaprobado",
   "Invitado",
+  "Admitido",
   "Confirmado",
   "Entrevistado",
   "Matriculado",
