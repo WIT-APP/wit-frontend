@@ -194,19 +194,9 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "estado",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Estado
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "Estado",
     cell: ({ row }) => (
-      <div className="ml-4">
+      <div className="flex gap-2 items-center">
         <select
           value={row.getValue("estado")}
           onChange={(e) => handleEstadoChange(e, row.original)}
@@ -246,19 +236,9 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "observaciones",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Observaciones
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "Observaciones",
     cell: ({ row }) => (
-      <div className="text-right mr-4">{row.getValue("observaciones")}</div>
+      <div >{row.getValue("observaciones")}</div>
     ),
   },
 
