@@ -14,6 +14,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
+import ModalConfirmacion from "../ModalConfirmacion";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -34,7 +35,8 @@ const handleEstadoChange = (
 ) => {
   const nuevoEstado = e.target.value;
   // Abrir modal para confirmar y actualizar estado
-  
+
+
   // Recargar la pagina
   window.location.reload();
   try {
