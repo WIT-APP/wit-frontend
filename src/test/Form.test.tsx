@@ -24,7 +24,7 @@ describe('Form should load all questions from the queryclient', () => {
     await waitFor(() => {
         
         // Add your assertions here
-        const input = screen.getByLabelText('Nombre');
+        const input:HTMLInputElement = screen.getByLabelText('Nombre');
         expect(input).toBeTruthy();
 
         expect(input?.textContent).toBe('')

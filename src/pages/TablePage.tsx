@@ -19,7 +19,7 @@ export default function TablePage() {
 
   return (
     <div className=" container mx-auto p-4 overflow-y-scroll max-h-screen scroll-auto">
-      <DataTable columns={columns} data={formattedApplicants} />
+      <DataTable  columns={columns} data={formattedApplicants} />
     </div>
   );
 }
