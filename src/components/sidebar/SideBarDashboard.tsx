@@ -41,7 +41,7 @@ export default function SideBarDashboard() {
           text="Invitado"
           active={activeItem === "Invitado"}
           onClick={() => handleItemClick("Invitado")}
-        />
+        />        
         <SidebarItem
           icon={<MessageSquarePlus size={20} />}
           text="Entrevistado"

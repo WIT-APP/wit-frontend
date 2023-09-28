@@ -34,24 +34,18 @@ const handleEstadoChange = (
 ) => {
   const nuevoEstado = e.target.value;
   // Abrir modal para confirmar y actualizar estado
+  
   // Recargar la pagina
   window.location.reload();
-
-
-  // llamada  al endpoint para actualizar el estado del solicitante
   try {
-    // Llama a la función UpdateEstado que realiza una solicitud al servidor de manera asincrónica
     const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
 
     if (error) {
-      // Maneja el error de manera apropiada, por ejemplo, mostrando un mensaje de error al usuario
       console.error('Error al actualizar el estado:', error);
     } else {
-      // Si la actualización fue exitosa, puedes realizar acciones adicionales, si es necesario
       console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
     }
   } catch (error) {
-    // Maneja errores de excepción si ocurren durante la solicitud
     console.error('Error al actualizar el estado:', error);
   }
   console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
