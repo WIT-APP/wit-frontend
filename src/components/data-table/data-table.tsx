@@ -170,7 +170,6 @@ export function DataTable<TData extends Record<string, any>>({
   }
 
   function handleDownloadExcelAll() {
-    // console.log(rowSelection);
     const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
       .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
