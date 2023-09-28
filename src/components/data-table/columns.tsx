@@ -18,7 +18,7 @@ import { UpdateEstado } from "@/services/UpdateEstado";
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
   "Aplicante",
-  "Preaprobado",
+  // "Preaprobado",
   "Invitado",
   "Confirmado",
   "Entrevistado",
@@ -34,6 +34,9 @@ const handleEstadoChange = (
 ) => {
   const nuevoEstado = e.target.value;
   // Abrir modal para confirmar y actualizar estado
+  // Recargar la pagina
+  window.location.reload();
+
 
   // llamada  al endpoint para actualizar el estado del solicitante
   try {
