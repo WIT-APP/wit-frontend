@@ -91,9 +91,9 @@ export const FormPage = () => {
   });
   
 
->>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
+// >>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
   return (
-<<<<<<< HEAD
+// <<<<<<< HEAD
     <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <form
         ref={formContainerRef}
@@ -150,14 +150,10 @@ export const FormPage = () => {
         {isFetching ? <span> Loading...</span> : null}{" "}
       </form>
     </div>
-<<<<<<< HEAD
-  )
-=======
 =======
 
     <Form2/>
    
->>>>>>> c347c746308658603df0a3f750167b67241c18db
   );
 >>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
 };
