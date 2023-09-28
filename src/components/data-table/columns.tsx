@@ -13,8 +13,49 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
+import { UpdateEstado } from "@/services/UpdateEstado";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
+const estadosPosibles = [
+  "Aplicante",
+  "Preaprobado",
+  "Invitado",
+  "Confirmado",
+  "Entrevistado",
+  "Matriculado",
+  "Certificado",
+  "Rechazado",
+  "Baja",
+];
+
+const handleEstadoChange = (
+  e: React.ChangeEvent<HTMLSelectElement>,
+  applicant: Applicant
+) => {
+  const nuevoEstado = e.target.value;
+  // Abrir modal para confirmar y actualizar estado
+  // Recargar la pagina
+  window.location.reload();
+
+
+  // llamada  al endpoint para actualizar el estado del solicitante
+  try {
+    // Llama a la función UpdateEstado que realiza una solicitud al servidor de manera asincrónica
+    const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
+
+    if (error) {
+      // Maneja el error de manera apropiada, por ejemplo, mostrando un mensaje de error al usuario
+      console.error('Error al actualizar el estado:', error);
+    } else {
+      // Si la actualización fue exitosa, puedes realizar acciones adicionales, si es necesario
+      console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+    }
+  } catch (error) {
+    // Maneja errores de excepción si ocurren durante la solicitud
+    console.error('Error al actualizar el estado:', error);
+  }
+  console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+};
 
 export type Applicant = {
   id: string;
@@ -163,18 +204,20 @@ export const columns: ColumnDef<Applicant>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="ml-4">{row.getValue("estado")}</div>
+      <div className="ml-4">
+        <select
+          value={row.getValue("estado")}
+          onChange={(e) => handleEstadoChange(e, row.original)}
+        >
+          {estadosPosibles.map((estado, index) => (
+            <option key={index} value={estado}>
+              {estado}
+            </option>
+          ))}
+        </select>
+      </div>
     ),
   },
-  // {
-  //   accessorKey: "fecha_de_applicacion",
-  //   header: () => <div className="text-right">Fecha de aplicación</div>,
-  //   cell: ({ row }) => (
-  //     <div className="text-right">
-  //       <span>{row.getValue("fecha_de_applicacion")}</span>
-  //     </div>
-  //   ),
-  // },
   {
     accessorKey: "fecha_de_applicacion",
     header: ({ column }) => {
