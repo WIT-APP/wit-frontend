@@ -109,6 +109,7 @@ export const Form2 = () => {
                 {question?.map((q) => (
                   <div className="container" key={q.id_question}>
                     <label htmlFor={q.id_question}>{q.text}</label>
+                    {/* TYPE1 */}
                     {q.type === 'text' && (
                       <Field
                         name={q.id_question}
@@ -118,6 +119,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       />
                     )}
+                    {/* TYPE2 */}
                     {q.type === 'textarea' && (
                       <Field
                         name={q.id_question}
@@ -127,6 +129,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       />
                     )}
+                    {/* TYPE1 */}
                     {q.type ==='date' && (
                       <Field
                         name={q.id_question}
@@ -136,6 +139,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       />
                     )}
+                    {/* TYPE1 */}
                     {q.type ==='email' && (
                       <Field
                         name={q.id_question}
@@ -145,6 +149,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       />
                     )}
+                    {/* TYPE1 */}
                     {q.type ==='phone' && (
                       <Field
                         name={q.id_question}
@@ -154,6 +159,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       />
                     )}
+                    {/* TYPE3 */}
                     {q.type === 'checkbox' && (
                       <div>
                         {q.options.map((option) => (
@@ -168,6 +174,7 @@ export const Form2 = () => {
                         ))}
                       </div>
                     )}
+                    {/* TYPE4 */}
                     {q.type === 'toggle' && (
                       <div>
                         {q.options.map((option) => (
@@ -182,6 +189,7 @@ export const Form2 = () => {
                         ))}
                       </div>
                     )}
+                    {/* TYPE5 */}
                     {q.type === 'select' && (
                       <Field
                         as="select"
@@ -199,6 +207,7 @@ export const Form2 = () => {
                         ))}
                       </Field>
                     )}
+                    {/* TYPE4 */}
                     {q.type === 'radio' && (
                       <div>
                         {q.options.map((option) => (
