@@ -8,6 +8,12 @@ import * as Yup from 'yup';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
+const validationSchema = Yup.object().shape({
+  nombre: Yup.string().required('El nombre es obligatorio'),
+  apellidos: Yup.string().required('Los apellidos son obligatorios'),
+  correo_electronico: Yup.string().email('Formato de correo electrónico inválido').required('El correo electrónico es obligatorio'),
+});
+
 export interface FormValues {
   [key: string]: string;
 }
@@ -70,17 +76,13 @@ export const Form2 = () => {
           <div>Error: {error?.message}</div>
         ) : (
           <Formik
-            initialValues={initialValues}
-            validationSchema={Yup.object({
-              // Define your validation schema based on question types
-              // For example:
-              // nombre: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
-            })}
-            onSubmit={(values, actions) => {
-              console.log({ values, actions });
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, actions) => {
+            console.log({ values, actions });
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }}
           >
             {({ values }) => (
               <Form>
