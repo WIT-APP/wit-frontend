@@ -1,35 +1,7 @@
-import classnames from "classnames";
-import { useRef, useState } from "react";
-import { FormSection } from "../components/FormSection";
-import witLogo from "../assets/witLogo.png";
-import { useCategoryQuestion } from "../services/CategoryQuestionsForm";
-import {
-  useFormik,
-  // Formik, Form, Field
-} from "formik";
-
-const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
-
-export interface FormValues {
-  [key: string]: string;
-}
-
-//const validate = (values) => {
-//   const errors = {};
-
-//   // Add your validation logic here for the fields in FormSection
-//   if (!values.nombre) {
-//     errors.nombre = 'Required';
-//   }
-//   if (!values.apellidos) {
-//     errors.apellidos = 'Required';
-//   }
-//   // Add validations for other fields as needed
-
-//   return errors;
-// };
+import { Form2 } from './Form';
 
 export const FormPage = () => {
+<<<<<<< HEAD
   const [currentPage, setCurrentPage] = useState(0);
   const formContainerRef = useRef<HTMLFormElement | null>(null);
 
@@ -165,9 +137,13 @@ export const FormPage = () => {
       alert(result);
     },
   });
+=======
+  
+>>>>>>> c347c746308658603df0a3f750167b67241c18db
 
 >>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
   return (
+<<<<<<< HEAD
     <div className=" overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <form
         ref={formContainerRef}
@@ -227,6 +203,11 @@ export const FormPage = () => {
 <<<<<<< HEAD
   )
 =======
+=======
+
+    <Form2/>
+   
+>>>>>>> c347c746308658603df0a3f750167b67241c18db
   );
 >>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
 };
