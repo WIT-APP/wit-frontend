@@ -16,8 +16,6 @@ const validationSchema = Yup.object().shape({
   genero: Yup.string().required('El género es obligatorio'),
   numero_documento_id: Yup.string().required('El número de documento es obligatorio'),
   documento_de_identidad: Yup.string().required('El documento de identidad es obligatorio'),
-  tipo_documento_identidad: Yup.string().required('El tipo de documento de identidad es obligatorio'),
-  permiso: Yup.string().required('El permiso es obligatorio'),
   direccion: Yup.string().required('La dirección es obligatoria'),
   ciudad: Yup.string().required('La ciudad es obligatoria'),
   provincia: Yup.string().required('La provincia es obligatoria'),
@@ -34,7 +32,6 @@ const validationSchema = Yup.object().shape({
   formacion_online: Yup.string().required('La formación online es obligatoria'),
   razones_para_unir: Yup.string().required('Las razones para unir son obligatorias'),
   encontrar_programa: Yup.string().required('Cómo encontraste el programa es obligatorio'),
-  mas_informacion: Yup.string().required('La información adicional es obligatoria'),
 });
 
 export interface FormValues {

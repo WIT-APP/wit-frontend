@@ -1,7 +1,7 @@
 import { Form2 } from './Form';
 
 export const FormPage = () => {
-<<<<<<< HEAD
+// <<<<<<< HEAD
   const [currentPage, setCurrentPage] = useState(0);
   const formContainerRef = useRef<HTMLFormElement | null>(null);
 
@@ -48,54 +48,6 @@ export const FormPage = () => {
     }
   };
 
-<<<<<<< HEAD
-  /*VALIDACION A COMPLETAR - INICIO*/
-  const validateNombre_apellidos = (value) => {
-    if (!value) {
-      return "Campo obligatorio";
-    }
-    return "Dato correcto";
-  };
-
-  const validateCorreo_electronico = (value) => {
-    if (!value) {
-      return "Campo obligatorio";
-    }
-    return "Dato correcto";
-  };
-
-  const handleNombreApellidosChange = (e) => {
-    const value = e.target.value;
-    setFormData({ ...formData, nombre_apellidos: value });
-    const error = validateNombreApellidos(value);
-    setFormErrors({ ...formErrors, nombre_apellidos: error });
-  };
-
-  const handleCorreoElectronicoChange = (e) => {
-    const value = e.target.value;
-    setFormData({ ...formData, correo_electronico: value });
-    const error = validateCorreoElectronico(value);
-    setFormErrors({ ...formErrors, correo_electronico: error });
-  };
-
-  const onSubmit = () => {
-    const nombreApellidosError = validateNombreApellidos(formData.nombre_apellidos);
-    const correoElectronicoError = validateCorreoElectronico(formData.correo_electronico
-    );
-
-    if (nombreApellidosError || correoElectronicoError) {
-      setFormErrors({
-        nombre_apellidos: nombreApellidosError,
-        correo_electronico: correoElectronicoError,
-      });
-    } else {
-      // No hay errores, realiza la acción de envío del formulario
-      // Ejemplo: enviar datos al servidor o realizar alguna acción
-    }
-  };
-  /*VALIDACION A COMPLETAR - FIN*/
-  
-=======
   const formik = useFormik<FormValues>({
     initialValues: {
       nombre: "",
@@ -137,9 +89,7 @@ export const FormPage = () => {
       alert(result);
     },
   });
-=======
   
->>>>>>> c347c746308658603df0a3f750167b67241c18db
 
 >>>>>>> 01f61ed19d82592b4deddc3fd9cb3cea98972b56
   return (
