@@ -66,6 +66,8 @@ export type Applicant = {
   programa_cursar: string;
   estado: string;
   fecha_de_applicacion: string;
+  observaciones: string;
+
 };
 
 // crear esto en un json. Columnas de la tabla
@@ -240,6 +242,23 @@ export const columns: ColumnDef<Applicant>[] = [
       <div className="text-right mr-4">
         <span>{row.getValue("fecha_de_applicacion")}</span>
       </div>
+    ),
+  },
+  {
+    accessorKey: "observaciones",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Observaciones
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="text-right mr-4">{row.getValue("observaciones")}</div>
     ),
   },
 

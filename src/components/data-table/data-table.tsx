@@ -40,12 +40,6 @@ interface DataTableProps<TData extends Record<string, any>> {
 }
 interface SelectedRowData {
   id: number;
-  // nombre: string;
-  // apellidos: string;
-  // correo_electronico: string;
-  // telefono: string;
-  // programa_cursar: string;
-  // fecha_de_applicacion: string;
 }
 
 export function DataTable<TData extends Record<string, any>>({
