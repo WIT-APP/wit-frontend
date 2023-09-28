@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 
 import {
@@ -32,27 +31,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
-import { Applicant } from "../../interfaces/applicant.interface";
 
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: Applicant[];
+type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
+interface DataTableProps<TData extends Record<string, any>> {
+  columns: MyColumnDef<TData>[];
+  data: TData[];
 }
 interface SelectedRowData {
   id: number;
-  nombre: string;
-  apellidos: string;
-  correo_electronico: string;
-  telefono: string;
-  programa_cursar: string;
-  fecha_de_applicacion: string;
+  // nombre: string;
+  // apellidos: string;
+  // correo_electronico: string;
+  // telefono: string;
+  // programa_cursar: string;
+  // fecha_de_applicacion: string;
 }
 
-export function DataTable<TData extends Applicant, TValue>({
+export function DataTable<TData extends Record<string, any>>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
   const header = [
     "Nombre",
     "Apellidos",
@@ -95,7 +93,7 @@ export function DataTable<TData extends Applicant, TValue>({
 
   const table = useReactTable({
     data,
-    columns,
+    columns: columns as ColumnDef<TData, unknown>[],
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
@@ -143,7 +141,7 @@ export function DataTable<TData extends Applicant, TValue>({
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo: row.colectivo.map((item) => item).join(", ") || [],
+        Colectivo: row.colectivo.map((item: string) => item).join(", ") || [],
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -345,15 +343,7 @@ export function DataTable<TData extends Applicant, TValue>({
           Next
         </Button>
       </div>
-      {/* <DownloadTableExcel
-                    filename="users table"
-                    sheet="users"
-                    currentTableRef={tableRef.current}
-                >
 
-                   <button> Export excel </button>
-
-                </DownloadTableExcel> */}
     </div>
   );
 }
