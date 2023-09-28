@@ -32,6 +32,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
+import { RiFileExcel2Fill } from "react-icons/ri";
 
 type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
 interface DataTableProps<TData extends Record<string, any>> {
@@ -40,12 +41,6 @@ interface DataTableProps<TData extends Record<string, any>> {
 }
 interface SelectedRowData {
   id: number;
-  // nombre: string;
-  // apellidos: string;
-  // correo_electronico: string;
-  // telefono: string;
-  // programa_cursar: string;
-  // fecha_de_applicacion: string;
 }
 
 export function DataTable<TData extends Record<string, any>>({
@@ -226,8 +221,8 @@ export function DataTable<TData extends Record<string, any>>({
     <div>
       <div className="este flex items-center py-4">
         <div className="flex gap-8 justify-between">
-          <button onClick={handleDownloadExcel}>Descargar seleccionados</button>
-          <button onClick={handleDownloadExcelAll}>Descargar todos</button>
+          <button onClick={handleDownloadExcel}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> seleccionados</div></button>
+          <button onClick={handleDownloadExcelAll}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> todos </div></button>
         </div>
         <Input
           placeholder="Filter emails..."

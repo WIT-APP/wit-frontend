@@ -14,6 +14,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
+import ModalConfirmacion from "../ModalConfirmacion";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -34,24 +35,19 @@ const handleEstadoChange = (
 ) => {
   const nuevoEstado = e.target.value;
   // Abrir modal para confirmar y actualizar estado
+
+
   // Recargar la pagina
   window.location.reload();
-
-
-  // llamada  al endpoint para actualizar el estado del solicitante
   try {
-    // Llama a la función UpdateEstado que realiza una solicitud al servidor de manera asincrónica
     const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
 
     if (error) {
-      // Maneja el error de manera apropiada, por ejemplo, mostrando un mensaje de error al usuario
       console.error('Error al actualizar el estado:', error);
     } else {
-      // Si la actualización fue exitosa, puedes realizar acciones adicionales, si es necesario
       console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
     }
   } catch (error) {
-    // Maneja errores de excepción si ocurren durante la solicitud
     console.error('Error al actualizar el estado:', error);
   }
   console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
@@ -66,6 +62,8 @@ export type Applicant = {
   programa_cursar: string;
   estado: string;
   fecha_de_applicacion: string;
+  observaciones: string;
+
 };
 
 // crear esto en un json. Columnas de la tabla
@@ -192,19 +190,9 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "estado",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Estado
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "Estado",
     cell: ({ row }) => (
-      <div className="ml-4">
+      <div className="flex gap-2 items-center">
         <select
           value={row.getValue("estado")}
           onChange={(e) => handleEstadoChange(e, row.original)}
@@ -240,6 +228,13 @@ export const columns: ColumnDef<Applicant>[] = [
       <div className="text-right mr-4">
         <span>{row.getValue("fecha_de_applicacion")}</span>
       </div>
+    ),
+  },
+  {
+    accessorKey: "observaciones",
+    header: "Observaciones",
+    cell: ({ row }) => (
+      <div >{row.getValue("observaciones")}</div>
     ),
   },
 
