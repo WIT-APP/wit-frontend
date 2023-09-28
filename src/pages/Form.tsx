@@ -5,7 +5,6 @@ import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { DocumentoIdentidad } from '@/components/ui/form/DocumentoIdentidad';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
@@ -52,7 +51,7 @@ export const Form2 = () => {
     intereses_actuales: '',
     dedicacion_semanal: '',
     acceso_internet_dispositivos: '',
-    formacion_online: '',
+    formacion_online: 'No',
     razones_para_unir: '',
     encontrar_programa: '',
     mas_informacion: '',
@@ -86,8 +85,8 @@ export const Form2 = () => {
             {({ values }) => (
               <Form>
                 {question?.map((q) => (
-                  <div className="container" key={q.id_question}>
-                    <label htmlFor={q.id_question}>{q.text}</label>
+                  <div className="mt-5 flex-column" key={q.id_question}>
+                    <label htmlFor={q.id_question} className='text-white'>{q.text}</label>
                     {q.type === 'text' && (
                       <Field
                         name={q.id_question}
@@ -95,15 +94,18 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
+                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
                     {q.type === 'textarea' && (
                       <Field
                         name={q.id_question}
                         type='textarea'
+                        component = {q.type}
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
+                        className='mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto focus:ring-yellow2 focus:border-yellow2 rounded-md shadow appearance-none'
                       />
                     )}
                     {q.type ==='date' && (
@@ -113,6 +115,7 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
+                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
                     {q.type ==='email' && (
@@ -122,6 +125,7 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
+                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
                     {q.type ==='phone' && (
@@ -131,16 +135,18 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
+                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
                     {q.type === 'checkbox' && (
-                      <div>
+                      <div className="flex items-center text-white mt-2 mr-2">
                         {q.options.map((option) => (
                           <label key={option}>
                             <Field
                               type="checkbox"
                               name={q.id_question}
                               value={option}
+                              className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />
                             {option}
                           </label>
@@ -150,13 +156,17 @@ export const Form2 = () => {
                     {q.type === 'toggle' && (
                       <div>
                         {q.options.map((option) => (
-                          <label key={option}>
+                          <label key={option} className="relative inline-flex text-white items-center mb-4 cursor-pointer">
                             <Field
-                              type="radio"
+                              type="checkbox"
                               name={q.id_question}
-                              value={option}
+                              value={option} // Use the option value as the value of the checkbox
+                              className="sr-only peer"                              
                             />
-                            {option}
+                            <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-lightgray2 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow2"></div>
+                            <span className="ml-3 text-sm font-medium text-white">
+                              {option}
+                            </span>
                           </label>
                         ))}
                       </div>
@@ -167,6 +177,7 @@ export const Form2 = () => {
                         name={q.id_question}
                         id={q.id_question}
                         required={q.obligatory}
+                        className='bg-gray-50 border border-gray-300 text-black2 mb-6 text-sm rounded-lg focus:ring-yellow2 focus:border-yellow2 block w-full p-2.5 '
                       >
                         <option value="" disabled>
                           Selecciona una opción
@@ -179,7 +190,7 @@ export const Form2 = () => {
                       </Field>
                     )}
                     {q.type === 'radio' && (
-                      <div>
+                      <div className="flex flex-column items-center text-white mb-2 mr-2">
                         {q.options.map((option) => (
                           <div key={option}>
                             <label>
@@ -188,6 +199,7 @@ export const Form2 = () => {
                                 name={q.id_question}
                                 value={option}
                                 required={q.obligatory}
+                                className="mr-2"
                               />
                               {option}
                             </label>
