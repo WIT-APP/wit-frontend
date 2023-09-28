@@ -5,6 +5,7 @@ import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { DocumentoIdentidad } from '@/components/ui/form/DocumentoIdentidad';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
@@ -168,7 +169,7 @@ export const Form2 = () => {
                         required={q.obligatory}
                       >
                         <option value="" disabled>
-                          Select an option
+                          Selecciona una opción
                         </option>
                         {q.options.map((option) => (
                           <option key={option} value={option}>
@@ -192,6 +193,7 @@ export const Form2 = () => {
                             </label>
                           </div>
                         ))}
+                        
                       </div>
                     )}
                     <ErrorMessage name={q.id_question} component="div" className="error" />

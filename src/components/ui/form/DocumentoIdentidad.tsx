@@ -1,101 +1,99 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
-import {InputSelect} from "./InputSelect";
-import {InputText} from "./InputText";
-import { InputRadioBox } from "./InputRadioBox";
-import { useFormik } from 'formik';
-import { FormValues } from "@/pages/FormPage";
+import { useEffect, useState } from "react";
+import { Field } from 'formik';
+import { Question } from "@/interfaces/question.interface";
 
-interface DocumentoIdentidadProps {
- 
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value:string;
-}
+// interface DocumentoIdentidadProps {
+//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+//   value: string;
+// }
 
-export const DocumentoIdentidad = (value ) => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [permisoValue, setPermisoValue] = useState("");
+export const DocumentoIdentidad = ({ question }: { question: Question[] }) => {
+  const [selectedOption, setSelectedOption] = useState('');
+  const [tipoDocumento, setTipoDocumento] = useState('');
+  const [permisoValue, setPermisoValue] = useState('');
 
-  const radioOptions = [
-    "DNI" ,
-    "NIE",
-    "Otro",
-  ];
+  const handleRadioChange = (event: any) => {
+    setSelectedOption(event.target.value);
+  };
 
-  const handleRadioChange = (selectedValue: string) => {
-    setSelectedOption(selectedValue);
+  const handlePermisoChange = (event: any) => {
+    setPermisoValue(event.target.value);
+  };
+  const handleTipohange = (event: any) => {
+    setTipoDocumento(event.target.value);
+  };
 
-    // Handle conditional logic here based on selectedValue
-    if (selectedValue === "Otro") {
-      // Handle changes for "Otro" option
-      formik.setFieldValue("documento_de_identidad", ""); // Clear the value if needed
-      formik.setFieldValue("tipo_documento_identidad", ""); // Clear the value if needed
-      formik.setFieldValue("permiso", ""); // Clear the value if needed
+  const filteredQuestions = question.filter((q) => {
+    if (selectedOption === 'Otro' && q.type === 'otro') {
+      return true;
     }
-
-    console.log(selectedValue);
-  };
-
-  const handlePermisoChange = (selectedValue: string) => {
-    setPermisoValue(selectedValue);
-    console.log(permisoValue);
-  };
-
-  const formik = useFormik<FormValues>({
-    initialValues: {
-      documento_de_identidad: '',
-      tipo_documento_identidad: '',
-      permiso: '',
-    },
-    onSubmit: (values) => {
-      values.documento_de_identidad = ""; // Modify the value in the formik values
-      values.tipo_documento_identidad = ""; // Modify the value in the formik values
-      values.permiso = ""; // Modify the value in the formik values
-      
-      console.log(values);
-    },
+    if ((selectedOption === 'NIE' || selectedOption === 'Otro') && q.type === 'permiso') {
+      return true;
+    }
+    if (selectedOption !== 'Otro' && selectedOption !== 'NIE' && q.type === 'documento') {
+      return true;
+    }
+    return false;
   });
 
   return (
-    <div className="mt-5 " data-testid="documento-identidad">
-      <div className="flex">
-        <InputRadioBox
-          label={"Documento de Identidad"}
-          options={radioOptions}
-          selectedValue={selectedOption}
-          onChange={formik.handleChange}
-          expandText={""}
-          id={'documento_de_identidad'}
-        />
-      </div>
-      {selectedOption === "Otro" && (
-        <div className="mb-4">
-          <InputText
-            type="text"
-            id="tipo_documento_identidad"
-            placeholder="Escribe tu tipo de documento"
-            children={'Si dispones de otro documento de identidad, por favor indícanos qué tipo de documento de identidad'}
-            expandText={""}
-            onChange={formik.handleChange}
-          />
+    <div className="mt-5" data-testid="documento-identidad">
+      {filteredQuestions.map((q) => (
+        <div key={q.id_question}>
+          {q.type === 'documento' && (
+            <div>
+              {q.options.map((option) => (
+                <div key={option}>
+                  <label>
+                    <Field
+                      type="radio"
+                      name={q.id_question}
+                      value={option}
+                      required={q.obligatory}
+                      onChange={handleRadioChange}
+                    />
+                    {option}
+                  </label>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedOption === 'Otro' && q.type === 'otro' && (
+            <>
+              <label htmlFor={q.id_question}>{q.text}</label>
+              <Field
+                name={q.id_question}
+                type='text'
+                id={q.id_question}
+                placeholder={q.placeholder}
+                required={q.obligatory}
+                onChange={handleTipohange}
+              />
+            </>
+          )}
+
+          {(selectedOption === 'NIE' || selectedOption === 'Otro') && q.type === 'permiso' && (
+            <>
+              <Field
+                as="select"
+                name={q.id_question}
+                id={q.id_question}
+                required={q.obligatory}
+                onChange={handlePermisoChange}
+              >
+                <option value="" disabled>
+                  Select an option
+                </option>
+                {q.options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </Field>
+            </>
+          )}
         </div>
-      )}
-      {(selectedOption === "NIE" || selectedOption === "Otro") && (
-        <div className="mb-4 ">
-          <InputSelect
-            id="permiso"
-            label="Indica el carácter de tu permiso en España"
-            options={[
-              "Permiso de residencia y trabajo",
-              "Permiso de residencia y estudios",
-              "No dispongo de permiso (No es un problema para tener acceso al curso)",
-              "Otro",
-            ]}
-            value={permisoValue}
-            onChange={formik.handleChange}
-          />
-        </div>
-      )}
+      ))}
     </div>
   );
 };
