@@ -31,18 +31,6 @@ const estadosPosibles = [
   "Baja",
 ];
 
-// export type Applicant = {
-//   id: string | number;
-//   nombre: string;
-//   apellidos: string;
-//   correo_electronico: string;
-//   telefono: string;
-//   programa_cursar: string;
-//   estado: string;
-//   fecha_de_applicacion: string;
-//   observaciones: string;
-//   invitaciones: number | null;
-// };
 
 const handleEstadoChange = async (
   e: React.ChangeEvent<HTMLSelectElement>,
