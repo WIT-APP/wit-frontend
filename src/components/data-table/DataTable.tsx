@@ -2,6 +2,14 @@
 import * as React from "react";
 
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
@@ -33,7 +41,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
 import { RiFileExcel2Fill } from "react-icons/ri";
-import { InputSelect } from "../ui/form/InputSelect";
 
 type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
 interface DataTableProps<TData extends Record<string, any>> {
@@ -86,8 +93,21 @@ export function DataTable<TData extends Record<string, any>>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const [columnaSeleccionada, setColumnaSeleccionada] = React.useState<string>("correo_electronico");
+  // const [columnaSeleccionada, setColumnaSeleccionada] =
+  //   React.useState<string>("correo_electronico");
+  const [value, setValue] = React.useState("correo_electronico");
 
+  const opciones = [
+    { value: "nombre", label: "Nombre" },
+    { value: "apellidos", label: "Apellidos" },
+    { value: "correo_electronico", label: "Email" },
+    { value: "telefono", label: "Telefono" },
+    { value: "invitaciones", label: "Invitado" },
+    { value: "programa_cursar", label: "Programa a Cursar" },
+    { value: "estado", label: "Estado" },
+    { value: "fecha_de_applicacion", label: "Fecha de aplicación" },
+    { value: "observaciones", label: "Observaciones" },
+  ];
 
   const table = useReactTable({
     data,
@@ -108,12 +128,10 @@ export function DataTable<TData extends Record<string, any>>({
     },
   });
 
-  const handleSelectFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // Me cambia el valor de la variable de columnaSeleccionada para usarla en el input de filtro o busquea
-    setColumnaSeleccionada(e.target.value);
-    console.log(e.target.value);
-    
-  }
+  const handleSelectFilter = (selectedValue) => {
+    setColumnaSeleccionada(selectedValue);
+    console.log(selectedValue);
+  };
 
   function handleDownloadExcel() {
     const selectedRowIds: string[] = Object.keys(rowSelection)
@@ -224,6 +242,9 @@ export function DataTable<TData extends Record<string, any>>({
     });
   }
 
+  console.log("Value:", value);
+console.log("Opciones:", opciones);
+
   return (
     <div>
       <div className="este flex items-center py-4">
@@ -240,20 +261,31 @@ export function DataTable<TData extends Record<string, any>>({
           </button>
         </div>
         <Input
-          placeholder={`Filtrar por ${columnaSeleccionada}`}
-          value={
-            (table
-              .getColumn(columnaSeleccionada)
-              ?.getFilterValue() as string) ?? ""
-          }
+          placeholder={`Filtrar por... ${value}`}
+          value={(table.getColumn(value)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table
-              .getColumn(columnaSeleccionada)
-              ?.setFilterValue(event.target.value)
+            table.getColumn(value)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
-        <InputSelect id="filter" label="filter" value={columnaSeleccionada} options={["nombre", "apellidos", "correo_electronico", "telefono", "invitaciones", "programa_cursar", "estado", "fecha_de_applicacion", "observaciones"  ]} onChange={handleSelectFilter}  />
+        <Select value={value} onValueChange={setValue}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Buscar por ..." />
+          </SelectTrigger>
+          <SelectContent>
+            {opciones.map((option) => (
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                onSelect={() => {handleSelectFilter(value);
+                  console.log("Option selected:", value);}}
+              >
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
