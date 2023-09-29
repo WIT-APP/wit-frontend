@@ -150,6 +150,7 @@ export const Form2 = () => {
                       />
                     )}
                     {/* TYPE1 */}
+                    
                     {q.type ==='phone' && (
                       <Field
                         name={q.id_question}
