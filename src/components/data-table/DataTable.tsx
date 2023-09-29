@@ -346,3 +346,5 @@ export function DataTable<TData extends Record<string, any>>({
     </div>
   );
 }
+
+export default DataTable;
