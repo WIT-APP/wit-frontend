@@ -229,8 +229,9 @@ export function DataTable<TData extends Record<string, any>>({
           <button onClick={handleDownloadExcel}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> seleccionados</div></button>
           <button onClick={handleDownloadExcelAll}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> todos </div></button>
         </div>
-        <Input
-          placeholder="Filter emails..."
+         {/* Filtrado por variables */}
+         <Input
+          placeholder="Filtrar por email..."
           value={
             (table
               .getColumn("correo_electronico")
@@ -243,6 +244,8 @@ export function DataTable<TData extends Record<string, any>>({
           }
           className="max-w-sm"
         />
+
+       
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
