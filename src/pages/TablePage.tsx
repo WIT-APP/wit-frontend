@@ -13,6 +13,8 @@ export default function TablePage() {
     return <div>Loading...</div>;
   }
 
+
+
   if (isError) {
     return <div>Error fetching data.</div>;
   }
