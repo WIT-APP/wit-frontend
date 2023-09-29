@@ -10,10 +10,12 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
   import { Button } from "@/components/ui/button"
+
+
    
   export function AlertDialogConfirmation() {
     return (
-      <AlertDialog>
+      <AlertDialog >
         <AlertDialogTrigger asChild>
           <Button variant="outline">Show Dialog</Button>
         </AlertDialogTrigger>

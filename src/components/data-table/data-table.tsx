@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -77,6 +77,8 @@ export function DataTable<TData extends Record<string, any>>({
     "Razones para unirse",
     "Donde encontró el programa",
     "Mas información",
+    "observaciones",
+    "invitaciones"
   ];
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -148,6 +150,8 @@ export function DataTable<TData extends Record<string, any>>({
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
+        "observaciones": row.observaciones || "",
+        "invitaciones": row.invitaciones || "",
       };
     });
 
@@ -201,6 +205,8 @@ export function DataTable<TData extends Record<string, any>>({
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
+        "observaciones": row.observaciones || "",
+        "invitaciones": row.invitaciones || "",
       };
     });
 

@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
-import ModalConfirmacion from "../ModalConfirmacion";
+import React from "react";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -37,6 +37,7 @@ const handleEstadoChange = (
   const nuevoEstado = e.target.value;
   // Abrir modal para confirmar y actualizar estado
 
+  // <AlertDialogConfirmation />
 
   // Recargar la pagina
   window.location.reload();
@@ -44,12 +45,14 @@ const handleEstadoChange = (
     const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
 
     if (error) {
-      console.error('Error al actualizar el estado:', error);
+      console.error("Error al actualizar el estado:", error);
     } else {
-      console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+      console.log(
+        `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
+      );
     }
   } catch (error) {
-    console.error('Error al actualizar el estado:', error);
+    console.error("Error al actualizar el estado:", error);
   }
   console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
 };
@@ -64,7 +67,7 @@ export type Applicant = {
   estado: string;
   fecha_de_applicacion: string;
   observaciones: string;
-
+  invitaciones: number | null;
 };
 
 // crear esto en un json. Columnas de la tabla
@@ -171,6 +174,15 @@ export const columns: ColumnDef<Applicant>[] = [
       </div>
     ),
   },
+  {
+    accessorKey: "invitaciones",
+    header: "Invitado",
+    cell: ({ row }) => (
+      <div className="text-right mr-4">
+        <span>{row.getValue("invitaciones")}</span>
+      </div>
+    ),
+  },
 
   {
     accessorKey: "programa_cursar",
@@ -234,9 +246,7 @@ export const columns: ColumnDef<Applicant>[] = [
   {
     accessorKey: "observaciones",
     header: "Observaciones",
-    cell: ({ row }) => (
-      <div >{row.getValue("observaciones")}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("observaciones")}</div>,
   },
 
   {

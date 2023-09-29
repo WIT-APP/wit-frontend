@@ -30,6 +30,7 @@ export interface Applicant {
   razones_para_unir: string;
   encontrar_programa: string;
   mas_informacion: string;
+  observaciones: string;
 }
 
 export interface CreateApplicant {
@@ -61,4 +62,5 @@ export interface CreateApplicant {
   razones_para_unir: string;
   encontrar_programa: string;
   mas_informacion: string;
+  observaciones: string;
 }
