@@ -6,11 +6,12 @@ const FAQPage: React.FC = () => {
   
   return (
     <div className='overflow-hidden flex max-h-screen'>
-    <div className='container overflow-y-scroll scrollbar-thumb-base'>
-      <ProjectBio /> {/* Renderiza el componente ProjectBio aquí */}
-      <h1 className="text-2xl font-semibold mb-4 ">Preguntas Frecuentes</h1>
-      <FAQItem />
-    </div>
+      <div className='container overflow-y-scroll scrollbar-thumb-base'>
+        <ProjectBio />
+        <div className="my-6"> {/* Agregamos margen vertical aquí */}
+          <FAQItem />
+        </div>
+      </div>
     </div>
   );
 };

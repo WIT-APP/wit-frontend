@@ -4,28 +4,30 @@ import projectData from '../../../data/projectData.json'; // Asegúrate de impor
 const ProjectBio: React.FC = () => {
   const [tituloRespuesta, setTituloRespuesta] = useState<string>('');
   const [bio, setBioRespuesta] = useState<string>('');
+  const [WorkintechRespuesta, setWorkintechRespuesta] = useState<string>('');
 
   useEffect(() => {
     if (projectData.length >= 3) {
       // Establece la respuesta del tercer elemento en el título
       setTituloRespuesta(projectData[2].respuesta);
 
-      // Establece la respuesta parrafo
+      // Establece la respuesta párrafo
       setBioRespuesta(projectData[projectData.length - 7].respuesta);
+
+      setWorkintechRespuesta(projectData[2].nombre);
     }
   }, []);
 
   return (
-    <div className="bg-white-100 p-4">
-      <h2 className="text-2xl font-semibold mb-2">{tituloRespuesta}</h2>
-      <p>{bio}</p>
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-3xl font-bold mb-4">{WorkintechRespuesta}</h2>
+      <h2 className="text-3xl font-bold mb-4">{tituloRespuesta}</h2>
+      <p className="text-gray-700 text-lg">{bio}</p>
     </div>
   );
 };
 
 export default ProjectBio;
-
-
 
 
 
