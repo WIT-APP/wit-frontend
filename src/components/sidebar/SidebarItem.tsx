@@ -41,7 +41,7 @@ export function SidebarItem({ icon, text, active, onClick }: SidebarItemProps) {
         {!expanded && (
           <div
             className={`hidden sm:block 
-        absolute left-full rounded-md px2 py-1 ml-6
+        absolute left-full rounded-md px-2 py-1 ml-6
         bg-lightgreen2 text-green2 text-sm
         invisible opacity-20 -translate-x-3 transition-all
         group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
