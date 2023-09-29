@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Applicant } from "./data-table/columns";
+import { Applicant } from "./data-table/antiguos/columns";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

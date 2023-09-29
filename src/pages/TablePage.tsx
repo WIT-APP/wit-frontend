@@ -1,5 +1,6 @@
 // import { columns } from "@/components/data-table/columns";
-import { DataTable } from "@/components/data-table/data-table";
+// import { DataTable } from "@/components/data-table/data-table";
+import { DataTable } from "@/components/data-table/DataTable";
 import useFilterByEstado from "@/services/GetByEstado";
 import { useParams } from "react-router-dom";
 import { tableColumns } from "@/components/data-table/ColumnsComp"; // Importa tableColumns desde ColumnsComp

@@ -39,9 +39,6 @@ interface DataTableProps<TData extends Record<string, any>> {
   columns: MyColumnDef<TData>[];
   data: TData[];
 }
-interface SelectedRowData {
-  id: number;
-}
 
 export function DataTable<TData extends Record<string, any>>({
   columns,
@@ -78,7 +75,7 @@ export function DataTable<TData extends Record<string, any>>({
     "Donde encontró el programa",
     "Mas información",
     "observaciones",
-    "invitaciones"
+    "invitaciones",
   ];
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -109,8 +106,8 @@ export function DataTable<TData extends Record<string, any>>({
   });
 
   function handleDownloadExcel() {
-    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => (rowSelection as Record<string, string>)[index])
+    const selectedRowIds: string[] = Object.keys(rowSelection)
+      .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
 
@@ -131,14 +128,14 @@ export function DataTable<TData extends Record<string, any>>({
         "Fecha de nacimiento": row.fecha_de_nacimiento || "",
         "Pais de nacimiento": row.pais_de_nacimiento || "",
         "Documento de identidad": row.documento_de_identidad || "",
-        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
+        "Tipo de Documento de identidad": row.tipo_documento_identidad || "",
         Dirección: row.direccion || "",
         "Codigo Postal": row.codigo_postal || "",
         Ciudad: row.ciudad || "",
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo: row.colectivo.map((item: string) => item).join(", ") || [],
+        Colectivo: row.colectivo.map((item: string) => item).join(", ") || "",
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -150,8 +147,8 @@ export function DataTable<TData extends Record<string, any>>({
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
-        "observaciones": row.observaciones || "",
-        "invitaciones": row.invitaciones || "",
+        Observaciones: row.observaciones || "",
+        Invitaciones: row.invitaciones || "",
       };
     });
 
@@ -162,17 +159,12 @@ export function DataTable<TData extends Record<string, any>>({
       sheet: "Usuarios",
       tablePayload: {
         header,
-        body: rowsForExcel, // Utiliza las filas seleccionadas
+        body: rowsForExcel,
       },
     });
   }
 
   function handleDownloadExcelAll() {
-    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => rowSelection[index])
-      .map((index) => data[parseInt(index)].id);
-    console.log(selectedRowIds);
-
     const rowsForExcel = data.map((row) => {
       return {
         Nombre: row.nombre || "",
@@ -186,14 +178,14 @@ export function DataTable<TData extends Record<string, any>>({
         "Fecha de nacimiento": row.fecha_de_nacimiento || "",
         "Pais de nacimiento": row.pais_de_nacimiento || "",
         "Documento de identidad": row.documento_de_identidad || "",
-        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
+        "Tipo de Documento de identidad": row.tipo_documento_identidad || "",
         Dirección: row.direccion || "",
         "Codigo Postal": row.codigo_postal || "",
         Ciudad: row.ciudad || "",
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo: row.colectivo.map((item) => item).join(", ") || [],
+        Colectivo: row.colectivo.map((item: string) => item).join(", ") || "",
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -205,8 +197,8 @@ export function DataTable<TData extends Record<string, any>>({
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
-        "observaciones": row.observaciones || "",
-        "invitaciones": row.invitaciones || "",
+        Observaciones: row.observaciones || "",
+        Invitaciones: row.invitaciones || "",
       };
     });
 
@@ -217,7 +209,7 @@ export function DataTable<TData extends Record<string, any>>({
       sheet: "Usuarios",
       tablePayload: {
         header,
-        body: rowsForExcel, // Utiliza las filas seleccionadas
+        body: rowsForExcel,
       },
     });
   }
@@ -226,11 +218,18 @@ export function DataTable<TData extends Record<string, any>>({
     <div>
       <div className="este flex items-center py-4">
         <div className="flex gap-8 justify-between">
-          <button onClick={handleDownloadExcel}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> seleccionados</div></button>
-          <button onClick={handleDownloadExcelAll}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> todos </div></button>
+          <button onClick={handleDownloadExcel}>
+            <div className="flex items-center gap-2 text-green2">
+              <RiFileExcel2Fill /> seleccionados
+            </div>
+          </button>
+          <button onClick={handleDownloadExcelAll}>
+            <div className="flex items-center gap-2 text-green2">
+              <RiFileExcel2Fill /> todos{" "}
+            </div>
+          </button>
         </div>
-         {/* Filtrado por variables */}
-         <Input
+        <Input
           placeholder="Filtrar por email..."
           value={
             (table
@@ -244,8 +243,6 @@ export function DataTable<TData extends Record<string, any>>({
           }
           className="max-w-sm"
         />
-
-       
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -346,7 +343,6 @@ export function DataTable<TData extends Record<string, any>>({
           Next
         </Button>
       </div>
-
     </div>
   );
 }

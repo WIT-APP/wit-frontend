@@ -1,5 +1,5 @@
-import { columns } from "@/components/data-table/columns";
-import { DataTable } from "@/components/data-table/data-table";
+import { columns } from "@/components/data-table/antiguos/columns";
+import { DataTable } from "@/components/data-table/antiguos/data-table";
 import { usePreApprovedApplicants } from "@/services/PreApprovedAplicants";
 
 export default function PreApproved() {

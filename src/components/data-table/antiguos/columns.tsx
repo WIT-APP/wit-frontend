@@ -8,11 +8,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
-import Modal from "../Modal";
+import Modal from "../../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
 import React from "react";
 
