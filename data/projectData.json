@@ -1,0 +1,71 @@
+[
+  {
+      "nombre": "Titulo de ProjectBio",
+      "categoria": "Titulo",
+      "contenido": "mi aplicacion",
+      "respuesta": ""
+  },
+  {
+      "nombre": "Párrafo de la biografía",
+      "categoria": "Titulo",
+      "contenido": "mi aplicacion",
+      "respuesta": ""
+  },
+  {
+      "nombre": "Work in Tech ",
+      "categoria": "titulo",
+      "contenido": "titulo biografia",
+      "respuesta": "Work in Tech Sistema de gestión de aspirantes"
+  },
+  {
+      "nombre": "Work in tech Portal es una aplicacion diseñada para gestionar y simplificar el proceso de seleccion de candidatos para tu empresa. Con esta herramienta, puedes realizar un seguimiento de los palicantes, cambiar su estado , y tomar decisiones para gestionar aspirantes y simplificar el proceso de seleccion",
+      "categoria": "titulo",
+      "contenido": "biografia",
+      "respuesta": "Work in tech Portal es una aplicacion diseñada para gestionar y simplificar el proceso de seleccion de candidatos para tu empresa. Con esta herramienta, puedes realizar un seguimiento de los palicantes, cambiar su estado , y tomar decisiones para gestionar aspirantes y simplificar el proceso de seleccion"
+  }
+  ,
+  {
+    "nombre": "Pregunta 1",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo puedo iniciar sesión en la herramienta?",
+    "respuesta": "Para iniciar sesión, ve a la página de inicio y haz clic en el botón de inicio de sesión. Luego, ingresa tus credenciales y haz clic en Iniciar Sesión."
+  },
+  {
+    "nombre": "Pregunta 2",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo restablezco mi contraseña?",
+    "respuesta": "Puedes restablecer tu contraseña en la página de inicio de sesión. Hay un enlace para restablecer la contraseña que te guiará a través del proceso."
+  },
+  {
+    "nombre": "pregunta 3",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo cambiar el estado a un aplicante?",
+    "respuesta": "Para cambiar el estado de un aplicante, ve a la página de administración de aplicantes y busca la opción para editar el aplicante. Desde allí, podrás cambiar su estado."
+  },
+  {
+    "nombre": "pregunta 4",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Qué significa cada estado de aplicante?",
+    "respuesta": "Cada estado de aplicante representa el estado actual de un aplicante en el proceso. Por ejemplo, En revisión, Aprobado, Rechazado, etc. Estos estados pueden variar según tus criterios de seguimiento."
+  },
+  {
+    "nombre": "pregunta 5",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cuáles son los estados posibles?",
+    "respuesta": "En revisión, Aprobado, Rechazado, etc."
+  },
+  {
+    "nombre": "pregunta 6",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo borrar a un aplicante?",
+    "respuesta": "Para borrar a un aplicante, ve a la página de administración de aplicantes y busca la opción para eliminar el aplicante. Asegúrate de tener los permisos necesarios, ya que esta acción es irreversible."
+  }
+]
+
+
