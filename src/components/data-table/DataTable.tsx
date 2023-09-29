@@ -108,7 +108,6 @@ export function DataTable<TData extends Record<string, any>>({
     },
   });
 
-// Poner el tipado correcto de e: 
   const handleSelectFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // Me cambia el valor de la variable de columnaSeleccionada para usarla en el input de filtro o busquea
     setColumnaSeleccionada(e.target.value);
@@ -241,15 +240,15 @@ export function DataTable<TData extends Record<string, any>>({
           </button>
         </div>
         <Input
-          placeholder="Filtrar por email..."
+          placeholder={`Filtrar por ${columnaSeleccionada}`}
           value={
             (table
-              .getColumn("correo_electronico")
+              .getColumn(columnaSeleccionada)
               ?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
             table
-              .getColumn("correo_electronico")
+              .getColumn(columnaSeleccionada)
               ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
