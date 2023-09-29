@@ -137,14 +137,14 @@ export const columns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => {
       const handleEmailClick = () => {
         const correoElectronico: string = row.getValue("correo_electronico");
-
         const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
           correoElectronico
         )}`;
         window.open(gmailURL, "_blank");
       };
+  
       return (
-        <div className="flex items-center space-x-2 ml-4">
+        <div className="flex items-center space-x-2 ml-4 relative group">
           <span
             onClick={handleEmailClick}
             className="text-blue2 text-xl flex items-center justify-center cursor-pointer"
@@ -152,15 +152,21 @@ export const columns: ColumnDef<Applicant>[] = [
             <IoMail />
           </span>
           <span>{row.getValue("correo_electronico")}</span>
+          <div className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
+            bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
+            group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
+          `}>
+            Enviar Email
+          </div>
         </div>
       );
     },
-  },
+  },  
   {
     accessorKey: "telefono",
     header: "Telefono",
     cell: ({ row }) => (
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center relative group">
         <span className="text-green2 text-xl items-center cursor-pointer">
           <Modal
             textButton={iconWhatsapp}
@@ -171,6 +177,12 @@ export const columns: ColumnDef<Applicant>[] = [
           />
         </span>
         <span>{row.getValue("telefono")}</span>
+        <div className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
+          bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
+          group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
+        `}>
+          Enviar Whatsapp
+        </div>
       </div>
     ),
   },
