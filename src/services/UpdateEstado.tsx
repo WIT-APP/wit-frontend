@@ -1,4 +1,4 @@
-export async function UpdateEstado(id:string, nuevoEstado:string) {
+export async function UpdateEstado(id:string | number, nuevoEstado:string) {
     const url = `http://localhost:3000/applicant/update-estado/${id}`;
     const requestOptions = {
       method: 'PATCH',

@@ -11,9 +11,6 @@ export default function PreApproved() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-//   if( applicant == undefined) {
-//     return <div className="container">No hay ningún Preaprobado</div>
-//  }
 
   if (isError || !applicant) {
     return <div>Error fetching data.</div>;

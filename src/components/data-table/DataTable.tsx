@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -74,8 +74,8 @@ export function DataTable<TData extends Record<string, any>>({
     "Razones para unirse",
     "Donde encontró el programa",
     "Mas información",
-    "observaciones",
-    "invitaciones",
+    "Observaciones",
+    "Invitaciones",
   ];
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -127,8 +127,8 @@ export function DataTable<TData extends Record<string, any>>({
         Genero: row.genero || "",
         "Fecha de nacimiento": row.fecha_de_nacimiento || "",
         "Pais de nacimiento": row.pais_de_nacimiento || "",
-        "Documento de identidad": row.documento_de_identidad || "",
         "Tipo de Documento de identidad": row.tipo_documento_identidad || "",
+        "Documento de identidad": row.documento_de_identidad || "",
         Dirección: row.direccion || "",
         "Codigo Postal": row.codigo_postal || "",
         Ciudad: row.ciudad || "",
@@ -143,7 +143,7 @@ export function DataTable<TData extends Record<string, any>>({
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
-        "Formación online": row.formacion_online || "",
+        "Formación online": row.formacion_online == true ? "si" : "no" || "",
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
@@ -193,7 +193,7 @@ export function DataTable<TData extends Record<string, any>>({
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
-        "Formación online": row.formacion_online || "",
+        "Formación online": row.formacion_online == true ? "si" : "no" || "",
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",

@@ -15,6 +15,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
+import { Applicant } from "@/interfaces/applicant.interface";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -30,18 +31,18 @@ const estadosPosibles = [
   "Baja",
 ];
 
-export type Applicant = {
-  id: string;
-  nombre: string;
-  apellidos: string;
-  correo_electronico: string;
-  telefono: string;
-  programa_cursar: string;
-  estado: string;
-  fecha_de_applicacion: string;
-  observaciones: string;
-  invitaciones: number | null;
-};
+// export type Applicant = {
+//   id: string | number;
+//   nombre: string;
+//   apellidos: string;
+//   correo_electronico: string;
+//   telefono: string;
+//   programa_cursar: string;
+//   estado: string;
+//   fecha_de_applicacion: string;
+//   observaciones: string;
+//   invitaciones: number | null;
+// };
 
 const handleEstadoChange = async (
   e: React.ChangeEvent<HTMLSelectElement>,
