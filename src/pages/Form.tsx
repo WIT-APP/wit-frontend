@@ -3,10 +3,41 @@ import classnames from 'classnames';
 import { useState } from 'react';
 import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
+
+const validationSchema = Yup.object().shape({
+  nombre: Yup.string().required('El nombre es obligatorio'),
+  apellidos: Yup.string().required('Los apellidos son obligatorios'),
+  correo_electronico: Yup.string().email('Formato de correo electrónico inválido').required('El correo electrónico es obligatorio'),
+  telefono: Yup.string().required('El teléfono es obligatorio'),
+  genero: Yup.string().required('El género es obligatorio'),
+  numero_documento_id: Yup.string().required('El número de documento es obligatorio'),
+  documento_de_identidad: Yup.string().required('El documento de identidad es obligatorio'),
+  direccion: Yup.string().required('La dirección es obligatoria'),
+  ciudad: Yup.string().required('La ciudad es obligatoria'),
+  provincia: Yup.string().required('La provincia es obligatoria'),
+  pais_de_residencia: Yup.string().required('El país de residencia es obligatorio'),
+  codigo_postal: Yup.string().required('El código postal es obligatorio'),
+  programa_cursar: Yup.string().required('El programa a cursar es obligatorio'),
+  colectivo: Yup.string().required('El colectivo es obligatorio'),
+  educacion: Yup.string().required('La educación es obligatoria'),
+  estudio_mas_alto: Yup.string().required('El estudio más alto es obligatorio'),
+  situacion_profesional: Yup.string().required('La situación profesional es obligatoria'),
+  intereses_actuales: Yup.string().required('Los intereses actuales son obligatorios'),
+  dedicacion_semanal: Yup.string().required('La dedicación semanal es obligatoria'),
+  acceso_internet_dispositivos: Yup.string().required('El acceso a internet y dispositivos es obligatorio'),
+  //formacion_online: Yup.string().required('La formación online es obligatoria'),
+  razones_para_unir: Yup.string().required('Las razones para unir son obligatorias'),
+  encontrar_programa: Yup.string().required('Cómo encontraste el programa es obligatorio'),
+  
+});
+
+validationSchema.validate(values).catch(errors => {
+  console.log('Validation Errors:', errors);
+});
 
 export interface FormValues {
   [key: string]: string;
@@ -57,6 +88,12 @@ export const Form2 = () => {
     mas_informacion: '',
   };
 
+  const formik = useFormikContext(); // Access the Formik context
+
+  const isFormValid = (formik: { isValid: any; dirty: any; }) => {
+    return formik.isValid && formik.dirty;
+  };
+
   return (
     <div className="overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <div className="w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base">
@@ -68,25 +105,25 @@ export const Form2 = () => {
           <div>Loading...</div>
         ) : isError ? (
           <div>Error: {error?.message}</div>
-        ) : (
+        ) : question ?(
           <Formik
-            initialValues={initialValues}
-            validationSchema={Yup.object({
-              // Define your validation schema based on question types
-              // For example:
-              // nombre: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
-            })}
-            onSubmit={(values, actions) => {
-              console.log({ values, actions });
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, actions) => {
+            console.log({ values, actions });
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }}
           >
-            {({ values }) => (
+            {({ isValid,dirty }) => {
+              console.log('isValid:', isValid);
+              console.log('dirty:', dirty);
+              return(
               <Form>
                 {question?.map((q) => (
-                  <div className="mt-5 flex-column" key={q.id_question}>
-                    <label htmlFor={q.id_question} className='text-white'>{q.text}</label>
+                  <div className="container" key={q.id_question}>
+                    <label htmlFor={q.id_question}>{q.text}</label>
+                    {/* TYPE1 */}
                     {q.type === 'text' && (
                       <Field
                         name={q.id_question}
@@ -97,6 +134,7 @@ export const Form2 = () => {
                         className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
+                    {/* TYPE2 */}
                     {q.type === 'textarea' && (
                       <Field
                         name={q.id_question}
@@ -108,6 +146,7 @@ export const Form2 = () => {
                         className='mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto focus:ring-yellow2 focus:border-yellow2 rounded-md shadow appearance-none'
                       />
                     )}
+                    {/* TYPE1 */}
                     {q.type ==='date' && (
                       <Field
                         name={q.id_question}
@@ -118,6 +157,7 @@ export const Form2 = () => {
                         className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
+                    {/* TYPE1 */}
                     {q.type ==='email' && (
                       <Field
                         name={q.id_question}
@@ -128,6 +168,8 @@ export const Form2 = () => {
                         className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
+                    {/* TYPE1 */}
+                    
                     {q.type ==='phone' && (
                       <Field
                         name={q.id_question}
@@ -138,6 +180,7 @@ export const Form2 = () => {
                         className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
                       />
                     )}
+                    {/* TYPE3 */}
                     {q.type === 'checkbox' && (
                       <div className="flex items-center text-white mt-2 mr-2">
                         {q.options.map((option) => (
@@ -153,6 +196,7 @@ export const Form2 = () => {
                         ))}
                       </div>
                     )}
+                    {/* TYPE4 */}
                     {q.type === 'toggle' && (
                       <div>
                         {q.options.map((option) => (
@@ -171,6 +215,7 @@ export const Form2 = () => {
                         ))}
                       </div>
                     )}
+                    {/* TYPE5 */}
                     {q.type === 'select' && (
                       <Field
                         as="select"
@@ -189,6 +234,7 @@ export const Form2 = () => {
                         ))}
                       </Field>
                     )}
+                    {/* TYPE4 */}
                     {q.type === 'radio' && (
                       <div className="flex flex-column items-center text-white mb-2 mr-2">
                         {q.options.map((option) => (
@@ -223,17 +269,18 @@ export const Form2 = () => {
                   </button>{' '}
                   <button
                     onClick={goToNextPage}
-                    disabled={isPreviousData || currentPage === pages.length - 1}
+                    disabled={!isValid || !dirty || isPreviousData || currentPage === pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === pages.length - 1,
                     })}
+                    type="submit"
                   >
                     Next Page
                   </button>
                   <button
                     disabled={currentPage !== pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
-                      invisible: currentPage !== pages.length - 1,
+                    invisible: currentPage !== pages.length - 1,
                     })}
                     type="submit"
                   >
@@ -242,9 +289,9 @@ export const Form2 = () => {
                 </div>
                 {isFetching ? <span>Loading...</span> : null}{' '}
               </Form>
-            )}
+            )}}
           </Formik>
-        )}
+        ) : null}
       </div>
     </div>
   );

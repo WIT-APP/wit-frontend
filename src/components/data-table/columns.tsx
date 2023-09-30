@@ -13,8 +13,45 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
+import { UpdateEstado } from "@/services/UpdateEstado";
+import ModalConfirmacion from "../ModalConfirmacion";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
+const estadosPosibles = [
+  "Aplicante",
+  "Preaprobado",
+  "Invitado",
+  "Confirmado",
+  "Entrevistado",
+  "Matriculado",
+  "Certificado",
+  "Rechazado",
+  "Baja",
+];
+
+const handleEstadoChange = (
+  e: React.ChangeEvent<HTMLSelectElement>,
+  applicant: Applicant
+) => {
+  const nuevoEstado = e.target.value;
+  // Abrir modal para confirmar y actualizar estado
+
+
+  // Recargar la pagina
+  window.location.reload();
+  try {
+    const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
+
+    if (error) {
+      console.error('Error al actualizar el estado:', error);
+    } else {
+      console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+    }
+  } catch (error) {
+    console.error('Error al actualizar el estado:', error);
+  }
+  console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+};
 
 export type Applicant = {
   id: string;
@@ -25,6 +62,8 @@ export type Applicant = {
   programa_cursar: string;
   estado: string;
   fecha_de_applicacion: string;
+  observaciones: string;
+
 };
 
 // crear esto en un json. Columnas de la tabla
@@ -151,30 +190,22 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "estado",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Estado
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "Estado",
     cell: ({ row }) => (
-      <div className="ml-4">{row.getValue("estado")}</div>
+      <div className="flex gap-2 items-center">
+        <select
+          value={row.getValue("estado")}
+          onChange={(e) => handleEstadoChange(e, row.original)}
+        >
+          {estadosPosibles.map((estado, index) => (
+            <option key={index} value={estado}>
+              {estado}
+            </option>
+          ))}
+        </select>
+      </div>
     ),
   },
-  // {
-  //   accessorKey: "fecha_de_applicacion",
-  //   header: () => <div className="text-right">Fecha de aplicación</div>,
-  //   cell: ({ row }) => (
-  //     <div className="text-right">
-  //       <span>{row.getValue("fecha_de_applicacion")}</span>
-  //     </div>
-  //   ),
-  // },
   {
     accessorKey: "fecha_de_applicacion",
     header: ({ column }) => {
@@ -197,6 +228,13 @@ export const columns: ColumnDef<Applicant>[] = [
       <div className="text-right mr-4">
         <span>{row.getValue("fecha_de_applicacion")}</span>
       </div>
+    ),
+  },
+  {
+    accessorKey: "observaciones",
+    header: "Observaciones",
+    cell: ({ row }) => (
+      <div >{row.getValue("observaciones")}</div>
     ),
   },
 
