@@ -1,3 +1,4 @@
+import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -14,13 +15,14 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
-import ModalConfirmacion from "../ModalConfirmacion";
+import { Applicant } from "@/interfaces/applicant.interface";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
   "Aplicante",
   "Preaprobado",
   "Invitado",
+  "Admitido",
   "Confirmado",
   "Entrevistado",
   "Matriculado",
@@ -29,45 +31,31 @@ const estadosPosibles = [
   "Baja",
 ];
 
-const handleEstadoChange = (
+
+const handleEstadoChange = async (
   e: React.ChangeEvent<HTMLSelectElement>,
   applicant: Applicant
 ) => {
   const nuevoEstado = e.target.value;
-  // Abrir modal para confirmar y actualizar estado
 
+  // Aquí puedes abrir un modal de confirmación si es necesario
 
-  // Recargar la pagina
-  window.location.reload();
   try {
-    const { data, error } = UpdateEstado(applicant.id, nuevoEstado);
+    const { data, error } = await UpdateEstado(applicant.id, nuevoEstado);
 
     if (error) {
-      console.error('Error al actualizar el estado:', error);
+      console.error("Error al actualizar el estado:", error);
     } else {
-      console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
+      console.log(
+        `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
+      );
     }
   } catch (error) {
-    console.error('Error al actualizar el estado:', error);
+    console.error("Error al actualizar el estado:", error);
   }
-  console.log(`Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`);
 };
 
-export type Applicant = {
-  id: string;
-  nombre: string;
-  apellidos: string;
-  correo_electronico: string;
-  telefono: string;
-  programa_cursar: string;
-  estado: string;
-  fecha_de_applicacion: string;
-  observaciones: string;
-
-};
-
-// crear esto en un json. Columnas de la tabla
-export const columns: ColumnDef<Applicant>[] = [
+export const tableColumns: ColumnDef<Applicant>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -89,58 +77,52 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "nombre",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Nombre
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Nombre
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => <div className="ml-4">{row.getValue("nombre")}</div>,
   },
   {
     accessorKey: "apellidos",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Apellidos
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Apellidos
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => <div className="ml-4">{row.getValue("apellidos")}</div>,
   },
   {
     accessorKey: "correo_electronico",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Email
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => {
       const handleEmailClick = () => {
         const correoElectronico: string = row.getValue("correo_electronico");
-
         const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
           correoElectronico
         )}`;
         window.open(gmailURL, "_blank");
       };
+
       return (
-        <div className="flex items-center space-x-2 ml-4">
+        <div className="flex items-center space-x-2 ml-4 relative group">
           <span
             onClick={handleEmailClick}
             className="text-blue2 text-xl flex items-center justify-center cursor-pointer"
@@ -148,6 +130,14 @@ export const columns: ColumnDef<Applicant>[] = [
             <IoMail />
           </span>
           <span>{row.getValue("correo_electronico")}</span>
+          <div
+            className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
+                bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
+                group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
+              `}
+          >
+            Enviar Email
+          </div>
         </div>
       );
     },
@@ -156,7 +146,7 @@ export const columns: ColumnDef<Applicant>[] = [
     accessorKey: "telefono",
     header: "Telefono",
     cell: ({ row }) => (
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center relative group">
         <span className="text-green2 text-xl items-center cursor-pointer">
           <Modal
             textButton={iconWhatsapp}
@@ -167,23 +157,38 @@ export const columns: ColumnDef<Applicant>[] = [
           />
         </span>
         <span>{row.getValue("telefono")}</span>
+        <div
+          className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
+              bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
+              group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
+            `}
+        >
+          Enviar Whatsapp
+        </div>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "invitaciones",
+    header: "Invitado",
+    cell: ({ row }) => (
+      <div className="text-right mr-4">
+        <span>{row.getValue("invitaciones")}</span>
       </div>
     ),
   },
 
   {
     accessorKey: "programa_cursar",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Programa a Cursar
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Programa a Cursar
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
       <div className="ml-4">{row.getValue("programa_cursar")}</div>
     ),
@@ -208,22 +213,20 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "fecha_de_applicacion",
-    header: ({ column }) => {
-      return (
-        <div className="flex justify-end">
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            className="text-right ml-auto" // Alinea el botón a la derecha
-          >
-            <div className="flex items-center">
-              <div className="mr-2">Fecha de aplicación</div>
-              <ArrowUpDown className="h-4 w-4" />
-            </div>
-          </Button>
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div className="flex justify-end">
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="text-right ml-auto" // Alinea el botón a la derecha
+        >
+          <div className="flex items-center">
+            <div className="mr-2">Fecha de aplicación</div>
+            <ArrowUpDown className="h-4 w-4" />
+          </div>
+        </Button>
+      </div>
+    ),
     cell: ({ row }) => (
       <div className="text-right mr-4">
         <span>{row.getValue("fecha_de_applicacion")}</span>
@@ -233,9 +236,7 @@ export const columns: ColumnDef<Applicant>[] = [
   {
     accessorKey: "observaciones",
     header: "Observaciones",
-    cell: ({ row }) => (
-      <div >{row.getValue("observaciones")}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("observaciones")}</div>,
   },
 
   {
@@ -267,3 +268,23 @@ export const columns: ColumnDef<Applicant>[] = [
     },
   },
 ];
+
+type TableColumnProps = {
+  columns: ColumnDef<Applicant>[];
+};
+
+const ColumnsComp: React.FC<TableColumnProps> = ({ columns }) => {
+  return (
+    <>
+      {/* Renderiza las columnas */}
+      {columns.map((column) => (
+        <div key={column.id} className="column-style">
+          {column.header({ column })} {/* Se pasa la columna al header */}
+          {/* Puedes añadir más elementos de cabecera aquí si es necesario */}
+        </div>
+      ))}
+    </>
+  );
+};
+
+export default ColumnsComp;

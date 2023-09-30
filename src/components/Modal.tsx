@@ -6,11 +6,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Applicant } from "./data-table/columns";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { Applicant } from "@/interfaces/applicant.interface";
 
 type ModalProps = Partial<Applicant> & {
   textButton: string | React.ReactNode;
@@ -35,7 +35,7 @@ function Modal({
     setMensaje(event.target.value);
   };
 
-  const handleSendMessage = (telefono: string | undefined, mensaje: string) => {
+  const handleSendMessage = (telefono: number | undefined, mensaje: string) => {
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje
     )}`;
