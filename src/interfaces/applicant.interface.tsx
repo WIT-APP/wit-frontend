@@ -4,7 +4,7 @@ export interface Applicant {
   nombre: string;
   apellidos: string;
   correo_electronico: string;
-  telefono: number;
+  telefono: number | string;
   estado: string;
   genero: string;
   fecha_de_nacimiento: Date;
@@ -31,7 +31,7 @@ export interface Applicant {
   encontrar_programa: string;
   mas_informacion: string;
   observaciones: string;
-  invitaciones: string;
+  invitaciones: number | null;
 }
 
 export interface CreateApplicant {
@@ -63,4 +63,6 @@ export interface CreateApplicant {
   razones_para_unir: string;
   encontrar_programa: string;
   mas_informacion: string;
+  observaciones: string;
+  invitaciones: number | null;
 }

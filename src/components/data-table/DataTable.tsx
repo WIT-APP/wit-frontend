@@ -2,6 +2,14 @@
 import * as React from "react";
 
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
@@ -33,14 +41,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
 import { RiFileExcel2Fill } from "react-icons/ri";
+import { type } from "os";
 
 type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
 interface DataTableProps<TData extends Record<string, any>> {
   columns: MyColumnDef<TData>[];
   data: TData[];
-}
-interface SelectedRowData {
-  id: number;
 }
 
 export function DataTable<TData extends Record<string, any>>({
@@ -77,6 +83,8 @@ export function DataTable<TData extends Record<string, any>>({
     "Razones para unirse",
     "Donde encontró el programa",
     "Mas información",
+    "Observaciones",
+    "Invitaciones",
   ];
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -86,6 +94,21 @@ export function DataTable<TData extends Record<string, any>>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  // const [columnaSeleccionada, setColumnaSeleccionada] =
+  //   React.useState<string>("correo_electronico");
+  const [value, setValue] = React.useState("correo_electronico");
+
+  const opciones = [
+    { value: "nombre", label: "Nombre" },
+    { value: "apellidos", label: "Apellidos" },
+    { value: "correo_electronico", label: "Email" },
+    { value: "telefono", label: "Telefono" },
+    // { value: "invitaciones", label: "Invitado" },
+    { value: "programa_cursar", label: "Programa a Cursar" },
+    // { value: "estado", label: "Estado" },
+    // { value: "fecha_de_applicacion", label: "Fecha de aplicación" },
+    { value: "observaciones", label: "Observaciones" },
+  ];
 
   const table = useReactTable({
     data,
@@ -106,10 +129,14 @@ export function DataTable<TData extends Record<string, any>>({
     },
   });
 
+  const handleSelectFilter = (value) => {
+    setValue(value);
+    console.log(value);
+  };
+
   function handleDownloadExcel() {
-    // console.log(rowSelection);
-    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => (rowSelection as Record<string, string>)[index])
+    const selectedRowIds: string[] = Object.keys(rowSelection)
+      .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
     console.log(selectedRowIds);
 
@@ -129,15 +156,15 @@ export function DataTable<TData extends Record<string, any>>({
         Genero: row.genero || "",
         "Fecha de nacimiento": row.fecha_de_nacimiento || "",
         "Pais de nacimiento": row.pais_de_nacimiento || "",
+        "Tipo de Documento de identidad": row.tipo_documento_identidad || "",
         "Documento de identidad": row.documento_de_identidad || "",
-        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
         Dirección: row.direccion || "",
         "Codigo Postal": row.codigo_postal || "",
         Ciudad: row.ciudad || "",
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo: row.colectivo.map((item: string) => item).join(", ") || [],
+        Colectivo: row.colectivo.map((item: string) => item).join(", ") || "",
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -145,10 +172,12 @@ export function DataTable<TData extends Record<string, any>>({
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
-        "Formación online": row.formacion_online || "",
+        "Formación online": row.formacion_online == true ? "si" : "no" || "",
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
+        Observaciones: row.observaciones || "",
+        Invitaciones: row.invitaciones || "",
       };
     });
 
@@ -159,17 +188,12 @@ export function DataTable<TData extends Record<string, any>>({
       sheet: "Usuarios",
       tablePayload: {
         header,
-        body: rowsForExcel, // Utiliza las filas seleccionadas
+        body: rowsForExcel,
       },
     });
   }
 
   function handleDownloadExcelAll() {
-    const selectedRowIds: SelectedRowData[] = Object.keys(rowSelection)
-      .filter((index) => rowSelection[index])
-      .map((index) => data[parseInt(index)].id);
-    console.log(selectedRowIds);
-
     const rowsForExcel = data.map((row) => {
       return {
         Nombre: row.nombre || "",
@@ -183,14 +207,14 @@ export function DataTable<TData extends Record<string, any>>({
         "Fecha de nacimiento": row.fecha_de_nacimiento || "",
         "Pais de nacimiento": row.pais_de_nacimiento || "",
         "Documento de identidad": row.documento_de_identidad || "",
-        "Tipo de Docuemnto de identidad": row.tipo_documento_identidad || "",
+        "Tipo de Documento de identidad": row.tipo_documento_identidad || "",
         Dirección: row.direccion || "",
         "Codigo Postal": row.codigo_postal || "",
         Ciudad: row.ciudad || "",
         Provincia: row.provincia || "",
         "País de residencia": row.pais_de_residencia || "",
         Permiso: row.permiso || "",
-        Colectivo: row.colectivo.map((item) => item).join(", ") || [],
+        Colectivo: row.colectivo.map((item: string) => item).join(", ") || "",
         Educacion: row.educacion || "",
         "Estudios mas altos": row.estudio_mas_alto || "",
         "Situacion profesional": row.situacion_profesional || "",
@@ -198,10 +222,12 @@ export function DataTable<TData extends Record<string, any>>({
         "Dedicación semanal": row.dedicacion_semanal || "",
         "Acceso a internet y dispositivos":
           row.acceso_internet_dispositivos || "",
-        "Formación online": row.formacion_online || "",
+        "Formación online": row.formacion_online == true ? "si" : "no" || "",
         "Razones para unirse": row.razones_para_unir || "",
         "Donde encontró el programa": row.encontrar_programa || "",
         "Mas información": row.mas_informacion || "",
+        Observaciones: row.observaciones || "",
+        Invitaciones: row.invitaciones || "",
       };
     });
 
@@ -212,32 +238,57 @@ export function DataTable<TData extends Record<string, any>>({
       sheet: "Usuarios",
       tablePayload: {
         header,
-        body: rowsForExcel, // Utiliza las filas seleccionadas
+        body: rowsForExcel,
       },
     });
   }
+
+  console.log("Value:", value);
+  console.log("Opciones:", opciones);
 
   return (
     <div>
       <div className="este flex items-center py-4">
         <div className="flex gap-8 justify-between">
-          <button onClick={handleDownloadExcel}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> seleccionados</div></button>
-          <button onClick={handleDownloadExcelAll}><div className="flex items-center gap-2 text-green2"><RiFileExcel2Fill /> todos </div></button>
+          <button onClick={handleDownloadExcel}>
+            <div className="flex items-center gap-2 text-green2">
+              <RiFileExcel2Fill /> seleccionados
+            </div>
+          </button>
+          <button onClick={handleDownloadExcelAll}>
+            <div className="flex items-center gap-2 text-green2">
+              <RiFileExcel2Fill /> todos{" "}
+            </div>
+          </button>
         </div>
         <Input
-          placeholder="Filter emails..."
-          value={
-            (table
-              .getColumn("correo_electronico")
-              ?.getFilterValue() as string) ?? ""
-          }
+          placeholder={`Filtrar por... ${value}`}
+          value={(table.getColumn(value)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table
-              .getColumn("correo_electronico")
-              ?.setFilterValue(event.target.value)
+            table.getColumn(value)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
+        <Select value={value} onValueChange={setValue}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Buscar por ..." />
+          </SelectTrigger>
+          <SelectContent>
+            {opciones.map((option) => (
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                onSelect={() => {
+                  handleSelectFilter(value);
+                  console.log("Option selected:", value);
+                }}
+              >
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -338,7 +389,8 @@ export function DataTable<TData extends Record<string, any>>({
           Next
         </Button>
       </div>
-
     </div>
   );
 }
+
+export default DataTable;

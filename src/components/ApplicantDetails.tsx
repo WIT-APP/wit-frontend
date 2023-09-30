@@ -114,7 +114,7 @@ export const ApplicantDetails = () => {
         <CardDescription>
           Mostrar y modificar la información del aspirante.
         </CardDescription>
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-end space-x-2 ">
           <UnsavedChangesConfirmationDialog
             isOpen={showConfirmation}
             onClose={() => setShowConfirmation(false)}
@@ -135,7 +135,7 @@ export const ApplicantDetails = () => {
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="grid py-2 gap-6 max-h-[65vh] lg:max-h-[70vh] overflow-y-auto">
+      <CardContent className="grid py-2 gap-6 max-h-[70vh] lg:max-h-[75vh] overflow-y-auto">
         {Array.from(new Set(labelsArray.map((item) => item.category))).map(
           (category) => (
             <div key={category}>
