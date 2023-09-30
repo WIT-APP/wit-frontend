@@ -35,9 +35,9 @@ const validationSchema = Yup.object().shape({
   
 });
 
-validationSchema.validate(values).catch(errors => {
-  console.log('Validation Errors:', errors);
-});
+// validationSchema.validate(values).catch(errors => {
+//   console.log('Validation Errors:', errors);
+// });
 
 export interface FormValues {
   [key: string]: string;
