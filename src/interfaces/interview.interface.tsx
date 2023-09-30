@@ -1,4 +1,6 @@
 export interface Interview {
+    id: number | string;
+    applicant: number | string;
     motivacion_curso: string,
     soporte_it: string,
     desempeno_laboral: string,

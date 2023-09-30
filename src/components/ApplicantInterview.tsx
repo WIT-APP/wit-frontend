@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Card,
     CardContent,
@@ -9,40 +10,39 @@ import {
   import { useQueryClient } from "@tanstack/react-query";
   import { useState, useEffect } from "react";
   import { Button } from "./ui/Button";
-  import { useUpdateApplicant } from "@/services/UpdateApplicant";
   import labelsArray from "../data/interview-labels.data.json";
   import { useNavigate, useParams } from "react-router-dom";
-  import { Applicant } from "@/interfaces/applicant.interface";
   import { UnsavedChangesConfirmationDialog } from "../alerts/UnsavedChangesDialog";
   import { Textarea } from "./ui/textarea";
   import { ChangesSavedDialog } from "@/alerts/ChangesSavedDialog";
 import { useGetInterviewByApplicant } from "@/services/GetInterviewByApplicant";
 import { Interview } from "@/interfaces/interview.interface";
+import { useUpdateInterview } from "@/services/UpdateInterview";
   
   export const ApplicantInterview = () => {
     const { id } = useParams();
   
     const queryClient = useQueryClient();
   
-    const { oneApplicant, isLoading, isError } = useGetInterviewByApplicant(id);
+    const { oneInterview, isLoading, isError } = useGetInterviewByApplicant(id);
   
-    const useUpdateApplicantMutation = useUpdateApplicant();
+    const useUpdateInterviewMutation = useUpdateInterview();
   
-    const [applicantInfo, setApplicantInfo] = useState<Interview | null>(null);
+    const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [unsavedChanges, setUnsavedChanges] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
   
     useEffect(() => {
-      if (!isLoading && !isError && oneApplicant) {
-        setApplicantInfo(oneApplicant);
+      if (!isLoading && !isError && oneInterview) {
+        setInterviewInfo(oneInterview);
       }
-    }, [oneApplicant, isLoading, isError]);
+    }, [oneInterview, isLoading, isError]);
   
-    const compareApplicants = (applicantA: any, applicantB: any) => {
-      const keys = Object.keys(applicantA);
+    const compareInterview = (interviewA: any, interviewB: any) => {
+      const keys = Object.keys(interviewA);
       for (const key of keys) {
-        if (applicantA[key] !== applicantB[key]) {
+        if (interviewA[key] !== interviewB[key]) {
           return false;
         }
       }
@@ -50,22 +50,22 @@ import { Interview } from "@/interfaces/interview.interface";
     };
   
     useEffect(() => {
-      if (applicantInfo) {
-        const hasUnsavedChanges = !compareApplicants(applicantInfo, oneApplicant);
+      if (interviewInfo) {
+        const hasUnsavedChanges = !compareInterview(interviewInfo, oneInterview);
         setUnsavedChanges(hasUnsavedChanges);
       }
-    }, [applicantInfo, oneApplicant]);
+    }, [interviewInfo, oneInterview]);
   
-    const handleInputChange = (field: keyof Applicant, value: string) => {
-      if (applicantInfo) {
-        setApplicantInfo((prevApplicantInfo) => ({
-          ...(prevApplicantInfo as Applicant),
+    const handleInputChange = (field: keyof Interview, value: string) => {
+      if (interviewInfo) {
+        setInterviewInfo((prevInterviewInfo) => ({
+          ...(prevInterviewInfo as Interview),
           [field]: value,
         }));
       }
     };
     const handleSubmit = async () => {
-      if (applicantInfo) {
+      if (interviewInfo) {
         try {
           const applicantId = typeof id === "string" ? parseInt(id, 10) : id;
   
@@ -74,8 +74,8 @@ import { Interview } from "@/interfaces/interview.interface";
             return;
           }
   
-          await useUpdateApplicantMutation.mutateAsync({
-            ...applicantInfo,
+          await useUpdateInterviewMutation.mutateAsync({
+            ...interviewInfo,
             id: applicantId,
           });
           queryClient.invalidateQueries(["applicants", applicantId]);
@@ -108,7 +108,7 @@ import { Interview } from "@/interfaces/interview.interface";
   
     return (
       <Card>
-        <CardHeader className="bg-lightyellow2 rounded flex justify-between">
+        <CardHeader className="bg-lightgreen2 rounded flex justify-between">
           <CardTitle>Entrevista del Aspirante</CardTitle>
           <CardDescription>
             Mostrar y modificar la Entrevista del aspirante.
@@ -140,7 +140,7 @@ import { Interview } from "@/interfaces/interview.interface";
                   {category}
                 </h2>
                 <div
-                  className={`grid gap-2 grid-cols-1 sm:p-5`}
+                  className={`grid gap-6 grid-cols-1 sm:p-5`}
                 >
                   {labelsArray
                     .filter((item) => item.category === category)
@@ -152,11 +152,11 @@ import { Interview } from "@/interfaces/interview.interface";
                             <Textarea
                               id={key}
                               value={(
-                                applicantInfo?.[key as keyof Applicant] || ""
+                                interviewInfo?.[key as keyof Interview] || ""
                               ).toString()}
                               onChange={(e) =>
                                 handleInputChange(
-                                  key as keyof Applicant,
+                                  key as keyof Interview,
                                   e.target.value
                                 )
                               }
@@ -168,11 +168,11 @@ import { Interview } from "@/interfaces/interview.interface";
                               type="text"
                               id={key}
                               value={(
-                                applicantInfo?.[key as keyof Applicant] || ""
+                                interviewInfo?.[key as keyof Interview] || ""
                               ).toString()}
                               onChange={(e) =>
                                 handleInputChange(
-                                  key as keyof Applicant,
+                                  key as keyof Interview,
                                   e.target.value
                                 )
                               }

@@ -2,8 +2,8 @@ import { Interview } from "@/interfaces/interview.interface";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetInterviewByApplicant = (id?: number | string) => {
-  const { data: oneApplicant, isLoading, isError } = useQuery({
-    queryKey: ["applicants", id],
+  const { data: oneInterview, isLoading, isError } = useQuery({
+    queryKey: ["interview", id],
     queryFn: async (): Promise<Interview> => {
       const response = await fetch(`http://localhost:3000/interview/applicant/${id}`);
       if (!response.ok) {
@@ -15,7 +15,7 @@ export const useGetInterviewByApplicant = (id?: number | string) => {
   })
 
   return {
-    oneApplicant,
+    oneInterview,
     isLoading,
     isError,
   };
