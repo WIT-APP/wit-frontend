@@ -129,7 +129,7 @@ export function DataTable<TData extends Record<string, any>>({
     },
   });
 
-  const handleSelectFilter = (value) => {
+  const handleSelectFilter = (value: any) => {
     setValue(value);
     console.log(value);
   };
