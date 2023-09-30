@@ -16,7 +16,7 @@
     { "key": "codigo_postal", "label": "Código Postal", "category": "Sociodemografica" },
     { "key": "pais_de_residencia", "label": "País de Residencia", "category": "Sociodemografica" },
     { "key": "colectivo", "label": "Colectivo", "category": "Sociodemografica" },
-    { "key": "educacion", "label": "Educación", "category": "Sociodemografica" },
+    { "key": "educacion", "label": "Educación", "category": "Academica" },
     { "key": "estudio_mas_alto", "label": "Estudio más Alto", "category": "Academica" },
     { "key": "situacion_profesional", "label": "Situación Profesional", "category": "Academica" },
     { "key": "programa_cursar", "label": "Programa a Cursar", "category": "Academica" },

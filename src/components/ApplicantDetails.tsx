@@ -101,29 +101,43 @@ export const ApplicantDetails = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Applicant Information</CardTitle>
+        <CardTitle>Información del Aspirante</CardTitle>
         <CardDescription>
-          Display and modify applicant information.
+          Mostrar y modificar la información del aspirante.
         </CardDescription>
       </CardHeader>
-    <CardContent className="grid gap-6 max-h-[80vh] overflow-y-auto grid-cols-1 md:grid-cols-2">
-  {labelsArray.map(({ key, label }) => (
-    <div key={key} className="grid gap-2">
-      <Label key={key}>
-        {label}
-        <input
-          id={key}
-          type="text"
-          value={(applicantInfo?.[key as keyof Applicant] || "").toString()}
-          onChange={(e) =>
-            handleInputChange(key as keyof Applicant, e.target.value)
-          }
-          className="px-3 py-2 border rounded-md w-full"
-        />
-      </Label>
-    </div>
-  ))}
-</CardContent>
+      <CardContent className="grid gap-6 max-h-[70vh] overflow-y-auto">
+        {Array.from(new Set(labelsArray.map((item) => item.category))).map((category) => (
+          <div key={category}>
+            <h2 className="text-lg font-bold mb-2">{category}</h2>
+            <div
+        className={`grid gap-2 ${
+          category === "Personal" || category === "Academica" || category === "Sociodemografica"
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
+            : "grid-cols-1 sm:grid-cols-2"
+        }`}
+      >              {labelsArray
+                .filter((item) => item.category === category)
+                .map(({ key, label }) => (
+                  <div key={key}>
+                    <Label>
+                      {label}
+                      <textarea
+                        id={key}
+                        value={(applicantInfo?.[key as keyof Applicant] || "").toString()}
+                        onChange={(e) =>
+                          handleInputChange(key as keyof Applicant, e.target.value)
+                        }
+                        className="px-3 py-2 border rounded-md"
+                        style={{ minWidth: '100%', resize: 'vertical' }}
+                      />
+                    </Label>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ))}
+      </CardContent>
       <CardFooter className="justify-between space-x-2">
       <UnsavedChangesConfirmationDialog
           isOpen={showConfirmation}
