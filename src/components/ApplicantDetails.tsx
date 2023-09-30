@@ -16,6 +16,7 @@ import labelsArray from "../data/interview-labels.data.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Applicant } from "@/interfaces/applicant.interface";
 import { UnsavedChangesConfirmationDialog } from "./UnsavedChangesDialog";
+import { Textarea } from "./ui/textarea";
 
 export const ApplicantDetails = () => {
   const { id } = useParams();
@@ -98,20 +99,24 @@ export const ApplicantDetails = () => {
     setShowConfirmation(false);
   };
 
+
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Información del Aspirante</CardTitle>
+ 
+    <Card  >
+      <CardHeader className="bg-lightgreen2 rounded">
+        <CardTitle >Información del Aspirante</CardTitle>
         <CardDescription>
           Mostrar y modificar la información del aspirante.
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-6 max-h-[70vh] overflow-y-auto">
+      <CardContent className="grid py-2 gap-6 max-h-[72vh] lg:max-h-[80vh] overflow-y-auto">
         {Array.from(new Set(labelsArray.map((item) => item.category))).map((category) => (
           <div key={category}>
-            <h2 className="text-lg font-bold mb-2">{category}</h2>
+            <h2 className="text-xl font-bold mb-2 p-1 bg-green2">{category}</h2>
             <div
-        className={`grid gap-2 ${
+              className={`grid gap-2  ${
+                category === "Notas" ? "grid-cols-1" :
           category === "Personal" || category === "Academica" || category === "Sociodemografica"
             ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
             : "grid-cols-1 sm:grid-cols-2"
@@ -120,15 +125,15 @@ export const ApplicantDetails = () => {
                 .filter((item) => item.category === category)
                 .map(({ key, label }) => (
                   <div key={key}>
-                    <Label>
+                    <Label className="font-semibold">
                       {label}
-                      <textarea
+                      <Textarea
                         id={key}
                         value={(applicantInfo?.[key as keyof Applicant] || "").toString()}
                         onChange={(e) =>
                           handleInputChange(key as keyof Applicant, e.target.value)
                         }
-                        className="px-3 py-2 border rounded-md"
+                        className="px-3 py-2 border rounded-md font-normal"
                         style={{ minWidth: '100%', resize: 'vertical' }}
                       />
                     </Label>
@@ -138,15 +143,15 @@ export const ApplicantDetails = () => {
           </div>
         ))}
       </CardContent>
-      <CardFooter className="justify-between space-x-2">
+      <CardFooter className="justify-between py-3 bg-lightgreen2">
       <UnsavedChangesConfirmationDialog
           isOpen={showConfirmation}
           onClose={() => setShowConfirmation(false)} 
           onContinue={handleConfirmationContinue}
         />
-          <Button onClick={handleCancel}>Cancelar</Button>
-        <Button onClick={handleSubmit}>Enviar</Button>
+          <Button className="btn-form-green" onClick={handleCancel}>Cancelar</Button>
+        <Button className="btn-form-green" onClick={handleSubmit}>Enviar</Button>
       </CardFooter>
-    </Card>
+      </Card>
   );
 };
