@@ -1,5 +1,5 @@
 export interface Applicant {
-  id: number | string;
+  id: string | number;
   fecha_de_applicacion: Date;
   nombre: string;
   apellidos: string;
