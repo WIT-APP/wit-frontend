@@ -102,10 +102,10 @@ export function DataTable<TData extends Record<string, any>>({
     { value: "apellidos", label: "Apellidos" },
     { value: "correo_electronico", label: "Email" },
     { value: "telefono", label: "Telefono" },
-    { value: "invitaciones", label: "Invitado" },
+    // { value: "invitaciones", label: "Invitado" },
     { value: "programa_cursar", label: "Programa a Cursar" },
-    { value: "estado", label: "Estado" },
-    { value: "fecha_de_applicacion", label: "Fecha de aplicación" },
+    // { value: "estado", label: "Estado" },
+    // { value: "fecha_de_applicacion", label: "Fecha de aplicación" },
     { value: "observaciones", label: "Observaciones" },
   ];
 
@@ -128,9 +128,9 @@ export function DataTable<TData extends Record<string, any>>({
     },
   });
 
-  const handleSelectFilter = (selectedValue) => {
-    setColumnaSeleccionada(selectedValue);
-    console.log(selectedValue);
+  const handleSelectFilter = (value) => {
+    setValue(value);
+    console.log(value);
   };
 
   function handleDownloadExcel() {
