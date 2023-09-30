@@ -41,7 +41,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
 import { RiFileExcel2Fill } from "react-icons/ri";
-import { type } from "os";
 
 type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
 interface DataTableProps<TData extends Record<string, any>> {
@@ -93,7 +92,7 @@ export function DataTable<TData extends Record<string, any>>({
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [rowSelection, setRowSelection]: any = React.useState({});
   // const [columnaSeleccionada, setColumnaSeleccionada] =
   //   React.useState<string>("correo_electronico");
   const [value, setValue] = React.useState("correo_electronico");
