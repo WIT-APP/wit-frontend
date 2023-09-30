@@ -41,6 +41,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { downloadExcel } from "react-export-table-to-excel";
 import { RiFileExcel2Fill } from "react-icons/ri";
+import { type } from "os";
 
 type MyColumnDef<TData extends Record<string, any>> = ColumnDef<TData, any>;
 interface DataTableProps<TData extends Record<string, any>> {
@@ -243,7 +244,7 @@ export function DataTable<TData extends Record<string, any>>({
   }
 
   console.log("Value:", value);
-console.log("Opciones:", opciones);
+  console.log("Opciones:", opciones);
 
   return (
     <div>
@@ -277,8 +278,10 @@ console.log("Opciones:", opciones);
               <SelectItem
                 key={option.value}
                 value={option.value}
-                onSelect={() => {handleSelectFilter(value);
-                  console.log("Option selected:", value);}}
+                onSelect={() => {
+                  handleSelectFilter(value);
+                  console.log("Option selected:", value);
+                }}
               >
                 {option.label}
               </SelectItem>

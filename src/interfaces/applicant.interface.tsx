@@ -4,7 +4,7 @@ export interface Applicant {
   nombre: string;
   apellidos: string;
   correo_electronico: string;
-  telefono: number;
+  telefono: number | string;
   estado: string;
   genero: string;
   fecha_de_nacimiento: Date;
