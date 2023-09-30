@@ -16,6 +16,7 @@ import { IoMail } from "react-icons/io5";
 import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
 import { Applicant } from "@/interfaces/applicant.interface";
+import { Link } from "react-router-dom";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -30,7 +31,6 @@ const estadosPosibles = [
   "Rechazado",
   "Baja",
 ];
-
 
 const handleEstadoChange = async (
   e: React.ChangeEvent<HTMLSelectElement>,
@@ -261,7 +261,11 @@ export const tableColumns: ColumnDef<Applicant>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View applicant details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link to={`/applicantDetails/${applicant.id}`}>
+                View applicant details
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

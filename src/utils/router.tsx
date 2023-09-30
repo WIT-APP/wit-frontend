@@ -6,6 +6,7 @@ import PreApprovedPage from "@/pages/PreApprovedPage";
 import SettingsPage from "@/pages/SettingsPage";
 import HelpPage from "@/pages/HelpPage";
 import LoginPage from "@/pages/LoginPage";
+import { ApplicantDetails } from "@/components/ApplicantDetails";
 
 export const router = createBrowserRouter([
   {
@@ -61,5 +62,9 @@ export const router = createBrowserRouter([
   {
     path: "/newapplicant/register",
     element: <FormPage />,
+  },
+  {
+    path: "/applicantDetails/:id",
+    element: <ApplicantDetails />,
   },
 ]);
