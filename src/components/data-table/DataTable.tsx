@@ -267,7 +267,7 @@ export function DataTable<TData extends Record<string, any>>({
           onChange={(event) =>
             table.getColumn(value)?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="ml-5 mr-5 max-w-sm"
         />
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger className="w-[180px]">
