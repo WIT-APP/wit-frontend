@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -39,12 +38,11 @@ export const ApplicantDetails = () => {
     }
   }, [oneApplicant, isLoading, isError]);
 
-  const compareApplicants = (applicantA:any, applicantB:any) => {
+  const compareApplicants = (applicantA: any, applicantB: any) => {
     const keys = Object.keys(applicantA);
     for (const key of keys) {
       if (applicantA[key] !== applicantB[key]) {
-          return false; 
-        
+        return false;
       }
     }
     return true;
@@ -98,69 +96,95 @@ export const ApplicantDetails = () => {
     if (unsavedChanges) {
       setShowConfirmation(true);
     } else {
-      navigate(-1); 
+      navigate(-1);
     }
   };
 
   const handleConfirmationContinue = () => {
-    navigate(-1); 
+    navigate(-1);
     setShowConfirmation(false);
   };
 
-
+  const handleGoToInterview = () => {
+    
+  };
 
   return (
- 
-    <Card  >
-      <CardHeader className="bg-lightgreen2 rounded">
-        <CardTitle >Información del Aspirante</CardTitle>
-        <CardDescription>
-          Mostrar y modificar la información del aspirante.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="grid py-2 gap-6 max-h-[75vh] md:max-h-[80vh] overflow-y-auto">
-        {Array.from(new Set(labelsArray.map((item) => item.category))).map((category) => (
-          <div key={category}>
-            <h2 className="text-xl font-bold mb-2 p-1 bg-green2 ">{category}</h2>
-            <div
-              className={`grid gap-2  ${
-                category === "Notas" ? "grid-cols-1" :
-          category === "Personal" || category === "Academica" || category === "Sociodemografica"
-            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
-            : "grid-cols-1 sm:grid-cols-2"
-        }`}
-      >              {labelsArray
-                .filter((item) => item.category === category)
-                .map(({ key, label }) => (
-                  <div key={key}>
-                    <Label className="font-semibold">
-                      {label}
-                      <Textarea
-                        id={key}
-                        value={(applicantInfo?.[key as keyof Applicant] || "").toString()}
-                        onChange={(e) =>
-                          handleInputChange(key as keyof Applicant, e.target.value)
-                        }
-                        className="px-3 py-2 border rounded-md font-normal"
-                        style={{ minWidth: '100%', resize: 'vertical' }}
-                      />
-                    </Label>
-                  </div>
-                ))}
+    <Card>
+      <CardHeader className="bg-lightgreen2 rounded flex justify-between">
+
+    <CardTitle>Información del Aspirante</CardTitle>
+    <CardDescription>
+      Mostrar y modificar la información del aspirante.
+    </CardDescription>
+  <div className="flex justify-end space-x-2">
+    <UnsavedChangesConfirmationDialog
+      isOpen={showConfirmation}
+      onClose={() => setShowConfirmation(false)}
+      onContinue={handleConfirmationContinue}
+    />
+    <ChangesSavedDialog
+      isOpen={showSuccessModal}
+      onClose={handleSuccessModalClose}
+    />
+    <Button className="btn-form-green" onClick={handleCancel}>
+      Volver atrás
+    </Button>
+    <Button className="btn-form-green" onClick={handleSubmit}>
+      Guardar
+    </Button>
+    <Button className="btn-form-green" onClick={handleGoToInterview}>
+      Ir a la entrevista
+    </Button>
+  </div>
+</CardHeader>
+      <CardContent className="grid py-2 gap-6 max-h-[65vh] lg:max-h-[70vh] overflow-y-auto">
+        {Array.from(new Set(labelsArray.map((item) => item.category))).map(
+          (category) => (
+            <div key={category}>
+              <h2 className="text-xl font-bold mb-2 p-1 bg-green2 ">
+                {category}
+              </h2>
+              <div
+                className={`grid gap-2  ${
+                  category === "Notas"
+                    ? "grid-cols-1"
+                    : category === "Personal" ||
+                      category === "Academica" ||
+                      category === "Sociodemografica"
+                    ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
+                    : "grid-cols-1 sm:grid-cols-2"
+                }`}
+              >
+                {labelsArray
+                  .filter((item) => item.category === category)
+                  .map(({ key, label }) => (
+                    <div key={key}>
+                      <Label className="font-semibold">
+                        {label}
+                        <Textarea
+                          id={key}
+                          value={(
+                            applicantInfo?.[key as keyof Applicant] || ""
+                          ).toString()}
+                          onChange={(e) =>
+                            handleInputChange(
+                              key as keyof Applicant,
+                              e.target.value
+                            )
+                          }
+                          className="px-3 py-2 border-2 rounded-md font-normal"
+                          style={{ minWidth: "100%", resize: "vertical" }}
+                        />
+                      </Label>
+                    </div>
+                  ))}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </CardContent>
-      <CardFooter className="justify-between py-3 bg-lightgreen2">
-      <UnsavedChangesConfirmationDialog
-          isOpen={showConfirmation}
-          onClose={() => setShowConfirmation(false)} 
-          onContinue={handleConfirmationContinue}
-        />
-        <ChangesSavedDialog isOpen={showSuccessModal} onClose={handleSuccessModalClose}  />
-          <Button className="btn-form-green" onClick={handleCancel}>Cancelar</Button>
-        <Button className="btn-form-green" onClick={handleSubmit}>Enviar</Button>
-      </CardFooter>
-      </Card>
+      
+    </Card>
   );
 };
