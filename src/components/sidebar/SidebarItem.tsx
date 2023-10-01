@@ -32,7 +32,7 @@ export function SidebarItem({ icon, text, active, onClick }: SidebarItemProps) {
       >
         {icon}
         <span
-          className={`overflow-hidden transition-all ${
+          className={`overflow-hidden transition-all" ${
             expanded ? "w-52 ml-3" : "w-0"
           }`}
         >
