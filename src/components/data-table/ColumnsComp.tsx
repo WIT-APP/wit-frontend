@@ -39,7 +39,7 @@ const handleEstadoChange = async (
   const nuevoEstado = e.target.value;
   console.log(nuevoEstado);
 
-  const confirmacion = window.confirm(`¿Estás seguro de cambiar el estado a "${nuevoEstado}"?`);
+  const confirmacion = window.confirm(`¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`);
 
   if (!confirmacion) {
     return; // Si el usuario cancela, no realizamos cambios
