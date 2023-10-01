@@ -14,9 +14,9 @@ import { useUpdateApplicant } from "@/services/UpdateApplicant";
 import labelsArray from "../data/interview-labels.data.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Applicant } from "@/interfaces/applicant.interface";
-import { UnsavedChangesConfirmationDialog } from "../alerts/UnsavedChangesDialog";
+import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
 import { Textarea } from "./ui/textarea";
-import { ChangesSavedDialog } from "@/alerts/ChangesSavedDialog";
+import { ChangesSavedDialog } from "@/components/alerts/ChangesSavedDialog";
 
 export const ApplicantDetails = () => {
   const { id } = useParams();

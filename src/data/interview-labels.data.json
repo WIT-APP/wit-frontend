@@ -28,5 +28,5 @@
     { "key": "encontrar_programa", "label": "Encontrar un Programa", "category": "Formacion", "type": "text" },
     { "key": "mas_informacion", "label": "Más Información", "category": "Formacion", "type": "textarea" },
     { "key": "observaciones", "label": "Observaciones", "category": "Notas", "type": "textarea" },
-    { "key": "invitaciones", "label": "Invitaciones", "category": "Notas", "type": "textarea" }
+    { "key": "invitaciones", "label": "Invitaciones", "category": "Notas", "type": "text" }
   ]

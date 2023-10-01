@@ -72,8 +72,15 @@ describe("PreApproved Page", () => {
         await waitFor(() => {
             expect(screen.getByText("Nombre")).toBeTruthy();
             expect(screen.getByText("Apellidos")).toBeTruthy();
-            expect(screen.getByText("Descargar seleccionados")).toBeTruthy();
-            expect(screen.getByText("Descargar todos")).toBeTruthy();
+            expect(screen.getByText("seleccionados")).toBeTruthy();
+            expect(screen.getByText("todos")).toBeTruthy();
+            expect(screen.getAllByText("Email")).toBeTruthy();
+            expect(screen.getByText("Telefono")).toBeTruthy();
+            expect(screen.getByText("Invitaciones")).toBeTruthy();
+            expect(screen.getByText("Programa a Cursar")).toBeTruthy();
+            expect(screen.getByText("Estado")).toBeTruthy();
+            expect(screen.getByText("Fecha de aplicación")).toBeTruthy();
+            expect(screen.getByText("Observaciones")).toBeTruthy();
         });
     });
 });
