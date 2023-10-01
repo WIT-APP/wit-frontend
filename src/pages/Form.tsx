@@ -12,7 +12,13 @@ const validationSchema = Yup.object().shape({
   nombre: Yup.string().required('El nombre es obligatorio'),
   apellidos: Yup.string().required('Los apellidos son obligatorios'),
   correo_electronico: Yup.string().email('Formato de correo electrónico inválido').required('El correo electrónico es obligatorio'),
-  telefono: Yup.string().required('El teléfono es obligatorio'),
+  telefono: Yup.string()
+  .required('El teléfono es obligatorio')
+  .min(9, 'El número de teléfono debe tener al menos 9 dígitos')
+  .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
+    // Check if the value is a valid string
+    return typeof value === 'string' && /^\d{9,}$/.test(value);
+  }),
   genero: Yup.string().required('El género es obligatorio'),
   numero_documento_id: Yup.string().required('El número de documento es obligatorio'),
   documento_de_identidad: Yup.string().required('El documento de identidad es obligatorio'),
@@ -29,7 +35,6 @@ const validationSchema = Yup.object().shape({
   intereses_actuales: Yup.string().required('Los intereses actuales son obligatorios'),
   dedicacion_semanal: Yup.string().required('La dedicación semanal es obligatoria'),
   acceso_internet_dispositivos: Yup.string().required('El acceso a internet y dispositivos es obligatorio'),
-  //formacion_online: Yup.string().required('La formación online es obligatoria'),
   razones_para_unir: Yup.string().required('Las razones para unir son obligatorias'),
   encontrar_programa: Yup.string().required('Cómo encontraste el programa es obligatorio'),
   
@@ -88,12 +93,6 @@ export const Form2 = () => {
     mas_informacion: '',
   };
 
-  const formik = useFormikContext(); // Access the Formik context
-
-  const isFormValid = (formik: { isValid: any; dirty: any; }) => {
-    return formik.isValid && formik.dirty;
-  };
-
   return (
     <div className="overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
       <div className="w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base">
@@ -121,7 +120,7 @@ export const Form2 = () => {
               return(
               <Form>
                 {question?.map((q) => (
-                  <div className="container" key={q.id_question}>
+                  <div className="container text-white font-bold mt-5 " key={q.id_question}>
                     <label htmlFor={q.id_question}>{q.text}</label>
                     {/* TYPE1 */}
                     {q.type === 'text' && (
@@ -131,7 +130,8 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
-                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
+                        isValid={isValid} dirty={dirty}
+                        className='mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow '
                       />
                     )}
                     {/* TYPE2 */}
@@ -143,7 +143,10 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
-                        className='mt-2 form-textarea text-sm w-full px-3 py-2 overflow-x-auto focus:ring-yellow2 focus:border-yellow2 rounded-md shadow appearance-none'
+                        isValid={isValid} dirty={dirty}
+                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
+                        }`}
                       />
                     )}
                     {/* TYPE1 */}
@@ -154,7 +157,10 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
-                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
+                        isValid={isValid} dirty={dirty}
+                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
+                        }`}
                       />
                     )}
                     {/* TYPE1 */}
@@ -165,7 +171,10 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
-                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
+                        isValid={isValid} dirty={dirty}
+                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
+                        }`}
                       />
                     )}
                     {/* TYPE1 */}
@@ -177,19 +186,23 @@ export const Form2 = () => {
                         id={q.id_question}
                         placeholder={q.placeholder}
                         required={q.obligatory}
-                        className='mt-2 form-input w-full rounded-lg shadow appearance-none border focus:ring-yellow2 focus:border-yellow2 text-sm px-3 py-2 overflow-x-auto '
+                        isValid={isValid} dirty={dirty}
+                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
+                        }`}
                       />
                     )}
                     {/* TYPE3 */}
                     {q.type === 'checkbox' && (
-                      <div className="flex items-center text-white mt-2 mr-2">
+                      <div className="flex items-center text-white mt-5 mr-2">
                         {q.options.map((option) => (
                           <label key={option}>
                             <Field
                               type="checkbox"
                               name={q.id_question}
                               value={option}
-                              className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                              isValid={isValid} dirty={dirty}
+                              className={`mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 ${ !isValid && dirty ? 'border-red-500' : ''}`}
                             />
                             {option}
                           </label>
@@ -204,10 +217,11 @@ export const Form2 = () => {
                             <Field
                               type="checkbox"
                               name={q.id_question}
+                              isValid={isValid} dirty={dirty}
                               value={option} // Use the option value as the value of the checkbox
                               className="sr-only peer"                              
                             />
-                            <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-lightgray2 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow2"></div>
+                            <div className={`w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-lightgray2 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow2 ${ !isValid && dirty ? 'border-red-500' : ''}`}></div>
                             <span className="ml-3 text-sm font-medium text-white">
                               {option}
                             </span>
@@ -222,7 +236,8 @@ export const Form2 = () => {
                         name={q.id_question}
                         id={q.id_question}
                         required={q.obligatory}
-                        className='bg-gray-50 border border-gray-300 text-black2 mb-6 text-sm rounded-lg focus:ring-yellow2 focus:border-yellow2 block w-full p-2.5 '
+                        isValid={isValid} dirty={dirty}
+                        className={`font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2 shadow mt-2 ${ !isValid && dirty ? 'border-red-500' : ''}`}
                       >
                         <option value="" disabled>
                           Selecciona una opción
@@ -236,15 +251,16 @@ export const Form2 = () => {
                     )}
                     {/* TYPE4 */}
                     {q.type === 'radio' && (
-                      <div className="flex flex-column items-center text-white mb-2 mr-2">
+                      <div className={`items-center text-white  mb-2 mr-2 block font-bold ${ !isValid && dirty ? 'border-red-500' : ''}`}>
                         {q.options.map((option) => (
-                          <div key={option}>
+                          <div key={option} className={`flex flex-column items-center text-white mt-2 mr-2 ${ !isValid && dirty ? 'border-red-500' : ''}`} >
                             <label>
                               <Field
                                 type="radio"
                                 name={q.id_question}
                                 value={option}
                                 required={q.obligatory}
+                                isValid={isValid} dirty={dirty}
                                 className="mr-2"
                               />
                               {option}
@@ -257,7 +273,7 @@ export const Form2 = () => {
                     <ErrorMessage name={q.id_question} component="div" className="error" />
                   </div>
                 ))}
-                <div className="flex justify-evenly text-sm mb-4">
+                <div className="flex justify-evenly text-sm mb-4 mt-6">
                   <button
                     onClick={goToPreviousPage}
                     disabled={currentPage === 0}
@@ -269,7 +285,7 @@ export const Form2 = () => {
                   </button>{' '}
                   <button
                     onClick={goToNextPage}
-                    disabled={!isValid || !dirty || isPreviousData || currentPage === pages.length - 1}
+                    disabled={isPreviousData || currentPage === pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === pages.length - 1,
                     })}
