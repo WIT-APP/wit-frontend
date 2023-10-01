@@ -3,8 +3,10 @@ import Sidebar from "./Sidebar";
 import {
   Users,
   UserCheck,
-  X,
+  XSquare,
+  CheckSquare,
   MailCheck,
+  ShieldPlus,
   MessageSquarePlus,
   GraduationCap,
   DoorOpen,
@@ -43,10 +45,22 @@ export default function SideBarDashboard() {
           onClick={() => handleItemClick("Invitado")}
         />
         <SidebarItem
+          icon={<CheckSquare size={20} />}
+          text="Confirmado"
+          active={activeItem === "Confirmado"}
+          onClick={() => handleItemClick("Confirmado")}
+        />
+        <SidebarItem
           icon={<MessageSquarePlus size={20} />}
           text="Entrevistado"
           active={activeItem === "Entrevistado"}
           onClick={() => handleItemClick("Entrevistado")}
+        />
+        <SidebarItem
+          icon={<ShieldPlus size={20} />}
+          text="Admitido"
+          active={activeItem === "Admitido"}
+          onClick={() => handleItemClick("Admitido")}
         />
         <SidebarItem
           icon={<ClipboardSignature size={20} />}
@@ -61,7 +75,7 @@ export default function SideBarDashboard() {
           onClick={() => handleItemClick("Certificado")}
         />
         <SidebarItem
-          icon={<X size={20} />}
+          icon={<XSquare size={20} />}
           text="Rechazado"
           active={activeItem === "Rechazado"}
           onClick={() => handleItemClick("Rechazado")}

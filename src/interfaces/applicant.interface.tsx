@@ -1,10 +1,10 @@
 export interface Applicant {
-  id: number | string;
+  id: string | number;
   fecha_de_applicacion: Date;
   nombre: string;
   apellidos: string;
   correo_electronico: string;
-  telefono: number;
+  telefono: number | string;
   estado: string;
   genero: string;
   fecha_de_nacimiento: Date;
@@ -30,6 +30,8 @@ export interface Applicant {
   razones_para_unir: string;
   encontrar_programa: string;
   mas_informacion: string;
+  observaciones: string;
+  invitaciones: number | null;
 }
 
 export interface CreateApplicant {
@@ -61,4 +63,6 @@ export interface CreateApplicant {
   razones_para_unir: string;
   encontrar_programa: string;
   mas_informacion: string;
+  observaciones: string;
+  invitaciones: number | null;
 }
