@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const updateApplicantMutation = async ({ id, ...applicant }: Applicant) => {
   
-    const response = await fetch(`http://localhost:3000/applicant/${id}/profile`, {
+    const response = await fetch(`http://localhost:3000/applicant/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
