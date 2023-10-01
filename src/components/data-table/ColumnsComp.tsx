@@ -37,8 +37,13 @@ const handleEstadoChange = async (
   applicant: Applicant
 ) => {
   const nuevoEstado = e.target.value;
+  console.log(nuevoEstado);
 
-  // Aquí puedes abrir un modal de confirmación si es necesario
+  const confirmacion = window.confirm(`¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`);
+
+  if (!confirmacion) {
+    return; // Si el usuario cancela, no realizamos cambios
+  }
 
   try {
     const { data, error } = await UpdateEstado(applicant.id, nuevoEstado);
@@ -49,12 +54,15 @@ const handleEstadoChange = async (
       console.log(
         `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
       );
+      // Aquí puedes actualizar el estado local si es necesario
     }
   } catch (error) {
     console.error("Error al actualizar el estado:", error);
   }
+  window.location.reload();
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const tableColumns: ColumnDef<Applicant>[] = [
   {
     id: "select",
@@ -255,7 +263,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(applicant.id)}
+              onClick={() => navigator.clipboard.writeText(applicant.id.toString())}
             >
               Copy applicant ID
             </DropdownMenuItem>
