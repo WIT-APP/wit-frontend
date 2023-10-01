@@ -178,7 +178,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "invitaciones",
-    header: "Invitado",
+    header: "Invitaciones",
     cell: ({ row }) => (
       <div className="text-right mr-4">
         <span>{row.getValue("invitaciones")}</span>
