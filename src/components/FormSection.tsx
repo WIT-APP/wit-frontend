@@ -1,252 +1,236 @@
-import {InputText} from './ui/form/InputText'
-import InputEmail from './ui/form/InputEmail';
-import {InputSelect} from './ui/form/InputSelect';
-import { InputCheckbox } from './ui/form/InputCheckbox';
-import { Question } from '../interfaces/question.interface';
-import InputTextarea from './ui/form/InputTextarea';
-import { DocumentoIdentidad } from './ui/form/DocumentoIdentidad';
-import { InputRadioBox } from './ui/form/InputRadioBox';
-import { InputPhoneNumber } from './ui/form/InputPhoneNumber';
-import { FormValues } from '@/pages/FormPage';
-import { InputToggle } from './ui/form/InputToggle';
-//import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from 'react';
+import { Field, ErrorMessage, useFormikContext, Form } from 'formik';
+import { FormValues } from '@/interfaces/formRegister.interface';
+import classnames from 'classnames';
+import { Question } from '@/interfaces/question.interface';
+import { Button } from './ui/Button';
 
+const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
-
-interface PersonalInfoProps {
-    data:Question[] | undefined;
-    values: FormValues; 
-<<<<<<< HEAD
-    onChange: (e: React.ChangeEvent<HTMLElement> | string) => void;
-=======
-    onChange: (e: React.ChangeEvent<HTMLElement>) => void;
-    colectivo: string[]; // Receive colectivo as a prop
-    setColectivo: (colectivo: string[]) => void;
->>>>>>> a3bc1790a2212976a7349fcdf92a44ddd9a0f648
-
+interface FormSectionProps {
+  isFetching: boolean;
+  isPreviousData: boolean;
+  question: Question[];
 }
 
+export const FormSection = (props: FormSectionProps) => {
 
-export const FormSection = (
-  { data, 
-    //values,
-    colectivo, // Receive colectivo from props
-   // setColectivo, // Receive the setter function from props 
-    onChange }: PersonalInfoProps 
-  ) => {
-    // const [selectedValues, setSelectedValues] = useState<string[]>([]);
-    
-    // const handleCheckboxChange = (option: string) => {
-    //   setSelectedValues((prevSelectedValues) => {
-    //     if (prevSelectedValues.includes(option)) {
-    //       return prevSelectedValues.filter((value) => value !== option);
-    //     } else {
-    //       return [...prevSelectedValues, option];
-    //     }
-    //   });
-    // };
+    const {
+      isFetching,
+      isPreviousData,
+      question,
+    } = props;
 
-    
+  const [currentPage, setCurrentPage] = useState(0);
 
-    // const validateField = (fieldName, fieldValue) => {
-    //   const errors = {};
-  
-    //   if (fieldName === 'nombre' && !fieldValue) {
-    //     errors[fieldName] = 'Required';
-    //   }
-      
-    //   if (fieldName === 'apellidos' && !fieldValue) {
-    //     errors[fieldName] = 'Required';
-    //   }
-  
-    //   // Add validations for other fields as needed
-  
-    //   return errors;
-    // };
-  
-    // const handleFieldChange = (fieldName, fieldValue) => {
-    //   // Validate the field
-    //   const fieldErrors = validateField(fieldName, fieldValue);
-  
-    //   // Update the form values and errors
-    //   const newValues = { ...values, [fieldName]: fieldValue };
-    //   const newErrors = { ...formik.errors, ...fieldErrors };
-  
-    //   // Update the form state
-    //   formik.setValues(newValues);
-    //   formik.setErrors(newErrors);
-    // };
+  const formik = useFormikContext<FormValues>();
 
-    
-     const handleText = () => {}
 
-    return (
-        <>
-        <div className='w-100 rounded p-8 text-sm m-0'>
-          {data?.map((q) => {
-            if (q.type === 'text') {
-              //const questionValue = values[q?.id_question]
-              return (
-                <InputText
-                  key={q.id}
-                  id={q.id_question}
-                  type={q.type}
-                  expandText={q.expandText}
-                  children={q.text}
-                  placeholder={q.placeholder}
-                  required={q.obligatory}
-                  //value={questionValue}
-                  onChange={onChange}
-                />
-              );
-            } else if (q.type === 'email') {
-                //const questionValue = values[q.id_question]
-              return (
-                <InputEmail
-                  key={q.id}
-                  placeholder={q.placeholder}
-                  children={q.text} 
-                  id={q.id_question} 
-                  type={q.type} 
-                  expandText={q.expandText}
-                  onChange={onChange}
-                  required={q.obligatory}
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
+  const goToNextPage = () => {
+    if (!isPreviousData && currentPage < pages.length) {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length - 1));
+    }
+  };
+
+  const isCurrentSectionValid = () => {
+    if (!question || !formik) {
+      console.log("Question or formik is missing.");
+      console.log("Question:", question);
+      console.log("Question:", formik);
+      return false;
+    }
+    return question.every((q: Question) => {
+      const fieldName = q.id_question;
+      const isFieldTouched = formik.touched[fieldName];
+      const isFieldValid = !formik.errors[fieldName];
+  
+      console.log("Field Name:", fieldName);
+      console.log("Touched:", isFieldTouched);
+      console.log("Valid:", isFieldValid);
+      if (q.obligatory && isFieldTouched) {
+        return isFieldValid;
+      }
+      return true;
+    });
+  };
+  
+  return (
+    <>
+      {console.log(isCurrentSectionValid())}
+      {question?.map((q: Question) => (
+        <div className="container text-white font-bold mt-5" key={q.id_question}>
+          <label htmlFor={q.id_question}>{q.text}</label>
+          {/* Render the corresponding input based on q.type */}
+          {q.type === 'text' && (
+              <Field
+                name={q.id_question}
+                type={q.type}
+                id={q.id_question}
+                placeholder={q.placeholder}
+                className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto p-2.5 placeholder-gray-400 shadow ${
+                  formik.touched[q.id_question] && formik.errors[q.id_question] ? 'border-red-500' : ''
+                }`}
+              />
+            )} 
+            {q.type === 'textarea' && (
+              <Field
+                name={q.id_question}
+                type='textarea'
+                component = {q.type}
+                id={q.id_question}
+                placeholder={q.placeholder}
+                required={q.obligatory}
+                className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                  !formik.isValid && !formik.dirty ? 'border-red-500' : '' 
+                }`}
+              />
+            )}
+            {q.type ==='date' && (
+              <Field
+                name={q.id_question}
+                type={q.type}
+                id={q.id_question}
+                placeholder={q.placeholder}
+                required={q.obligatory}
+                className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                  formik.touched[q.id_question] && formik.errors[q.id_question]  ? 'border-red-500' : ''
+                }`}
+              />
+            )}                
+            {q.type ==='email' && (
+              <Field
+                name={q.id_question}
+                type={q.type}
+                id={q.id_question}
+                placeholder={q.placeholder}
+                required={q.obligatory}
+                className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                  formik.touched[q.id_question] && formik.errors[q.id_question]  ? 'border-red-500' : '' 
+                }`}
+              />
+            )}
+            {q.type ==='phone' && (
+              <Field
+                name={q.id_question}
+                type={q.type}
+                id={q.id_question}
+                placeholder={q.placeholder}
+                required={q.obligatory}
+                className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
+                  formik.touched[q.id_question] && formik.errors[q.id_question]  ? 'border-red-500' : '' 
+                }`}
+              />
+            )}                    
+            {q.type === 'checkbox' && (
+            <div className="text-white mt-5 mr-2 align-center items-center">
+              {q.options.map((option) => (
+                <label key={option} className="ml-2 text-md font-medium text-white relative flex items-center">
+                  <Field
+                    type="checkbox"
+                    name={q.id_question}
+                    value={option}
+                    className={`mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 block ${
+                      formik.touched[q.id_question] && formik.errors[q.id_question] ? 'border-red-500' : ''
+                    }`}
                   />
-              );
-            } else if (q.type === 'select') {
-              //const questionValue = values[q.id_question]
-              return (
-                <InputSelect
-                  key={q.id}
-                  id={q.id_question}
-                  label={q.text}
-                  options={q.options}
-                  onChange={onChange} 
-<<<<<<< HEAD
-                  value={questionValue}
-                  required={q.obligatory}   
-=======
-                  value={''}
-                  //value={questionValue}   
->>>>>>> a3bc1790a2212976a7349fcdf92a44ddd9a0f648
-                />
-              );
-            } else if (q.type === 'date') {
-              //const questionValue = values[q.id_question]
-              return (
-                <InputText
-                  key={q.id}
-                  id={q.id_question}
-                  type={q.type}
-                  expandText={q.expandText}
-                  children={q.text}
-                  onChange={onChange}
-                  required={q.obligatory}
-                />
-              );
-            } else if (q.type === 'checkbox') {
-              // Falta capturar respuesta
-              const questionValue = values[q.id_question]
-              return (
-                <InputCheckbox
-                  key={q.id}
-                  label={q.text}
-                  options={q.options}
-                  id={q.id_question}
-<<<<<<< HEAD
-                  value={questionValue}
-                  selectedValues={[]}
-                  onChange={handleText}
-=======
-                  selectedValues={colectivo} // Use the colectivo prop
-                  //onChange={(selectedValues) => setColectivo(selectedValues)} // Update colectivo in the parent component
-                  onChange={onChange}
->>>>>>> a3bc1790a2212976a7349fcdf92a44ddd9a0f648
-                  expandText={q.expandText}
-                />
-              );
-            }else if (q.type === 'textarea') {
-              //const questionValue = values[q.id_question]
-              return (
-                <InputTextarea
-                  key={q.id}
-                  children={q.text}
-                  expandText={q.expandText} 
-                  id={q.id_question} 
-                 //value={questionValue}
-                  onChange={onChange}
-                  required={q.obligatory}
-                />
-              );
-            }else if (q.type === 'phone') {
-              //const questionValue = values[q.id_question]
-              return (
-                <InputPhoneNumber
-                  key={q.id}
-                  children={q.text}
-                  expandText={q.expandText}
-                  id={q.id_question} 
-                  type={q.type}
-                  onChange={onChange}
-<<<<<<< HEAD
-                  value={questionValue}
-                  required={q.obligatory}               
-=======
-                  //value={questionValue}              
->>>>>>> a3bc1790a2212976a7349fcdf92a44ddd9a0f648
-                  />
-              );
-            } else if (q.type === 'radio') {
-              return (
-                <InputRadioBox 
-                  key={q.id}
-                  label={q.text}
-                  options={q.options}
-                  id={q.id_question}
-                  selectedValue={values[q.id_question]} 
-                  expandText={q.expandText} 
-                  onChange={onChange}  
-                  required={q.obligatory}       
-                />
-              );
-            }else if (q.type === 'document') {
-             // const questionValue = values[q.id_question]
-              // Falta capturar respuesta
-              return (
-                <DocumentoIdentidad
-                  key={q.id}
-                  onChange={onChange} 
-                  value={'questionValue'}              />
-              );
-            }else if (q.type === 'toggle') {
-             //const questionValue = values[q.id_question]
-             // Falta capturar respuesta
-              return (
-                <InputToggle
-                  key={q.id}
-                  onChange={onChange} 
-                  id={q.id_question} 
-                  children={q.text}
-<<<<<<< HEAD
-                  value={questionValue}
-                  required={q.obligatory} 
-=======
-                  //value={questionValue} 
->>>>>>> a3bc1790a2212976a7349fcdf92a44ddd9a0f648
-                />
-              );
-            }
-
-            return null; 
-          })}
-          
-        </div>
-        
-        </>
-      );
-    };
-
-
-
-
-
+                  {option}
+                </label>
+              ))}
+            </div>
+          )}
+            {q.type === 'toggle' && (
+              <div>
+                {q.options.map((option) => (
+                  <label key={option} className="relative inline-flex text-white items-center mb-4 cursor-pointer">
+                    <Field
+                      type="checkbox"
+                      name={q.id_question}
+                      value={option} 
+                      className="sr-only peer"                              
+                    />
+                    <div className={`w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-lightgray2 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow2 ${ formik.touched[q.id_question] && formik.errors[q.id_question] ? 'border-red-500' : ''}`}></div>
+                    <span className="ml-3 text-sm font-medium text-white">
+                      {option}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            )}
+            {q.type === 'select' && (
+              <Field
+                as="select"
+                name={q.id_question}
+                id={q.id_question}
+                required={q.obligatory}
+                className={`font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2 shadow mt-2 ${ formik.touched[q.id_question] && formik.errors[q.id_question]  ? 'border-red-500' : ''}`}
+              >
+                <option value="" disabled>
+                  Selecciona una opción
+                </option>
+                {q.options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </Field>
+                    )}
+                    {q.type === 'radio' && (
+                      <div className={`items-center text-white  mb-2 mr-2 block font-bold ${  !formik.isValid && !formik.dirty ? 'border-red-500' : ''}`}>
+                        {q.options.map((option) => (
+                          <div key={option} className={`flex flex-column items-center text-white mt-2 mr-2 ${formik.touched[q.id_question] && formik.errors[q.id_question] ? 'border-red-500' : ''}`} >
+                            <label>
+                              <Field
+                                type="radio"
+                                name={q.id_question}
+                                value={option}
+                                required={q.obligatory}
+                                className="mr-2"
+                              />
+                              {option}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <ErrorMessage name={q.id_question} component="div" className="error text-sm text-red-700" />
+                  </div>
+                ))}
+                <div className="flex justify-evenly text-sm mb-4 mt-6">
+                  <button
+                    onClick={goToPreviousPage}
+                    disabled={currentPage === 0}
+                    className={classnames('btn-form', 'btn-form-green', {
+                      invisible: currentPage === 0,
+                    })}
+                  >
+                    Previous Page
+                  </button>{' '}
+                  <button
+                    onClick={goToNextPage}
+                    disabled={ isPreviousData || currentPage === pages.length - 1}
+                    className={classnames('btn-form', 'btn-form-green', {
+                      invisible: currentPage === pages.length - 1,
+                    })}
+                    type="submit"
+                  >
+                    Next Page
+                  </button>
+                  <button
+                    disabled={currentPage !== pages.length - 1}
+                    className={classnames('btn-form', 'btn-form-green', {
+                    invisible: currentPage !== pages.length - 1,
+                    })}
+                    type="submit"
+                  >
+                  Enviar
+                  </button>
+                  </div>
+      {isFetching ? <span>Loading...</span> : null}
+    </>
+  );
+};

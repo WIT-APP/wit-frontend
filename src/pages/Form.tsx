@@ -3,66 +3,19 @@ import classnames from 'classnames';
 import { useState } from 'react';
 import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage, useFormikContext, FormikTouched } from 'formik';
+import { FormValues, validationSchema } from '@/interfaces/formRegister.interface';
+import { FormSection } from '@/components/FormSection';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
-
-const validationSchema = Yup.object().shape({
-  nombre: Yup.string().required('El nombre es obligatorio'),
-  apellidos: Yup.string().required('Los apellidos son obligatorios'),
-  correo_electronico: Yup.string().email('Formato de correo electrónico inválido').required('El correo electrónico es obligatorio'),
-  telefono: Yup.string()
-  .required('El teléfono es obligatorio')
-  .min(9, 'El número de teléfono debe tener al menos 9 dígitos')
-  .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
-    // Check if the value is a valid string
-    return typeof value === 'string' && /^\d{9,}$/.test(value);
-  }),
-  genero: Yup.string().required('El género es obligatorio'),
-  numero_documento_id: Yup.string().required('El número de documento es obligatorio'),
-  documento_de_identidad: Yup.string().required('El documento de identidad es obligatorio'),
-  direccion: Yup.string().required('La dirección es obligatoria'),
-  ciudad: Yup.string().required('La ciudad es obligatoria'),
-  provincia: Yup.string().required('La provincia es obligatoria'),
-  pais_de_residencia: Yup.string().required('El país de residencia es obligatorio'),
-  codigo_postal: Yup.string().required('El código postal es obligatorio'),
-  programa_cursar: Yup.string().required('El programa a cursar es obligatorio'),
-  colectivo: Yup.string().required('El colectivo es obligatorio'),
-  educacion: Yup.string().required('La educación es obligatoria'),
-  estudio_mas_alto: Yup.string().required('El estudio más alto es obligatorio'),
-  situacion_profesional: Yup.string().required('La situación profesional es obligatoria'),
-  intereses_actuales: Yup.string().required('Los intereses actuales son obligatorios'),
-  dedicacion_semanal: Yup.string().required('La dedicación semanal es obligatoria'),
-  acceso_internet_dispositivos: Yup.string().required('El acceso a internet y dispositivos es obligatorio'),
-  razones_para_unir: Yup.string().required('Las razones para unir son obligatorias'),
-  encontrar_programa: Yup.string().required('Cómo encontraste el programa es obligatorio'),
-  
-});
-
-// validationSchema.validate(values).catch(errors => {
-//   console.log('Validation Errors:', errors);
-// });
-
-export interface FormValues {
-  [key: string]: string;
-}
 
 export const Form2 = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
+
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
 
-  const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-  };
-
-  const goToNextPage = () => {
-    if (!isPreviousData && currentPage < pages.length) {
-      setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length - 1));
-    }
-  };
 
   const initialValues: FormValues = {
     nombre: '',
@@ -70,6 +23,7 @@ export const Form2 = () => {
     correo_electronico: '',
     telefono: '',
     genero: '',
+    fecha_de_nacimiento:'',
     numero_documento_id: '',
     documento_de_identidad: '',
     tipo_documento_identidad: '',
@@ -106,206 +60,19 @@ export const Form2 = () => {
           <div>Error: {error?.message}</div>
         ) : question ?(
           <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(values, actions) => {
-            console.log({ values, actions });
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }}
-          >
-            {({ isValid,dirty }) => {
-              console.log('isValid:', isValid);
-              console.log('dirty:', dirty);
-              return(
-              <Form>
-                {question?.map((q) => (
-                  <div className="container text-white font-bold mt-5 " key={q.id_question}>
-                    <label htmlFor={q.id_question}>{q.text}</label>
-                    {/* TYPE1 */}
-                    {q.type === 'text' && (
-                      <Field
-                        name={q.id_question}
-                        type={q.type}
-                        id={q.id_question}
-                        placeholder={q.placeholder}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className='mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow '
-                      />
-                    )}
-                    {/* TYPE2 */}
-                    {q.type === 'textarea' && (
-                      <Field
-                        name={q.id_question}
-                        type='textarea'
-                        component = {q.type}
-                        id={q.id_question}
-                        placeholder={q.placeholder}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
-                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
-                        }`}
-                      />
-                    )}
-                    {/* TYPE1 */}
-                    {q.type ==='date' && (
-                      <Field
-                        name={q.id_question}
-                        type={q.type}
-                        id={q.id_question}
-                        placeholder={q.placeholder}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
-                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
-                        }`}
-                      />
-                    )}
-                    {/* TYPE1 */}
-                    {q.type ==='email' && (
-                      <Field
-                        name={q.id_question}
-                        type={q.type}
-                        id={q.id_question}
-                        placeholder={q.placeholder}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
-                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
-                        }`}
-                      />
-                    )}
-                    {/* TYPE1 */}
-                    
-                    {q.type ==='phone' && (
-                      <Field
-                        name={q.id_question}
-                        type={q.type}
-                        id={q.id_question}
-                        placeholder={q.placeholder}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto  p-2.5 placeholder-gray-400 shadow ${
-                          !isValid && dirty ? 'border-red-500' : '' // Example: Conditionally apply red border for invalid fields
-                        }`}
-                      />
-                    )}
-                    {/* TYPE3 */}
-                    {q.type === 'checkbox' && (
-                      <div className="flex items-center text-white mt-5 mr-2">
-                        {q.options.map((option) => (
-                          <label key={option}>
-                            <Field
-                              type="checkbox"
-                              name={q.id_question}
-                              value={option}
-                              isValid={isValid} dirty={dirty}
-                              className={`mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 ${ !isValid && dirty ? 'border-red-500' : ''}`}
-                            />
-                            {option}
-                          </label>
-                        ))}
-                      </div>
-                    )}
-                    {/* TYPE4 */}
-                    {q.type === 'toggle' && (
-                      <div>
-                        {q.options.map((option) => (
-                          <label key={option} className="relative inline-flex text-white items-center mb-4 cursor-pointer">
-                            <Field
-                              type="checkbox"
-                              name={q.id_question}
-                              isValid={isValid} dirty={dirty}
-                              value={option} // Use the option value as the value of the checkbox
-                              className="sr-only peer"                              
-                            />
-                            <div className={`w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-2 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full peer-checked:after:border after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-lightgray2 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow2 ${ !isValid && dirty ? 'border-red-500' : ''}`}></div>
-                            <span className="ml-3 text-sm font-medium text-white">
-                              {option}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    )}
-                    {/* TYPE5 */}
-                    {q.type === 'select' && (
-                      <Field
-                        as="select"
-                        name={q.id_question}
-                        id={q.id_question}
-                        required={q.obligatory}
-                        isValid={isValid} dirty={dirty}
-                        className={`font-normal text-sm w-full px-3 text-justify mb-2 mr-2 rounded-md focus:ring-yellow2 focus:border-yellow2 block p-2.5 placeholder-gray-400 text-black2 shadow mt-2 ${ !isValid && dirty ? 'border-red-500' : ''}`}
-                      >
-                        <option value="" disabled>
-                          Selecciona una opción
-                        </option>
-                        {q.options.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </Field>
-                    )}
-                    {/* TYPE4 */}
-                    {q.type === 'radio' && (
-                      <div className={`items-center text-white  mb-2 mr-2 block font-bold ${ !isValid && dirty ? 'border-red-500' : ''}`}>
-                        {q.options.map((option) => (
-                          <div key={option} className={`flex flex-column items-center text-white mt-2 mr-2 ${ !isValid && dirty ? 'border-red-500' : ''}`} >
-                            <label>
-                              <Field
-                                type="radio"
-                                name={q.id_question}
-                                value={option}
-                                required={q.obligatory}
-                                isValid={isValid} dirty={dirty}
-                                className="mr-2"
-                              />
-                              {option}
-                            </label>
-                          </div>
-                        ))}
-                        
-                      </div>
-                    )}
-                    <ErrorMessage name={q.id_question} component="div" className="error" />
-                  </div>
-                ))}
-                <div className="flex justify-evenly text-sm mb-4 mt-6">
-                  <button
-                    onClick={goToPreviousPage}
-                    disabled={currentPage === 0}
-                    className={classnames('btn-form', 'btn-form-green', {
-                      invisible: currentPage === 0,
-                    })}
-                  >
-                    Previous Page
-                  </button>{' '}
-                  <button
-                    onClick={goToNextPage}
-                    disabled={isPreviousData || currentPage === pages.length - 1}
-                    className={classnames('btn-form', 'btn-form-green', {
-                      invisible: currentPage === pages.length - 1,
-                    })}
-                    type="submit"
-                  >
-                    Next Page
-                  </button>
-                  <button
-                    disabled={currentPage !== pages.length - 1}
-                    className={classnames('btn-form', 'btn-form-green', {
-                    invisible: currentPage !== pages.length - 1,
-                    })}
-                    type="submit"
-                  >
-                    Enviar
-                  </button>
-                </div>
-                {isFetching ? <span>Loading...</span> : null}{' '}
-              </Form>
-            )}}
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, actions) => {
+              console.log({ values, actions });
+              alert(JSON.stringify(values, null, 2));
+              actions.setSubmitting(false);
+            }}
+          > 
+            <FormSection
+              isFetching={isFetching}
+              isPreviousData={isPreviousData}
+              question={question}
+            />
           </Formik>
         ) : null}
       </div>
