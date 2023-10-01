@@ -38,9 +38,12 @@ const handleEstadoChange = async (
 ) => {
   const nuevoEstado = e.target.value;
   console.log(nuevoEstado);
-  
 
-  // Aquí puedes abrir un modal de confirmación si es necesario
+  const confirmacion = window.confirm(`¿Estás seguro de cambiar el estado a "${nuevoEstado}"?`);
+
+  if (!confirmacion) {
+    return; // Si el usuario cancela, no realizamos cambios
+  }
 
   try {
     const { data, error } = await UpdateEstado(applicant.id, nuevoEstado);
@@ -51,12 +54,12 @@ const handleEstadoChange = async (
       console.log(
         `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
       );
+      // Aquí puedes actualizar el estado local si es necesario
     }
   } catch (error) {
     console.error("Error al actualizar el estado:", error);
   }
-  window.location.reload()
-
+  window.location.reload();
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
