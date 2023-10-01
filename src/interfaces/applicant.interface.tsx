@@ -31,7 +31,7 @@ export interface Applicant {
   encontrar_programa: string;
   mas_informacion: string;
   observaciones: string;
-  invitaciones: number | null;
+  invitaciones: number;
 }
 
 export interface CreateApplicant {
@@ -64,5 +64,5 @@ export interface CreateApplicant {
   encontrar_programa: string;
   mas_informacion: string;
   observaciones: string;
-  invitaciones: number | null;
+  invitaciones: number;
 }
