@@ -12,6 +12,8 @@ interface FormSectionProps {
   isFetching: boolean;
   isPreviousData: boolean;
   question: Question[];
+  currentPage:number;
+  onPageChange:  (newPage: number) => void;
 }
 
 export const FormSection = (props: FormSectionProps) => {
@@ -19,21 +21,21 @@ export const FormSection = (props: FormSectionProps) => {
     const {
       isFetching,
       isPreviousData,
-      question,
+      question, 
+      currentPage, 
+      onPageChange 
     } = props;
 
-  const [currentPage, setCurrentPage] = useState(0);
-
+ 
   const formik = useFormikContext<FormValues>();
 
-
   const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+    onPageChange(Math.max(currentPage - 1, 0));
   };
 
   const goToNextPage = () => {
     if (!isPreviousData && currentPage < pages.length) {
-      setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length - 1));
+      onPageChange(Math.min(currentPage + 1, pages.length - 1));
     }
   };
 
@@ -61,11 +63,11 @@ export const FormSection = (props: FormSectionProps) => {
   
   return (
     <>
-      {console.log(isCurrentSectionValid())}
+    {console.log('able to next',isCurrentSectionValid())}
       {question?.map((q: Question) => (
+        currentPage === currentPage && (
         <div className="container text-white font-bold mt-5" key={q.id_question}>
           <label htmlFor={q.id_question}>{q.text}</label>
-          {/* Render the corresponding input based on q.type */}
           {q.type === 'text' && (
               <Field
                 name={q.id_question}
@@ -198,8 +200,8 @@ export const FormSection = (props: FormSectionProps) => {
                       </div>
                     )}
                     <ErrorMessage name={q.id_question} component="div" className="error text-sm text-red-700" />
-                  </div>
-                ))}
+                  </div>)
+      ))}
                 <div className="flex justify-evenly text-sm mb-4 mt-6">
                   <button
                     onClick={goToPreviousPage}
@@ -212,11 +214,11 @@ export const FormSection = (props: FormSectionProps) => {
                   </button>{' '}
                   <button
                     onClick={goToNextPage}
-                    disabled={ isPreviousData || currentPage === pages.length - 1}
+                    disabled={!isCurrentSectionValid() || isPreviousData || currentPage === pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === pages.length - 1,
                     })}
-                    type="submit"
+                    type="button" // Use type="button" to prevent form submission
                   >
                     Next Page
                   </button>

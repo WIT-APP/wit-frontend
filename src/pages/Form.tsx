@@ -12,6 +12,10 @@ const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 export const Form2 = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
+  const handlePageChange = (newPage:number) => {
+    setCurrentPage(newPage);
+  };
+
 
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
@@ -72,6 +76,8 @@ export const Form2 = () => {
               isFetching={isFetching}
               isPreviousData={isPreviousData}
               question={question}
+              currentPage={currentPage} 
+              onPageChange={handlePageChange} 
             />
           </Formik>
         ) : null}

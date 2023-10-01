@@ -47,7 +47,6 @@ export const validationSchema = () => (
     acceso_internet_dispositivos: Yup.string().required('Campo Obligatorio'),
     razones_para_unir: Yup.string().required('Campo Obligatorio'),
     encontrar_programa: Yup.string().required('Campo Obligatorio'),
-    
-  
+
   })
   ))
