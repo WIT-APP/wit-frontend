@@ -4,7 +4,7 @@
     { "key": "correo_electronico", "label": "Correo Electrónico", "category": "Personal", "type": "text" },
     { "key": "telefono", "label": "Teléfono", "category": "Personal", "type": "text" },
     { "key": "genero", "label": "Género", "category": "Personal", "type": "text" },
-    { "key": "fecha_de_nacimiento", "label": "Fecha de Nacimiento", "category": "Personal", "type": "text" },
+    { "key": "fecha_de_nacimiento", "label": "Fecha de Nacimiento (YYYY-MM-DD)", "category": "Personal", "type": "text" },
     { "key": "pais_de_nacimiento", "label": "País de Nacimiento", "category": "Personal", "type": "text" },
     { "key": "documento_de_identidad", "label": "Documento de Identidad", "category": "Personal", "type": "text" },
     { "key": "numero_documento_id", "label": "Número de Documento ID", "category": "Personal", "type": "text" },
