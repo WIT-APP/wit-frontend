@@ -1,8 +1,8 @@
 export interface Question {
-    id: number;
+    id: number | string;
     text: string;
     type: string;
-    options: [];
+    options: string[];
     category: string;
     placeholder: string;
     expandText: string;
