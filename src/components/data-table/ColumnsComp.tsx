@@ -37,6 +37,8 @@ const handleEstadoChange = async (
   applicant: Applicant
 ) => {
   const nuevoEstado = e.target.value;
+  console.log(nuevoEstado);
+  
 
   // Aquí puedes abrir un modal de confirmación si es necesario
 
@@ -53,8 +55,11 @@ const handleEstadoChange = async (
   } catch (error) {
     console.error("Error al actualizar el estado:", error);
   }
+  window.location.reload()
+
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const tableColumns: ColumnDef<Applicant>[] = [
   {
     id: "select",
@@ -255,7 +260,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(applicant.id)}
+              onClick={() => navigator.clipboard.writeText(applicant.id.toString())}
             >
               Copy applicant ID
             </DropdownMenuItem>
