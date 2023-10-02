@@ -21,17 +21,42 @@ import { useUpdateInterview } from "@/services/UpdateInterview";
   
   export const ApplicantInterview = () => {
     const { id } = useParams();
-  
     const queryClient = useQueryClient();
-  
     const { oneInterview, isLoading, isError } = useGetInterviewByApplicant(id);
   
+    const defaultInterviewInfo: Interview = {
+      motivacion_curso: "",
+      soporte_it: "",
+      desempeno_laboral: "",
+      situacion_actual: "",
+      otros_cursos: "",
+      cual_curso: "",
+      disponibilidad: "",
+      participar_zoom: "",
+      encontrar_trabajo: "",
+      ajuste_calendario: "",
+      conexion_semanal: "",
+      conocer_curso: "",
+      beca_otra: "",
+      completado_mydigiskills: "",
+      mas_informacion: "",
+      aplicante_apto: "",
+      que_es_programacion: "",
+      nivel_entrevistado: "",
+      logica_caracol: "",
+      nivel_ingles: "",
+    };
+
     const useUpdateInterviewMutation = useUpdateInterview();
-  
     const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [unsavedChanges, setUnsavedChanges] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    isError ? console.log(interviewInfo) : console.error(interviewInfo);
+
+    
+
   
     useEffect(() => {
       if (!isLoading && !isError && oneInterview) {
@@ -105,7 +130,11 @@ import { useUpdateInterview } from "@/services/UpdateInterview";
       navigate(-1);
       setShowConfirmation(false);
     };
-  
+
+    const handleGoToDetails = () => {
+      navigate(`/applicantDetails/${id}`);
+    };
+
     return (
       <Card>
         <CardHeader className="bg-lightgreen2 rounded flex justify-between">
@@ -125,6 +154,9 @@ import { useUpdateInterview } from "@/services/UpdateInterview";
             />
             <Button className="btn-form-green" onClick={handleCancel}>
               Volver atrás
+            </Button>
+            <Button className="btn-form-green" onClick={handleGoToDetails}>
+              Ir a los detalles
             </Button>
             <Button className="btn-form-green" onClick={handleSubmit}>
               Guardar

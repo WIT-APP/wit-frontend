@@ -303,19 +303,23 @@ export const tableColumns: ColumnDef<Applicant>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() =>
-                navigator.clipboard.writeText(applicant.id.toString())
+                navigator.clipboard.writeText(applicant.correo_electronico.toString())
               }
             >
-              Copy applicant ID
+              Copiar Correo Aplicante
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>
               <Link to={`/applicantDetails/${applicant.id}`}>
-                View applicant details
+                Detalles Aplicante
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link to={`/applicantInterview/${applicant.id}`}>
+                Entrevista Aplicante
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
