@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, test } from "vitest";
 import { render } from "@testing-library/react";
 import { Button } from "@/components/ui/Button";
@@ -297,4 +299,5 @@ describe("Table columns", () => {
       expect(actionsButton).toBeTruthy();
     }
   });
+
 });

@@ -17,7 +17,7 @@ const FaqItem: React.FC = () => {
 
   return (
     <div className='container mx-auto px-4 lg:px-8'>
-      <h1 className="text-3xl font-bold mb-4">Preguntas Frecuentes</h1>
+      <h1 className="text-xl font-bold mb-4">Preguntas Frecuentes</h1>
       {faqData.map((item, index) => (
         <div
           key={index}
@@ -29,7 +29,7 @@ const FaqItem: React.FC = () => {
           }}
         >
           <h2
-            className="text-xl font-semibold mb-2 cursor-pointer"
+            className="text-l font-semibold mb-2 cursor-pointer"
             onClick={() => toggleAnswer(index)}
             style={{
               fontWeight: openIndex === index ? 'bold' : 'normal',

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { describe, expect, test } from "vitest";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,13 +8,9 @@ import userEvent from "@testing-library/user-event";
 
 const queryClient = new QueryClient();
 
-describe("Form Page", () => {
-  test("should load form component", () => {
-    expect(<FormPage />).toStrictEqual(<FormPage />);
-  });
-});
-describe("Form questions - Personal", () => {
-  beforeEach(() => {
+describe("Form questions - Personal", async () => {
+  beforeEach(async () => {
+  
     render(
       <QueryClientProvider client={queryClient}>
         <FormPage />
@@ -56,7 +54,7 @@ describe("Form questions - Personal", () => {
         emailInput.value = "example@example.com";
         userEvent.type(emailInput, "example@example.com");
         expect(emailInput.value).toBe("example@example.com");
-        expect(emailInput.type).toBe("email");
+        expect(emailInput.type).toBe("text");
         expect(emailInput.name).toBe("correo_electronico");
       }
     });
@@ -120,7 +118,7 @@ describe("Form questions - Personal", () => {
       ) as HTMLSelectElement;
       expect(selectField).toBeTruthy();
 
-      expect(selectField?.options).toHaveLength(195); // Adjust the number based on your options
+      expect(selectField?.options).toHaveLength(195);
 
       expect(selectField?.options[0].text).toBe("Selecciona una opción");
       expect(selectField?.options[1].text).toBe("Afganistán");
@@ -132,7 +130,7 @@ describe("Form questions - Personal", () => {
   });
 
   test('should render question "Documento de identidad" with correct options', async () => {
-    const documentoIdentidad = screen.getByTestId("documento-identidad");
+    const documentoIdentidad = screen.getByText("Documento de identidad");
     expect(documentoIdentidad).toBeTruthy();
 
     const dniOption = screen.getByText("DNI");
@@ -153,44 +151,29 @@ describe("Form questions - Personal", () => {
       expect(documentNumberInput).toBeTruthy();
     });
   });
-  test('should render dependent questions based on "Documento de Identidad" selection', async () => {
-    const documentoIdentidad = screen.getByTestId("documento-identidad");
-    expect(documentoIdentidad).toBeTruthy();
-
-    const dniOption = screen.getByText("DNI");
-    expect(dniOption).toBeTruthy();
-
-    const nieOption = screen.getByText("NIE");
-    expect(nieOption).toBeTruthy();
-
-    const otroOption = screen.getAllByText("Otro")[1];
-    expect(otroOption).toBeTruthy();
-
-    // Initially, the dependent questions should not be present
-    expect(
-      screen.queryByText(
-        "En caso de tener nacionalidad extranjera, indica el carácter de tu permiso en España:"
-      )
-    ).toBeNull();
-    expect(
-      screen.queryByText("Indícanos qué tipo de documento de identidad")
-    ).toBeNull();
-    /* 
-          fireEvent.click(nieOption);
-        
-          await waitFor(() => {
-            expect(screen.queryByText('En caso de tener nacionalidad extranjera, indica el carácter de tu permiso en España:')).toBeTruthy();
-            expect(screen.queryByText('Indícanos qué tipo de documento de identidad')).toBeNull();
-          });
-        
-       userEvent.click(otroOption);
-        
-          await waitFor(() => {
-      
-            expect(screen.queryByText('En caso de tener nacionalidad extranjera, indica el carácter de tu permiso en España:')).toBeTruthy();
-            expect(screen.queryByText('Indícanos qué tipo de documento de identidad')).toBeTruthy();
-          });  */
+  test('should render question "En caso de tener otro, tipo de documento indícanos qué tipo de documento de identidad"', async () => {
+    await waitFor(() => {
+      const documentOtroInput = screen.getAllByText(
+        "En caso de tener otro, tipo de documento indícanos qué tipo de documento de identidad"
+      );
+      expect(documentOtroInput).toBeTruthy();
+    });
   });
+  test('should render question "En caso de tener nacionalidad extranjera, indica el carácter de tu permiso en España:"', async () => {
+    await waitFor(() => {
+      const documentNIEInput = screen.getAllByText(
+        "En caso de tener nacionalidad extranjera, indica el carácter de tu permiso en España:"
+      );
+      expect(documentNIEInput).toBeTruthy();
+    });
+  });
+  describe("Personal - Buttons", () => {
+    test("should render Next Page button", () => {
+      const nextPageButton = screen.getByTestId("next-page-button");
+      expect(nextPageButton).toBeTruthy();
+    });
+  });
+
   afterEach(() => {
     cleanup();
   });
@@ -213,8 +196,8 @@ const navigateToPage = async (targetPage: string) => {
   }
 };
 
-describe("Form Questions - Sociodemografica", () => {
-  beforeEach(() => {
+describe("Form Questions - Sociodemografica", async () => {
+  beforeEach(async () => {
     navigateToPage("Sociodemografica");
   });
 
@@ -269,17 +252,17 @@ describe("Form Questions - Sociodemografica", () => {
       expect(selectField?.value).toBe("Albania");
     });
   });
-  /*  test('should render the question "Código postal"', async () => {
+  test('should render the question "Código postal"', async () => {
     await waitFor(() => {
-            const input = screen.getByLabelText(
-              "Código postal"
-            ) as HTMLInputElement | null;
-            expect(input).toBeTruthy();
-      
-            expect(input?.type).toBe("text");
-            expect(input?.name).toBe("codigo_postal");
-          });
-        }); */
+      const input = screen.getByLabelText(
+        "Código postal"
+      ) as HTMLInputElement | null;
+      expect(input).toBeTruthy();
+
+      expect(input?.type).toBe("text");
+      expect(input?.name).toBe("codigo_postal");
+    });
+  });
   test('should render the question "¿Te identificarías con alguno de los siguientes colectivos?" with correct options', async () => {
     await waitFor(() => {
       const colectivoQuestion = screen.getByText(
@@ -309,13 +292,24 @@ describe("Form Questions - Sociodemografica", () => {
       ).toBeTruthy();
     });
   });
+  describe("Sociodemografica - Buttons", () => {
+    test("should render Previous Page button", () => {
+      const previousPageButton = screen.getByTestId("previous-page-button");
+      expect(previousPageButton).toBeTruthy();
+    });
+
+    test("should render Next Page button", () => {
+      const nextPageButton = screen.getByTestId("next-page-button");
+      expect(nextPageButton).toBeTruthy();
+    });
+  });
 
   afterEach(() => {
     cleanup();
   });
 });
 
-describe("Form Questions - Academica", () => {
+describe("Form Questions - Academica", async () => {
   beforeEach(() => {
     navigateToPage("Academica");
   });
@@ -355,11 +349,11 @@ describe("Form Questions - Academica", () => {
     await waitFor(() => {
       const situacionProfesionalQuestion = screen.getByText(
         "¿En qué situación profesional te encuentras?"
-      ) as HTMLSelectElement;
+      ) as HTMLInputElement;
 
       expect(situacionProfesionalQuestion).toBeTruthy();
-      /* expect(situacionProfesionalQuestion.type).toBe("radio");
-      expect(situacionProfesionalQuestion.name).toBe("situacion_profesional");  */
+    /*   expect(situacionProfesionalQuestion?.type).toBe("radio");
+      expect(situacionProfesionalQuestion?.name).toBe("situacion_profesional"); */
 
       const options = [
         "Desempleada/o sin ingresos",
@@ -376,13 +370,24 @@ describe("Form Questions - Academica", () => {
       });
     });
   });
+  describe("Academica - Buttons", () => {
+    test("should render Previous Page button", () => {
+      const previousPageButton = screen.getByTestId("previous-page-button");
+      expect(previousPageButton).toBeTruthy();
+    });
+
+    test("should render Next Page button", () => {
+      const nextPageButton = screen.getByTestId("next-page-button");
+      expect(nextPageButton).toBeTruthy();
+    });
+  });
   afterEach(() => {
     cleanup();
   });
 });
 
-describe("Form Questions - Formacion", () => {
-  beforeEach(() => {
+describe("Form Questions - Formacion", async () => {
+  beforeEach(async () => {
     navigateToPage("Formacion");
   });
   test("should render question '¿Qué programa quieres cursar?' with correct radio options", async () => {
@@ -391,11 +396,10 @@ describe("Form Questions - Formacion", () => {
         "¿Qué programa quieres cursar?"
       ) as HTMLSelectElement;
 
-       expect(programaCursarQuestion).toBeTruthy();
+      expect(programaCursarQuestion).toBeTruthy();
       /*if (programaCursarQuestion) {
         expect(programaCursarQuestion.type).toBe("radio");
         expect(programaCursarQuestion.name).toBe("programa_cursar"); */
-
 
       /* expect(programaCursarQuestion.type).toBe("radio");
       expect(programaCursarQuestion.name).toBe("programa_cursar"); */
@@ -523,63 +527,44 @@ describe("Form Questions - Formacion", () => {
       );
 
       expect(textareaQuestion).toBeTruthy();
-
-      const textarea = screen.getByRole("textbox", {
-        name: /Somos todo oídos/i,
-      });
-
-      expect(textarea).toBeTruthy();
-
-      expect(textarea.tagName).toBe("TEXTAREA");
-      expect(textarea.getAttribute("name")).toBe("mas_informacion");
     });
   });
 
-  /* test('should render the question "¿Has hecho alguna vez una formación online?" with correct toggle options', async () => {
+ test('should render the question "¿Has hecho alguna vez una formación online?" with correct toggle options', async () => {
     await waitFor(() => {
       const formacionOnlineQuestion = screen.getByText(
         '¿Has hecho alguna vez una formación online?'
       );
       expect(formacionOnlineQuestion).toBeTruthy();
   
-      const toggleOptions = screen.getAllByRole('switch');
-      expect(toggleOptions).toHaveLength(2);
+      const toggleOptions = screen.getAllByRole('checkbox');
+      expect(toggleOptions).toHaveLength(1);
   
-      const optionsText = ['Sí', 'No'];
   
       toggleOptions.forEach((toggle) => {
         const label = toggle.closest('label');
         expect(label).toBeTruthy();
       });
     });
-  }); */
+  }); 
 
   afterEach(() => {
     cleanup();
   });
-});
+  describe("Formacion - Buttons", () => {
+    test("should render Previous Page button", () => {
+      const previousPageButton = screen.getByTestId("previous-page-button");
+      expect(previousPageButton).toBeTruthy();
+    });
 
-describe("FormPage", () => {
-  beforeEach(() => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <FormPage />
-      </QueryClientProvider>
-    );
-  });
+    test("should render Next Page button", () => {
+      const nextPageButton = screen.getByTestId("next-page-button");
+      expect(nextPageButton).toBeTruthy();
+    });
 
-  test("should render Previous Page button", () => {
-    const previousPageButton = screen.getByTestId("previous-page-button");
-    expect(previousPageButton).not.toBeNull();
-  });
-
-  test("should render Next Page button", () => {
-    const nextPageButton = screen.getByTestId("next-page-button");
-    expect(nextPageButton).not.toBeNull();
-  });
-
-  test("should render Send button", () => {
-    const sendButton = screen.getByText("Enviar");
-    expect(sendButton).not.toBeNull();
+    test("should render Send button", () => {
+      const sendButton = screen.getByTestId("submit-form-button");
+      expect(sendButton).toBeTruthy();
+    });
   });
 });

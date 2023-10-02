@@ -119,7 +119,7 @@ describe("DataTable Component", () => {
         });
       });
   });
-  test("has the input field for searching by email", () => {
+  test("has the input field for searching by selected filter", () => {
     render(<DataTable columns={columns} data={data} />);
     const filterInput = screen.getByRole("textbox");
 

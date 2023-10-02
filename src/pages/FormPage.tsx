@@ -60,7 +60,8 @@ export const FormPage = () => {
               isPreviousData={isPreviousData}
               question={question}
               currentPage={currentPage} 
-              onPageChange={handlePageChange} 
+                  onPageChange={handlePageChange} 
+                  data-testid="form-section-component"
             />
           </Formik>
         ) : null}
