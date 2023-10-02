@@ -106,6 +106,10 @@ export const ApplicantDetails = () => {
     setShowConfirmation(false);
   };
 
+  const handleCreateInterview = () => {
+    navigate(`/newInterview/${id}`);
+  };
+
   const handleGoToInterview = () => {
     navigate(`/applicantInterview/${id}`);
   };
@@ -133,10 +137,16 @@ export const ApplicantDetails = () => {
           <Button className="btn-form-green" onClick={handleSubmit}>
             Guardar
           </Button>
+          {(oneApplicant?.estado === "Aplicante" || oneApplicant?.estado === "Preaprobado" || oneApplicant?.estado === "Invitado" || oneApplicant?.estado === "Confirmado") && (
+            <Button className="btn-form-green" onClick={handleCreateInterview}>
+            Realizar Entrevista
+          </Button>
+            )}
+          {(oneApplicant?.estado === "Entrevistado" || oneApplicant?.estado === "Admitido" || oneApplicant?.estado === "Matriculado" || oneApplicant?.estado === "Certificado") && (
           <Button className="btn-form-green" onClick={handleGoToInterview}>
             Ir a la entrevista
           </Button>
-          
+          )}
         </div>
       </CardHeader>
       <CardContent className="grid py-2 gap-6 max-h-[70vh] lg:max-h-[75vh] overflow-y-auto">
