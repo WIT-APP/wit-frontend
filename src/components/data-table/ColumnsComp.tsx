@@ -17,7 +17,6 @@ import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
 import { Applicant } from "@/interfaces/applicant.interface";
 import { Link } from "react-router-dom";
-import { useUpdateApplicant } from "@/services/UpdateApplicant";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -195,15 +194,18 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   {
     accessorKey: "telefono",
     header: "Telefono",
-    cell: ({ row }) => (
+    cell: ({ row }) =>  (
       <div className="flex gap-2 items-center relative">
         <span className="text-green2 text-xl items-center cursor-pointer group">
           <Modal
             textButton={iconWhatsapp}
-            nombre={row.getValue("nombre")}
-            programa_cursar={row.getValue("programa_cursar")}
-            apellidos={row.getValue("apellidos")}
-            telefono={row.getValue("telefono")}
+            nombre={row.original.nombre}
+            programa_cursar={row.original.programa_cursar}
+            apellidos={row.original.apellidos}
+            telefono={row.original.telefono}
+            invitaciones={row.original.invitaciones}
+            estado={row.original.estado}
+            id={row.original.id}
           />
           <div
             className={`hidden sm:block absolute top-full rounded-md px-2 py-1

@@ -1,0 +1,76 @@
+[
+  {
+      "nombre": "Titulo de ProjectBio",
+      "categoria": "Titulo",
+      "contenido": "mi aplicacion",
+      "respuesta": ""
+  },
+  {
+      "nombre": "Párrafo de la biografía",
+      "categoria": "Titulo",
+      "contenido": "mi aplicacion",
+      "respuesta": ""
+  },
+  {
+      "nombre": "Work in Tech ",
+      "categoria": "titulo",
+      "contenido": "titulo biografia",
+      "respuesta": ""
+  },
+  {
+      "nombre": "Work in tech Portal es una aplicación diseñada para gestionar y simplificar el proceso de selección de candidatos. Con esta herramienta, puedes realizar un seguimiento de los aplicantes, cambiar su estado , y tomar decisiones para gestionar aspirantes y simplificar el proceso de selección",
+      "categoria": "titulo",
+      "contenido": "biografia",
+      "respuesta": "¡Bienvenido a Work in Tech, la solución tecnológica que ha llegado para revolucionar la forma en que gestionas a tus aspirantes y candidatos! ¿Te enfrentabas a la tediosa tarea de manejar todo manualmente en hojas de cálculo de Google y tablas interminables? ¡Tu búsqueda de una solución eficiente ha llegado a su fin!     En Work in Tech, hemos creado una aplicación web potente y fácil de usar que automatiza todo el proceso de gestión de aspirantes para certificados de Google. Olvídate de los formularios en papel, llamadas telefónicas interminables y la confusión en las etapas del proceso."
+  }
+  ,
+  {
+    "nombre": "Pregunta 1",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cuáles son las ventajas de usar Work in Tech en lugar de métodos manuales tradicionales?",
+    "respuesta": "Work in Tech elimina la necesidad de gestionar aspirantes de forma manual, lo que ahorra tiempo y reduce errores. Nuestra aplicación agiliza el proceso y te proporciona resultados instantáneos."
+  },
+
+  {
+    "nombre": "pregunta 3",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo cambiar el estado a un aplicante?",
+    "respuesta": "Para cambiar el estado de un aplicante, ve a la Tabla. Desde allí, en la columna de estado podrás seleccionar su estado."
+  },
+  {
+    "nombre": "pregunta 3",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Cómo funciona el sistema de filtrado?",
+    "respuesta": "Para una búsqueda mas rápida,dispones de una barra de filtrado por columnas en la parte superior derecha de la pantalla, dispones de una barra de búsqueda para el filtrado de email, y también puedes filtrar por nombre y apellido de A - Z, programa a cursar o la fecha de aplicación"
+  },
+  {
+    "nombre": "pregunta 4",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Qué significa cada estado de aplicante?",
+    "respuesta":"Estos son los estados",
+    "estados": [
+      "Aplicante: Todos los que se registran con el formulario",
+      "Preaprobado: Los residentes Españoles",
+      "Invitado: Los invitados son a los que se les envía un mensaje",
+      "Rechazado",
+      "Entrevistado",
+      "Matriculado",
+      "Certificado: Ha recibido el certificado"
+    ]
+  },
+  
+  {
+    "nombre": "pregunta 6",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Qué tecnologías utiliza Work in Tech en su desarrollo?",
+  "respuesta": "Work in Tech está construido con tecnologías de vanguardia, incluyendo una base de datos de ElephantSQL JavaScript, TypeScript, Nest, React y Tailwind CSS."
+  }
+  
+]
+
+
