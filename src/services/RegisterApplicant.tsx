@@ -50,7 +50,6 @@ const newApplication = async (applicant: CreateApplicant) => {
   return result;
 };
 
-// onClick={notify}
 
 export const useNewApplication = () => {
   const queryClient = useQueryClient();
