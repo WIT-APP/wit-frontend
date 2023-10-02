@@ -11,9 +11,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Applicant } from "@/interfaces/applicant.interface";
+import { useUpdateApplicant } from "@/services/UpdateApplicant";
 
 type ModalProps = Partial<Applicant> & {
   textButton: string | React.ReactNode;
+  invitaciones: number;
+  telefono: string | number;
+  estado: string;
+  id: string | number;
 };
 
 function Modal({
@@ -22,7 +27,23 @@ function Modal({
   programa_cursar,
   apellidos,
   telefono,
+  invitaciones,
+  estado,
+  id,
 }: ModalProps) {
+  const updateApplicantMutation = useUpdateApplicant();
+  const incrementInvitations = async () => {
+    try {
+      await updateApplicantMutation.mutateAsync({
+        id,
+        invitaciones: invitaciones + 1,
+      });
+      // Aquí puedes agregar código adicional si lo necesitas
+    } catch (error) {
+      console.error("Error al incrementar invitaciones:", error);
+    }
+  };
+
   const [open, setOpen] = useState(false);
   //   Refactorizar esta parte??
   const [mensaje, setMensaje] = useState(
@@ -35,10 +56,26 @@ function Modal({
     setMensaje(event.target.value);
   };
 
-  const handleSendMessage = (telefono: number | undefined, mensaje: string) => {
+  const handleSendMessage = async (
+    telefono: number | string,
+    mensaje: string,
+    id: string | number
+  ) => {
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje
     )}`;
+
+    try {
+      await updateApplicantMutation.mutateAsync({
+        id,
+        estado: (estado === "Preaprobado") ? "Invitado" : estado
+      });
+      // Aquí puedes agregar código adicional si lo necesitas
+    } catch (error) {
+      console.error("Error al incrementar invitaciones:", error);
+    }
+
+   
 
     window.open(whatsappURL, "_blank");
 
@@ -50,9 +87,9 @@ function Modal({
 
   const handleCloseModal = () => {
     console.log("cerrar");
-    
-    setOpen(false)
-  }
+
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -71,9 +108,14 @@ function Modal({
             />
           </DialogDescription>
         </DialogHeader>
-        <Button variant="secondary" onClick={handleCloseModal}>Atras</Button>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Atras
+        </Button>
         <Button
-          onClick={() => handleSendMessage(telefono, mensaje)}
+          onClick={() => {
+            incrementInvitations();
+            handleSendMessage(telefono, mensaje, id);
+          }}
           className="bg-green2 hover:bg-yellow2"
         >
           <IoLogoWhatsapp className="mr-2 h-4 w-4" /> Enviar Mensaje
