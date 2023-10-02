@@ -6,11 +6,13 @@ import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
 import { Formik,} from 'formik';
 import { initialValues, validationSchema } from '@/interfaces/formRegister.interface';
 import { FormSection } from '@/components/FormSection';
-import { useNewApplication } from '@/services/RegisterApplicant';
+import {  useNewApplication } from '@/services/RegisterApplicant';
+import { ToastContainer } from 'react-toastify';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
 export const FormPage = () => {
+
   const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageChange = (newPage:number) => {
@@ -21,13 +23,16 @@ export const FormPage = () => {
 
   const handleSubmit = async (values: CreateApplicant) => {
     console.log(values);
-    
+  
     try {
       const response = await newPost.mutateAsync(values);
       console.log('API response:', response);
+     
     } catch (error) {
       console.error('Error making API request:', error);
+
     }
+
   }
 
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
@@ -61,6 +66,8 @@ export const FormPage = () => {
           </Formik>
         ) : null}
       </div>
+      <ToastContainer />
     </div>
   );
 };
+

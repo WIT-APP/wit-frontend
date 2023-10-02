@@ -194,7 +194,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   {
     accessorKey: "telefono",
     header: "Telefono",
-    cell: ({ row }) =>  (
+    cell: ({ row }) => (
       <div className="flex gap-2 items-center relative">
         <span className="text-green2 text-xl items-center cursor-pointer group">
           <Modal
@@ -222,9 +222,17 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "invitaciones",
-    header: "Invitaciones",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Invitaciones
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
-      <div className="text-right mr-4">
+      <div className="text-center mr-4">
         <span>{row.getValue("invitaciones")}</span>
       </div>
     ),
@@ -242,7 +250,11 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       </Button>
     ),
     cell: ({ row }) => (
-      <div className="ml-4">{row.getValue("programa_cursar")}</div>
+      <div className="flex items-start relative w-52">
+        <span className=" text-xs flex items-center justify-center">
+          {row.getValue("programa_cursar")}
+        </span>
+      </div>
     ),
   },
   {
@@ -308,7 +320,9 @@ export const tableColumns: ColumnDef<Applicant>[] = [
             <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() =>
-                navigator.clipboard.writeText(applicant.correo_electronico.toString())
+                navigator.clipboard.writeText(
+                  applicant.correo_electronico.toString()
+                )
               }
             >
               Copiar Correo Aplicante
@@ -338,11 +352,9 @@ type TableColumnProps = {
 const ColumnsComp: React.FC<TableColumnProps> = ({ columns }) => {
   return (
     <>
-      {/* Renderiza las columnas */}
       {columns.map((column) => (
         <div key={column.id} className="column-style">
           {column.header({ column })} {/* Se pasa la columna al header */}
-          {/* Puedes añadir más elementos de cabecera aquí si es necesario */}
         </div>
       ))}
     </>
