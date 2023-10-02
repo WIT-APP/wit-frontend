@@ -6,8 +6,8 @@ import { Question } from "../interfaces/question.interface";
 const fetchQuestions = async (category: string): Promise<Question[]|undefined> => {
   try {
     const response = await fetch(
-      // 'https://wit-backend-factoriaf5.up.railway.app/question?category=${category}'
-      `http://localhost:3000/question?category=${category}`
+        `https://wit-backend-factoriaf5.up.railway.app/question?category=${category}` 
+      //`http://localhost:3000/question?category=${category}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
