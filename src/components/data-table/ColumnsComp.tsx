@@ -48,19 +48,26 @@ const handleEstadoChange = async (
   }
 
   try {
-    const { data, error } = await UpdateEstado(applicant.id, nuevoEstado);
+    const result = await UpdateEstado(applicant.id, nuevoEstado);
 
-    if (error) {
-      console.error("Error al actualizar el estado:", error);
+    if (result) {
+      const { data, error } = result;
+
+      if (error) {
+        console.error("Error al actualizar el estado:", error);
+      } else if (data) {
+        console.log(
+          `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
+        );
+        // Aquí puedes trabajar con los datos actualizados si es necesario
+      }
     } else {
-      console.log(
-        `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
-      );
-      // Aquí puedes actualizar el estado local si es necesario
+      console.error("UpdateEstado no devolvió ningún resultado.");
     }
   } catch (error) {
     console.error("Error al actualizar el estado:", error);
   }
+
   window.location.reload();
 };
 
@@ -71,14 +78,14 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) => table?.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        onCheckedChange={(value) => row?.toggleSelected(!!value)}
         aria-label="Select row"
       />
     ),
@@ -87,36 +94,40 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "nombre",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Nombre
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
+    header: ({ column }) =>
+      column && (
+        <Button
+          variant="ghost"
+          onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nombre
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
     cell: ({ row }) => <div className="ml-4">{row.getValue("nombre")}</div>,
   },
   {
     accessorKey: "apellidos",
     header: ({ column }) => (
+      column && (
+
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
       >
         Apellidos
         <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
+      </Button>)
     ),
     cell: ({ row }) => <div className="ml-4">{row.getValue("apellidos")}</div>,
   },
   {
     accessorKey: "correo_electronico",
     header: ({ column }) => (
+      
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
       >
         Email
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -124,11 +135,11 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     ),
     cell: ({ row }) => {
       const handleEmailClick = async (
-        e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+        // e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
         applicant: Applicant
       ) => {
-        const invitacionesActuales = applicant.invitaciones;
-        const estadoActual = applicant.estado;
+        const invitacionesActuales = applicant.invitaciones || 0;
+        const estadoActual = applicant.estado || 0;
 
         let requestBody;
         if (estadoActual === "Preaprobado") {
@@ -173,7 +184,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       return (
         <div className="flex items-center space-x-2 ml-4 relative">
           <span
-            onClick={(e) => handleEmailClick(e, row.original)}
+            onClick={() => handleEmailClick(row.original)}
             className="text-blue2 text-xl flex items-center justify-center cursor-pointer group"
           >
             <IoMail />
@@ -193,7 +204,15 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "telefono",
-    header: "Telefono",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Telefono
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
       <div className="flex gap-2 items-center relative">
         <span className="text-green2 text-xl items-center cursor-pointer group">
@@ -207,6 +226,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
             estado={row.original.estado}
             id={row.original.id}
           />
+
           <div
             className={`hidden sm:block absolute top-full rounded-md px-2 py-1
               bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
@@ -225,7 +245,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
       >
         Invitaciones
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -243,7 +263,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
       >
         Programa a Cursar
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -259,7 +279,15 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "estado",
-    header: "Estado",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Estado
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
       <div className="flex gap-2 items-center">
         <select
@@ -281,7 +309,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       <div className="flex justify-end">
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
           className="text-right ml-auto" // Alinea el botón a la derecha
         >
           <div className="flex items-center">
@@ -299,7 +327,15 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "observaciones",
-    header: "Observaciones",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Observaciones
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => <div>{row.getValue("observaciones")}</div>,
   },
 
@@ -319,11 +355,13 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() =>
-                navigator.clipboard.writeText(
-                  applicant.correo_electronico.toString()
-                )
-              }
+              onClick={() => {
+                if (applicant && applicant.correo_electronico) {
+                  navigator.clipboard.writeText(
+                    applicant.correo_electronico.toString()
+                  );
+                }
+              }}
             >
               Copiar Correo Aplicante
             </DropdownMenuItem>
@@ -333,20 +371,26 @@ export const tableColumns: ColumnDef<Applicant>[] = [
                 Detalles Aplicante
               </Link>
             </DropdownMenuItem>
-            {(applicant.estado === "Aplicante" || applicant.estado === "Preaprobado" || applicant.estado === "Invitado" || applicant.estado === "Confirmado") && (
-            <DropdownMenuItem>
-               <Link to={`/newInterview/${applicant.id}`}>
-                Realizar Entrevista
-              </Link>
-            </DropdownMenuItem>
-             )} 
-            {(applicant.estado === "Entrevistado" || applicant.estado === "Admitido" || applicant.estado === "Matriculado" || applicant.estado === "Certificado") && (
-            <DropdownMenuItem>
-               <Link to={`/applicantInterview/${applicant.id}`}>
-                Entrevista Aplicante
-              </Link>
-            </DropdownMenuItem>
-             )} 
+            {(applicant.estado === "Aplicante" ||
+              applicant.estado === "Preaprobado" ||
+              applicant.estado === "Invitado" ||
+              applicant.estado === "Confirmado") && (
+              <DropdownMenuItem>
+                <Link to={`/newInterview/${applicant.id}`}>
+                  Realizar Entrevista
+                </Link>
+              </DropdownMenuItem>
+            )}
+            {(applicant.estado === "Entrevistado" ||
+              applicant.estado === "Admitido" ||
+              applicant.estado === "Matriculado" ||
+              applicant.estado === "Certificado") && (
+              <DropdownMenuItem>
+                <Link to={`/applicantInterview/${applicant.id}`}>
+                  Entrevista Aplicante
+                </Link>
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -363,7 +407,8 @@ const ColumnsComp: React.FC<TableColumnProps> = ({ columns }) => {
     <>
       {columns.map((column) => (
         <div key={column.id} className="column-style">
-          {column.header({ column })} {/* Se pasa la columna al header */}
+          {column.header && column.header({ column })}{" "}
+          {/* Verificación de nulidad */}
         </div>
       ))}
     </>

@@ -15,10 +15,10 @@ import { useUpdateApplicant } from "@/services/UpdateApplicant";
 
 type ModalProps = Partial<Applicant> & {
   textButton: string | React.ReactNode;
-  invitaciones: number;
-  telefono: string | number;
-  estado: string;
-  id: string | number;
+  invitaciones: number | undefined;
+  telefono: string | number | undefined;
+  estado: string | undefined;
+  id: string | number | undefined;
 };
 
 function Modal({
@@ -33,13 +33,15 @@ function Modal({
 }: ModalProps) {
   const updateApplicantMutation = useUpdateApplicant();
   const incrementInvitations = async () => {
-    try {
-      await updateApplicantMutation.mutateAsync({
-        id,
-        invitaciones: invitaciones + 1,
-      });
-    } catch (error) {
-      console.error("Error al incrementar invitaciones:", error);
+    if (invitaciones !== undefined) {
+      try {
+        await updateApplicantMutation.mutateAsync({
+          id,
+          invitaciones: invitaciones + 1,
+        });
+      } catch (error) {
+        console.error("Error al incrementar invitaciones:", error);
+      }
     }
   };
 
@@ -56,9 +58,9 @@ function Modal({
   };
 
   const handleSendMessage = async (
-    telefono: number | string,
+    telefono: number | string | undefined,
     mensaje: string,
-    id: string | number
+    id: string | number | undefined,
   ) => {
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje

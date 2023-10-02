@@ -1,4 +1,4 @@
-export async function UpdateEstado(id:string | number, nuevoEstado:string) {
+export async function UpdateEstado(id:string | number | unknown, nuevoEstado:string) {
 
   // https://wit-backend-factoriaf5.up.railway.app/applicant
   // http://localhost:3000/applicant/update-estado/${id}
