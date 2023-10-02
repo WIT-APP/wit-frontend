@@ -9,7 +9,9 @@ const useFilterByEstado = (estado: string) => {
         queryFn: async () => {
 
             try {
-                const response = await fetch(`http://localhost:3000/applicant/filter-by-estado/${estado}`);
+                // https://wit-backend-factoriaf5.up.railway.app/applicant
+                // http://localhost:3000/applicant/filter-by-estado/${estado}
+                const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado}`);
             const data = await response.json();
 
 

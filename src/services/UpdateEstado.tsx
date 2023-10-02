@@ -1,5 +1,8 @@
 export async function UpdateEstado(id:string | number, nuevoEstado:string) {
-    const url = `http://localhost:3000/applicant/update-estado/${id}`;
+
+  // https://wit-backend-factoriaf5.up.railway.app/applicant
+  // http://localhost:3000/applicant/update-estado/${id}
+    const url = `https://wit-backend-factoriaf5.up.railway.app/applicant/update-estado/${id}`;
     const requestOptions = {
       method: 'PATCH',
       headers: {
