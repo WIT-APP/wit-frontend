@@ -1,5 +1,3 @@
-import userEvent from "@testing-library/user-event";
-
 import { render, screen, fireEvent } from "@testing-library/react";
 import { DocumentoIdentidad } from "@/components/ui/form/DocumentoIdentidad";
 

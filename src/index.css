@@ -133,6 +133,10 @@
     background-color: #c3c5c7;
     cursor: not-allowed;
   }
+  select:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: your-preferred-color; /* Set the border color you want */
+  }
 
 
 

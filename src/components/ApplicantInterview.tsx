@@ -12,12 +12,12 @@ import {
   import { Button } from "./ui/Button";
   import labelsArray from "../data/interview-labels.data.json";
   import { useNavigate, useParams } from "react-router-dom";
-  import { UnsavedChangesConfirmationDialog } from "../alerts/UnsavedChangesDialog";
   import { Textarea } from "./ui/textarea";
-  import { ChangesSavedDialog } from "@/alerts/ChangesSavedDialog";
 import { useGetInterviewByApplicant } from "@/services/GetInterviewByApplicant";
 import { Interview } from "@/interfaces/interview.interface";
 import { useUpdateInterview } from "@/services/UpdateInterview";
+import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
+import { ChangesSavedDialog } from "./alerts/ChangesSavedDialog";
   
   export const ApplicantInterview = () => {
     const { id } = useParams();

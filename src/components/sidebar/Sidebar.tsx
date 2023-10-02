@@ -21,7 +21,9 @@ export default function Sidebar({ children }: SidebarProps) {
     <aside
       className={`h-screen ${
         expanded ? "sm:min-w-[250px] sm:w-1/5 w-screen" : "sm:w-20 w-0"
-      }`}
+        }`
+      }
+      data-testid="sidebar"
     >
       <nav className="h-full flex flex-col bg-green2 border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center text-white2">
@@ -42,6 +44,7 @@ export default function Sidebar({ children }: SidebarProps) {
           <button
             onClick={() => setExpanded((curr) => !curr)}
             className="p-1.5 rounded-lg hover:bg-yellow2 bg-green2 z-10"
+            data-testid="toggle-button"
           >
             {expanded ? <ChevronLeft /> : <ChevronRight />}
           </button>
