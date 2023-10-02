@@ -222,12 +222,12 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "invitaciones",
-    header:({ column }) => (
+    header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Mensajes
+        Invitaciones
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -250,8 +250,10 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       </Button>
     ),
     cell: ({ row }) => (
-      <div className="flex items-start ml-4 relative w-52">
-        <span className=" text-xs flex items-center justify-center">{row.getValue("programa_cursar")}</span>
+      <div className="flex items-start relative w-52">
+        <span className=" text-xs flex items-center justify-center">
+          {row.getValue("programa_cursar")}
+        </span>
       </div>
     ),
   },
@@ -350,11 +352,9 @@ type TableColumnProps = {
 const ColumnsComp: React.FC<TableColumnProps> = ({ columns }) => {
   return (
     <>
-      {/* Renderiza las columnas */}
       {columns.map((column) => (
         <div key={column.id} className="column-style">
           {column.header({ column })} {/* Se pasa la columna al header */}
-          {/* Puedes añadir más elementos de cabecera aquí si es necesario */}
         </div>
       ))}
     </>
