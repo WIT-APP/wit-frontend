@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import projectData from '../../data/projectData.json'; // Asegúrate de importar el archivo JSON correcto
 
+interface FAQItem {
+  categoria: string;
+  pregunta: string;
+  respuesta: string;
+  nombre: string;
+  estados: string[];
+}
+
 const FaqItem: React.FC = () => {
-  const [faqData, setFaqData] = useState<any[]>([]);
+  const [faqData, setFaqData] = useState<FAQItem[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
     // Filtra los datos para preguntas y respuestas
-    const faqs = projectData.filter(item => item.categoria === "faq");
+    const faqs = projectData.filter(item => item.categoria === "faq") as FAQItem[];
     setFaqData(faqs);
   }, []);
 
