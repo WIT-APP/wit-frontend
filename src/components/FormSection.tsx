@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
 import { Field, ErrorMessage, useFormikContext, Form } from 'formik';
 import { FormValues } from '@/interfaces/formRegister.interface';
 import classnames from 'classnames';
 import { Question } from '@/interfaces/question.interface';
-import { Button } from './ui/Button';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
@@ -12,6 +10,8 @@ interface FormSectionProps {
   isFetching: boolean;
   isPreviousData: boolean;
   question: Question[];
+  currentPage:number;
+  onPageChange:  (newPage: number) => void;
 }
 
 export const FormSection = (props: FormSectionProps) => {
@@ -19,53 +19,29 @@ export const FormSection = (props: FormSectionProps) => {
     const {
       isFetching,
       isPreviousData,
-      question,
+      question, 
+      currentPage, 
+      onPageChange 
     } = props;
-
-  const [currentPage, setCurrentPage] = useState(0);
 
   const formik = useFormikContext<FormValues>();
 
-
   const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+    onPageChange(Math.max(currentPage - 1, 0));
   };
 
   const goToNextPage = () => {
     if (!isPreviousData && currentPage < pages.length) {
-      setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length - 1));
+      onPageChange(Math.min(currentPage + 1, pages.length - 1));
     }
-  };
-
-  const isCurrentSectionValid = () => {
-    if (!question || !formik) {
-      console.log("Question or formik is missing.");
-      console.log("Question:", question);
-      console.log("Question:", formik);
-      return false;
-    }
-    return question.every((q: Question) => {
-      const fieldName = q.id_question;
-      const isFieldTouched = formik.touched[fieldName];
-      const isFieldValid = !formik.errors[fieldName];
-  
-      console.log("Field Name:", fieldName);
-      console.log("Touched:", isFieldTouched);
-      console.log("Valid:", isFieldValid);
-      if (q.obligatory && isFieldTouched) {
-        return isFieldValid;
-      }
-      return true;
-    });
   };
   
   return (
-    <>
-      {console.log(isCurrentSectionValid())}
+    <Form>
       {question?.map((q: Question) => (
+        currentPage === currentPage && (
         <div className="container text-white font-bold mt-5" key={q.id_question}>
           <label htmlFor={q.id_question}>{q.text}</label>
-          {/* Render the corresponding input based on q.type */}
           {q.type === 'text' && (
               <Field
                 name={q.id_question}
@@ -198,8 +174,8 @@ export const FormSection = (props: FormSectionProps) => {
                       </div>
                     )}
                     <ErrorMessage name={q.id_question} component="div" className="error text-sm text-red-700" />
-                  </div>
-                ))}
+                  </div>)
+      ))}
                 <div className="flex justify-evenly text-sm mb-4 mt-6">
                   <button
                     onClick={goToPreviousPage}
@@ -207,16 +183,19 @@ export const FormSection = (props: FormSectionProps) => {
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === 0,
                     })}
+                    type="button"
                   >
                     Previous Page
                   </button>{' '}
                   <button
                     onClick={goToNextPage}
-                    disabled={ isPreviousData || currentPage === pages.length - 1}
+                    disabled={
+                      //!isCurrentSectionValid() || 
+                      isPreviousData || currentPage === pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === pages.length - 1,
                     })}
-                    type="submit"
+                    type="button" // Use type="button" to prevent form submission
                   >
                     Next Page
                   </button>
@@ -231,6 +210,6 @@ export const FormSection = (props: FormSectionProps) => {
                   </button>
                   </div>
       {isFetching ? <span>Loading...</span> : null}
-    </>
+    </Form>
   );
 };

@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
+import { CreateApplicant } from './applicant.interface';
 
 export interface FormValues {
     [key: string]: string;
   }
 
-  
 export const validationSchema = () => (
     Yup.lazy(() =>
           
@@ -47,7 +47,37 @@ export const validationSchema = () => (
     acceso_internet_dispositivos: Yup.string().required('Campo Obligatorio'),
     razones_para_unir: Yup.string().required('Campo Obligatorio'),
     encontrar_programa: Yup.string().required('Campo Obligatorio'),
-    
-  
+
   })
   ))
+
+  export const initialValues: CreateApplicant = {
+    nombre: '',
+    apellidos: '',
+    correo_electronico: '',
+    telefono: '',
+    genero: '',
+    fecha_de_nacimiento: '',
+    numero_documento_id: '',
+    documento_de_identidad: '',
+    tipo_documento_identidad: '',
+    permiso: '',
+    direccion: '',
+    ciudad: '',
+    provincia: '',
+    pais_de_residencia: '',
+    codigo_postal:'' ,
+    programa_cursar: '',
+    colectivo: [],
+    educacion: '',
+    estudio_mas_alto: '',
+    situacion_profesional: '',
+    intereses_actuales: '',
+    dedicacion_semanal: '',
+    acceso_internet_dispositivos: '',
+    formacion_online: 'No',
+    razones_para_unir: '',
+    encontrar_programa: '',
+    mas_informacion: '',
+    pais_de_nacimiento: ''
+  };
