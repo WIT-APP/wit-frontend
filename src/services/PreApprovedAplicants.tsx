@@ -22,9 +22,14 @@ export const usePreApprovedApplicants = () => {
       ...applicant,
       fecha_de_applicacion: format(new Date(applicant.fecha_de_applicacion), "dd/MM/yyyy"),
       fecha_de_nacimiento: format(new Date(applicant.fecha_de_nacimiento), "dd/MM/yyyy"),
+      telefono: applicant.telefono.toString()
     }));
 
     return formattedApplicants;
+
+
+    
+    
       // return data;
     },
     staleTime: 50000000,
