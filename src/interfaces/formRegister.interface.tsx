@@ -50,3 +50,33 @@ export const validationSchema = () => (
 
   })
   ))
+
+  export const initialValues: FormValues = {
+    nombre: '',
+    apellidos: '',
+    correo_electronico: '',
+    telefono: '',
+    genero: '',
+    fecha_de_nacimiento:'',
+    numero_documento_id: '',
+    documento_de_identidad: '',
+    tipo_documento_identidad: '',
+    permiso: '',
+    direccion: '',
+    ciudad: '',
+    provincia: '',
+    pais_de_residencia: '',
+    codigo_postal: '',
+    programa_cursar: '',
+    colectivo: '',
+    educacion: '',
+    estudio_mas_alto: '',
+    situacion_profesional: '',
+    intereses_actuales: '',
+    dedicacion_semanal: '',
+    acceso_internet_dispositivos: '',
+    formacion_online: 'No',
+    razones_para_unir: '',
+    encontrar_programa: '',
+    mas_informacion: '',
+  };

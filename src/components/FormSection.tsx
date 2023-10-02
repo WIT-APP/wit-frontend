@@ -41,29 +41,28 @@ export const FormSection = (props: FormSectionProps) => {
 
   const isCurrentSectionValid = () => {
     if (!question || !formik) {
-      console.log("Question or formik is missing.");
-      console.log("Question:", question);
-      console.log("Question:", formik);
+      // console.log("Question or formik is missing.");
+      // console.log("Question:", question);
+      // console.log("Question:", formik);
       return false;
     }
     return question.every((q: Question) => {
       const fieldName = q.id_question;
       const isFieldTouched = formik.touched[fieldName];
-      const isFieldValid = !formik.errors[fieldName];
+      const isFieldValid = !formik.isValid;
   
-      console.log("Field Name:", fieldName);
-      console.log("Touched:", isFieldTouched);
-      console.log("Valid:", isFieldValid);
-      if (q.obligatory && isFieldTouched) {
-        return isFieldValid;
+      // console.log("Field Name:", fieldName);
+      // console.log("Touched:", isFieldTouched);
+      // console.log("Valid:", isFieldValid);
+      if (q.obligatory && isFieldTouched && isFieldValid) {
+        return true;
       }
-      return true;
+      return false;
     });
   };
   
   return (
-    <>
-    {console.log('able to next',isCurrentSectionValid())}
+    <Form>
       {question?.map((q: Question) => (
         currentPage === currentPage && (
         <div className="container text-white font-bold mt-5" key={q.id_question}>
@@ -214,7 +213,9 @@ export const FormSection = (props: FormSectionProps) => {
                   </button>{' '}
                   <button
                     onClick={goToNextPage}
-                    disabled={!isCurrentSectionValid() || isPreviousData || currentPage === pages.length - 1}
+                    disabled={
+                      //!isCurrentSectionValid() || 
+                      isPreviousData || currentPage === pages.length - 1}
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === pages.length - 1,
                     })}
@@ -233,6 +234,6 @@ export const FormSection = (props: FormSectionProps) => {
                   </button>
                   </div>
       {isFetching ? <span>Loading...</span> : null}
-    </>
+    </Form>
   );
 };
