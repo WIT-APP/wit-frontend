@@ -17,7 +17,7 @@ import { Interview } from "@/interfaces/interview.interface";
 import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
 import { ChangesSavedDialog } from "./alerts/ChangesSavedDialog";
 import { useCreateInterview } from "@/services/CreateInterview";
-import { UpdateEstado } from "@/services/UpdateEstado";
+import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
   
   export const NewInterview = () => {
     const { id } = useParams();
@@ -47,6 +47,7 @@ import { UpdateEstado } from "@/services/UpdateEstado";
     });
 
     const useCreateInterviewMutation = useCreateInterview();
+    const useSetEstadoEntrevistadoMutation = useSetEstadoEntrevistado();
     const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [unsavedChanges, setUnsavedChanges] = useState(false);
@@ -98,7 +99,10 @@ import { UpdateEstado } from "@/services/UpdateEstado";
               applicant: applicantId,
             ...interviewInfo,
           });
-          await UpdateEstado(applicantId, "Entrevistado");
+          await useSetEstadoEntrevistadoMutation.mutateAsync({
+            id: applicantId,
+          estado: "Entrevistado",
+        });
           queryClient.invalidateQueries(["applicants", applicantId]);
           console.log("Applicant Interview created successfully.");
           setShowSuccessModal(true);

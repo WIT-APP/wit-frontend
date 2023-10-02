@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MutationFunction, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Applicant } from "@/interfaces/applicant.interface";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const setEstadoEntrevistadoMutation: MutationFunction<any, [string | number, string]> = async (variables: [string | number, string]) => {
-    const [id, nuevoEstado] = variables;
+const setEstadoEntrevistadoMutation = async ({id, estado}: Applicant) => {
+
     const response = await fetch(`http://localhost:3000/applicant/update-estado/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ estado: nuevoEstado }),
+      body: JSON.stringify({ estado: estado }),
     });
   
     if (!response.ok) {
