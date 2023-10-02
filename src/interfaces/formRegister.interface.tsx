@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { CreateApplicant } from './applicant.interface';
 
 export interface FormValues {
     [key: string]: string;
@@ -51,13 +52,13 @@ export const validationSchema = () => (
   })
   ))
 
-  export const initialValues: FormValues = {
+  export const initialValues: CreateApplicant = {
     nombre: '',
     apellidos: '',
     correo_electronico: '',
     telefono: '',
     genero: '',
-    fecha_de_nacimiento:'',
+    fecha_de_nacimiento: '',
     numero_documento_id: '',
     documento_de_identidad: '',
     tipo_documento_identidad: '',
@@ -66,9 +67,9 @@ export const validationSchema = () => (
     ciudad: '',
     provincia: '',
     pais_de_residencia: '',
-    codigo_postal: '',
+    codigo_postal:'' ,
     programa_cursar: '',
-    colectivo: '',
+    colectivo: [],
     educacion: '',
     estudio_mas_alto: '',
     situacion_profesional: '',
@@ -79,4 +80,5 @@ export const validationSchema = () => (
     razones_para_unir: '',
     encontrar_programa: '',
     mas_informacion: '',
+    pais_de_nacimiento: ''
   };

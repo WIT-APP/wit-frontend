@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import classnames from 'classnames';
+import { CreateApplicant } from '../interfaces/applicant.interface';
 import { useState } from 'react';
 import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
-import { Formik, Form, Field, ErrorMessage, useFormikContext, FormikTouched } from 'formik';
-import { FormValues, validationSchema } from '@/interfaces/formRegister.interface';
+import { Formik,} from 'formik';
+import { initialValues, validationSchema } from '@/interfaces/formRegister.interface';
 import { FormSection } from '@/components/FormSection';
+import { useNewApplication } from '@/services/RegisterApplicant';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
@@ -16,40 +17,21 @@ export const Form2 = () => {
     setCurrentPage(newPage);
   };
 
+  const newPost = useNewApplication()
+
+  const handleSubmit = async (values: CreateApplicant) => {
+    console.log(values);
+    
+    try {
+      const response = await newPost.mutateAsync(values);
+      console.log('API response:', response);
+    } catch (error) {
+      console.error('Error making API request:', error);
+    }
+  }
 
   const { isLoading, isError, error, isFetching, isPreviousData, question } =
     useCategoryQuestion(pages[currentPage]);
-
-
-  const initialValues: FormValues = {
-    nombre: '',
-    apellidos: '',
-    correo_electronico: '',
-    telefono: '',
-    genero: '',
-    fecha_de_nacimiento:'',
-    numero_documento_id: '',
-    documento_de_identidad: '',
-    tipo_documento_identidad: '',
-    permiso: '',
-    direccion: '',
-    ciudad: '',
-    provincia: '',
-    pais_de_residencia: '',
-    codigo_postal: '',
-    programa_cursar: '',
-    colectivo: '',
-    educacion: '',
-    estudio_mas_alto: '',
-    situacion_profesional: '',
-    intereses_actuales: '',
-    dedicacion_semanal: '',
-    acceso_internet_dispositivos: '',
-    formacion_online: 'No',
-    razones_para_unir: '',
-    encontrar_programa: '',
-    mas_informacion: '',
-  };
 
   return (
     <div className="overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
@@ -66,11 +48,7 @@ export const Form2 = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, actions) => {
-              console.log({ values, actions });
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }}
+            onSubmit={handleSubmit}
           > 
             <FormSection
               isFetching={isFetching}
