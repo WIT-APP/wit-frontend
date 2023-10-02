@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
 import { Field, ErrorMessage, useFormikContext, Form } from 'formik';
 import { FormValues } from '@/interfaces/formRegister.interface';
 import classnames from 'classnames';
 import { Question } from '@/interfaces/question.interface';
-import { Button } from './ui/Button';
 
 const pages = ['Personal', 'Sociodemografica', 'Academica', 'Formacion'];
 
@@ -26,7 +24,6 @@ export const FormSection = (props: FormSectionProps) => {
       onPageChange 
     } = props;
 
- 
   const formik = useFormikContext<FormValues>();
 
   const goToPreviousPage = () => {
@@ -37,28 +34,6 @@ export const FormSection = (props: FormSectionProps) => {
     if (!isPreviousData && currentPage < pages.length) {
       onPageChange(Math.min(currentPage + 1, pages.length - 1));
     }
-  };
-
-  const isCurrentSectionValid = () => {
-    if (!question || !formik) {
-      // console.log("Question or formik is missing.");
-      // console.log("Question:", question);
-      // console.log("Question:", formik);
-      return false;
-    }
-    return question.every((q: Question) => {
-      const fieldName = q.id_question;
-      const isFieldTouched = formik.touched[fieldName];
-      const isFieldValid = !formik.isValid;
-  
-      // console.log("Field Name:", fieldName);
-      // console.log("Touched:", isFieldTouched);
-      // console.log("Valid:", isFieldValid);
-      if (q.obligatory && isFieldTouched && isFieldValid) {
-        return true;
-      }
-      return false;
-    });
   };
   
   return (
@@ -208,6 +183,7 @@ export const FormSection = (props: FormSectionProps) => {
                     className={classnames('btn-form', 'btn-form-green', {
                       invisible: currentPage === 0,
                     })}
+                    type="button"
                   >
                     Previous Page
                   </button>{' '}
