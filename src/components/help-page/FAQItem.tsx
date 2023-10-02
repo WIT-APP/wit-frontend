@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import projectData from '../../../data/projectData.json'; // Asegúrate de importar el archivo JSON correcto
+import projectData from '../../data/projectData.json'; // Asegúrate de importar el archivo JSON correcto
 
 const FaqItem: React.FC = () => {
   const [faqData, setFaqData] = useState<any[]>([]);
