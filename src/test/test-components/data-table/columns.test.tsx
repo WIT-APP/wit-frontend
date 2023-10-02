@@ -1,9 +1,9 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, test } from "vitest";
 import { render } from "@testing-library/react";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpDown } from "lucide-react";
-import ColumnsComp from "@/components/data-table/ColumnsComp";
-import userEvent from "@testing-library/user-event";
 
 describe("Table columns", () => {
    
@@ -299,14 +299,5 @@ describe("Table columns", () => {
       expect(actionsButton).toBeTruthy();
     }
   });
-/*   test('displays confirmation dialog for estado change', () => {
-    const { getByText } = render(<ColumnsComp columns={columns} />);
-    const applicant = { id: 1, nombre: 'John Doe' };
-    const select = getByText('Select estado');
-    
-    userEvent.change(select, { target: { value: 'Aplicante' } });
-    userEvent.click(select); // Trigger click to open the select dropdown
-    const confirmationMessage = getByText(`¿Estás seguro de cambiar el estado de ${applicant.nombre} a "Aplicante"?`);
-    expect(confirmationMessage).toBeInTheDocument();
-  }); */
+
 });

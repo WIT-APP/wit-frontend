@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, expect, test } from "vitest";
-import { render, screen } from "@testing-library/react";
 import { FormSection } from "@/components/FormSection";
 import { Formik } from "formik";
+import { render, screen } from "@testing-library/react";
+
 
 const props = [
   {
@@ -106,8 +108,9 @@ describe("Form Section should load correctly", () => {
         <FormSection
           isFetching={false}
           isPreviousData={false}
-          question={props}
-        />
+          question={props} currentPage={0} onPageChange={function (): void {
+            throw new Error("Function not implemented.");
+          } }        />
       </Formik>
     );
   });
