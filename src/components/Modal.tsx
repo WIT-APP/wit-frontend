@@ -16,9 +16,9 @@ import { useUpdateApplicant } from "@/services/UpdateApplicant";
 type ModalProps = Partial<Applicant> & {
   textButton: string | React.ReactNode;
   invitaciones: number;
-  telefono: string | number
-  estado: string,
-  id: string | number
+  telefono: string | number;
+  estado: string;
+  id: string | number;
 };
 
 function Modal({
@@ -29,9 +29,20 @@ function Modal({
   telefono,
   invitaciones,
   estado,
-  id
+  id,
 }: ModalProps) {
   const updateApplicantMutation = useUpdateApplicant();
+  const incrementInvitations = async () => {
+    try {
+      await updateApplicantMutation.mutateAsync({
+        id,
+        invitaciones: invitaciones + 1,
+      });
+      // Aquí puedes agregar código adicional si lo necesitas
+    } catch (error) {
+      console.error("Error al incrementar invitaciones:", error);
+    }
+  };
 
   const [open, setOpen] = useState(false);
   //   Refactorizar esta parte??
@@ -45,8 +56,12 @@ function Modal({
     setMensaje(event.target.value);
   };
 
-  const handleSendMessage = (telefono: number | string, mensaje: string, invitaciones: number, id: string | number ): void => {
-    
+  const handleSendMessage = (
+    telefono: number | string,
+    mensaje: string,
+    invitaciones: number,
+    id: string | number
+  ): void => {
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje
     )}`;
@@ -55,9 +70,6 @@ function Modal({
     console.log(nuevasInvitaciones);
     console.log(estado);
     console.log(id);
-    
-    
-    
 
     window.open(whatsappURL, "_blank");
 
@@ -69,9 +81,9 @@ function Modal({
 
   const handleCloseModal = () => {
     console.log("cerrar");
-    
-    setOpen(false)
-  }
+
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -90,9 +102,14 @@ function Modal({
             />
           </DialogDescription>
         </DialogHeader>
-        <Button variant="secondary" onClick={handleCloseModal}>Atras</Button>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Atras
+        </Button>
         <Button
-          onClick={() => handleSendMessage(telefono, mensaje, invitaciones, id)}
+          onClick={() => {
+            incrementInvitations();
+            handleSendMessage(telefono, mensaje, invitaciones, id);
+          }}
           className="bg-green2 hover:bg-yellow2"
         >
           <IoLogoWhatsapp className="mr-2 h-4 w-4" /> Enviar Mensaje
