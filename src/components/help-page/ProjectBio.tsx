@@ -23,7 +23,7 @@ const ProjectBio: React.FC = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-3xl font-bold mb-4">
+      <h2 className="text-xl font-bold mb-4">
         {words.map((word, index) => (
           <span
             key={index}
@@ -43,7 +43,7 @@ const ProjectBio: React.FC = () => {
         ))}
       </h2>
       <h2 className="text-3xl font-bold mb-4">{tituloRespuesta}</h2>
-      <p className="text-gray-700 text-lg">{bio}</p>
+      <p className="text-gray-700 text-md">{bio}</p>
     </div>
   );
 };
