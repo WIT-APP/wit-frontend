@@ -143,7 +143,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
         }
 
         // Realizar la mutación manualmente con un fetch
-        const apiUrl = `http://localhost:3000/applicant/${applicant.id}`;
+        const apiUrl = `https://wit-backend-factoriaf5.up.railway.app/applicant/${applicant.id}`;
 
         try {
           const response = await fetch(apiUrl, {

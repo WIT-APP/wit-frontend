@@ -1,5 +1,10 @@
-
-const ModalConfirmation = ({ onConfirm, onCancel, applicantName, nuevoEstado }) => {
+interface ModalConfirmationProps {
+  onConfirm: () => void;
+  onCancel: () => void;
+  applicantName: string;
+  nuevoEstado: string;
+}
+const ModalConfirmation: React.FC<ModalConfirmationProps> = ({ onConfirm, onCancel, applicantName, nuevoEstado }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="modal bg-white p-6 rounded shadow-lg w-96">
