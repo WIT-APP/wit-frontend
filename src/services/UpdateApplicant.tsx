@@ -2,8 +2,10 @@ import { Applicant } from "@/interfaces/applicant.interface";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const updateApplicantMutation = async ({ id, ...applicant }: Applicant) => {
-  
-    const response = await fetch(`http://localhost:3000/applicant/${id}`, {
+
+  // https://wit-backend-factoriaf5.up.railway.app/applicant
+  // http://localhost:3000/applicant/${id}
+    const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

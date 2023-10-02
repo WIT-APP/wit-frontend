@@ -3,7 +3,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const createInterviewMutation = async ({ applicant, ...interview }: Interview) => {
   
-    const response = await fetch(`http://localhost:3000/interview/applicant/${applicant}`, {
+  // https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}
+  // http://localhost:3000/interview/applicant/${applicant}
+    const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
