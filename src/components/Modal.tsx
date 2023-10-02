@@ -81,7 +81,7 @@ function Modal({
 
     // Añadir funcionalidad para cambiar estado en la base de datos del campo estado a Invitado
 
-    alert(mensaje + telefono);
+    // alert(mensaje + telefono);
     setOpen(false);
   };
 
