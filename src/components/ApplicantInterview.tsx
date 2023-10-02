@@ -24,28 +24,28 @@ import { ChangesSavedDialog } from "./alerts/ChangesSavedDialog";
     const queryClient = useQueryClient();
     const { oneInterview, isLoading, isError } = useGetInterviewByApplicant(id);
   
-    const defaultInterviewInfo: Interview = {
-      motivacion_curso: "",
-      soporte_it: "",
-      desempeno_laboral: "",
-      situacion_actual: "",
-      otros_cursos: "",
-      cual_curso: "",
-      disponibilidad: "",
-      participar_zoom: "",
-      encontrar_trabajo: "",
-      ajuste_calendario: "",
-      conexion_semanal: "",
-      conocer_curso: "",
-      beca_otra: "",
-      completado_mydigiskills: "",
-      mas_informacion: "",
-      aplicante_apto: "",
-      que_es_programacion: "",
-      nivel_entrevistado: "",
-      logica_caracol: "",
-      nivel_ingles: "",
-    };
+    // const defaultInterviewInfo: Interview = {
+    //   motivacion_curso: "",
+    //   soporte_it: "",
+    //   desempeno_laboral: "",
+    //   situacion_actual: "",
+    //   otros_cursos: "",
+    //   cual_curso: "",
+    //   disponibilidad: "",
+    //   participar_zoom: "",
+    //   encontrar_trabajo: "",
+    //   ajuste_calendario: "",
+    //   conexion_semanal: "",
+    //   conocer_curso: "",
+    //   beca_otra: "",
+    //   completado_mydigiskills: "",
+    //   mas_informacion: "",
+    //   aplicante_apto: "",
+    //   que_es_programacion: "",
+    //   nivel_entrevistado: "",
+    //   logica_caracol: "",
+    //   nivel_ingles: "",
+    // };
 
     const useUpdateInterviewMutation = useUpdateInterview();
     const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
