@@ -48,6 +48,12 @@ function Modal({
     setOpen(false);
   };
 
+  const handleCloseModal = () => {
+    console.log("cerrar");
+    
+    setOpen(false)
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{textButton}</DialogTrigger>
@@ -65,7 +71,7 @@ function Modal({
             />
           </DialogDescription>
         </DialogHeader>
-        <Button variant="ghost">Atras</Button>
+        <Button variant="secondary" onClick={handleCloseModal}>Atras</Button>
         <Button
           onClick={() => handleSendMessage(telefono, mensaje)}
           className="bg-green2 hover:bg-yellow2"
