@@ -93,8 +93,6 @@ export function DataTable<TData extends Record<string, any>>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection]: any = React.useState({});
-  // const [columnaSeleccionada, setColumnaSeleccionada] =
-  //   React.useState<string>("correo_electronico");
   const [value, setValue] = React.useState("correo_electronico");
 
   const opciones = [
@@ -102,10 +100,7 @@ export function DataTable<TData extends Record<string, any>>({
     { value: "apellidos", label: "Apellidos" },
     { value: "correo_electronico", label: "Email" },
     { value: "telefono", label: "Telefono" },
-    // { value: "invitaciones", label: "Invitado" },
     { value: "programa_cursar", label: "Programa a Cursar" },
-    // { value: "estado", label: "Estado" },
-    // { value: "fecha_de_applicacion", label: "Fecha de aplicación" },
     { value: "observaciones", label: "Observaciones" },
   ];
 
