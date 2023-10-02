@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import SideBarDashboard from "@/components/sidebar/SideBarDashboard";
 import { SidebarItem } from "@/components/sidebar/SidebarItem";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, test, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import TablePage from "../../pages/TablePage";

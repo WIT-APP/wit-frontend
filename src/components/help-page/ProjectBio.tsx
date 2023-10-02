@@ -22,7 +22,7 @@ const ProjectBio: React.FC = () => {
   const words = WorkintechRespuesta.split(' ');
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-white p-6 rounded-lg shadow-md" data-testid="project-bio">
       <h2 className="text-xl font-bold mb-4">
         {words.map((word, index) => (
           <span
