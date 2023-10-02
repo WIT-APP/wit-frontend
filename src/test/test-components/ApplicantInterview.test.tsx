@@ -5,7 +5,6 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { useGetInterviewByApplicant } from "@/services/GetInterviewByApplicant";
 import { useUpdateInterview } from "@/services/UpdateInterview";
-import { Applicant } from "@/interfaces/applicant.interface";
 import { ChangesSavedDialog } from "@/components/alerts/ChangesSavedDialog";
 import { UnsavedChangesConfirmationDialog } from "@/components/alerts/UnsavedChangesDialog";
 import { ApplicantInterview } from "@/components/ApplicantInterview";

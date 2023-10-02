@@ -16,7 +16,7 @@ const FaqItem: React.FC = () => {
   };
 
   return (
-    <div className='container mx-auto px-4 lg:px-8'>
+    <div className='container mx-auto px-4 lg:px-8 ' data-testid="faq-item">
       <h1 className="text-xl font-bold mb-4">Preguntas Frecuentes</h1>
       {faqData.map((item, index) => (
         <div
