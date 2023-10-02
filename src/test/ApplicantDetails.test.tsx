@@ -17,6 +17,7 @@ vi.mock("@/components/alerts/UnsavedChangesDialog", () => ({
   UnsavedChangesConfirmationDialog: vi.fn(() => null),
 }));
 
+
 const queryClient = new QueryClient();
 
 vi.mock("@/services/GetByIdApplicant", () => ({
@@ -30,11 +31,12 @@ vi.mock("@/services/GetByIdApplicant", () => ({
   }),
 }));
 
+
 vi.mock("@/services/UpdateApplicant", () => ({
-  useUpdateApplicant: vi.fn()/* .mockReturnValue({
-    mutateAsync: vi.fn(),
-  }), */
+  useUpdateApplicant: vi.fn()
 }));
+
+
 
 describe("ApplicantDetails Component", () => {
   beforeEach(() => {
@@ -144,5 +146,22 @@ describe("ApplicantDetails Component", () => {
     userEvent.click(cancelButton);
 
     expect(UnsavedChangesConfirmationDialog).not.toHaveBeenCalled();
+  });
+  test('calls navigate when clicking "Ir a la entrevista" button', async () => {
+    const id = 1
+
+    const mockNavigate = vi.fn();
+  
+    const handleGoToInterview = () => {
+        mockNavigate(`/applicantInterview/${id}`);
+      };
+    const interviewButton = screen.getByRole('button', { name: 'Ir a la entrevista' });
+    expect(interviewButton).toBeTruthy();
+  
+
+    userEvent.click(interviewButton);
+    handleGoToInterview();
+    expect(mockNavigate).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledWith(`/applicantInterview/${id}`);
   });
 });

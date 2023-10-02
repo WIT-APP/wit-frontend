@@ -17,6 +17,7 @@ import Modal from "../Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
 import { Applicant } from "@/interfaces/applicant.interface";
 import { Link } from "react-router-dom";
+import { useUpdateApplicant } from "@/services/UpdateApplicant";
 
 const iconWhatsapp = <IoLogoWhatsapp />;
 const estadosPosibles = [
@@ -39,7 +40,9 @@ const handleEstadoChange = async (
   const nuevoEstado = e.target.value;
   console.log(nuevoEstado);
 
-  const confirmacion = window.confirm(`¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`);
+  const confirmacion = window.confirm(
+    `¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`
+  );
 
   if (!confirmacion) {
     return; // Si el usuario cancela, no realizamos cambios
@@ -121,29 +124,68 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       </Button>
     ),
     cell: ({ row }) => {
-      const handleEmailClick = () => {
+      const handleEmailClick = async (
+        e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+        applicant: Applicant
+      ) => {
+        const invitacionesActuales = applicant.invitaciones;
+        const estadoActual = applicant.estado;
+
+        let requestBody;
+        if (estadoActual === "Preaprobado") {
+          requestBody = JSON.stringify({
+            estado: "Invitado",
+            invitaciones: invitacionesActuales + 1,
+          });
+        } else {
+          requestBody = JSON.stringify({
+            invitaciones: invitacionesActuales + 1,
+          });
+        }
+
+        // Realizar la mutación manualmente con un fetch
+        const apiUrl = `http://localhost:3000/applicant/${applicant.id}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: requestBody,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to update applicant.");
+          }
+          console.log("Solicitante actualizado con éxito");
+        } catch (error) {
+          console.error("Error al actualizar el solicitante:", error);
+        }
+
         const correoElectronico: string = row.getValue("correo_electronico");
         const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
           correoElectronico
         )}`;
         window.open(gmailURL, "_blank");
+        window.location.reload();
       };
 
       return (
         <div className="flex items-center space-x-2 ml-4 relative">
           <span
-            onClick={handleEmailClick}
+            onClick={(e) => handleEmailClick(e, row.original)}
             className="text-blue2 text-xl flex items-center justify-center cursor-pointer group"
           >
             <IoMail />
-          <div
-            className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
+            <div
+              className={`hidden sm:block absolute top-full rounded-md px-2 py-1 ml-6
                 bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
                 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
               `}
-          >
-            Enviar Email
-          </div>
+            >
+              Enviar Email
+            </div>
           </span>
           <span>{row.getValue("correo_electronico")}</span>
         </div>
@@ -163,14 +205,14 @@ export const tableColumns: ColumnDef<Applicant>[] = [
             apellidos={row.getValue("apellidos")}
             telefono={row.getValue("telefono")}
           />
-        <div
-          className={`hidden sm:block absolute top-full rounded-md px-2 py-1
+          <div
+            className={`hidden sm:block absolute top-full rounded-md px-2 py-1
               bg-lightgreen2 text-green2 text-sm invisible opacity-20 -translate-x-3 transition-all
               group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-50
             `}
-        >
-          Enviar Whatsapp
-        </div>
+          >
+            Enviar Whatsapp
+          </div>
         </span>
         <span>{row.getValue("telefono")}</span>
       </div>
@@ -263,7 +305,9 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(applicant.id.toString())}
+              onClick={() =>
+                navigator.clipboard.writeText(applicant.id.toString())
+              }
             >
               Copy applicant ID
             </DropdownMenuItem>

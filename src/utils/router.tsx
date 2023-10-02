@@ -7,6 +7,8 @@ import SettingsPage from "@/pages/SettingsPage";
 import HelpPage from "@/pages/HelpPage";
 import LoginPage from "@/pages/LoginPage";
 import { ApplicantDetails } from "@/components/ApplicantDetails";
+import { ApplicantInterview } from "@/components/ApplicantInterview";
+
 
 export const router = createBrowserRouter([
   {
@@ -67,4 +69,8 @@ export const router = createBrowserRouter([
     path: "/applicantDetails/:id",
     element: <ApplicantDetails />,
   },
+  {
+    path: "/applicantInterview/:id",
+    element: <ApplicantInterview />
+  }
 ]);

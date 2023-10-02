@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Card,
   CardContent,
@@ -11,7 +12,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/Button";
 import { useUpdateApplicant } from "@/services/UpdateApplicant";
-import labelsArray from "../data/interview-labels.data.json";
+import labelsArray from "../data/applicant-labels.data.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Applicant } from "@/interfaces/applicant.interface";
 import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
@@ -105,7 +106,9 @@ export const ApplicantDetails = () => {
     setShowConfirmation(false);
   };
 
-  const handleGoToInterview = () => {};
+  const handleGoToInterview = () => {
+    navigate(`/applicantInterview/${id}`);
+  };
 
   return (
     <Card>
@@ -133,6 +136,7 @@ export const ApplicantDetails = () => {
           <Button className="btn-form-green" onClick={handleGoToInterview}>
             Ir a la entrevista
           </Button>
+          
         </div>
       </CardHeader>
       <CardContent className="grid py-2 gap-6 max-h-[70vh] lg:max-h-[75vh] overflow-y-auto">
