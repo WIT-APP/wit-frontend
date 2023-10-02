@@ -56,20 +56,26 @@ function Modal({
     setMensaje(event.target.value);
   };
 
-  const handleSendMessage = (
+  const handleSendMessage = async (
     telefono: number | string,
     mensaje: string,
-    invitaciones: number,
     id: string | number
-  ): void => {
+  ) => {
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje
     )}`;
 
-    const nuevasInvitaciones = invitaciones + 1;
-    console.log(nuevasInvitaciones);
-    console.log(estado);
-    console.log(id);
+    try {
+      await updateApplicantMutation.mutateAsync({
+        id,
+        estado: (estado === "Preaprobado") ? "Invitado" : estado
+      });
+      // Aquí puedes agregar código adicional si lo necesitas
+    } catch (error) {
+      console.error("Error al incrementar invitaciones:", error);
+    }
+
+   
 
     window.open(whatsappURL, "_blank");
 
@@ -108,7 +114,7 @@ function Modal({
         <Button
           onClick={() => {
             incrementInvitations();
-            handleSendMessage(telefono, mensaje, invitaciones, id);
+            handleSendMessage(telefono, mensaje, id);
           }}
           className="bg-green2 hover:bg-yellow2"
         >
