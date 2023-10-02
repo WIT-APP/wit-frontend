@@ -317,11 +317,20 @@ export const tableColumns: ColumnDef<Applicant>[] = [
                 Detalles Aplicante
               </Link>
             </DropdownMenuItem>
+            {(applicant.estado === "Aplicante" || applicant.estado === "Preaprobado" || applicant.estado === "Invitado" || applicant.estado === "Confirmado") && (
             <DropdownMenuItem>
-              <Link to={`/applicantInterview/${applicant.id}`}>
+               <Link to={`/newInterview/${applicant.id}`}>
+                Realizar Entrevista
+              </Link>
+            </DropdownMenuItem>
+             )} 
+            {(applicant.estado === "Entrevistado" || applicant.estado === "Admitido" || applicant.estado === "Matriculado" || applicant.estado === "Certificado") && (
+            <DropdownMenuItem>
+               <Link to={`/applicantInterview/${applicant.id}`}>
                 Entrevista Aplicante
               </Link>
             </DropdownMenuItem>
+             )} 
           </DropdownMenuContent>
         </DropdownMenu>
       );
