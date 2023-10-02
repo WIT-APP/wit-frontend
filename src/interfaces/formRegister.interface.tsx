@@ -5,31 +5,38 @@ export interface FormValues {
     [key: string]: string;
   }
 
+const isMinimumAge = (value:string)=>{
+  const birthDate = new Date(value).getFullYear()
+  const minimumDate = new Date();
+  const compared= minimumDate.getFullYear()-18
+  return birthDate < compared;
+}
+
 export const validationSchema = () => (
     Yup.lazy(() =>
           
         Yup.object().shape({
     nombre: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(2, 'El nombre es muy corto!')
+    .max(50, 'El nombre es demasiado largo!')
     .required('Campo Obligatorio'),
     apellidos: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Los apellidos son obligatorios'),
+    .required('Campo Obligatorio'),
     correo_electronico: Yup.string()
     .email('Formato de correo electrónico inválido')
     .required('Campo Obligatorio'),
     telefono: Yup.string()
     .required('Campo Obligatorio')
-    .min(9, 'El número de teléfono debe tener al menos 9 dígitos')
+    .min(9, 'El número de teléfono debe tener al menos 8 dígitos')
     .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
-      // Check if the value is a valid string
-      return typeof value === 'string' && /^\d{9,}$/.test(value);
+      return typeof value === 'string' && /^\d{8,}$/.test(value);
     }),
     genero: Yup.string().required('Campo Obligatorio'),
     fecha_de_nacimiento: Yup.string()
-    .required('La fecha de nacimiento es obligatoria'),
+    .required('La fecha de nacimiento es obligatoria')
+    .test('is-minimum-age', 'Debe tener al menos 18 años de edad', function (value) {
+      return isMinimumAge(value);
+    }),
     numero_documento_id: Yup.string().required('Campo Obligatorio'),
     documento_de_identidad: Yup.string().required('Campo Obligatorio'),
     direccion: Yup.string().required('Campo Obligatorio'),
