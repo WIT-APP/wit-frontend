@@ -38,7 +38,6 @@ function Modal({
         id,
         invitaciones: invitaciones + 1,
       });
-      // Aquí puedes agregar código adicional si lo necesitas
     } catch (error) {
       console.error("Error al incrementar invitaciones:", error);
     }
@@ -68,20 +67,14 @@ function Modal({
     try {
       await updateApplicantMutation.mutateAsync({
         id,
-        estado: (estado === "Preaprobado") ? "Invitado" : estado
+        estado: estado === "Preaprobado" ? "Invitado" : estado,
       });
-      // Aquí puedes agregar código adicional si lo necesitas
     } catch (error) {
       console.error("Error al incrementar invitaciones:", error);
     }
 
-   
-
     window.open(whatsappURL, "_blank");
 
-    // Añadir funcionalidad para cambiar estado en la base de datos del campo estado a Invitado
-
-    // alert(mensaje + telefono);
     setOpen(false);
   };
 
