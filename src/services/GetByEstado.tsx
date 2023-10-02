@@ -20,9 +20,13 @@ const useFilterByEstado = (estado: string) => {
 
             const formattedApplicants = data.map((applicant: Applicant) => ({
                 ...applicant,
-                fecha_de_applicacion: format(new Date(applicant.fecha_de_applicacion), "dd/MM/yyyy"),
-                fecha_de_nacimiento: format(new Date(applicant.fecha_de_nacimiento), "dd/MM/yyyy"),
-                telefono: applicant.telefono.toString()
+                fecha_de_applicacion: applicant.fecha_de_applicacion
+                ? format(new Date(applicant.fecha_de_applicacion), "dd/MM/yyyy")
+                : "",
+              fecha_de_nacimiento: applicant.fecha_de_nacimiento
+                ? format(new Date(applicant.fecha_de_nacimiento), "dd/MM/yyyy")
+                : "",
+              telefono: applicant.telefono ? applicant.telefono.toString() : "",
 
             }));
 
