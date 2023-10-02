@@ -11,9 +11,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Applicant } from "@/interfaces/applicant.interface";
+import { useUpdateApplicant } from "@/services/UpdateApplicant";
 
 type ModalProps = Partial<Applicant> & {
   textButton: string | React.ReactNode;
+  invitaciones: number;
+  telefono: string | number
+  estado: string,
+  id: string | number
 };
 
 function Modal({
@@ -22,7 +27,12 @@ function Modal({
   programa_cursar,
   apellidos,
   telefono,
+  invitaciones,
+  estado,
+  id
 }: ModalProps) {
+  const updateApplicantMutation = useUpdateApplicant();
+
   const [open, setOpen] = useState(false);
   //   Refactorizar esta parte??
   const [mensaje, setMensaje] = useState(
@@ -35,10 +45,19 @@ function Modal({
     setMensaje(event.target.value);
   };
 
-  const handleSendMessage = (telefono: number | undefined, mensaje: string) => {
+  const handleSendMessage = (telefono: number | string, mensaje: string, invitaciones: number, id: string | number ): void => {
+    
     const whatsappURL = `https://web.whatsapp.com/send?phone=34${telefono}&text=${encodeURIComponent(
       mensaje
     )}`;
+
+    const nuevasInvitaciones = invitaciones + 1;
+    console.log(nuevasInvitaciones);
+    console.log(estado);
+    console.log(id);
+    
+    
+    
 
     window.open(whatsappURL, "_blank");
 
@@ -73,7 +92,7 @@ function Modal({
         </DialogHeader>
         <Button variant="secondary" onClick={handleCloseModal}>Atras</Button>
         <Button
-          onClick={() => handleSendMessage(telefono, mensaje)}
+          onClick={() => handleSendMessage(telefono, mensaje, invitaciones, id)}
           className="bg-green2 hover:bg-yellow2"
         >
           <IoLogoWhatsapp className="mr-2 h-4 w-4" /> Enviar Mensaje

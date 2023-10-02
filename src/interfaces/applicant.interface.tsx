@@ -62,5 +62,6 @@ export interface CreateApplicant {
   formacion_online: string;
   razones_para_unir: string;
   encontrar_programa: string;
-  mas_informacion: string;
+  mas_informacion: string,
+  invitaciones?: number
 }
