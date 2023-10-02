@@ -71,7 +71,7 @@ function Modal({
             />
           </DialogDescription>
         </DialogHeader>
-        <Button variant="ghost" onClick={handleCloseModal}>Atras</Button>
+        <Button variant="secondary" onClick={handleCloseModal}>Atras</Button>
         <Button
           onClick={() => handleSendMessage(telefono, mensaje)}
           className="bg-green2 hover:bg-yellow2"
