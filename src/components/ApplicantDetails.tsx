@@ -21,13 +21,9 @@ import { ChangesSavedDialog } from "@/components/alerts/ChangesSavedDialog";
 
 export const ApplicantDetails = () => {
   const { id } = useParams();
-
   const queryClient = useQueryClient();
-
   const { oneApplicant, isLoading, isError } = useGetByIdApplicant(id);
-
   const useUpdateApplicantMutation = useUpdateApplicant();
-
   const [applicantInfo, setApplicantInfo] = useState<Applicant | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
