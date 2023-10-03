@@ -7,16 +7,11 @@ const useFilterByEstado = (estado: string) => {
     const { isLoading, isError, data: formattedApplicants } = useQuery({
         queryKey: ["applicants", estado],
         queryFn: async () => {
-
             try {
                 // https://wit-backend-factoriaf5.up.railway.app/applicant
                 // http://localhost:3000/applicant/filter-by-estado/${estado}
                 const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado}`);
-            const data = await response.json();
-
-
-
-           
+            const data = await response.json();           
 
             const formattedApplicants = data.map((applicant: Applicant) => ({
                 ...applicant,
@@ -29,24 +24,14 @@ const useFilterByEstado = (estado: string) => {
               telefono: applicant.telefono ? applicant.telefono.toString() : "",
 
             }));
-
             return formattedApplicants;
-
-                
             } catch (error) {
                 console.error("Error fetching data:", error);
                 return []; // Retorna un array vacío en caso de error
-                
             }
-
-
-            
         },
         staleTime: 1000 * 60 * 10,
     })
     return { isLoading, isError, formattedApplicants };
 }
-
-
-  
   export default useFilterByEstado;

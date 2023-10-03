@@ -22,7 +22,6 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
   export const NewInterview = () => {
     const { id } = useParams();
     const queryClient = useQueryClient();
-  
     const [defaultInterviewInfo] = useState<Interview> ({
       motivacion_curso: "",
       soporte_it: "",
@@ -45,7 +44,6 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
       logica_caracol: "",
       nivel_ingles: "",
     });
-
     const useCreateInterviewMutation = useCreateInterview();
     const useSetEstadoEntrevistadoMutation = useSetEstadoEntrevistado();
     const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
