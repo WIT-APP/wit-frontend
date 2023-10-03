@@ -108,23 +108,21 @@ export const tableColumns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: "apellidos",
-    header: ({ column }) => (
+    header: ({ column }) =>
       column && (
-
-      <Button
-        variant="ghost"
-        onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Apellidos
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>)
-    ),
+        <Button
+          variant="ghost"
+          onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Apellidos
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
     cell: ({ row }) => <div className="ml-4">{row.getValue("apellidos")}</div>,
   },
   {
     accessorKey: "correo_electronico",
     header: ({ column }) => (
-      
       <Button
         variant="ghost"
         onClick={() => column?.toggleSorting(column.getIsSorted() === "asc")}
@@ -135,14 +133,13 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     ),
     cell: ({ row }) => {
       const handleEmailClick = async (
-        // e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
         applicant: Applicant
       ) => {
         const invitacionesActuales = applicant.invitaciones || 0;
         const estadoActual = applicant.estado || 0;
 
         let requestBody;
-        if (estadoActual === "Preaprobado") {
+        if (estadoActual === "Preaprobado" || estadoActual === "Aplicante") {
           requestBody = JSON.stringify({
             estado: "Invitado",
             invitaciones: invitacionesActuales + 1,
@@ -346,73 +343,55 @@ export const tableColumns: ColumnDef<Applicant>[] = [
 
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                if (applicant && applicant.correo_electronico) {
-                  navigator.clipboard.writeText(
-                    applicant.correo_electronico.toString()
-                  );
-                }
-              }}
-            >
-              Copiar Correo Aplicante
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
+          <DropdownMenuItem
+            onClick={() => {
+              if (applicant && applicant.correo_electronico) {
+                navigator.clipboard.writeText(
+                  applicant.correo_electronico.toString()
+                );
+              }
+            }}
+          >
+            Copiar Correo Aplicante
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link to={`/applicantDetails/${applicant.id}`}>
+              Detalles Aplicante
+            </Link>
+          </DropdownMenuItem>
+          {(applicant.estado === "Aplicante" ||
+            applicant.estado === "Preaprobado" ||
+            applicant.estado === "Invitado" ||
+            applicant.estado === "Confirmado") && (
             <DropdownMenuItem>
-              <Link to={`/applicantDetails/${applicant.id}`}>
-                Detalles Aplicante
+              <Link to={`/newInterview/${applicant.id}`}>
+                Realizar Entrevista
               </Link>
             </DropdownMenuItem>
-            {(applicant.estado === "Aplicante" ||
-              applicant.estado === "Preaprobado" ||
-              applicant.estado === "Invitado" ||
-              applicant.estado === "Confirmado") && (
-              <DropdownMenuItem>
-                <Link to={`/newInterview/${applicant.id}`}>
-                  Realizar Entrevista
-                </Link>
-              </DropdownMenuItem>
-            )}
-            {(applicant.estado === "Entrevistado" ||
-              applicant.estado === "Admitido" ||
-              applicant.estado === "Matriculado" ||
-              applicant.estado === "Certificado") && (
-              <DropdownMenuItem>
-                <Link to={`/applicantInterview/${applicant.id}`}>
-                  Entrevista Aplicante
-                </Link>
-              </DropdownMenuItem>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
+          )}
+          {(applicant.estado === "Entrevistado" ||
+            applicant.estado === "Admitido" ||
+            applicant.estado === "Matriculado" ||
+            applicant.estado === "Certificado") && (
+            <DropdownMenuItem>
+              <Link to={`/applicantInterview/${applicant.id}`}>
+                Entrevista Aplicante
+              </Link>
+            </DropdownMenuItem>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
       );
     },
+    enableResizing: false,
   },
 ];
-
-type TableColumnProps = {
-  columns: ColumnDef<Applicant>[];
-};
-
-const ColumnsComp: React.FC<TableColumnProps> = ({ columns }) => {
-  return (
-    <>
-      {columns.map((column) => (
-        <div key={column.id} className="column-style">
-          {column.header && column.header({ column })}{" "}
-          {/* Verificación de nulidad */}
-        </div>
-      ))}
-    </>
-  );
-};
-
-export default ColumnsComp;

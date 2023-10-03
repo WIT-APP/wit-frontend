@@ -69,7 +69,7 @@ function Modal({
     try {
       await updateApplicantMutation.mutateAsync({
         id,
-        estado: estado === "Preaprobado" ? "Invitado" : estado,
+        estado: estado === "Preaprobado" || estado ==="Aplicante" ? "Invitado" : estado,
       });
     } catch (error) {
       console.error("Error al incrementar invitaciones:", error);
