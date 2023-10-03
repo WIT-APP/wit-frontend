@@ -5,7 +5,7 @@ const updateInterviewMutation = async ({ applicant, ...interview }: Interview) =
   
   // https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}
   // http://localhost:3000/interview/applicant/${applicant}
-    const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}`, {
+    const response = await fetch(`http://localhost:3000/interview/applicant/${applicant}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

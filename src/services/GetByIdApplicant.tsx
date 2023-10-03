@@ -8,7 +8,8 @@ export const useGetByIdApplicant = (id?: number | string) => {
 
       // https://wit-backend-factoriaf5.up.railway.app/applicant/id/${id}
       // http://localhost:3000/applicant/id/${id}
-      const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/id/${id}`);
+      //https://wit-backend-factoriaf5.up.railway.app/applicant/id/${id}
+      const response = await fetch(`http://localhost:3000/applicant/id/${id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch applicant details.');
       }
