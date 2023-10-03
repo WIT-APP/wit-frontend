@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Añadimos soporte al navegador
   test: {
     environment: 'jsdom',
     globals: true,
@@ -13,6 +12,10 @@ export default defineConfig({
   },
   resolve: {
     alias: [{ find: "@", replacement: resolve(__dirname, "./src") }]
-  }
+  },  
+      // Set the appType to 'spa', 'mpa', or 'custom'
+      appType: 'mpa', // Change this value as needed
+    
+  
 });
 
