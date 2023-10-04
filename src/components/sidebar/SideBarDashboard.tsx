@@ -13,6 +13,7 @@ import {
   Settings,
   LifeBuoy,
   ClipboardSignature,
+  LineChart,
 } from "lucide-react";
 import { SidebarItem } from "./SidebarItem";
 
@@ -26,6 +27,12 @@ export default function SideBarDashboard() {
   return (
     <div>
       <Sidebar>
+      <SidebarItem
+          icon={<LineChart size={20} />}
+          text="Estadisticas"
+          active={activeItem === "Estadisticas"}
+          onClick={() => handleItemClick("Estadisticas")}
+        />
         <SidebarItem
           icon={<Users size={20} />}
           text="Aplicante"

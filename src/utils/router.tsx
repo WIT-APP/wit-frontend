@@ -9,6 +9,7 @@ import LoginPage from "@/pages/LoginPage";
 import { ApplicantDetails } from "@/components/ApplicantDetails";
 import { ApplicantInterview } from "@/components/ApplicantInterview";
 import { NewInterview } from "@/components/NewInterview";
+import Summary from "@/pages/Summary";
 
 
 export const router = createBrowserRouter([
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Dashboard />,
     children: [
+      {
+        path: "/Estadisticas",
+        element: <Summary />,
+      },
       {
         path: "/:Aplicante",
         element: <TablePage />,
