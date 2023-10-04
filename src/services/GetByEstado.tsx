@@ -9,10 +9,8 @@ const useFilterByEstado = (estado: string) => {
         queryKey: ["applicants", estado],
         queryFn: async () => {
             try {
-                // https://wit-backend-factoriaf5.up.railway.app/applicant
-                //`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado} 
                 //http://localhost:3000/applicant/filter-by-estado/${estado}
-                const response = await fetch(`http://localhost:3000/applicant/filter-by-estado/${estado}`, {
+                const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado} `, {
                     headers: {
                       'Authorization': `Bearer ${token}`, 
                       'Content-Type': 'application/json', 
