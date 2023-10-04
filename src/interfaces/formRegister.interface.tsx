@@ -14,7 +14,7 @@ const isMinimumAge = (value:string)=>{
 const isMaximumAge = (value: string) => {
   const birthDate = new Date(value);
   const maximumBirthDate = new Date();
-  maximumBirthDate.setFullYear(maximumBirthDate.getFullYear() - 123);
+  maximumBirthDate.setFullYear(maximumBirthDate.getFullYear() - 100);
   return birthDate > maximumBirthDate;
 };
 

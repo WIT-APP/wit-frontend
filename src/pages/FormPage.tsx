@@ -3,7 +3,7 @@ import { CreateApplicant } from '../interfaces/applicant.interface';
 import { useState } from 'react';
 import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
-import { Formik,} from 'formik';
+import { Formik,FormikHelpers } from 'formik';
 import { initialValues, validationSchema } from '@/interfaces/formRegister.interface';
 import { FormSection } from '@/components/FormSection';
 import {  useNewApplication } from '@/services/RegisterApplicant';
@@ -21,14 +21,20 @@ export const FormPage = () => {
 
   const newPost = useNewApplication()
 
-  const handleSubmit = async (values: CreateApplicant) => {
-  
+  const handleSubmit = async (values: CreateApplicant, { resetForm }: FormikHelpers<CreateApplicant>) => {
+    
     try {
       const response = await newPost.mutateAsync(values);
+      resetForm()
+      setTimeout(() => {
+        window.location.reload();
+      }, 3500);
      return response
     } catch (error) {
       return error
     }
+
+    
 
   }
 
