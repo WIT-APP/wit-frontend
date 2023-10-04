@@ -38,7 +38,7 @@ export const validationSchema = () => (
     .min(9, 'El número de teléfono debe tener al menos 8 dígitos')
     .max(12, 'El número de teléfono debe tener como máximo 11 caracteres')
     .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
-      return typeof value === 'string' && /^\d{8,}$/.test(value);
+      return typeof value === 'string' && /^\d{9,}$/.test(value);
     }),
     genero: Yup.string().required('Campo Obligatorio'),
     fecha_de_nacimiento: Yup.string()
@@ -62,7 +62,14 @@ export const validationSchema = () => (
     estudio_mas_alto: Yup.string().required('Campo Obligatorio'),
     situacion_profesional: Yup.string().required('Campo Obligatorio'),
     intereses_actuales: Yup.string().required('Campo Obligatorio'),
-    dedicacion_semanal: Yup.string().required('Campo Obligatorio'),
+    dedicacion_semanal: Yup.string()    
+    .required('Campo Obligatorio')
+    .test('is-valid-number', 'El número de horas o formato no es válido', (value) => {
+      const numericValue = parseInt(value);
+      return !isNaN(numericValue) && numericValue >= 0 && numericValue <= 24;
+    })
+    .min(1, 'El número de horas debe ser mayor o igual a 1')
+    .max(24, 'El número de horas debe ser menor o igual a 24'),
     acceso_internet_dispositivos: Yup.string().required('Campo Obligatorio'),
     razones_para_unir: Yup.string().required('Campo Obligatorio'),
     encontrar_programa: Yup.string().required('Campo Obligatorio'),
