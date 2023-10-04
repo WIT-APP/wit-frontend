@@ -125,14 +125,12 @@ export function DataTable<TData extends Record<string, any>>({
 
   const handleSelectFilter = (value: any) => {
     setValue(value);
-    console.log(value);
   };
 
   function handleDownloadExcel() {
     const selectedRowIds: string[] = Object.keys(rowSelection)
       .filter((index) => rowSelection[index])
       .map((index) => data[parseInt(index)].id);
-    console.log(selectedRowIds);
 
     const selectedRowsToExport = data.filter((row) =>
       selectedRowIds.includes(row.id)
@@ -174,8 +172,6 @@ export function DataTable<TData extends Record<string, any>>({
         Invitaciones: row.invitaciones || "",
       };
     });
-
-    console.log(rowsForExcel);
 
     downloadExcel({
       fileName: "Tabla de usuarios",
@@ -224,9 +220,6 @@ export function DataTable<TData extends Record<string, any>>({
         Invitaciones: row.invitaciones || "",
       };
     });
-
-    console.log(rowsForExcel);
-
     downloadExcel({
       fileName: "Tabla de usuarios",
       sheet: "Usuarios",
@@ -236,9 +229,6 @@ export function DataTable<TData extends Record<string, any>>({
       },
     });
   }
-
-  console.log("Value:", value);
-  console.log("Opciones:", opciones);
 
   return (
     <div>
@@ -274,7 +264,6 @@ export function DataTable<TData extends Record<string, any>>({
                 value={option.value}
                 onSelect={() => {
                   handleSelectFilter(value);
-                  console.log("Option selected:", value);
                 }}
               >
                 {option.label}

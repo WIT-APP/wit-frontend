@@ -57,7 +57,6 @@ export const useNewApplication = () => {
     (applicant: CreateApplicant) => newApplication(applicant),
     {
       onSuccess: () => {
-        console.log("New application submitted");
         queryClient.invalidateQueries(["applicants"]);
       },
     }

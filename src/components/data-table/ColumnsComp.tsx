@@ -37,7 +37,6 @@ const handleEstadoChange = async (
   applicant: Applicant
 ) => {
   const nuevoEstado = e.target.value;
-  console.log(nuevoEstado);
 
   const confirmacion = window.confirm(
     `¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`
@@ -56,9 +55,6 @@ const handleEstadoChange = async (
       if (error) {
         console.error("Error al actualizar el estado:", error);
       } else if (data) {
-        console.log(
-          `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
-        );
         // Aquí puedes trabajar con los datos actualizados si es necesario
       }
     } else {
@@ -165,7 +161,6 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           if (!response.ok) {
             throw new Error("Failed to update applicant.");
           }
-          console.log("Solicitante actualizado con éxito");
         } catch (error) {
           console.error("Error al actualizar el solicitante:", error);
         }

@@ -11,12 +11,10 @@ export const usePreApprovedApplicants = () => {
     queryKey: ["applicants"],
     queryFn: async (): Promise<Applicant[]> => {
       const response = await fetch(
-        //  'https://wit-backend-factoriaf5.up.railway.app/applicant/preapproved-applicants'
         // 'http://localhost:3000/applicant/preapproved-applicants'
         "https://wit-backend-factoriaf5.up.railway.app/applicant/preapproved-applicants"
       );
       const data = await response.json();
-      console.log(data);
       // Formatea la fecha de nacimiento en cada solicitante
       const formattedApplicants = data.map((applicant: Applicant) => ({
         ...applicant,

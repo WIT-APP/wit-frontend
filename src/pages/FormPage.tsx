@@ -22,15 +22,12 @@ export const FormPage = () => {
   const newPost = useNewApplication()
 
   const handleSubmit = async (values: CreateApplicant) => {
-    console.log(values);
   
     try {
       const response = await newPost.mutateAsync(values);
-      console.log('API response:', response);
-     
+     return response
     } catch (error) {
-      console.error('Error making API request:', error);
-
+      return error
     }
 
   }

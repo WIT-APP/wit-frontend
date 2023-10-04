@@ -13,7 +13,6 @@ const fetchQuestions = async (category: string): Promise<Question[]|undefined> =
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching questions:', error);

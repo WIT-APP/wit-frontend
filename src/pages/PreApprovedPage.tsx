@@ -6,7 +6,6 @@ import { tableColumns } from "@/components/data-table/ColumnsComp"; // Importa t
 
 export default function PreApproved() {
   const { isLoading, isError, applicant } = usePreApprovedApplicants();
-  console.log(applicant);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -15,11 +14,6 @@ export default function PreApproved() {
   if (isError || !applicant) {
     return <div>Error fetching data.</div>;
   }
-
-
-
-  console.log(applicant);
-  
 
   return (
     <div className="mx-auto p-4 overflow-y-scroll max-h-screen scroll-auto">

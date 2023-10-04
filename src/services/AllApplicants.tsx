@@ -11,12 +11,10 @@ export const useAllApplicants = () => {
     queryKey: ["applicants"],
     queryFn: async (): Promise<Applicant[]> => {
       const response = await fetch(
-        // 'https://wit-backend-factoriaf5.up.railway.app/applicant'
         // 'http://localhost:3000/applicant'
         "https://wit-backend-factoriaf5.up.railway.app/applicant"
       );
       const data = await response.json();
-      console.log(data);
       // Formatea la fecha de nacimiento en cada solicitante
       const formattedApplicants = data.map((applicant: Applicant) => ({
         ...applicant,

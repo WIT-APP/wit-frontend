@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter }  from "react-router-dom";
 import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
 import TablePage from "@/pages/TablePage";
@@ -9,12 +9,14 @@ import LoginPage from "@/pages/LoginPage";
 import { ApplicantDetails } from "@/components/ApplicantDetails";
 import { ApplicantInterview } from "@/components/ApplicantInterview";
 import { NewInterview } from "@/components/NewInterview";
+//import ErrorPage from "@/pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />,
+    //errorElement: <ErrorPage />,
     children: [
       {
         path: "/:Aplicante",
@@ -65,6 +67,7 @@ export const router = createBrowserRouter([
   {
     path: "/newapplicant/register",
     element: <FormPage />,
+    
   },
   {
     path: "/applicantDetails/:id",
@@ -77,5 +80,9 @@ export const router = createBrowserRouter([
   {
     path: "/applicantInterview/:id",
     element: <ApplicantInterview />
-  }
+  },
+  // {
+  //   path: "*",
+  //   element: <ErrorPage />,
+  // }
 ]);
