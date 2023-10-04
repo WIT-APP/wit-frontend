@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const notify = () =>
   toast.success("Su aplicacion ha sido completada ! Gracias !", {
     position: "top-center",
-    autoClose: 8000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -18,7 +18,7 @@ const notify = () =>
 const notifyError = () =>
   toast.error("Hay un error en su aplicacion, debe verificar los campos", {
     position: "top-center",
-    autoClose: 8000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
