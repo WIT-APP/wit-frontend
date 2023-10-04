@@ -11,6 +11,12 @@ const isMinimumAge = (value:string)=>{
   const compared= minimumDate.getFullYear()-18
   return birthDate < compared;
 }
+const isMaximumAge = (value: string) => {
+  const birthDate = new Date(value);
+  const maximumBirthDate = new Date();
+  maximumBirthDate.setFullYear(maximumBirthDate.getFullYear() - 123);
+  return birthDate > maximumBirthDate;
+};
 
 export const validationSchema = () => (
     Yup.lazy(() =>
@@ -39,6 +45,9 @@ export const validationSchema = () => (
     .required('La fecha de nacimiento es obligatoria')
     .test('is-minimum-age', 'Debe tener al menos 18 años de edad', function (value) {
       return isMinimumAge(value);
+    })
+    .test('is-maximum-age', 'Rango de edad elevado', function (value) {
+      return isMaximumAge(value);
     }),
     numero_documento_id: Yup.string().required('Campo Obligatorio'),
     documento_de_identidad: Yup.string().required('Campo Obligatorio'),
