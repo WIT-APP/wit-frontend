@@ -7,11 +7,8 @@ const createInterviewMutation = async ({
 }: Interview) => {
   const token = localStorage.getItem("token");
 
-  //https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}
-  // https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}
-  // http://localhost:3000/interview/applicant/${applicant}
   const response = await fetch(
-    `http://localhost:3000/interview/applicant/${applicant}`,
+    `https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${applicant}`,
     {
       method: "POST",
       headers: {

@@ -8,9 +8,7 @@ export const useGetInterviewByApplicant = (id?: number | string) => {
     queryKey: ["interview", id],
     queryFn: async (): Promise<Interview> => {
 
-      // https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${id}
-      // http://localhost:3000/interview/applicant/${id}
-      const response = await fetch(`http://localhost:3000/interview/applicant/${id}`,
+      const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/interview/applicant/${id}`,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
