@@ -1,4 +1,5 @@
 export async function UpdateEstado(id:string | number | unknown, nuevoEstado:string) {
+  const token = localStorage.getItem('token'); 
 
   // https://wit-backend-factoriaf5.up.railway.app/applicant
   // http://localhost:3000/applicant/update-estado/${id}
@@ -8,6 +9,8 @@ export async function UpdateEstado(id:string | number | unknown, nuevoEstado:str
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`, 
+
       },
       body: JSON.stringify({ estado: nuevoEstado }),
     };

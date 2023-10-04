@@ -22,7 +22,10 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const storedToken = localStorage.getItem('token');
+    return !!storedToken;
+  });
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {

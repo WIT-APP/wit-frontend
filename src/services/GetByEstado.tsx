@@ -14,8 +14,8 @@ const useFilterByEstado = (estado: string) => {
                 //http://localhost:3000/applicant/filter-by-estado/${estado}
                 const response = await fetch(`http://localhost:3000/applicant/filter-by-estado/${estado}`, {
                     headers: {
-                      'Authorization': `Bearer ${token}`, // Include the token in the headers
-                      'Content-Type': 'application/json', // Adjust content type based on your API requirements
+                      'Authorization': `Bearer ${token}`, 
+                      'Content-Type': 'application/json', 
                     },
                 });
                 const data = await response.json();           

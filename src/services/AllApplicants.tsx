@@ -3,6 +3,8 @@ import { Applicant } from "../interfaces/applicant.interface";
 import { format } from "date-fns";
 
 export const useAllApplicants = () => {
+  const token = localStorage.getItem('token'); 
+
   const {
     isLoading,
     isError,
@@ -13,8 +15,14 @@ export const useAllApplicants = () => {
       const response = await fetch(
         // 'https://wit-backend-factoriaf5.up.railway.app/applicant'
         // 'http://localhost:3000/applicant'
-        "https://wit-backend-factoriaf5.up.railway.app/applicant"
-      );
+        "https://wit-backend-factoriaf5.up.railway.app/applicant",
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+      
       const data = await response.json();
       console.log(data);
       // Formatea la fecha de nacimiento en cada solicitante

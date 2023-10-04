@@ -5,6 +5,7 @@ interface LoginData {
     password: string;
 }
 const loginUser = async (loginData: LoginData) => {
+    
     const response = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: {

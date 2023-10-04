@@ -152,13 +152,15 @@ export const tableColumns: ColumnDef<Applicant>[] = [
 
         // Realizar la mutación manualmente con un fetch
         const apiUrl = `https://wit-backend-factoriaf5.up.railway.app/applicant/${applicant.id}`;
+        const token = localStorage.getItem('token'); 
 
         try {
           const response = await fetch(apiUrl, {
             method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
+              headers: {
+                'Authorization': `Bearer ${token}`, 
+                'Content-Type': 'application/json', 
+              },
             body: requestBody,
           });
 
