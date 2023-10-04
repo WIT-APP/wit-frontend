@@ -21,35 +21,32 @@ ChartJS.register(
   Filler
 );
 
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 import { useMemo } from "react";
 
 const scores = [6, 5, 5, 8, 1, 6, 4, 3];
 const labels = [100, 200, 300, 400, 500, 600, 700];
 
 const options = {
-    responsive: true,
-}
+  responsive: true,
+};
 
 function LineChart() {
-    const data = useMemo(() => {
-        return {
-            datasets: [
-                {
-                    label: "Mis datos",
-                    data: scores,
-                }
-            ],
-            labels
-        };
-    }, []); 
+  const data = useMemo(() => {
+    return {
+      datasets: [
+        {
+          label: "Mis datos",
+          data: scores,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.5)",
+        },
+      ],
+      labels,
+    };
+  }, []);
 
-return <Line data={data} options={options} />
-
+  return <Line data={data} options={options} />;
 }
-
-
-
-
 
 export default LineChart;
