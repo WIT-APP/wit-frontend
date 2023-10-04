@@ -23,11 +23,14 @@ export const validationSchema = () => (
     apellidos: Yup.string()
     .required('Campo Obligatorio'),
     correo_electronico: Yup.string()
-    .email('Formato de correo electrónico inválido')
-    .required('Campo Obligatorio'),
+    .required('Campo Obligatorio')
+    .test('is-valid-email', 'Formato de correo electrónico inválido', (value) => {
+      return typeof value === 'string' && /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/.test(value);
+    }),
     telefono: Yup.string()
     .required('Campo Obligatorio')
     .min(9, 'El número de teléfono debe tener al menos 8 dígitos')
+    .max(12, 'El número de teléfono debe tener como máximo 11 caracteres')
     .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
       return typeof value === 'string' && /^\d{8,}$/.test(value);
     }),
