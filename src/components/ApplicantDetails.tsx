@@ -132,12 +132,12 @@ export const ApplicantDetails = () => {
           <Button className="btn-form-green" onClick={handleSubmit}>
             Guardar
           </Button>
-          {(oneApplicant?.estado === "Aplicante" || oneApplicant?.estado === "Preaprobado" || oneApplicant?.estado === "Invitado" || oneApplicant?.estado === "Confirmado" || oneApplicant?.estado === "Rechazado") && (
+          {(oneApplicant?.estado === "Aplicante" || oneApplicant?.estado === "Preaprobado" || oneApplicant?.estado === "Invitado" || oneApplicant?.estado === "Confirmado" ) && (
             <Button className="btn-form-green" onClick={handleCreateInterview}>
             Realizar Entrevista
           </Button>
             )}
-          {(oneApplicant?.estado === "Entrevistado" || oneApplicant?.estado === "Admitido" || oneApplicant?.estado === "Matriculado" || oneApplicant?.estado === "Certificado" || oneApplicant?.estado === "Baja") && (
+          {(oneApplicant?.estado === "Entrevistado" || oneApplicant?.estado === "Admitido" || oneApplicant?.estado === "Matriculado" || oneApplicant?.estado === "Certificado" ) && (
           <Button className="btn-form-green" onClick={handleGoToInterview}>
             Ir a la entrevista
           </Button>
