@@ -235,8 +235,10 @@ export const FormSection = (props: FormSectionProps) => {
             </div>
           )
       )}
-      <Progress value={progress} className="bg-green2 h-2.5 rounded-full "/>
-      <div className="flex justify-evenly text-sm mb-4 mt-6">
+      <div className="container mt-5">
+        <Progress value={progress} className="bg-green2 h-2.5 rounded-full w-auto "/>
+      </div>
+      <div className="flex justify-evenly text-sm mb-4 mt-5">
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 0}
