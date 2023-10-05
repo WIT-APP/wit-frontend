@@ -37,7 +37,7 @@ export const FormSection = (props: FormSectionProps) => {
   const goToPreviousPage = () => {
     scrollTop()
     onPageChange(Math.max(currentPage - 1, 0));
-   setProgress(progress-25)
+    setProgress(progress-25)
   };
 
   return (

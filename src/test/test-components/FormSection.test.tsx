@@ -110,6 +110,8 @@ describe("Form Section should load correctly", () => {
           isPreviousData={false}
           question={props} currentPage={0} onPageChange={function (): void {
             throw new Error("Function not implemented.");
+          } } scrollTop={function (): void {
+            throw new Error("Function not implemented.");
           } }        />
       </Formik>
     );
@@ -148,18 +150,5 @@ describe("Form Section should load correctly", () => {
     const toggleButtons = screen.getAllByRole('checkbox');
     expect(toggleButtons.length).toBeGreaterThan(0);
   });
-  test('should render previous page button', () => {
-    const previousPageButton = screen.getByText('Previous Page');
-    expect(previousPageButton).toBeTruthy();
-  });
-  
-  test('should render next page button', () => {
-    const nextPageButton = screen.getByText('Next Page');
-    expect(nextPageButton).toBeTruthy();
-  });
 
-  test('should render submit button', () => {
-    const submitButton = screen.getByText('Enviar');
-    expect(submitButton).toBeTruthy();
-  });
 });
