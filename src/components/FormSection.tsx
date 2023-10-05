@@ -47,19 +47,24 @@ export const FormSection = (props: FormSectionProps) => {
         (q: Question) =>
           currentPage === currentPage && (
             <div
-              className="container text-white font-bold mt-5"
+              className="container text-gray-100 mt-5 "
               key={q.id_question}
             >
+             { !q.obligatory ? (
              
-                <label htmlFor={q.id_question}>{q.text}</label>
-                        
+              <label htmlFor={q.id_question} className="font-bold">
+                {q.text} {" "}<span className="text-gray2 text-sm  italic ">Opcional</span>
+              </label>
+              ) : 
+              <label htmlFor={q.id_question} className="font-bold">{q.text}</label>
+              }      
               {q.type === "text" && (
                 <Field
                   name={q.id_question}
                   type={q.type}
                   id={q.id_question}
                   placeholder={q.placeholder}
-                  className={`mt-2 form-input text-sm text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto p-2.5 placeholder-gray-400 shadow ${
+                  className={`mt-2 form-input text-sm  text-black2 block w-full focus:ring-yellow2 focus:border-yellow2 px-3 py-2 rounded-md overflow-x-auto p-2.5 placeholder-gray-400 shadow ${
                     formik.touched[q.id_question] &&
                     formik.errors[q.id_question]
                       ? "border-red-500"
@@ -130,7 +135,7 @@ export const FormSection = (props: FormSectionProps) => {
                   {q.options.map((option) => (
                     <label
                       key={option}
-                      className="ml-2 text-md font-medium text-white relative flex items-center"
+                      className="ml-2 text-md font-sm text-white relative flex items-center"
                     >
                       <Field
                         type="checkbox"
@@ -201,7 +206,7 @@ export const FormSection = (props: FormSectionProps) => {
               )}
               {q.type === "radio" && (
                 <div
-                  className={`items-center text-white  mb-2 mr-2 block font-bold ${
+                  className={`items-center text-white  mb-2 mr-2 block  ${
                     !formik.isValid && !formik.dirty ? "border-red-500" : ""
                   }`}
                 >
