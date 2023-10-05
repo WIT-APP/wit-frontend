@@ -3,7 +3,8 @@ import { Field, ErrorMessage, useFormikContext, Form } from "formik";
 import { FormValues } from "@/interfaces/formRegister.interface";
 import classnames from "classnames";
 import { Question } from "@/interfaces/question.interface";
-import { useRef } from "react";
+import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
 
 const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
@@ -20,6 +21,8 @@ export const FormSection = (props: FormSectionProps) => {
   const { isFetching, isPreviousData, question, currentPage, onPageChange, scrollTop } =
     props;
 
+  const [progress, setProgress] = useState(25)
+
   const formik = useFormikContext<FormValues>();
 
   const goToNextPage = () => {
@@ -27,14 +30,15 @@ export const FormSection = (props: FormSectionProps) => {
       const nextPage= Math.min(currentPage + 1, pages.length - 1)
       scrollTop()
       onPageChange(nextPage);
+      setProgress(progress+25)
     }
   };
 
   const goToPreviousPage = () => {
     scrollTop()
     onPageChange(Math.max(currentPage - 1, 0));
+   setProgress(progress-25)
   };
-
 
   return (
     <div >
@@ -231,6 +235,7 @@ export const FormSection = (props: FormSectionProps) => {
             </div>
           )
       )}
+      <Progress value={progress} className="bg-green2 h-2.5 rounded-full "/>
       <div className="flex justify-evenly text-sm mb-4 mt-6">
         <button
           onClick={goToPreviousPage}
@@ -269,7 +274,7 @@ export const FormSection = (props: FormSectionProps) => {
       </div>
       {isFetching ? <span>Loading...</span> : null}
     </Form>
+    
     </div>
-   
   );
 };
