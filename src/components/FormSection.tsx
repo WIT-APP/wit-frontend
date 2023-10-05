@@ -239,40 +239,35 @@ export const FormSection = (props: FormSectionProps) => {
         <Progress value={progress} className="bg-green2 h-2.5 rounded-full w-auto "/>
       </div>
       <div className="flex justify-evenly text-sm mb-4 mt-5">
-        <button
-          onClick={goToPreviousPage}
-          disabled={currentPage === 0}
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage === 0,
-          })}
-          type="button"
-          data-testid="previous-page-button"
-        >
-          Previous Page
-        </button>{" "}
-        <button
-          onClick={goToNextPage}
-          disabled={
-            isPreviousData || currentPage === pages.length - 1
-          }
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage === pages.length - 1,
-          })}
-          type="button"
-          data-testid="next-page-button"
-        >
-          Next Page
-        </button>
-        <button
-          disabled={currentPage !== pages.length - 1}
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage !== pages.length - 1,
-          })}
-          type="submit"
-          data-testid="submit-form-button"
-        >
-          Enviar
-        </button>
+      {currentPage !== 0 && (
+          <button
+            onClick={goToPreviousPage}
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="button"
+          >
+            Atras
+          </button>
+        )}
+        {currentPage !== pages.length - 1 && (
+          <button
+            onClick={goToNextPage}
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="button"
+          >
+            Siguiente
+          </button>
+        )}
+        {currentPage === pages.length - 1 && (
+          <button
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="submit"
+          >
+            Enviar
+          </button>
+        )}
       </div>
       {isFetching ? <span>Loading...</span> : null}
     </Form>
