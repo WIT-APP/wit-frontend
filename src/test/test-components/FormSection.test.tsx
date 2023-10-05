@@ -110,6 +110,8 @@ describe("Form Section should load correctly", () => {
           isPreviousData={false}
           question={props} currentPage={0} onPageChange={function (): void {
             throw new Error("Function not implemented.");
+          } } scrollTop={function (): void {
+            throw new Error("Function not implemented.");
           } }        />
       </Formik>
     );
