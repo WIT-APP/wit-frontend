@@ -39,12 +39,7 @@ export default function SideBarDashboard() {
   return (
     <div>
       <Sidebar>
-      <SidebarItem
-          icon={<LineChart size={20} />}
-          text="Estadisticas"
-          active={activeItem === "Estadisticas"}
-          onClick={() => handleItemClick("Estadisticas")}
-        />
+      
         <SidebarItem
           icon={<Users size={20} />}
           text="Aplicante"
@@ -106,6 +101,12 @@ export default function SideBarDashboard() {
           onClick={() => handleItemClick("Baja")}
         />
         <hr className="my-3" />
+        <SidebarItem
+          icon={<LineChart size={20} />}
+          text="Estadisticas"
+          active={activeItem === "Estadisticas"}
+          onClick={() => handleItemClick("Estadisticas")}
+        />
         <SidebarItem
           icon={<Settings size={20} />}
           text="Ajustes"

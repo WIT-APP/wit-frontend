@@ -5,6 +5,10 @@ import PieChart from '@/components/graficos/PieChart'
 
 
 function Summary() {
+    
+   
+    
+
   return (
     <div>
         <LineChart />
