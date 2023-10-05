@@ -50,7 +50,9 @@ export const FormSection = (props: FormSectionProps) => {
               className="container text-white font-bold mt-5"
               key={q.id_question}
             >
-              <label htmlFor={q.id_question}>{q.text}</label>
+             
+                <label htmlFor={q.id_question}>{q.text}</label>
+                        
               {q.type === "text" && (
                 <Field
                   name={q.id_question}

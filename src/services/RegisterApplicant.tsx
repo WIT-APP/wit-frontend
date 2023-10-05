@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const notify = () =>
   toast.success("Su aplicacion ha sido completada ! Gracias !", {
     position: "top-center",
-    autoClose: 3000,
+    autoClose: 2000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
