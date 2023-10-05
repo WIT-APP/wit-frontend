@@ -49,7 +49,7 @@ export const FormPage = () => {
 
   return (
     <div className="overflow-hidden flex md:justify-center md:bg-black-transparent md:bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-left bg-fixed md:mb-8 lg:mb-14 lg:mt-0 max-h-screen">
-      <div ref={formContainerRef} className="w-full container md:w-129 p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base">
+      <div ref={formContainerRef} className="w-full container md:w-129 md:p-4 mx-auto md:mx-12 md:my-14 bg-purpleblue2 rounded bg-gray2 overflow-y-scroll scrollbar-thumb-base pb-16 pt-10">
         <div className="m-2 flex -mb-7">
           <img src={witLogo} alt="" />
           <h2 className="text-yellow2 text-xl font-bold mt-6 mb-3 ml-1">Sección {pages[currentPage]}</h2>
