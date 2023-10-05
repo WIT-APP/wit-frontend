@@ -14,14 +14,26 @@ import {
   LifeBuoy,
   ClipboardSignature,
   LineChart,
+  LogOut 
 } from "lucide-react";
 import { SidebarItem } from "./SidebarItem";
+import { useAuth } from "@/hooks/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBarDashboard() {
   const [activeItem, setActiveItem] = useState("");
 
   const handleItemClick = (text: string) => {
     setActiveItem(text);
+  };
+
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+
+    navigate('/login');
   };
 
   return (
@@ -105,6 +117,12 @@ export default function SideBarDashboard() {
           text="Ayuda"
           active={activeItem === "Ayuda"}
           onClick={() => handleItemClick("Ayuda")}
+        />
+        <SidebarItem
+          icon={<LogOut size={20} />}
+          text="Logout"
+          active={activeItem === "Logout"}
+          onClick={handleLogout}
         />
       </Sidebar>
     </div>

@@ -4,14 +4,18 @@ import { format } from "date-fns";
 
 
 const useFilterByEstado = (estado: string) => {
+    const token = localStorage.getItem('token'); 
     const { isLoading, isError, data: formattedApplicants } = useQuery({
         queryKey: ["applicants", estado],
         queryFn: async () => {
             try {
-                // https://wit-backend-factoriaf5.up.railway.app/applicant
-                // http://localhost:3000/applicant/filter-by-estado/${estado}
-                const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado}`);
-            const data = await response.json();           
+                const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/filter-by-estado/${estado} `, {
+                    headers: {
+                      'Authorization': `Bearer ${token}`, 
+                      'Content-Type': 'application/json', 
+                    },
+                });
+                const data = await response.json();           
 
             const formattedApplicants = data.map((applicant: Applicant) => ({
                 ...applicant,

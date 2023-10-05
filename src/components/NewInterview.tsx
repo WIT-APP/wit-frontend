@@ -102,7 +102,6 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
           estado: "Entrevistado",
         });
           queryClient.invalidateQueries(["applicants", applicantId]);
-          console.log("Applicant Interview created successfully.");
           setShowSuccessModal(true);
         } catch (error) {
             console.error("Error creating applicant interview:", error);

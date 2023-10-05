@@ -37,7 +37,6 @@ const handleEstadoChange = async (
   applicant: Applicant
 ) => {
   const nuevoEstado = e.target.value;
-  console.log(nuevoEstado);
 
   const confirmacion = window.confirm(
     `¿Estás seguro de cambiar el estado de ${applicant.nombre} a "${nuevoEstado}"?`
@@ -56,9 +55,6 @@ const handleEstadoChange = async (
       if (error) {
         console.error("Error al actualizar el estado:", error);
       } else if (data) {
-        console.log(
-          `Solicitante ID ${applicant.id} - Nuevo estado: ${nuevoEstado}`
-        );
         // Aquí puedes trabajar con los datos actualizados si es necesario
       }
     } else {
@@ -152,20 +148,21 @@ export const tableColumns: ColumnDef<Applicant>[] = [
 
         // Realizar la mutación manualmente con un fetch
         const apiUrl = `https://wit-backend-factoriaf5.up.railway.app/applicant/${applicant.id}`;
+        const token = localStorage.getItem('token'); 
 
         try {
           const response = await fetch(apiUrl, {
             method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
+              headers: {
+                'Authorization': `Bearer ${token}`, 
+                'Content-Type': 'application/json', 
+              },
             body: requestBody,
           });
 
           if (!response.ok) {
             throw new Error("Failed to update applicant.");
           }
-          console.log("Solicitante actualizado con éxito");
         } catch (error) {
           console.error("Error al actualizar el solicitante:", error);
         }

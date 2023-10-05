@@ -81,8 +81,6 @@ function Modal({
   };
 
   const handleCloseModal = () => {
-    console.log("cerrar");
-
     setOpen(false);
   };
 

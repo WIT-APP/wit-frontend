@@ -14,7 +14,7 @@ export default defineConfig({
     alias: [{ find: "@", replacement: resolve(__dirname, "./src") }]
   },  
       // Set the appType to 'spa', 'mpa', or 'custom'
-      appType: 'mpa', // Change this value as needed
+  appType: 'mpa', // Change this value as needed
     
   
 });

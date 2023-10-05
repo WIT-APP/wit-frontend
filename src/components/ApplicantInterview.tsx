@@ -76,7 +76,6 @@ import { ChangesSavedDialog } from "./alerts/ChangesSavedDialog";
             id: applicantId,
           });
           queryClient.invalidateQueries(["applicants", applicantId]);
-          console.log("Applicant information updated successfully.");
           setShowSuccessModal(true);
         } catch (error) {
           console.error("Error updating applicant information:", error);
