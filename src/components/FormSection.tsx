@@ -37,7 +37,7 @@ export const FormSection = (props: FormSectionProps) => {
   const goToPreviousPage = () => {
     scrollTop()
     onPageChange(Math.max(currentPage - 1, 0));
-   setProgress(progress-25)
+    setProgress(progress-25)
   };
 
   return (
@@ -246,7 +246,8 @@ export const FormSection = (props: FormSectionProps) => {
 
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
-            type="button"
+              type="button"
+              data-testid="previous-page-button"
           >
             Atras
           </button>
@@ -256,7 +257,8 @@ export const FormSection = (props: FormSectionProps) => {
             onClick={goToNextPage}
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
-            type="button"
+              type="button"
+              data-testid="next-page-button"
           >
             Siguiente
           </button>
@@ -265,7 +267,8 @@ export const FormSection = (props: FormSectionProps) => {
           <button
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
-            type="submit"
+              type="submit"
+              data-testid="submit-form-button"
           >
             Enviar
           </button>
