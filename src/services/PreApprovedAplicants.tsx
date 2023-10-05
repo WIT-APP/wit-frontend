@@ -13,7 +13,6 @@ export const usePreApprovedApplicants = () => {
     queryKey: ["applicants"],
     queryFn: async (): Promise<Applicant[]> => {
       const response = await fetch(
-        // 'http://localhost:3000/applicant/preapproved-applicants'
         'https://wit-backend-factoriaf5.up.railway.app/applicant/preapproved-applicants',
         {
           headers: {

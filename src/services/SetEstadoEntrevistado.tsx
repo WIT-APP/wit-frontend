@@ -6,8 +6,6 @@ const setEstadoEntrevistadoMutation = async ({ id, estado }: Applicant) => {
   const token = localStorage.getItem('token'); 
 
 
-  // https://wit-backend-factoriaf5.up.railway.app/applicant/update-estado/${id}
-  // http://localhost:3000/applicant/update-estado/${id}
     const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/update-estado/${id}`, {
       method: 'PATCH',
       headers: {

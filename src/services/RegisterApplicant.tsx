@@ -7,19 +7,20 @@ const notify = () =>
   toast.success("Su aplicacion ha sido completada ! Gracias !", {
     position: "top-center",
     autoClose: 3000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
     theme: "colored",
-  });
+  }
+  );
 
 const notifyError = () =>
   toast.error("Hay un error en su aplicacion, debe verificar los campos", {
     position: "top-center",
     autoClose: 3000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
@@ -29,9 +30,8 @@ const notifyError = () =>
 
 const newApplication = async (applicant: CreateApplicant) => {
   const response = await fetch(
-    // "https://wit-backend-factoriaf5.up.railway.app/applicant",
-    // 'http://localhost:3000/applicant',
-    'https://wit-backend-factoriaf5.up.railway.app/applicant',
+     "https://wit-backend-factoriaf5.up.railway.app/applicant",
+    
     {
       method: "POST",
       headers: {
@@ -44,10 +44,12 @@ const newApplication = async (applicant: CreateApplicant) => {
     notifyError();
     const error = await response.json();
     throw new Error(error.message || "");
+   
   }
   notify();
   const result = await response.json();
   return result;
+  
 };
 
 
@@ -61,4 +63,5 @@ export const useNewApplication = () => {
       },
     }
   );
+ 
 };

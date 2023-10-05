@@ -7,7 +7,7 @@ const fetchQuestions = async (category: string): Promise<Question[] | undefined>
 
   try {
     const response = await fetch(
-      // http://localhost:3000/question?category=${category} 
+
       `https://wit-backend-factoriaf5.up.railway.app/question?category=${category}`
     );
     if (!response.ok) {

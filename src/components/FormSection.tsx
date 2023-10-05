@@ -3,6 +3,8 @@ import { Field, ErrorMessage, useFormikContext, Form } from "formik";
 import { FormValues } from "@/interfaces/formRegister.interface";
 import classnames from "classnames";
 import { Question } from "@/interfaces/question.interface";
+import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
 
 const pages = ["Personal", "Sociodemografica", "Academica", "Formacion"];
 
@@ -11,27 +13,36 @@ interface FormSectionProps {
   isPreviousData: boolean;
   question: Question[];
   currentPage: number;
+  scrollTop: ()=> void;
   onPageChange: (newPage: number) => void;
 }
 
 export const FormSection = (props: FormSectionProps) => {
-  const { isFetching, isPreviousData, question, currentPage, onPageChange } =
+  const { isFetching, isPreviousData, question, currentPage, onPageChange, scrollTop } =
     props;
+
+  const [progress, setProgress] = useState(25)
 
   const formik = useFormikContext<FormValues>();
 
-  const goToPreviousPage = () => {
-    onPageChange(Math.max(currentPage - 1, 0));
-  };
-
   const goToNextPage = () => {
     if (!isPreviousData && currentPage < pages.length) {
-      onPageChange(Math.min(currentPage + 1, pages.length - 1));
+      const nextPage= Math.min(currentPage + 1, pages.length - 1)
+      scrollTop()
+      onPageChange(nextPage);
+      setProgress(progress+25)
     }
   };
 
+  const goToPreviousPage = () => {
+    scrollTop()
+    onPageChange(Math.max(currentPage - 1, 0));
+   setProgress(progress-25)
+  };
+
   return (
-    <Form>
+    <div >
+       <Form>
       {question?.map(
         (q: Question) =>
           currentPage === currentPage && (
@@ -224,44 +235,43 @@ export const FormSection = (props: FormSectionProps) => {
             </div>
           )
       )}
-      <div className="flex justify-evenly text-sm mb-4 mt-6">
-        <button
-          onClick={goToPreviousPage}
-          disabled={currentPage === 0}
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage === 0,
-          })}
-          type="button"
-          data-testid="previous-page-button"
-        >
-          Previous Page
-        </button>{" "}
-        <button
-          onClick={goToNextPage}
-          disabled={
-            //!isCurrentSectionValid() ||
-            isPreviousData || currentPage === pages.length - 1
-          }
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage === pages.length - 1,
-          })}
-          type="button" // Use type="button" to prevent form submission
-          data-testid="next-page-button"
-        >
-          Next Page
-        </button>
-        <button
-          disabled={currentPage !== pages.length - 1}
-          className={classnames("btn-form", "btn-form-green", {
-            invisible: currentPage !== pages.length - 1,
-          })}
-          type="submit"
-          data-testid="submit-form-button"
-        >
-          Enviar
-        </button>
+      <div className="container mt-5">
+        <Progress value={progress} className="bg-green2 h-2.5 rounded-full w-auto "/>
+      </div>
+      <div className="flex justify-evenly text-sm mb-4 mt-5">
+      {currentPage !== 0 && (
+          <button
+            onClick={goToPreviousPage}
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="button"
+          >
+            Atras
+          </button>
+        )}
+        {currentPage !== pages.length - 1 && (
+          <button
+            onClick={goToNextPage}
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="button"
+          >
+            Siguiente
+          </button>
+        )}
+        {currentPage === pages.length - 1 && (
+          <button
+            disabled={isPreviousData}
+            className={classnames("btn-form", "btn-form-green")}
+            type="submit"
+          >
+            Enviar
+          </button>
+        )}
       </div>
       {isFetching ? <span>Loading...</span> : null}
     </Form>
+    
+    </div>
   );
 };

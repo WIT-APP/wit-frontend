@@ -2,8 +2,7 @@ export async function UpdateEstado(id:string | number | unknown, nuevoEstado:str
   const token = localStorage.getItem('token'); 
 
 
-  // http://localhost:3000/applicant/update-estado/${id}
-  //https://wit-backend-factoriaf5.up.railway.app/applicant/update-estado/${id}`
+  
     const url = `https://wit-backend-factoriaf5.up.railway.app/applicant/update-estado/${id}`;
     const requestOptions = {
       method: 'PATCH',
