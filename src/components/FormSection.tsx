@@ -236,12 +236,14 @@ export const FormSection = (props: FormSectionProps) => {
           )
       )}
       <div className="container mt-5">
-        <Progress value={progress} className="bg-green2 h-2.5 rounded-full w-auto "/>
+        <Progress value={progress} className="h-2.5 rounded-full w-auto " />
+        <p className="text-white text-center mt-2">{currentPage+1}/{pages.length}</p>
       </div>
       <div className="flex justify-evenly text-sm mb-4 mt-5">
       {currentPage !== 0 && (
           <button
             onClick={goToPreviousPage}
+
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
             type="button"
