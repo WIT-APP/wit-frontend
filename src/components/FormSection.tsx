@@ -42,7 +42,7 @@ export const FormSection = (props: FormSectionProps) => {
 
   return (
     <div >
-       <Form>
+      <Form>
       {question?.map(
         (q: Question) =>
           currentPage === currentPage && (
@@ -263,7 +263,7 @@ export const FormSection = (props: FormSectionProps) => {
         )}
         {currentPage === pages.length - 1 && (
           <button
-            disabled={isPreviousData}
+            disabled={isPreviousData || !formik.isValid}
             className={classnames("btn-form", "btn-form-green")}
             type="submit"
           >
@@ -272,8 +272,7 @@ export const FormSection = (props: FormSectionProps) => {
         )}
       </div>
       {isFetching ? <span>Loading...</span> : null}
-    </Form>
-    
+      </Form>
     </div>
   );
 };

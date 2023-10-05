@@ -31,7 +31,7 @@ export const FormPage = () => {
       resetForm()
       setTimeout(() => {
         window.location.reload();
-      }, 3500);
+      }, 2500);
      return response
     } catch (error) {
       return error

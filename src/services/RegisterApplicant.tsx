@@ -19,7 +19,7 @@ const notify = () =>
 const notifyError = () =>
   toast.error("Hay un error en su aplicacion, debe verificar los campos", {
     position: "top-center",
-    autoClose: 3000,
+    autoClose: 2000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
