@@ -9,7 +9,7 @@ export const useGetTotalEstado = () => {
   const token = localStorage.getItem('token'); 
 
   const { data: totalesEstado, isLoading, isError } = useQuery({
-    queryKey: ["applicants"],
+    queryKey: ["totalestado"],
     queryFn: async (): Promise<TotalesEstado> => {
 
       const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/estado/count`,

@@ -93,7 +93,7 @@ import {
       };
     }, [scores, labels]);
   
-    return <Pie data={data} options={options} />;
+    return <Pie className="w-96" data={data} options={options} />;
   }
   
   export default PieChart;
