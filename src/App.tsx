@@ -11,6 +11,7 @@ import PreApprovedPage from "./pages/PreApprovedPage";
 import SettingsPage from "./pages/SettingsPage";
 import TablePage from "./pages/TablePage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import Summary from "./pages/Summary";
 
 function App() {
   return (
@@ -123,6 +124,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <TablePage />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="Estadisticas"
+            element={
+              <ProtectedRoute>
+                <Summary />
               </ProtectedRoute>
             }
           />

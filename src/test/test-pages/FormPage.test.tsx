@@ -548,9 +548,6 @@ describe("Form Questions - Formacion", async () => {
     });
   }); 
 
-  afterEach(() => {
-    cleanup();
-  });
   describe("Formacion - Buttons", () => {
     test("should render Previous Page button", () => {
       const previousPageButton = screen.getByTestId("previous-page-button");
@@ -566,5 +563,9 @@ describe("Form Questions - Formacion", async () => {
       const sendButton = screen.getByTestId("submit-form-button");
       expect(sendButton).toBeTruthy();
     });
+   
+  });
+  afterEach(() => {
+    cleanup();
   });
 });
