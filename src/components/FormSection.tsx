@@ -265,7 +265,7 @@ export const FormSection = (props: FormSectionProps) => {
         )}
         {currentPage === pages.length - 1 && (
           <button
-            disabled={isPreviousData}
+            disabled={isPreviousData || formik.isValid}
             className={classnames("btn-form", "btn-form-green")}
               type="submit"
               data-testid="submit-form-button"
