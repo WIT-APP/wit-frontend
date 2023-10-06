@@ -1,18 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
-export interface TotalesEstado {
+interface TotalesEstado {
   estado: string | undefined;
   count: number;
 }
 
-export const useGetTotalEstado = () => {
+export const useGetTotalCursosByEstado = () => {
   const token = localStorage.getItem('token'); 
 
-  const { data: totalesEstado, isLoading, isError } = useQuery({
+  const { data: totalCursosByEstado, isLoading, isError } = useQuery({
     queryKey: ["applicants"],
     queryFn: async (): Promise<TotalesEstado> => {
 
-      const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/estado/count`,
+      const response = await fetch(`https://wit-backend-factoriaf5.up.railway.app/applicant/curso/count?estado=Matriculado`,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -28,7 +28,7 @@ export const useGetTotalEstado = () => {
   })
 
   return {
-    totalesEstado,
+    totalCursosByEstado,
     isLoading,
     isError,
   };

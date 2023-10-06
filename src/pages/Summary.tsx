@@ -10,10 +10,23 @@ function Summary() {
     
 
   return (
-    <div>
+    <div className='flex gap-5 flex-wrap'>
+        <div>
+        <h2 className='text-center py-6 text-green2 '  >Aplicantes por estado</h2>
+      <PieChart />
+
+      </div>
+      <div>
+
         <LineChart />
-        <BarChart />
-        <PieChart />
+      </div>
+      <div>
+      <BarChart />
+
+      </div>
+    
+      
+  
     </div>
   )
 }

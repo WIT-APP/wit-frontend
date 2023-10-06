@@ -232,7 +232,7 @@ export function DataTable<TData extends Record<string, any>>({
 
   return (
     <div>
-      <div className="este flex items-center py-4">
+      <div className="flex items-center py-4">
         <div className="flex gap-8 justify-between">
           <button onClick={handleDownloadExcel}>
             <div className="flex items-center gap-2 text-green2">
