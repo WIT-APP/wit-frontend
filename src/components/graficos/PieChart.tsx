@@ -24,7 +24,6 @@ ChartJS.register(
 );
 
 import { Pie } from "react-chartjs-2";
-import { useMemo } from "react";
 import { TotalesEstado, useGetTotalEstado } from "@/services/GetTotalEstado";
 
 const options = {
