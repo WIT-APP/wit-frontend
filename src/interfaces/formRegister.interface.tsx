@@ -35,10 +35,10 @@ export const validationSchema = () => (
     }),
     telefono: Yup.string()
     .required('Campo Obligatorio')
-    .min(9, 'El número de teléfono debe tener al menos 8 dígitos')
+    .min(9, 'El número de teléfono debe tener al menos 9 dígitos')
     .max(12, 'El número de teléfono debe tener como máximo 11 caracteres')
     .test('is-valid-number', 'El número de teléfono no es válido', (value) => {
-      return typeof value === 'string' && /^\d{8,}$/.test(value);
+      return typeof value === 'string' && /^\d{9,}$/.test(value);
     }),
     genero: Yup.string().required('Campo Obligatorio'),
     fecha_de_nacimiento: Yup.string()

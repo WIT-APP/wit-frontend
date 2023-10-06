@@ -265,11 +265,11 @@ export const FormSection = (props: FormSectionProps) => {
         )}
         {currentPage === pages.length - 1 && (
           <button
-            disabled={isPreviousData || formik.isValid}
-            className={classnames("btn-form", "btn-form-green")}
-              type="submit"
-              data-testid="submit-form-button"
-          >
+          disabled={isPreviousData || !formik.isValid || Object.keys(formik.touched).length !== Object.keys(formik.values).length}
+          className={classnames("btn-form", "btn-form-green")}
+          type="submit"
+          data-testid="submit-form-button"
+        >
             Enviar
           </button>
         )}
