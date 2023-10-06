@@ -10,7 +10,6 @@ const queryClient = new QueryClient();
 
 describe("Form questions - Personal", async () => {
   beforeEach(async () => {
-  
     render(
       <QueryClientProvider client={queryClient}>
         <FormPage />
@@ -18,14 +17,14 @@ describe("Form questions - Personal", async () => {
     );
   });
   test('should render question "Nombre"', async () => {
-    await waitFor(() => {
-      const input = screen.getByLabelText("Nombre") as HTMLInputElement | null;
-      expect(input).toBeTruthy();
-      if (input) {
-        expect(input.type).toBe("text");
-        expect(input.name).toBe("nombre");
-      }
-    });
+    const input = await waitFor(
+      () => screen.getByLabelText("Nombre") as HTMLInputElement | null
+    );
+    expect(input).toBeTruthy();
+    if (input) {
+      expect(input.type).toBe("text");
+      expect(input.name).toBe("nombre");
+    }
   });
 
   test('should render question "Apellidos"', async () => {
@@ -293,13 +292,15 @@ describe("Form Questions - Sociodemografica", async () => {
     });
   });
   describe("Sociodemografica - Buttons", () => {
-    test("should render Previous Page button", () => {
-      const previousPageButton = screen.getByTestId("previous-page-button");
+    test("should render Previous Page button", async () => {
+      const previousPageButton = await waitFor(() =>
+        screen.getByTestId("previous-page-button")
+      );
       expect(previousPageButton).toBeTruthy();
     });
 
-    test("should render Next Page button", () => {
-      const nextPageButton = screen.getByTestId("next-page-button");
+    test("should render Next Page button", async () => {
+      const nextPageButton = await waitFor(() =>screen.getByText("Siguiente"));
       expect(nextPageButton).toBeTruthy();
     });
   });
@@ -346,33 +347,36 @@ describe("Form Questions - Academica", async () => {
   });
 
   test("should render question '¿En qué situación profesional te encuentras?' with correct radio options", async () => {
-    await waitFor(() => {
-      const situacionProfesionalQuestion = screen.getByText(
-        "¿En qué situación profesional te encuentras?"
-      ) as HTMLInputElement;
+    const situacionProfesionalQuestion = await waitFor(
+      () =>
+        screen.getByText(
+          "¿En qué situación profesional te encuentras?"
+        ) as HTMLInputElement
+    );
 
-      expect(situacionProfesionalQuestion).toBeTruthy();
-    /*   expect(situacionProfesionalQuestion?.type).toBe("radio");
-      expect(situacionProfesionalQuestion?.name).toBe("situacion_profesional"); */
+    expect(situacionProfesionalQuestion).toBeTruthy();
+    //expect(situacionProfesionalQuestion?.type).toBe("radio");
+    //expect(situacionProfesionalQuestion?.name).toBe("situacion_profesional")
 
-      const options = [
-        "Desempleada/o sin ingresos",
-        "Desempleada/o con subsidio por desempleo",
-        "Empleada/o a tiempo completo",
-        "Empleada/o a tiempo parcial",
-        "Autónoma/o",
-        "Estudiante",
-        "Otra",
-      ];
-      expect(options).toHaveLength(7);
-      options.forEach((option) => {
-        expect(screen.getByText(option)).toBeTruthy();
-      });
+    const options = [
+      "Desempleada/o sin ingresos",
+      "Desempleada/o con subsidio por desempleo",
+      "Empleada/o a tiempo completo",
+      "Empleada/o a tiempo parcial",
+      "Autónoma/o",
+      "Estudiante",
+      "Otra",
+    ];
+    expect(options).toHaveLength(7);
+    options.forEach((option) => {
+      expect(screen.getByText(option)).toBeTruthy();
     });
   });
   describe("Academica - Buttons", () => {
-    test("should render Previous Page button", () => {
-      const previousPageButton = screen.getByTestId("previous-page-button");
+    test("should render Previous Page button", async () => {
+      const previousPageButton = await waitFor(() =>
+        screen.getByTestId("previous-page-button")
+      );
       expect(previousPageButton).toBeTruthy();
     });
 
@@ -391,16 +395,12 @@ describe("Form Questions - Formacion", async () => {
     navigateToPage("Formacion");
   });
   test("should render question '¿Qué programa quieres cursar?' with correct radio options", async () => {
-    await waitFor(() => {
-      const programaCursarQuestion = screen.getByText(
+    
+      const programaCursarQuestion = await waitFor(() => screen.getByText(
         "¿Qué programa quieres cursar?"
-      ) as HTMLSelectElement;
+      ) as HTMLSelectElement);
 
       expect(programaCursarQuestion).toBeTruthy();
-      /*if (programaCursarQuestion) {
-        expect(programaCursarQuestion.type).toBe("radio");
-        expect(programaCursarQuestion.name).toBe("programa_cursar"); */
-
       /* expect(programaCursarQuestion.type).toBe("radio");
       expect(programaCursarQuestion.name).toBe("programa_cursar"); */
       const option1 = screen.getByLabelText(
@@ -412,7 +412,7 @@ describe("Form Questions - Formacion", async () => {
 
       expect(option1).toBeTruthy();
       expect(option2).toBeTruthy();
-    });
+
   });
   test("should render question 'Escoge la opcion que mejor se ajuste a tus intereses actuales' with correct radio options", async () => {
     await waitFor(() => {
@@ -530,30 +530,31 @@ describe("Form Questions - Formacion", async () => {
     });
   });
 
- test('should render the question "¿Has hecho alguna vez una formación online?" with correct toggle options', async () => {
+  test('should render the question "¿Has hecho alguna vez una formación online?" with correct toggle options', async () => {
     await waitFor(() => {
       const formacionOnlineQuestion = screen.getByText(
-        '¿Has hecho alguna vez una formación online?'
+        "¿Has hecho alguna vez una formación online?"
       );
       expect(formacionOnlineQuestion).toBeTruthy();
-  
-      const toggleOptions = screen.getAllByRole('checkbox');
+
+      const toggleOptions = screen.getAllByRole("checkbox");
       expect(toggleOptions).toHaveLength(1);
-  
-  
+
       toggleOptions.forEach((toggle) => {
-        const label = toggle.closest('label');
+        const label = toggle.closest("label");
         expect(label).toBeTruthy();
       });
     });
-  }); 
+  });
 
   afterEach(() => {
     cleanup();
   });
   describe("Formacion - Buttons", () => {
-    test("should render Previous Page button", () => {
-      const previousPageButton = screen.getByTestId("previous-page-button");
+    test("should render Previous Page button", async () => {
+      const previousPageButton = await waitFor(() =>
+        screen.getByTestId("previous-page-button")
+      );
       expect(previousPageButton).toBeTruthy();
     });
 
@@ -562,9 +563,11 @@ describe("Form Questions - Formacion", async () => {
       expect(nextPageButton).toBeTruthy();
     });
 
-    test("should render Send button", () => {
-      const sendButton = screen.getByTestId("submit-form-button");
+     test("should render Send button", async () => {
+      const sendButton = await waitFor(() =>
+        screen.getByTestId("submit-form-button")
+      );
       expect(sendButton).toBeTruthy();
-    });
+    }); 
   });
 });

@@ -150,23 +150,4 @@ describe("ApplicantDetails Component", () => {
     expect(UnsavedChangesConfirmationDialog).not.toHaveBeenCalled();
   });
 
-/*   test('calls navigate when clicking "Ir a la entrevista" button', async () => {
-    const id = 1
-
-    const mockNavigate = vi.fn();
-  
-    const handleGoToInterview = () => {
-        mockNavigate(`/applicantInterview/${id}`);
-    };
-    const interviewButton = screen.getByRole('button', { name: 'Ir a la entrevista' });
-
-    await waitFor(() => {
-      expect(interviewButton).toBeTruthy();
-      userEvent.click(interviewButton);
-    });
-
-    handleGoToInterview();
-    expect(mockNavigate).toHaveBeenCalled();
-    expect(mockNavigate).toHaveBeenCalledWith(`/applicantInterview/${id}`);
-  });  */
 });

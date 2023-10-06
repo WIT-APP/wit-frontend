@@ -253,7 +253,8 @@ export const FormSection = (props: FormSectionProps) => {
 
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
-            type="button"
+              type="button"
+              data-testid="previous-page-button"
           >
             Atras
           </button>
@@ -263,7 +264,8 @@ export const FormSection = (props: FormSectionProps) => {
             onClick={goToNextPage}
             disabled={isPreviousData}
             className={classnames("btn-form", "btn-form-green")}
-            type="button"
+              type="button"
+              data-testid="next-page-button"
           >
             Siguiente
           </button>
@@ -272,7 +274,8 @@ export const FormSection = (props: FormSectionProps) => {
           <button
             disabled={isPreviousData || !formik.isValid}
             className={classnames("btn-form", "btn-form-green")}
-            type="submit"
+              type="submit"
+              data-testid="submit-form-button"
           >
             Enviar
           </button>
