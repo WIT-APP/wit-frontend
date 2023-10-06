@@ -66,7 +66,7 @@ export const validationSchema = () => (
     .required('Campo Obligatorio')
     .test('is-valid-number', 'El número de horas o formato no es válido', (value) => {
       const numericValue = parseInt(value);
-      return !isNaN(numericValue) && numericValue >= 0 && numericValue <= 24;
+      return !isNaN(numericValue) && numericValue >= 0 && numericValue <= 168;
     })
     .min(1, 'El número de horas debe ser mayor o igual a 1')
     .max(24, 'El número de horas debe ser menor o igual a 24'),    acceso_internet_dispositivos: Yup.string().required('Campo Obligatorio'),
