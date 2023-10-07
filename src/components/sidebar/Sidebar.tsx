@@ -52,20 +52,6 @@ export default function Sidebar({ children }: SidebarProps) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-        <div className="border-t flex p-3">
-          <div
-            className={`
-            flex justify-bettween items-center overflow-hidden transition-all ${
-              expanded ? "w-52 ml-3" : "w-0"
-            }
-            `}
-          >
-            <div>
-              <h4 className="font-semibold text-white2"> TITO </h4>
-              <span className="text-xs text-white2"> TITO@gmail.com </span>
-            </div>
-          </div>
-        </div>
       </nav>
     </aside>
   );
