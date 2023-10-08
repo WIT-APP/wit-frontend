@@ -32,7 +32,7 @@
 
 *[Tecnologías utilizadas](#tecnologías-utilizadas)
 
-*[Personas Contribuyentes](#personas-contribuyentes)
+*[Equipo de Desarrollo](#personas-contribuyentes)
 
 *[Personas-Desarrolladores del Proyecto](#personas-desarrolladores)
 
@@ -41,19 +41,19 @@
 *[Conclusión](#conclusión)
 
 
-<h2>Descripción del Proyecto</h2>
+## Descripción del Proyecto
 
 Bienvenido al repositorio Frontend de la aplicación de gestión de becas para el programa Work in Tech (WIT) de la Fundación Somos F5. Este proyecto tiene como objetivo centralizar y automatizar el proceso de registro de interés, selección, matriculación y seguimiento de las personas que participan en el programa WIT.
 
-<h3>Planteamiento del problema</h3>
+## Planteamiento del problema
 
 Actualmente, el equipo de WIT trabaja con una base de datos descentralizada gestionada de manera manual a través de archivos de Google Sheets. El proceso inicial recopila datos a través de un formulario de Google, y luego, en los pasos posteriores a la preinscripción, varias personas actualizan y manipulan estos datos, lo que ha afectado la integridad de la base de datos.
 
-<h3>Propuesta Solución</h3>
+## Propuesta Solución
 
 Nuestra solución es desarrollar una aplicación que simplifique y centralice la gestión de datos en todo el proceso de administración de becas de Work in Tech. Esto permitirá garantizar la integridad y precisión de los datos recopilados y actualizados. Además, nuestro objetivo es mejorar la experiencia del usuario, haciendo que el proceso sea más intuitivo y reduciendo la necesidad de pasos manuales.
 
-<h2>Estado del proyecto</h2>
+## Estado del proyecto
 
 Actualmente la aplicación para la gestión de Becas de google por parte de Work in Tech se encuentra funcional en una etapa inicial. Esta aplicación recolecta la información de pre-inscripción de todos los aspirantes, esta información es capturada por medio de un formulario, y enviado a nuestra API [Reporsitorio Backend](https://github.com/WIT-APP/wit-backend) para almacenar la información en la base de datos. Posteriormente, esta aplicación le permite a la organización gestionar la información de los aspirantes y continuar con el proceso de asignación de las becas para estudiar alguno de los siguientes cursos:
 
@@ -102,7 +102,6 @@ En este formulario las personas interesadas en adquirir la beca se registran, es
 
 
 
-
 ## Herramientas y Tecnologías Utilizadas
 
 - **React.js:** Biblioteca de JavaScript desarrollada por Facebook para la creación de interfaces de usuario (UI) interactivas y de una sola página.
@@ -148,6 +147,28 @@ PostgreSQL: `npm install pg`
 3. Configurar la base de datos PostgreSQL y actualizar la configuración en `config.js`.
 
 4. Ejecutar la aplicación: `npm start`
+
+
+
+### Scrum Master:
+[<img src="https://avatars.githubusercontent.com/u/97367970?v=4" width=115><br><sub>Alejandra Naranjo</sub>](https://github.com/Alens678)
+
+### Product Owner:
+[<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz)
+
+### Desarrolladores:
+<div style="display:flex; flex-wrap:wrap; justify-content:left">
+  
+[<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
+
+[<img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115><br><sub>Deniz Ozerdogan</sub>](https://github.com/denizozerdogan)
+
+[<img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115><br><sub>Federico Martino</sub>](https://github.com/Federicojaviermartino)
+
+[<img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115><br><sub>Jesus Fajardo</sub>](https://github.com/JFCTito)
+
+</div>
+
 
 ## Contacto
 
