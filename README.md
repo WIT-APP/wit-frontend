@@ -1,10 +1,11 @@
-# Work in Tech (WIT) - Aplicación de Gestión de Becas
+
 ![LOGOS WORK IN TECH, Google y Somos F5](https://github.com/WIT-APP/wit-frontend/blob/main/src/assets/footer-image.png?raw=true);
+# Work in Tech (WIT) - Aplicación de Gestión de Becas
 
  <p align="left">
    <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
-   <img src="https://img.shields.io/github/license/:user/:repo">
-   <img src="https://img.shields.io/github/package-json/dependency-version/:user/:repo/:packageName">
+   <img src="https://img.shields.io/github/license/WIT-APP/wit-frontend">
+   <img src="https://img.shields.io/github/package-json/dependency-version/WIT-APP/wit-frontend/:packageName">
   </p>
 
 ## Descripción del Proyecto
