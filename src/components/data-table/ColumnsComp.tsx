@@ -80,9 +80,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       />
     ),
     cell: ({ row }) => (
-      <div className="flex gap-1 items-center">
-       
-        {/* Renderiza el DropdownMenu después del Checkbox */}
+      <div className="flex gap-1 items-center">       
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
@@ -153,7 +151,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
-    cell: ({ row }) => <div className="ml-4">{row.getValue("nombre")}</div>,
+    cell: ({ row }) => <div className="ml-4 min-w-[0px]">{row.getValue("nombre")}</div>,
   },
   {
     accessorKey: "apellidos",
@@ -386,62 +384,5 @@ export const tableColumns: ColumnDef<Applicant>[] = [
     cell: ({ row }) => <div>{row.getValue("observaciones")}</div>,
   },
 
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const applicant = row.original;
-
-      return (
-        <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">Open menu</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
-          <DropdownMenuItem
-            onClick={() => {
-              if (applicant && applicant.correo_electronico) {
-                navigator.clipboard.writeText(
-                  applicant.correo_electronico.toString()
-                );
-              }
-            }}
-          >
-            Copiar Correo Aplicante
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link to={`/applicantDetails/${applicant.id}`}>
-              Detalles Aplicante
-            </Link>
-          </DropdownMenuItem>
-          {(applicant.estado === "Aplicante" ||
-            applicant.estado === "Preaprobado" ||
-            applicant.estado === "Invitado" ||
-            applicant.estado === "Confirmado") && (
-            <DropdownMenuItem>
-              <Link to={`/newInterview/${applicant.id}`}>
-                Realizar Entrevista
-              </Link>
-            </DropdownMenuItem>
-          )}
-          {(applicant.estado === "Entrevistado" ||
-            applicant.estado === "Admitido" ||
-            applicant.estado === "Matriculado" ||
-            applicant.estado === "Certificado") && (
-            <DropdownMenuItem>
-              <Link to={`/applicantInterview/${applicant.id}`}>
-                Entrevista Aplicante
-              </Link>
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuContent>
-      </DropdownMenu>
-      );
-    },
-    enableResizing: false,
-  },
+ 
 ];
