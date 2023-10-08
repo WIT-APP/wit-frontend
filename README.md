@@ -12,12 +12,6 @@
 
 <h2>Índice</h2>
 
-*[Título e imagen de portada](#Título-e-imagen-de-portada)
-
-*[Insignias](#insignias)
-
-*[Índice](#índice)
-
 *[Descripción del proyecto](#descripción-del-proyecto)
 
 *[Planteamiento del problema](#planteamiento-del-problema)
