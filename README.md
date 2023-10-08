@@ -177,7 +177,7 @@ PostgreSQL: `npm install pg`
     <br>
     <sub>Carlos Saiz</sub>
   </div>
-  <div style="display:flex flex-wrap:wrap justify-content:flex-start">
+  <div style="display:flex flex-wrap:wrap justify-content:flex-start !important">
   <div style="width:116px;">
     <a href="https://github.com/Angela-GM">
       <img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width="115" alt="Angela Garcia">
