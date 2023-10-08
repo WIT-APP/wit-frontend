@@ -60,13 +60,16 @@
     "pregunta": "¿Qué significa cada estado de aplicante?",
     "respuesta":"Estos son los estados",
     "estados": [
-      "Aplicante: Todos los que se registran con el formulario",
-      "Preaprobado: Los residentes Españoles",
-      "Invitado: Los invitados son a los que se les envía un mensaje",
-      "Rechazado",
-      "Entrevistado",
-      "Matriculado",
-      "Certificado: Ha recibido el certificado"
+      "1- APLICANTE: Todos los aspirantes que se han registrado con el formulario y que no cumplen con las condiciones para ser Preaprobados, es decir, estos aspirantes no residen en España o han ingresado con un email ya existe en la lista de aspirantes.",
+      "2- PREAPROBADO: Todos los aspirantes que se han registrado con el formulario y cumplen con las condiciones, es decir, estos aspirantes residen en España o han ingresado con un email inexistente en la lista de aspirantes.",
+      "3- INVITADO: Todos los aspirantes que han sido contactados para ser invitados a una sesion informativa.",
+      "4- CONFIRMADO: Todos los aspirantes que han confirmado su asistencia a la sesion informativa.",
+      "5- ENTREVISTADO: Todos los aspirantes que han sido entrevistados en la sesion informativa.",
+      "6- ADMITIDO: Son los aplicantes que han sido admitidos para continuar con el proceso de becas.",
+      "7- MATRICULADO: Todos los aplicantes que han realizado el proceso de inscripcion y matriculacion para realizar el curso suministrado por la beca.",
+      "8- CERTIFICADO: Todos los aplicantes que han recibido el certificado de completicion de los cursos suministrados por la beca.",
+      "9- RECHAZADO: Todos los aplicantes que no han pasado el proceso de seleccion y no son aptops para recibir la beca.",
+      "10- BAJA: todos los aspirantes que han abandonado o se han retirado del curso suministrado por la beca sin haberlo completado."
     ]
   },
   {
