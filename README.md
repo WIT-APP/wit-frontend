@@ -75,13 +75,6 @@ Retomando el inicio del flujo, una persona que automaticamente fue aprobada o qu
 
 Esta aplicación se caracteriza por contar con dos secciones principales, la sección de	registro de nuevos aspirantes y la sección para la gestión de las becas.
 
-### Desarrolladores:
-<div style="display:flex; justify-content:left">
-  
-[<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
-
-En este formulario las personas interesadas en adquirir la beca se registran, esta información es captada para procesos posteriores de analisis de datos y además para efectos del primer filtro explicado anteriormente, que define la diferencia entre pre-aprobado y aplicante.
-  - ![form](https://github.com/WIT-APP/wit-frontend/assets/144338411/cb7456ab-d6e3-4ccc-8031-288bcc8acd75)
 
   ### 2. Gestion de Becas
 
@@ -163,7 +156,7 @@ PostgreSQL: `npm install pg`
 </div>
 
 ### Desarrolladores:
-<div style="display:flex; flex-wrap:wrap; justify-content:left">
+<div style="display:flex; justify-content:left">
 
 [<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
 
