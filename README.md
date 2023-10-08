@@ -1,6 +1,6 @@
 
 ![LOGOS WORK IN TECH, Google y Somos F5](https://github.com/WIT-APP/wit-frontend/blob/main/src/assets/footer-image.png?raw=true)
-# Work in Tech (WIT) - Aplicación de Gestión de Becas
+ <h1>Work in Tech (WIT) - Aplicación de Gestión de Becas</h1>
 
  <p align="center">
    <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
@@ -10,9 +10,57 @@
    <img src="https://img.shields.io/github/contributors/WIT-APP/wit-frontend">
   </p>
 
-## Descripción del Proyecto
+<h2>Índice</h2>
+
+*[Título e imagen de portada](#Título-e-imagen-de-portada)
+
+*[Insignias](#insignias)
+
+*[Índice](#índice)
+
+*[Descripción del proyecto](#descripción-del-proyecto)
+
+*[Planteamiento del problema](#planteamiento-del-problema)
+
+*[Propuesta solución](#propuesta-solucion)
+
+*[Estado del proyecto](#Estado-del-proyecto)
+
+*[Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)
+
+*[Acceso al proyecto](#acceso-proyecto)
+
+*[Tecnologías utilizadas](#tecnologías-utilizadas)
+
+*[Personas Contribuyentes](#personas-contribuyentes)
+
+*[Personas-Desarrolladores del Proyecto](#personas-desarrolladores)
+
+*[Licencia](#licencia)
+
+*[Conclusión](#conclusión)
+
+
+<h2>Descripción del Proyecto</h2>
 
 Bienvenido al repositorio Frontend de la aplicación de gestión de becas para el programa Work in Tech (WIT) de la Fundación Somos F5. Este proyecto tiene como objetivo centralizar y automatizar el proceso de registro de interés, selección, matriculación y seguimiento de las personas que participan en el programa WIT.
+
+<h3>Planteamiento del problema</h3>
+
+Actualmente, el equipo de WIT trabaja con una base de datos descentralizada gestionada de manera manual a través de archivos de Google Sheets. El proceso inicial recopila datos a través de un formulario de Google, y luego, en los pasos posteriores a la preinscripción, varias personas actualizan y manipulan estos datos, lo que ha afectado la integridad de la base de datos.
+
+<h3>Propuesta Solución</h3>
+
+Nuestra solución es desarrollar una aplicación que simplifique y centralice la gestión de datos en todo el proceso de administración de becas de Work in Tech. Esto permitirá garantizar la integridad y precisión de los datos recopilados y actualizados. Además, nuestro objetivo es mejorar la experiencia del usuario, haciendo que el proceso sea más intuitivo y reduciendo la necesidad de pasos manuales.
+
+<h2>Estado del proyecto</h2>
+
+Actualmente la aplicación para la gestión de Becas de google por parte de Work in Tech se encuentra funcional en una etapa inicial. Esta aplicación recolecta la información de pre-inscripción de todos los aspirantes, esta información es capturada por medio de un formulario, y enviado a nuestra API [Reporsitorio Backend](https://github.com/WIT-APP/wit-backend) para almacenar la información en la base de datos. Posteriormente, esta aplicación le permite a la organización gestionar la información de los aspirantes y continuar con el proceso de asignación de las becas para estudiar alguno de los siguientes cursos:
+
+*Soporte de Tecnologías de la Información
+*Automatización de Tecnologías de la Información con Python
+
+Este proceso supone el siguiente flujo de vida de un aspirante que pasa los filtros y es asignado una licencia para estudiar uno de estos programas.
 
 ## Equipo de Desarrollo
 
@@ -23,14 +71,6 @@ Bienvenido al repositorio Frontend de la aplicación de gestión de becas para e
   - Deniz Ozerdogan
   - Federico Martino
   - Jesus Fajardo
-
-## Problema a Resolver
-
-Actualmente, el equipo de WIT trabaja con una base de datos descentralizada gestionada de manera manual a través de archivos de Google Sheets. El proceso inicial recopila datos a través de un formulario de Google, y luego, en los pasos posteriores a la preinscripción, varias personas actualizan y manipulan estos datos, lo que ha afectado la integridad de la base de datos.
-
-## Solución Propuesta
-
-Nuestra solución es desarrollar una aplicación que simplifique y centralice la gestión de datos en todo el proceso de administración de becas de Work in Tech. Esto permitirá garantizar la integridad y precisión de los datos recopilados y actualizados. Además, nuestro objetivo es mejorar la experiencia del usuario, haciendo que el proceso sea más intuitivo y reduciendo la necesidad de pasos manuales.
 
 ## Herramientas y Tecnologías Utilizadas
 
