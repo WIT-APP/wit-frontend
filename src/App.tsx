@@ -8,7 +8,6 @@ import { FormPage } from "./pages/FormPage";
 import HelpPage from "./pages/HelpPage";
 import LoginPage from "./pages/LoginPage";
 import PreApprovedPage from "./pages/PreApprovedPage";
-import SettingsPage from "./pages/SettingsPage";
 import TablePage from "./pages/TablePage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Summary from "./pages/Summary";
@@ -132,14 +131,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <Summary />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="Ajustes"
-            element={
-              <ProtectedRoute>
-                <SettingsPage />
               </ProtectedRoute>
             }
           />
