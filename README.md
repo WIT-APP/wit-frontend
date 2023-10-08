@@ -163,14 +163,14 @@ PostgreSQL: `npm install pg`
 
 
 
-  <div style="margin-right: 20px;">
+  <div style="margin-right: 20px width:116px;">
     <a href="https://github.com/Alens678">
       <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width="115" alt="Alejandra Naranjo">
     </a>
     <br>
     <sub>Alejandra Naranjo</sub>
   </div>
-  <div style="margin-right: 20px;">
+  <div style="margin-right: 20px width:116px">
     <a href="https://github.com/carlos-saiz">
       <img src="https://avatars.githubusercontent.com/u/126065490?v=4" width="115" alt="Carlos Saiz">
     </a>
@@ -178,21 +178,21 @@ PostgreSQL: `npm install pg`
     <sub>Carlos Saiz</sub>
   </div>
   <div style="display: flex flex-wrap: wrap justify-content: flex-start">
-  <div style="margin-right: 20px;">
+  <div style="margin-right: 20px width:116px">
     <a href="https://github.com/Angela-GM">
       <img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width="115" alt="Angela Garcia">
     </a>
     <br>
     <sub>Angela Garcia</sub>
   </div>
-  <div style="margin-right: 20px;">
+  <div style="margin-right: 20px width:116px">
     <a href="https://github.com/JFCTito">
       <img img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115 alt="Jesús Fajardo">
     </a>
     <br>
     <sub>Jesús Fajardo</sub>
   </div>
-  <div style="margin-right: 20px;">
+  <div style="margin-right: 20px width:116px">
     <a href="https://github.com/denizozerdogan">
      <img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115>
     </a>
@@ -200,7 +200,7 @@ PostgreSQL: `npm install pg`
     <sub>Deniz Ozerdogan</sub>
   </div>
 </div>
-<div style="margin-right: 20px;">
+<div style="margin-right: 20px width:116px">
     <a href="https://github.com/Federicojaviermartino">
      <img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115>
     </a>
