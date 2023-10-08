@@ -76,6 +76,7 @@ export const tableColumns: ColumnDef<Applicant>[] = [
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table?.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
+        className="ml-9"
       />
     ),
     cell: ({ row }) => (
