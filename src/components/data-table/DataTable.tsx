@@ -232,8 +232,8 @@ export function DataTable<TData extends Record<string, any>>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
-        <div className="flex gap-8 justify-between">
+      <div className="flex items-center py-4 max-sm:ml-10 max-sm:flex-col max-sm:items-start">
+        <div className="flex gap-8 justify-between flex-wrap">
           <button onClick={handleDownloadExcel}>
             <div className="flex items-center gap-2 text-green2">
               <RiFileExcel2Fill /> seleccionados
@@ -251,7 +251,7 @@ export function DataTable<TData extends Record<string, any>>({
           onChange={(event) =>
             table.getColumn(value)?.setFilterValue(event.target.value)
           }
-          className="ml-5 mr-5 max-w-sm"
+          className="sm:ml-5 sm:mr-5 max-w-sm"
         />
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger className="w-[180px]">
