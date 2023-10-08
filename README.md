@@ -102,13 +102,13 @@ En este formulario las personas interesadas en adquirir la beca se registran, es
 
 ## Acceso al proyecto
 
-Accede al formulario de registro
-**[Página al formulario](https://wit-frontend-green.vercel.app/newapplicant/register)**
+### Accede al formulario de registro
+**[Click aquí para registrarte](https://wit-frontend-green.vercel.app/newapplicant/register)**
 
-Accede al dashboard
+### Accede al dashboard
 Usuario demo: admin@mail.com
 Password demo: 1234
-**[Página Dashboard](https://wit-frontend-green.vercel.app/login)**
+**[Click aquí para ir al dashboard](https://wit-frontend-green.vercel.app/login)**
 
 
 ## Herramientas y Tecnologías Utilizadas
