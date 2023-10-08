@@ -71,7 +71,7 @@ Retomando el inicio del flujo, una persona que automaticamente fue aprobada o qu
 
 <p>El proyecto ha alcanzado un 70% de su principal objetivo, hay un par de aspectos a mejorar que han quedado registrados en futuros Issues; por ejemplo, quisieramos añadir un modulo de seguimiento a las personas actualmente matriculadas que permita subir la información que se trae de la plataforma de estudios.</p>
 
-<h2>Características de la aplicación y demostración </h2>
+## Características de la aplicación y demostración 
 
 Esta aplicación se caracteriza por contar con dos secciones principales, la sección de	registro de nuevos aspirantes y la sección para la gestión de las becas.
 
@@ -100,6 +100,15 @@ En este formulario las personas interesadas en adquirir la beca se registran, es
   Y finalmente, hemos incluido una página de ayuda.
   - ![Ayuda](https://github.com/WIT-APP/wit-frontend/assets/144338411/4aa5eac1-d76d-4c04-b67c-cd4166727b5d)
 
+## Acceso al proyecto
+
+Accede al formulario de registro
+**[Página al formulario](https://wit-frontend-green.vercel.app/newapplicant/register)**
+
+Accede al dashboard
+Usuario demo: admin@mail.com
+Password demo: 1234
+**[Página Dashboard](https://wit-frontend-green.vercel.app/login)**
 
 
 ## Herramientas y Tecnologías Utilizadas
