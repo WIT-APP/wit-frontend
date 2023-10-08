@@ -103,6 +103,7 @@ Password demo: 1234
 
 ## Tecnologías Utilizadas
 
+- **Typescript:** Lenguaje de desarrollo fuertemente tipado que se transpila a Javascript.
 - **React.js:** Biblioteca de JavaScript desarrollada por Facebook para la creación de interfaces de usuario (UI) interactivas y de una sola página.
 - **Vite:** Herramienta de construcción rápida y versátil para el desarrollo de aplicaciones web modernas.
 - **React Router:** Biblioteca de enrutamiento diseñada para aplicaciones web basadas en React.
