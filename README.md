@@ -165,7 +165,7 @@ PostgreSQL: `npm install pg`
 
   <div style="width:116px;">
     <a href="https://github.com/Alens678">
-      <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width=""115"" alt="Alejandra Naranjo">
+      <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width="115" alt="Alejandra Naranjo">
     </a>
     <br>
     <sub>Alejandra Naranjo</sub>
