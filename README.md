@@ -159,29 +159,11 @@ PostgreSQL: `npm install pg`
 
 4. Ejecutar la aplicación: `npm start`
 
-<div style="display:flex; flex-wrap:wrap; justify-content:left">
+## Equipo de Desarrollo
 
-### Scrum Master:
+| [<img src="https://avatars.githubusercontent.com/u/97367970?v=4 width=115><br><sub>Alejandra Naranjo</sub>](https://github.com/Alens678) |  [<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz) | [<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM) | [<img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115><br><sub>Deniz Ozerdogan</sub>](https://github.com/denizozerdogan) |  [<img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115><br><sub>Federico Martino</sub>](https://github.com/Federicojaviermartino) | [<img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115><br><sub>Jesus Fajardo</sub>](https://github.com/JFCTito)|
 
-[<img src="https://avatars.githubusercontent.com/u/97367970?v=4" width=115><br><sub>Alejandra Naranjo</sub>](https://github.com/Alens678)
 
-### Product Owner:
-[<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz)
-
-</div>
-
-### Desarrolladores:
-<div style="display:flex; flex-wrap:wrap; justify-content:left">
-
-[<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
-
-[<img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115><br><sub>Deniz Ozerdogan</sub>](https://github.com/denizozerdogan)
-
-[<img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115><br><sub>Federico Martino</sub>](https://github.com/Federicojaviermartino)
-
-[<img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115><br><sub>Jesus Fajardo</sub>](https://github.com/JFCTito)
-
-</div>
 
 ## Contacto
 
