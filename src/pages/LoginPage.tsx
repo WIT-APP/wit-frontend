@@ -17,10 +17,10 @@ import { useForm } from 'react-hook-form';
 
 const formSchema = z.object({
   email: z.string().email({
-    message: "Invalid email address.",
+    message: "Invalido dirección de correo electrónico."
   }),
   password: z.string().min(4, {
-    message: "Password must be at least 6 characters.",
+    message: "La contraseña debe tener al menos 6 caracteres.",
   }),
 });
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
     try {
       const result = await loginUserMutation.mutateAsync({ email, password });
       login(result);
-      navigate('/');
+      navigate('/Preaprobado');
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -60,7 +60,7 @@ export default function LoginPage() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Correo Electronico</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} />
                 </FormControl>
@@ -73,7 +73,7 @@ export default function LoginPage() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Contraseña</FormLabel>
                 <FormControl>
                   <Input
                     type="password"  
@@ -86,7 +86,7 @@ export default function LoginPage() {
             )}
           />
           <Button className="btn-form-green w-full mt-4" type="submit">
-            Submit
+            Enviar
           </Button>
         </form>
       </Form>

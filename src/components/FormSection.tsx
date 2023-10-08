@@ -274,7 +274,8 @@ export const FormSection = (props: FormSectionProps) => {
           <button
             disabled={isPreviousData || !formik.isValid}
             className={classnames("btn-form", "btn-form-green")}
-            type="submit"
+              type="submit"
+              data-testid="submit-form-button"
           >
             Enviar
           </button>
