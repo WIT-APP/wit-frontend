@@ -10,7 +10,6 @@ import {
   MessageSquarePlus,
   GraduationCap,
   DoorOpen,
-  Settings,
   LifeBuoy,
   ClipboardSignature,
   LineChart,
@@ -106,12 +105,6 @@ export default function SideBarDashboard() {
           text="Estadisticas"
           active={activeItem === "Estadisticas"}
           onClick={() => handleItemClick("Estadisticas")}
-        />
-        <SidebarItem
-          icon={<Settings size={20} />}
-          text="Ajustes"
-          active={activeItem === "Ajustes"}
-          onClick={() => handleItemClick("Ajustes")}
         />
         <SidebarItem
           icon={<LifeBuoy size={20} />}
