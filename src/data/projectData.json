@@ -21,17 +21,31 @@
       "nombre": "Work in tech Portal es una aplicación diseñada para gestionar y simplificar el proceso de selección de candidatos. Con esta herramienta, puedes realizar un seguimiento de los aplicantes, cambiar su estado , y tomar decisiones para gestionar aspirantes y simplificar el proceso de selección",
       "categoria": "titulo",
       "contenido": "biografia",
-      "respuesta": "¡Bienvenido a Work in Tech, la solución tecnológica que ha llegado para revolucionar la forma en que gestionas a tus aspirantes y candidatos! ¿Te enfrentabas a la tediosa tarea de manejar todo manualmente en hojas de cálculo de Google y tablas interminables? ¡Tu búsqueda de una solución eficiente ha llegado a su fin!     En Work in Tech, hemos creado una aplicación web potente y fácil de usar que automatiza todo el proceso de gestión de aspirantes para certificados de Google. Olvídate de los formularios en papel, llamadas telefónicas interminables y la confusión en las etapas del proceso."
+      "respuesta": "¡Bienvenido a la página de ayuda de Work in Tech! Aquí encontrarás respuestas a las preguntas más frecuentes y toda la información que necesitas para aprovechar al máximo nuestra solución tecnológica. Work in Tech está diseñado para simplificar la gestión de tus aspirantes y candidatos. Con nuestra aplicación web potente y fácil de usar, automatizamos todo el proceso de gestión de aspirantes. Estamos aquí para ayudarte en cada paso del camino."
   }
   ,
   {
     "nombre": "Pregunta 1",
     "categoria": "faq",
     "contenido": "preguntas",
-    "pregunta": "¿Cuáles son las ventajas de usar Work in Tech en lugar de métodos manuales tradicionales?",
-    "respuesta": "Work in Tech elimina la necesidad de gestionar aspirantes de forma manual, lo que ahorra tiempo y reduce errores. Nuestra aplicación agiliza el proceso y te proporciona resultados instantáneos."
+    "pregunta": "Primeros pasos para el uso de la aplicación",
+    "respuesta": "Una vez que hayas iniciado sesión en nuestra plataforma, lo primero que notarás en tu pantalla es la lista de aplicantes preaprobados. Estos aplicantes cumplen con los requisitos de residencia en España y no tienen correos duplicados. En esta página, encontrarás una tabla con herramientas útiles para gestionar a los aplicantes de manera eficiente. En el panel izquierdo del dashboard, encontrarás una barra de opciones que te permitirá navegar entre aplicantes en diferentes estados. Hay un total de 10 estados disponibles. Además, en esta barra, encontrarás opciones para acceder a estadísticas, consultar la página de ayuda y cerrar sesión. Puedes contraer esta barra de opciones haciendo clic en la flecha en la parte superior."
   },
 
+  {
+    "nombre": "Pregunta 1",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿La barra superior que uso tiene?",
+    "respuesta": "En la página principal, donde se muestra la lista de aplicantes, notarás que en la parte superior tienes acceso a varias herramientas útiles. Primero, encontrarás dos opciones para exportar datos a Excel (formato xls): una te permite exportar solo los aplicantes que hayas seleccionado previamente con la casilla de verificación, mientras que la otra te permite exportar todos los aplicantes disponibles en esta página. Además, tendrás a tu disposición una barra de búsqueda que te permite buscar aplicantes por Nombre, Apellidos, Email, Teléfono, Programa a Cursar u Observaciones, y puedes seleccionar el criterio deseado en el menú desplegable junto a la barra de búsqueda. Por último, puedes personalizar la visualización de columnas utilizando la opción de Filtrado de Columnas para mostrar o ocultar datos según tus necesidades. Estas herramientas están diseñadas para simplificar la gestión de aplicantes y brindarte un control completo sobre la información que necesitas."
+  },
+  {
+    "nombre": "pregunta 3",
+    "categoria": "faq",
+    "contenido": "preguntas",
+    "pregunta": "¿Que datos recogemos de un aplicante?",
+    "respuesta": "En la tabla, recopilamos una amplia gama de información del aplicante, que incluye su Nombre, Apellidos, Email, Teléfono, Invitaciones, Programa a cursar, Estado, Fecha de aplicación y observaciones que el administrador puede agregar. Además, al comienzo de cada fila de aplicante, encontrarás un botón que despliega las siguientes opciones: Copiar correo del aplicante, Detalles del aplicante y Realizar entrevista. Al hacer clic en el icono de correo, podrás enviar un correo electrónico de invitación a la persona seleccionada. También puedes presionar el icono de WhatsApp para enviar la invitación a través de esa plataforma. Además, tienes la flexibilidad de cambiar manualmente el estado del aplicante. Simplemente abre el menú desplegable y selecciona el estado correspondiente."
+  },
   {
     "nombre": "pregunta 3",
     "categoria": "faq",
@@ -40,35 +54,30 @@
     "respuesta": "Para cambiar el estado de un aplicante, ve a la Tabla. Desde allí, en la columna de estado podrás seleccionar su estado."
   },
   {
-    "nombre": "pregunta 3",
-    "categoria": "faq",
-    "contenido": "preguntas",
-    "pregunta": "¿Cómo funciona el sistema de filtrado?",
-    "respuesta": "Para una búsqueda mas rápida,dispones de una barra de filtrado por columnas en la parte superior derecha de la pantalla, dispones de una barra de búsqueda para el filtrado de email, y también puedes filtrar por nombre y apellido de A - Z, programa a cursar o la fecha de aplicación"
-  },
-  {
     "nombre": "pregunta 4",
     "categoria": "faq",
     "contenido": "preguntas",
     "pregunta": "¿Qué significa cada estado de aplicante?",
     "respuesta":"Estos son los estados",
     "estados": [
-      "Aplicante: Todos los que se registran con el formulario",
-      "Preaprobado: Los residentes Españoles",
-      "Invitado: Los invitados son a los que se les envía un mensaje",
-      "Rechazado",
-      "Entrevistado",
-      "Matriculado",
-      "Certificado: Ha recibido el certificado"
+      "1- APLICANTE: Todos los aspirantes que se han registrado con el formulario y que no cumplen con las condiciones para ser Preaprobados, es decir, estos aspirantes no residen en España o han ingresado con un email ya existe en la lista de aspirantes.",
+      "2- PREAPROBADO: Todos los aspirantes que se han registrado con el formulario y cumplen con las condiciones, es decir, estos aspirantes residen en España o han ingresado con un email inexistente en la lista de aspirantes.",
+      "3- INVITADO: Todos los aspirantes que han sido contactados para ser invitados a una sesion informativa.",
+      "4- CONFIRMADO: Todos los aspirantes que han confirmado su asistencia a la sesion informativa.",
+      "5- ENTREVISTADO: Todos los aspirantes que han sido entrevistados en la sesion informativa.",
+      "6- ADMITIDO: Son los aplicantes que han sido admitidos para continuar con el proceso de becas.",
+      "7- MATRICULADO: Todos los aplicantes que han realizado el proceso de inscripcion y matriculacion para realizar el curso suministrado por la beca.",
+      "8- CERTIFICADO: Todos los aplicantes que han recibido el certificado de completicion de los cursos suministrados por la beca.",
+      "9- RECHAZADO: Todos los aplicantes que no han pasado el proceso de seleccion y no son aptops para recibir la beca.",
+      "10- BAJA: todos los aspirantes que han abandonado o se han retirado del curso suministrado por la beca sin haberlo completado."
     ]
   },
-  
   {
-    "nombre": "pregunta 6",
+    "nombre": "pregunta 3",
     "categoria": "faq",
     "contenido": "preguntas",
-    "pregunta": "¿Qué tecnologías utiliza Work in Tech en su desarrollo?",
-  "respuesta": "Work in Tech está construido con tecnologías de vanguardia, incluyendo una base de datos de ElephantSQL JavaScript, TypeScript, Nest, React y Tailwind CSS."
+    "pregunta": "¿Cómo funciona el sistema de filtrado?",
+    "respuesta": "Para una búsqueda mas rápida,dispones de una barra de filtrado por columnas en la parte superior derecha de la pantalla, dispones de una barra de búsqueda para el filtrado de email, y también puedes filtrar por nombre y apellido de A - Z, programa a cursar o la fecha de aplicación"
   }
   
 ]

@@ -71,7 +71,7 @@ Retomando el inicio del flujo, una persona que automaticamente fue aprobada o qu
 
 <p>El proyecto ha alcanzado un 70% de su principal objetivo, hay un par de aspectos a mejorar que han quedado registrados en futuros Issues; por ejemplo, quisieramos añadir un modulo de seguimiento a las personas actualmente matriculadas que permita subir la información que se trae de la plataforma de estudios.</p>
 
-<h2>Características de la aplicación y demostración </h2>
+## Características de la aplicación y demostración 
 
 Esta aplicación se caracteriza por contar con dos secciones principales, la sección de	registro de nuevos aspirantes y la sección para la gestión de las becas.
 
@@ -95,6 +95,17 @@ Esta aplicación se caracteriza por contar con dos secciones principales, la sec
 
   Y finalmente, hemos incluido una página de ayuda.
   - ![Ayuda](https://github.com/WIT-APP/wit-frontend/assets/144338411/4aa5eac1-d76d-4c04-b67c-cd4166727b5d)
+
+## Acceso al proyecto
+
+### Accede al formulario de registro
+**[Click aquí para registrarte](https://wit-frontend-green.vercel.app/newapplicant/register)**
+
+### Accede al dashboard
+
+**[Click aquí para ir al dashboard](https://wit-frontend-green.vercel.app/login)** <br>
+Usuario demo: admin@mail.com <br>
+Password demo: 1234 
 
 
 
@@ -144,15 +155,54 @@ PostgreSQL: `npm install pg`
 
 4. Ejecutar la aplicación: `npm start`
 
-<div style="display:flex; flex-wrap:wrap; justify-content:left">
+## Equipo de Desarrollo
 
-### Scrum Master:
+<div style="display: flex flex-wrap: wrap justify-content: flex-start">
 
-[<img src="https://avatars.githubusercontent.com/u/97367970?v=4" width=115><br><sub>Alejandra Naranjo</sub>](https://github.com/Alens678)
-
-### Product Owner:
-[<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz)
-
+  <!-- Scrum Master -->
+  <div style="margin-right: 20px;">
+    <a href="https://github.com/Alens678">
+      <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width="115" alt="Alejandra Naranjo">
+    </a>
+    <br>
+    <sub>Alejandra Naranjo</sub>
+  </div>
+  <div style="margin-right: 20px;">
+    <a href="https://github.com/carlos-saiz">
+      <img src="https://avatars.githubusercontent.com/u/126065490?v=4" width="115" alt="Carlos Saiz">
+    </a>
+    <br>
+    <sub>Carlos Saiz</sub>
+  </div>
+  <div style="margin-right: 20px;">
+    <a href="https://github.com/Angela-GM">
+      <img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width="115" alt="Angela Garcia">
+    </a>
+    <br>
+    <sub>Angela Garcia</sub>
+  </div>
+  <div style="margin-right: 20px;">
+    <a href="https://github.com/JFCTito">
+      <img img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115 alt="Jesús Fajardo">
+    </a>
+    <br>
+    <sub>Jesús Fajardo</sub>
+  </div>
+  <div style="margin-right: 20px;">
+    <a href="https://github.com/denizozerdogan">
+     <img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115>
+    </a>
+    <br>
+    <sub>Deniz Ozerdogan</sub>
+  </div>
+</div>
+<div style="margin-right: 20px;">
+    <a href="https://github.com/Federicojaviermartino">
+     <img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115>
+    </a>
+    <br>
+    <sub>Federico Martino</sub>
+  </div>
 </div>
 
 ### Desarrolladores:
