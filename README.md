@@ -1,8 +1,15 @@
 # Work in Tech (WIT) - Aplicación de Gestión de Becas
+![LOGOS WORK IN TECH, Google y Somos F5](https://github.com/WIT-APP/wit-frontend/blob/main/src/assets/footer-image.png?raw=true);
+
+ <p align="left">
+   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+   <img src="https://img.shields.io/github/license/:user/:repo">
+   <img src="https://img.shields.io/github/package-json/dependency-version/:user/:repo/:packageName">
+  </p>
 
 ## Descripción del Proyecto
 
-Bienvenido al repositorio de la aplicación de gestión de becas para el programa Work in Tech (WIT) de la Fundación Somos F5. Este proyecto tiene como objetivo centralizar y automatizar el proceso de registro de interés, selección, matriculación y seguimiento de las personas que participan en el programa WIT.
+Bienvenido al repositorio Frontend de la aplicación de gestión de becas para el programa Work in Tech (WIT) de la Fundación Somos F5. Este proyecto tiene como objetivo centralizar y automatizar el proceso de registro de interés, selección, matriculación y seguimiento de las personas que participan en el programa WIT.
 
 ## Equipo de Desarrollo
 
