@@ -79,11 +79,63 @@ export const tableColumns: ColumnDef<Applicant>[] = [
       />
     ),
     cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row?.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
+      <div className="flex gap-1 items-center">
+       
+        {/* Renderiza el DropdownMenu después del Checkbox */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Acciones:</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => {
+                if (row.original && row.original.correo_electronico) {
+                  navigator.clipboard.writeText(
+                    row.original.correo_electronico.toString()
+                  );
+                }
+              }}
+            >
+              Copiar Correo Aplicante
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link to={`/applicantDetails/${row.original.id}`}>
+                Detalles Aplicante
+              </Link>
+            </DropdownMenuItem>
+            {(row.original.estado === "Aplicante" ||
+              row.original.estado === "Preaprobado" ||
+              row.original.estado === "Invitado" ||
+              row.original.estado === "Confirmado") && (
+              <DropdownMenuItem>
+                <Link to={`/newInterview/${row.original.id}`}>
+                  Realizar Entrevista
+                </Link>
+              </DropdownMenuItem>
+            )}
+            {(row.original.estado === "Entrevistado" ||
+              row.original.estado === "Admitido" ||
+              row.original.estado === "Matriculado" ||
+              row.original.estado === "Certificado") && (
+              <DropdownMenuItem>
+                <Link to={`/applicantInterview/${row.original.id}`}>
+                  Entrevista Aplicante
+                </Link>
+              </DropdownMenuItem>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row?.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
+      </div>
     ),
     enableSorting: false,
     enableHiding: false,
