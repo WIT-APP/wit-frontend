@@ -147,40 +147,31 @@ PostgreSQL: `npm install pg`
 3. Configurar la base de datos PostgreSQL y actualizar la configuración en `config.js`.
 
 4. Ejecutar la aplicación: `npm start`
+
 <div style="display:flex; flex-wrap:wrap; justify-content:left">
 
-<div style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+### Scrum Master:
 
-  <!-- Scrum Master -->
-  <div style="margin-right: 20px;">
-    <a href="https://github.com/Alens678">
-      <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width="115" alt="Alejandra Naranjo">
-    </a>
-    <br>
-    <sub>Alejandra Naranjo</sub>
-  </div>
+[<img src="https://avatars.githubusercontent.com/u/97367970?v=4" width=115><br><sub>Alejandra Naranjo</sub>](https://github.com/Alens678)
 
-  <!-- Product Owner -->
-  <div style="margin-right: 20px;">
-    <a href="https://github.com/carlos-saiz">
-      <img src="https://avatars.githubusercontent.com/u/126065490?v=4" width="115" alt="Carlos Saiz">
-    </a>
-    <br>
-    <sub>Carlos Saiz</sub>
-  </div>
-
-  <!-- Developers -->
-  <div style="margin-right: 20px;">
-    <a href="https://github.com/Angela-GM">
-      <img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width="115" alt="Angela Garcia">
-    </a>
-    <br>
-    <sub>Angela Garcia</sub>
-  </div>
-
-  <!-- Add more team members as needed -->
+### Product Owner:
+[<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz)
 
 </div>
+
+### Desarrolladores:
+<div style="display:flex; flex-wrap:wrap; justify-content:left">
+
+[<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
+
+[<img src="https://avatars.githubusercontent.com/u/131254999?v=4" width=115><br><sub>Deniz Ozerdogan</sub>](https://github.com/denizozerdogan)
+
+[<img src="https://avatars.githubusercontent.com/u/122879094?v=4" width=115><br><sub>Federico Martino</sub>](https://github.com/Federicojaviermartino)
+
+[<img src="https://avatars.githubusercontent.com/u/125603610?v=4" width=115><br><sub>Jesus Fajardo</sub>](https://github.com/JFCTito)
+
+</div>
+
 ## Contacto
 
 Para cualquier pregunta o consulta, no dude en ponerse en contacto con el equipo de desarrollo a través de Slack o Discord.
