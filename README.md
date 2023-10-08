@@ -78,6 +78,27 @@ Retomando el inicio del flujo, una persona que automaticamente fue aprobada o qu
   - Deniz Ozerdogan
   - Federico Martino
   - Jesus Fajardo
+ 
+  - ![form](https://github.com/WIT-APP/wit-frontend/assets/144338411/cb7456ab-d6e3-4ccc-8031-288bcc8acd75)
+  - ![login](https://github.com/WIT-APP/wit-frontend/assets/144338411/245d3104-ed90-4a5a-821e-ac79a5e62e36)
+  - ![pre-aprobado](https://github.com/WIT-APP/wit-frontend/assets/144338411/f0d87d20-7f62-4888-803e-c3ef3d65bfc3)
+  - ![aplicante](https://github.com/WIT-APP/wit-frontend/assets/144338411/f34cb3a5-a889-458b-8b7b-033f012d7201)
+  - ![Confirmado](https://github.com/WIT-APP/wit-frontend/assets/144338411/aaf7ccbc-5d84-4939-ae59-408d108c53a5)
+  - ![Entrevistado](https://github.com/WIT-APP/wit-frontend/assets/144338411/4f73b605-6573-4f77-adb4-72ea2925b8c2)
+  - ![Admitido](https://github.com/WIT-APP/wit-frontend/assets/144338411/121796d5-f616-4496-ad98-fdeac8f616f5)
+  - ![Matriculado](https://github.com/WIT-APP/wit-frontend/assets/144338411/daffa9a9-84f7-418a-8866-c0242d00a1a8)
+  - ![Estadísticas](https://github.com/WIT-APP/wit-frontend/assets/144338411/f492fa7f-45af-4892-8aae-eca4a9f70f3e)
+  - ![Ayuda](https://github.com/WIT-APP/wit-frontend/assets/144338411/4aa5eac1-d76d-4c04-b67c-cd4166727b5d)
+
+
+
+
+
+
+
+
+
+
 
 ## Herramientas y Tecnologías Utilizadas
 
