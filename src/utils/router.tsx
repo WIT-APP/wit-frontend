@@ -3,7 +3,6 @@ import { FormPage } from "../pages/FormPage";
 import Dashboard from "@/pages/Dashboard";
 import TablePage from "@/pages/TablePage";
 import PreApprovedPage from "@/pages/PreApprovedPage";
-import SettingsPage from "@/pages/SettingsPage";
 import HelpPage from "@/pages/HelpPage";
 import LoginPage from "@/pages/LoginPage";
 import { ApplicantDetails } from "@/components/ApplicantDetails";
@@ -52,10 +51,6 @@ export const router = createBrowserRouter([
       {
         path: "/:Baja",
         element: <TablePage />,
-      },
-      {
-        path: "/Ajustes",
-        element: <SettingsPage />,
       },
       {
         path: "/Ayuda",
