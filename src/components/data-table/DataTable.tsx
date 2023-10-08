@@ -275,7 +275,7 @@ export function DataTable<TData extends Record<string, any>>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns
+              Columnas
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
