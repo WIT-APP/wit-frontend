@@ -78,7 +78,7 @@ Retomando el inicio del flujo, una persona que automaticamente fue aprobada o qu
 [<img src="https://avatars.githubusercontent.com/u/126065490?v=4" width=115><br><sub>Carlos Saiz</sub>](https://github.com/carlos-saiz)
 
 ### Desarrolladores:
-<div style="display:flex; flex-wrap:wrap; justify-content:left">
+<div style="display:flex; justify-content:left">
   
 [<img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width=115><br><sub>Angela Garcia</sub>](https://github.com/Angela-GM)
 
