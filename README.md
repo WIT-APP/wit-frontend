@@ -161,9 +161,8 @@ PostgreSQL: `npm install pg`
 
 ## Equipo de Desarrollo
 
-<div style="display: flex flex-wrap: wrap justify-content: flex-start">
 
-  <!-- Scrum Master -->
+
   <div style="margin-right: 20px;">
     <a href="https://github.com/Alens678">
       <img src="https://avatars.githubusercontent.com/u/97367970?v=4" width="115" alt="Alejandra Naranjo">
@@ -178,6 +177,7 @@ PostgreSQL: `npm install pg`
     <br>
     <sub>Carlos Saiz</sub>
   </div>
+  <div style="display: flex flex-wrap: wrap justify-content: flex-start">
   <div style="margin-right: 20px;">
     <a href="https://github.com/Angela-GM">
       <img src="https://avatars.githubusercontent.com/u/116819605?s=400&u=bae5f7e88a358d3fbbd2f0e8521dda9a57739c70&v=4" width="115" alt="Angela Garcia">
