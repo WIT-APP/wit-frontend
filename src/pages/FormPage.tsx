@@ -5,7 +5,7 @@ import witLogo from '../assets/witLogo.png';
 import { useCategoryQuestion } from '../services/CategoryQuestionsForm';
 import { Formik,FormikHelpers } from 'formik';
 import { initialValues, validationSchema } from '@/interfaces/formRegister.interface';
-import { FormSection } from '@/components/FormSection';
+import { FormSection } from '@/components/form/FormSection';
 import {  useNewApplication } from '@/services/RegisterApplicant';
 import { ToastContainer } from 'react-toastify';
 import { useRef } from "react";

@@ -1,5 +1,5 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import ModalConfirmation from '@/components/ModalConfirmation';
+import ModalConfirmation from '@/components/modal/ModalConfirmation';
 import userEvent from '@testing-library/user-event';
 
 describe('ModalConfirmation', () => {

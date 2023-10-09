@@ -7,7 +7,7 @@ import { useGetInterviewByApplicant } from "@/services/GetInterviewByApplicant";
 import { useUpdateInterview } from "@/services/UpdateInterview";
 import { ChangesSavedDialog } from "@/components/alerts/ChangesSavedDialog";
 import { UnsavedChangesConfirmationDialog } from "@/components/alerts/UnsavedChangesDialog";
-import { ApplicantInterview } from "@/components/ApplicantInterview";
+import { ApplicantInterview } from "@/pages/ApplicantInterviewPage";
 import { Interview } from "@/interfaces/interview.interface";
 
 vi.mock("@/components/alerts/ChangesSavedDialog", () => ({

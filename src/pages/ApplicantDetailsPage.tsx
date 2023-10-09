@@ -10,13 +10,13 @@ import { useGetByIdApplicant } from "@/services/GetByIdApplicant";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { Button } from "./ui/Button";
+import { Button } from "../components/ui/Button";
 import { useUpdateApplicant } from "@/services/UpdateApplicant";
 import labelsArray from "../data/applicant-labels.data.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Applicant } from "@/interfaces/applicant.interface";
-import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
-import { Textarea } from "./ui/textarea";
+import { UnsavedChangesConfirmationDialog } from "../components/alerts/UnsavedChangesDialog";
+import { Textarea } from "../components/ui/textarea";
 import { ChangesSavedDialog } from "@/components/alerts/ChangesSavedDialog";
 
 export const ApplicantDetails = () => {

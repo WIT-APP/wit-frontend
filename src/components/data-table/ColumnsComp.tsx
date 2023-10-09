@@ -13,7 +13,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import { UpdateEstado } from "@/services/UpdateEstado";
 import { Applicant } from "@/interfaces/applicant.interface";
 import { Link } from "react-router-dom";

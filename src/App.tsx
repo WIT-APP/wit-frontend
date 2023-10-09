@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./hooks/authContext";
-import { ApplicantDetails } from "./components/ApplicantDetails";
-import { ApplicantInterview } from "./components/ApplicantInterview";
-import { NewInterview } from "./components/NewInterview";
+import { ApplicantDetails } from "./pages/ApplicantDetailsPage";
+import { ApplicantInterview } from "./pages/ApplicantInterviewPage";
+import { NewInterview } from "./pages/NewInterviewPage";
 import Dashboard from "./pages/Dashboard";
 import { FormPage } from "./pages/FormPage";
 import HelpPage from "./pages/HelpPage";
 import LoginPage from "./pages/LoginPage";
 import PreApprovedPage from "./pages/PreApprovedPage";
 import TablePage from "./pages/TablePage";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedRoute } from "./services/ProtectedRoute";
 import Summary from "./pages/Summary";
 
 function App() {

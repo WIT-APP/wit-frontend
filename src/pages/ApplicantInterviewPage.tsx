@@ -9,55 +9,32 @@ import {
   import { Label } from "@radix-ui/react-dropdown-menu";
   import { useQueryClient } from "@tanstack/react-query";
   import { useState, useEffect } from "react";
-  import { Button } from "./ui/Button";
+  import { Button } from "../components/ui/Button";
   import labelsArray from "../data/interview-labels.data.json";
   import { useNavigate, useParams } from "react-router-dom";
-  import { Textarea } from "./ui/textarea";
+  import { Textarea } from "../components/ui/textarea";
+import { useGetInterviewByApplicant } from "@/services/GetInterviewByApplicant";
 import { Interview } from "@/interfaces/interview.interface";
-import { UnsavedChangesConfirmationDialog } from "./alerts/UnsavedChangesDialog";
-import { ChangesSavedDialog } from "./alerts/ChangesSavedDialog";
-import { useCreateInterview } from "@/services/CreateInterview";
-import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
+import { useUpdateInterview } from "@/services/UpdateInterview";
+import { UnsavedChangesConfirmationDialog } from "../components/alerts/UnsavedChangesDialog";
+import { ChangesSavedDialog } from "../components/alerts/ChangesSavedDialog";
   
-  export const NewInterview = () => {
+  export const ApplicantInterview = () => {
     const { id } = useParams();
     const queryClient = useQueryClient();
-    const [defaultInterviewInfo] = useState<Interview> ({
-      motivacion_curso: "",
-      soporte_it: "",
-      desempeno_laboral: "",
-      situacion_actual: "",
-      otros_cursos: "",
-      cual_curso: "",
-      disponibilidad: "",
-      participar_zoom: "",
-      encontrar_trabajo: "",
-      ajuste_calendario: "",
-      conexion_semanal: "",
-      conocer_curso: "",
-      beca_otra: "",
-      completado_mydigiskills: "",
-      mas_informacion: "",
-      aplicante_apto: "",
-      que_es_programacion: "",
-      nivel_entrevistado: "",
-      logica_caracol: "",
-      nivel_ingles: "",
-    });
-    const useCreateInterviewMutation = useCreateInterview();
-    const useSetEstadoEntrevistadoMutation = useSetEstadoEntrevistado();
+    const { oneInterview, isLoading, isError } = useGetInterviewByApplicant(id);
+    const useUpdateInterviewMutation = useUpdateInterview();
     const [interviewInfo, setInterviewInfo] = useState<Interview | null>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [unsavedChanges, setUnsavedChanges] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    
-
   
     useEffect(() => {
-        setInterviewInfo(defaultInterviewInfo);
-
-    }, [defaultInterviewInfo]);
+      if (!isLoading && !isError && oneInterview) {
+        setInterviewInfo(oneInterview);
+      }
+    }, [oneInterview, isLoading, isError]);
   
     const compareInterview = (interviewA: any, interviewB: any) => {
       const keys = Object.keys(interviewA);
@@ -71,10 +48,10 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
   
     useEffect(() => {
       if (interviewInfo) {
-        const hasUnsavedChanges = !compareInterview(interviewInfo, defaultInterviewInfo);
+        const hasUnsavedChanges = !compareInterview(interviewInfo, oneInterview);
         setUnsavedChanges(hasUnsavedChanges);
       }
-    }, [interviewInfo, defaultInterviewInfo]);
+    }, [interviewInfo, oneInterview]);
   
     const handleInputChange = (field: keyof Interview, value: string) => {
       if (interviewInfo) {
@@ -92,26 +69,22 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
           if (typeof applicantId !== "number" || isNaN(applicantId)) {
             console.error("Invalid applicant ID");
             return;
-          }  
-          await useCreateInterviewMutation.mutateAsync({
-              applicant: applicantId,
+          }
+  
+          await useUpdateInterviewMutation.mutateAsync({
             ...interviewInfo,
-          });
-          await useSetEstadoEntrevistadoMutation.mutateAsync({
             id: applicantId,
-          estado: "Entrevistado",
-        });
+          });
           queryClient.invalidateQueries(["applicants", applicantId]);
           setShowSuccessModal(true);
         } catch (error) {
-            console.error("Error creating applicant interview:", error);
+          console.error("Error updating applicant information:", error);
         }
-    }
+      }
     };
   
     const handleSuccessModalClose = () => {
       setShowSuccessModal(false);
-      navigate(`/applicantDetails/${id}`)
     };
   
     const navigate = useNavigate();
@@ -138,7 +111,7 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
         <CardHeader className="bg-lightgreen2 rounded flex justify-between">
           <CardTitle>Entrevista del Aspirante</CardTitle>
           <CardDescription>
-            Rellena la Entrevista del aspirante.
+            Mostrar y modificar la Entrevista del aspirante.
           </CardDescription>
           <div className="flex justify-end space-x-2 ">
             <UnsavedChangesConfirmationDialog
@@ -220,3 +193,5 @@ import { useSetEstadoEntrevistado } from "@/services/SetEstadoEntrevistado";
       </Card>
     );
   };
+
+

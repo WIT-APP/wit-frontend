@@ -5,9 +5,9 @@ import TablePage from "@/pages/TablePage";
 import PreApprovedPage from "@/pages/PreApprovedPage";
 import HelpPage from "@/pages/HelpPage";
 import LoginPage from "@/pages/LoginPage";
-import { ApplicantDetails } from "@/components/ApplicantDetails";
-import { ApplicantInterview } from "@/components/ApplicantInterview";
-import { NewInterview } from "@/components/NewInterview";
+import { ApplicantDetails } from "@/pages/ApplicantDetailsPage";
+import { ApplicantInterview } from "@/pages/ApplicantInterviewPage";
+import { NewInterview } from "@/pages/NewInterviewPage";
 import Summary from "@/pages/Summary";
 
 

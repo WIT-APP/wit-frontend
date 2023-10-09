@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { describe } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { ApplicantDetails } from "@/components/ApplicantDetails";
+import { ApplicantDetails } from "@/pages/ApplicantDetailsPage";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { useGetByIdApplicant } from "@/services/GetByIdApplicant";
