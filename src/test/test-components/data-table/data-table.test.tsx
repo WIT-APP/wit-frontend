@@ -102,7 +102,7 @@ describe("DataTable Component", () => {
   test("has the Columns button rendered", () => {
     render(<DataTable columns={columns} data={data} />);
 
-    const columnsButton = screen.getByRole("button", { name: /columns/i });
+    const columnsButton = screen.getByRole("button", { name: /columnas/i });
 
     expect(columnsButton).toBeTruthy();
   });
@@ -110,7 +110,7 @@ describe("DataTable Component", () => {
   test("opens and renders the columns menu with checkboxes", async () => {
     render(<DataTable columns={columns} data={data} />);
 
-    const columnsButton = screen.getByRole("button", { name: /columns/i });
+    const columnsButton = screen.getByRole("button", { name: /columnas/i });
       userEvent.click(columnsButton);
       await waitFor(() => {
         const checkboxes = document.querySelectorAll('.capitalize'); 

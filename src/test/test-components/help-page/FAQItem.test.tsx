@@ -9,13 +9,13 @@ import userEvent from "@testing-library/user-event";
       const title = screen.getByText(/Preguntas Frecuentes/i);
       expect(title).toBeTruthy();
 
-      const question1 = screen.getByText(/¿Cuáles son las ventajas de usar Work in Tech en lugar de métodos manuales tradicionales?/i)
+      const question1 = screen.getByText(/¿La barra superior que uso tiene?/i)
       expect(question1).toBeTruthy();
 
       userEvent.click(question1)
       await waitFor(() => {
           const answer1 = screen.getByText(
-              /Work in Tech elimina la necesidad de gestionar aspirantes de forma manual, lo que ahorra tiempo y reduce errores./i
+              /Una vez que hayas iniciado sesión en nuestra plataforma, lo primero que notarás en tu pantalla es la lista de aplicantes preaprobados./i
           );
           expect(answer1).toBeTruthy();
 

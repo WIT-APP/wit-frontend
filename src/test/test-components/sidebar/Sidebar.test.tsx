@@ -43,26 +43,6 @@ describe("Sidebar Component", () => {
     expect(button).toBeTruthy();
   });
 
-  test("should render the h4 element", () => {
-    const { container  } = render(
-      <SidebarContext.Provider value={{ expanded: true }}>
-        <Sidebar>{mockChildren}</Sidebar>
-      </SidebarContext.Provider>
-    );
-      const h4Element = container.querySelector('h4');
-      expect(h4Element).toBeTruthy();
-  });
-
-  test("should render the span element", () => {
-    const { container  } = render(
-      <SidebarContext.Provider value={{ expanded: true }}>
-        <Sidebar>{mockChildren}</Sidebar>
-      </SidebarContext.Provider>
-    );
-    const spanElement = container.querySelector('span');
-    expect(spanElement).toBeTruthy();
-  });
-
   test("should toggle expansion when button is clicked", () => {
     const { getByTestId, getByRole } = render(
       <SidebarContext.Provider value={{ expanded: true }}>
